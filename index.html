@@ -15,20 +15,41 @@
   input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
   input#searchKeyword { width: 250px; border: 1px solid #0088cc; }
 
-  /* テーブルエリア */
+  /* テーブルエリア - 縦枠線を追加 */
   .table-wrapper { background: white; border-radius: 10px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  table { width: 100%; border-collapse: collapse; min-width: 1200px; }
-  th, td { border-bottom: 1px solid #eee; padding: 12px; text-align: left; vertical-align: top; font-size: 13px; }
-  th { background: #0088cc; color: white; position: sticky; top: 0; white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; min-width: 1200px; border: 1px solid #ccc; }
+  th, td { border: 1px solid #ccc; /* ここで縦横の枠線を設定 */ padding: 12px; text-align: left; vertical-align: top; font-size: 13px; }
+  th { background: #0088cc; color: white; position: sticky; top: 0; white-space: nowrap; z-index: 10; }
   
   /* カード個別スタイル */
   tr:hover { background-color: #f0faff; }
-  .card-img { width: 80px; height: auto; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  .card-img { width: 80px; height: auto; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
+  .card-img:hover { transform: scale(1.1); }
+  
   .tag { display: inline-block; background: #e0e0e0; color: #555; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin: 2px; }
   .arts-text { line-height: 1.5; color: #222; }
-  .prod-text { line-height: 1.4; color: #444; font-size: 12px; white-space: nowrap; }
+  .prod-text { line-height: 1.4; color: #444; font-size: 12px; }
   .name-text { font-weight: bold; color: #0055aa; display: block; }
   .number-text { font-size: 11px; color: #888; }
+
+  /* 画像拡大モーダル */
+  #imageModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+  }
+  #modalImage {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 10px;
+  }
 </style>
 </head>
 <body>
@@ -117,7 +138,7 @@
         <th>Bloomレベル</th>
         <th>アーツ/効果</th>
         <th>エフェクト</th>
-        <th>バトン</th>
+        <th>バトンタッチ</th>
         <th>エクストラ</th>
         <th>タグ</th>
         <th>収録</th>
@@ -126,6 +147,10 @@
     </thead>
     <tbody></tbody>
   </table>
+</div>
+
+<div id="imageModal" onclick="closeModal()">
+  <img id="modalImage" src="" alt="拡大画像">
 </div>
 
 <script>
@@ -170,6 +195,18 @@
     return rows.slice(1);
   }
 
+  // 画像拡大表示
+  function openModal(imgSrc) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    modal.style.display = "flex";
+    modalImg.src = imgSrc;
+  }
+
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
   function displayCards(data) {
     const tbody = document.querySelector('#cardTable tbody');
     tbody.innerHTML = '';
@@ -178,18 +215,12 @@
       const [url, img, name, type, color, hp, bloom, arts, effect, baton, extra, num, prod] = r;
       const tags = r.slice(13).filter(t => t.trim() !== "");
 
-      // アーツのクリーンアップ
       const cleanArts = arts.replace(/^アーツ/g, '').replace(/\n/g, '<br>');
-
-      // 【追加】収録商品名の改行処理と空白トリミング
-      const cleanProd = prod.split('\n')
-        .map(p => p.trim())
-        .filter(p => p !== "")
-        .join('<br>');
+      const cleanProd = prod.split('\n').map(p => p.trim()).filter(p => p !== "").join('<br>');
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td><img src="${img}" class="card-img" loading="lazy"></td>
+        <td><img src="${img}" class="card-img" loading="lazy" onclick="openModal('${img}')"></td>
         <td><span class="name-text">${name}</span><span class="number-text">${num}</span></td>
         <td>${color}</td>
         <td>${type}</td>
