@@ -63,13 +63,12 @@
       <th>色</th>
       <th>HP</th>
       <th>Bloom</th>
-      <th>バトンタッチ</th>
-      <th>キーワード</th>
-      <th>商品</th>
       <th>アーツ</th>
+      <th>キーワード</th>
+      <th>バトンタッチ</th>
       <th>エクストラ</th>
+      <th>商品</th>
       <th>タグ</th>
-      <th>リンク</th>
     </tr>
   </thead>
   <tbody id="cardTableBody"></tbody>
@@ -110,7 +109,7 @@ function renderCards(rows) {
 
   rows.forEach(r => {
     const [
-      url, img, name, cardType, color, hp, bloom,
+      img, name, cardType, color, hp, bloom,
       arts, keyword, baton, extra, number, product,
       tag1, tag2, tag3, tag4, tag5, tag6
     ] = r;
@@ -132,8 +131,7 @@ function renderCards(rows) {
       <td>${extra}</td>
       <td>${product}</td>
       <td>${tags}</td>
-      <td><a href="${url}" target="_blank">詳細</a></td>
-    `;
+      `;
 
     tbody.appendChild(tr);
   });
@@ -152,7 +150,7 @@ function applyFilters() {
 
   const filtered = csvData.rows.filter(r => {
     const [
-      url, img, name, cardType, colorVal, hp, bloom,
+      img, name, cardType, colorVal, hp, bloom,
       arts, keywordVal, batonVal, extra, number, product,
       tag1, tag2, tag3, tag4, tag5, tag6
     ] = r;
