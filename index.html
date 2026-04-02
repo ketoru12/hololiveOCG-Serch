@@ -121,15 +121,16 @@ function renderCards(rows) {
 
     tr.innerHTML = `
       <td><img src="${img}" alt="${name}" style="width:80px;"></td>
+      <td>${cardType}</td>
       <td>${name}</td>
       <td>${color}</td>
       <td>${hp}</td>
       <td>${bloom}</td>
-      <td>${baton}</td>
-      <td>${keyword}</td>
-      <td>${product}</td>
       <td>${arts}</td>
+      <td>${keyword}</td>
+      <td>${baton}</td>
       <td>${extra}</td>
+      <td>${product}</td>
       <td>${tags}</td>
       <td><a href="${url}" target="_blank">詳細</a></td>
     `;
