@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(1.3)</title>
+<title>Hololive OCG カード検索ビューア(1.4)</title>
 
 <style>
   body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
@@ -17,7 +17,7 @@
 
   /* テーブルエリア */
   .table-wrapper { background: white; border-radius: 10px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  table { width: 100%; border-collapse: collapse; min-width: 1100px; border: 1px solid #ccc; }
+  table { width: 100%; border-collapse: collapse; min-width: 1200px; border: 1px solid #ccc; }
   th, td { border: 1px solid #ccc; padding: 12px; text-align: left; vertical-align: top; font-size: 13px; }
   th { background: #0088cc; color: white; position: sticky; top: 0; white-space: nowrap; z-index: 10; }
   
@@ -26,12 +26,20 @@
   .card-img { width: 80px; height: auto; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
   .card-img:hover { transform: scale(1.1); }
   
-  /* 【変更】タグを縦に並べる設定 */
   .tag-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
   .tag { display: inline-block; background: #e0e0e0; color: #555; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; }
   
-  .arts-text { line-height: 1.5; color: #222; }
-  .prod-text { line-height: 1.4; color: #444; font-size: 12px; }
+  .arts-text { line-height: 1.5; color: #222; min-width: 250px; }
+  
+  /* 【修正】収録列の設定：折り返しを禁止し、必要に応じて幅を確保 */
+  .prod-text { 
+    line-height: 1.6; 
+    color: #444; 
+    font-size: 12px; 
+    white-space: nowrap; /* 改行させない */
+    padding-right: 20px;
+  }
+  
   .name-text { font-weight: bold; color: #0055aa; display: block; }
   .number-text { font-size: 11px; color: #888; }
 
@@ -57,7 +65,7 @@
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(1.3)</h2>
+<h2>Hololive OCG カード検索ビューア(1.4)</h2>
 
 <div class="search-container">
   <div class="filter-group">
@@ -140,7 +148,7 @@
         <th>Bloomレベル</th>
         <th>アーツ/効果</th>
         <th>エフェクト</th>
-        <th>バトンタッチ</th>
+        <th>バトン</th>
         <th>エクストラ</th>
         <th>タグ</th>
         <th>収録</th>
@@ -217,9 +225,13 @@
       const tags = r.slice(13).filter(t => t.trim() !== "");
 
       const cleanArts = arts.replace(/^アーツ/g, '').replace(/\n/g, '<br>');
-      const cleanProd = prod.split('\n').map(p => p.trim()).filter(p => p !== "").join('<br>');
+      
+      // 改行が含まれる場合に対応しつつ、商品名ごとに1行で表示されるようにする
+      const cleanProd = prod.split('\n')
+        .map(p => p.trim())
+        .filter(p => p !== "")
+        .join('<br>');
 
-      // タグを縦に並べるためのHTML生成
       const tagsHtml = `<div class="tag-container">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
 
       const tr = document.createElement('tr');
@@ -257,7 +269,7 @@
 
       if (kw && !artsText.includes(kw)) return false;
       if (color && r[4] !== color) return false;
-      if (type && r[3] !== type) return false; // 内部的なタイプ判定は維持
+      if (type && r[3] !== type) return false;
       if (bloom && r[6] !== bloom) return false;
       if (effect && effectValue !== effect) return false;
       if (baton && r[9] !== baton) return false;
