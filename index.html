@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(0.9)</title>
+<title>Hololive OCG カード検索ビューア(0.91)</title>
 
 <style>
   body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
@@ -32,12 +32,12 @@
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(0.9)</h2>
+<h2>Hololive OCG カード検索ビューア(0.91)</h2>
 
 <div class="search-container">
   <div class="filter-group">
-    <label>キーワード検索（アーツ/効果）</label>
-    <input type="text" id="searchKeyword" placeholder="アーツ名やテキストで検索...">
+    <label>キーワード検索（効果テキスト）</label>
+    <input type="text" id="searchKeyword" placeholder="内容で検索...">
   </div>
 
   <div class="filter-group">
@@ -79,7 +79,12 @@
 
   <div class="filter-group">
     <label>エフェクト</label>
-    <input type="text" id="effectFilter" placeholder="ギフト等...">
+    <select id="effectFilter">
+      <option value="">すべて</option>
+      <option value="ギフト">ギフト</option>
+      <option value="ブルームエフェクト">ブルームエフェクト</option>
+      <option value="コラボエフェクト">コラボエフェクト</option>
+    </select>
   </div>
 
   <div class="filter-group">
@@ -125,7 +130,6 @@
 <script>
   let csvData = [];
 
-  // CSVの読み込み
   window.addEventListener('DOMContentLoaded', async () => {
     try {
       const response = await fetch('hololive_cards.csv');
@@ -139,7 +143,6 @@
     }
   });
 
-  // CSV解析 (引用符内の改行対応)
   function parseCSV(text) {
     const rows = [];
     let row = [];
@@ -163,19 +166,19 @@
       }
     }
     if (row.length > 0 || col !== "") { row.push(col); rows.push(row); }
-    return rows.slice(1); // ヘッダー除去
+    return rows.slice(1);
   }
 
-  // 表示
   function displayCards(data) {
     const tbody = document.querySelector('#cardTable tbody');
     tbody.innerHTML = '';
 
     data.forEach(r => {
-      // インデックス対応
-      // 0:url, 1:img, 2:name, 3:type, 4:color, 5:hp, 6:bloom, 7:arts, 8:effect, 9:baton, 10:extra, 11:num, 12:prod, 13~:tags
       const [url, img, name, type, color, hp, bloom, arts, effect, baton, extra, num, prod] = r;
       const tags = r.slice(13).filter(t => t.trim() !== "");
+
+      // 【変更】アーツの表示から「アーツ」という接頭辞を削除
+      const cleanArts = arts.replace(/^アーツ/g, '');
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -185,7 +188,7 @@
         <td>${type}</td>
         <td>${hp || '-'}</td>
         <td>${bloom}</td>
-        <td class="arts-text">${arts.replace(/\n/g, '<br>')}</td>
+        <td class="arts-text">${cleanArts.replace(/\n/g, '<br>')}</td>
         <td>${effect}</td>
         <td>${baton}</td>
         <td><small>${extra}</small></td>
@@ -197,26 +200,26 @@
     });
   }
 
-  // フィルタリング
   function applyFilters() {
     const kw = document.getElementById("searchKeyword").value.toLowerCase();
     const color = document.getElementById("colorFilter").value;
     const type = document.getElementById("typeFilter").value;
     const bloom = document.getElementById("bloomFilter").value;
-    const effect = document.getElementById("effectFilter").value.toLowerCase();
+    const effect = document.getElementById("effectFilter").value; // プルダウン値
     const baton = document.getElementById("batonFilter").value;
     const tag = document.getElementById("tagFilter").value.toLowerCase();
 
     const filtered = csvData.filter(r => {
       const artsText = (r[7] || "").toLowerCase();
-      const effectText = (r[8] || "").toLowerCase();
+      const effectValue = (r[8] || "");
       const tagsText = r.slice(13).join(" ").toLowerCase();
 
       if (kw && !artsText.includes(kw)) return false;
       if (color && r[4] !== color) return false;
       if (type && r[3] !== type) return false;
       if (bloom && r[6] !== bloom) return false;
-      if (effect && !effectText.includes(effect)) return false;
+      // 【変更】エフェクトの完全一致判定（プルダウン用）
+      if (effect && effectValue !== effect) return false;
       if (baton && r[9] !== baton) return false;
       if (tag && !tagsText.includes(tag)) return false;
 
@@ -226,11 +229,11 @@
     displayCards(filtered);
   }
 
-  // イベント登録
-  ["searchKeyword", "effectFilter", "tagFilter"].forEach(id => {
-    document.getElementById(id).addEventListener("input", applyFilters);
-  });
-  ["colorFilter", "typeFilter", "bloomFilter", "batonFilter"].forEach(id => {
+  // イベント登録の整理
+  document.getElementById("searchKeyword").addEventListener("input", applyFilters);
+  document.getElementById("tagFilter").addEventListener("input", applyFilters);
+  
+  ["colorFilter", "typeFilter", "bloomFilter", "effectFilter", "batonFilter"].forEach(id => {
     document.getElementById(id).addEventListener("change", applyFilters);
   });
 </script>
