@@ -2,12 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア</title>
+<title>Hololive OCG カード検索ビューア(0.9)</title>
 
 <style>
-  body { font-family: sans-serif; padding: 20px; }
+  body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
   h2 { margin-bottom: 10px; }
-  input, select { padding: 6px; margin-right: 10px; }
+  .controls { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+  input, select { padding: 8px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
 
   table {
     width: 100%;
@@ -16,39 +17,86 @@
   }
   th, td {
     border: 1px solid #ccc;
-    padding: 6px;
+    padding: 10px;
     text-align: left;
     vertical-align: top;
+    font-size: 14px;
   }
   th {
     background: #f0f0f0;
+    position: sticky;
+    top: 0;
   }
+  img { max-width: 80px; height: auto; border-radius: 4px; }
+  .tag { background: #e0e0e0; padding: 2px 5px; border-radius: 3px; font-size: 12px; margin-right: 3px; }
 </style>
 </head>
 <body>
 
+<h2>Hololive OCG カード検索ビューア</h2>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="キーワード検索（名前、効果など）..." style="width: 300px;">
+  
+  <select id="colorFilter">
+    <option value="">すべての色</option>
+    <option value="白">白</option>
+    <option value="青">青</option>
+    <option value="赤">赤</option>
+    <option value="黄">黄</option>
+    <option value="紫">紫</option>
+    <option value="緑">緑</option>
+  </select>
+
+  <select id="batonFilter">
+    <option value="">バトン（すべて）</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+</div>
+
+<table id="cardTable">
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>名前</th>
+      <th>色</th>
+      <th>タイプ</th>
+      <th>HP</th>
+      <th>段階</th>
+      <th>アーツ / 効果</th>
+      <th>キーワード</th>
+      <th>バトン</th>
+      <th>備考</th>
+      <th>収録</th>
+      <th>タグ</th>
+      <th>リンク</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tbody>
+</table>
+
 <script>
   let csvData = { rows: [] };
 
-  // 1. ページ読み込み時に CSV を自動取得
   window.addEventListener('DOMContentLoaded', async () => {
     try {
+      // サーバー上の CSV を取得
       const response = await fetch('hololive_cards.csv');
-      if (!response.ok) throw new Error('CSVファイルの取得に失敗しました。');
+      if (!response.ok) throw new Error('CSVファイルの取得に失敗しました。ファイルが index.html と同じ場所にありますか？');
       
       const text = await response.text();
-      // 改行やカンマを含む高度なCSV解析
       csvData.rows = parseCSV(text);
-      
-      // 初回表示
       displayCards(csvData.rows);
     } catch (error) {
       console.error(error);
-      alert('エラー: ' + error.message + '\n※GitHub Pagesにアップロードするか、ローカルサーバーで実行してください。');
+      alert('エラー: ' + error.message);
     }
   });
 
-  // 引用符内の改行に対応したCSVパーサー
   function parseCSV(text) {
     const rows = [];
     let row = [];
@@ -60,7 +108,7 @@
       let nextChar = text[i + 1];
 
       if (inQuote) {
-        if (char === '"' && nextChar === '"') { col += '"'; i++; } // エスケープされた引用符
+        if (char === '"' && nextChar === '"') { col += '"'; i++; }
         else if (char === '"') { inQuote = false; }
         else { col += char; }
       } else {
@@ -68,18 +116,17 @@
         else if (char === ',') { row.push(col); col = ""; }
         else if (char === '\r' || char === '\n') {
           row.push(col);
-          if (row.length > 1) rows.push(row);
+          if (row.join("").trim().length > 0) rows.push(row);
           row = []; col = "";
           if (char === '\r' && nextChar === '\n') i++;
         } else { col += char; }
       }
     }
-    // 最後の行の処理
     if (row.length > 0 || col !== "") {
       row.push(col);
       rows.push(row);
     }
-    return rows.slice(1); // ヘッダー行を削除
+    return rows.slice(1); // ヘッダーを除去
   }
 
   function displayCards(rows) {
@@ -88,31 +135,37 @@
     tbody.innerHTML = '';
 
     rows.forEach(r => {
+      if (r.length < 5) return; // 空行対策
+
       const tr = document.createElement('tr');
-      // CSVの列：url, img, name, cardType, color, hp, bloom, arts, keyword, baton, extra, number, product, tags...
+      // 列定義: url, img, name, cardType, color, hp, bloom, arts, keyword, baton, extra, number, product, tags...
       const [url, img, name, cardType, color, hp, bloom, arts, keyword, baton, extra, number, product] = r;
-      const tags = r.slice(13).filter(t => t).join(' ');
+      
+      // タグをきれいに表示
+      const tagsHtml = r.slice(13)
+        .filter(t => t && t.trim() !== "")
+        .map(t => `<span class="tag">${t}</span>`)
+        .join("");
 
       tr.innerHTML = `
-        <td><img src="${img}" width="80" loading="lazy"></td>
-        <td>${name}</td>
+        <td><img src="${img}" loading="lazy"></td>
+        <td><strong>${name}</strong><br><small>${number}</small></td>
         <td>${color}</td>
         <td>${cardType}</td>
-        <td>${hp}</td>
+        <td>${hp || '-'}</td>
         <td>${bloom}</td>
         <td>${arts.replace(/\n/g, '<br>')}</td>
         <td>${keyword}</td>
         <td>${baton}</td>
         <td>${extra}</td>
         <td>${product}</td>
-        <td>${tags}</td>
+        <td>${tagsHtml}</td>
         <td><a href="${url}" target="_blank">詳細</a></td>
       `;
       tbody.appendChild(tr);
     });
   }
 
-  // フィルタ機能（既存のものを流用・調整）
   function applyFilters() {
     if (!csvData.rows) return;
 
@@ -121,8 +174,10 @@
     const baton = document.getElementById("batonFilter").value;
 
     const filtered = csvData.rows.filter(r => {
-      const rowText = r.join(" ").toLowerCase();
-      if (q && !rowText.includes(q)) return false;
+      // 検索対象：名前(2), アーツ(7), キーワード(8), 備考(10), タグ(13以降)
+      const searchableText = [r[2], r[7], r[8], r[10], ...r.slice(13)].join(" ").toLowerCase();
+      
+      if (q && !searchableText.includes(q)) return false;
       if (color && r[4] !== color) return false;
       if (baton && r[9] !== baton) return false;
       return true;
@@ -131,10 +186,9 @@
     displayCards(filtered);
   }
 
-  // イベントリスナーの登録
   document.getElementById("search").addEventListener("input", applyFilters);
   document.getElementById("colorFilter").addEventListener("change", applyFilters);
   document.getElementById("batonFilter").addEventListener("change", applyFilters);
-</script>>
+</script>
 </body>
 </html>
