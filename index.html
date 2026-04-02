@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>Hololive OCG カード検索ビューア_0.9</title>
+
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  h2 { margin-bottom: 10px; }
+  input, select { padding: 6px; margin-right: 10px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f0f0f0;
+  }
+</style>
+</head>
+<body>
+
 <script>
   let csvData = [];
 
@@ -72,3 +101,5 @@
   document.getElementById("search").addEventListener("input", applyFilters);
   document.getElementById("colorFilter").addEventListener("change", applyFilters);
 </script>
+</body>
+</html>
