@@ -1,178 +1,74 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(ver0.92)</title>
-
-<style>
-  body { font-family: sans-serif; padding: 20px; }
-  h2 { margin-bottom: 10px; }
-  input, select { padding: 6px; margin-right: 10px; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: left;
-    vertical-align: top;
-  }
-  th {
-    background: #f0f0f0;
-  }
-</style>
-</head>
-<body>
-
-<h2>Hololive OCG カード検索ビューア(ver0.92)</h2>
-
-<input type="file" id="fileInput" accept=".csv" />
-
-<div id="controls">
-  <input type="text" id="search" placeholder="全文検索…" />
-
-  <select id="colorFilter">
-    <option value="">色（すべて）</option>
-    <option value="白">白</option>
-    <option value="青">青</option>
-    <option value="赤">赤</option>
-    <option value="黄">黄</option>
-    <option value="紫">紫</option>
-  </select>
-
-  <select id="batonFilter">
-    <option value="">バトンタッチ（すべて）</option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-
-  <input type="text" id="tagFilter" placeholder="タグ検索（例：#元気）" />
-  <input type="text" id="keywordFilter" placeholder="キーワード検索（例：コラボ）" />
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>名前</th>
-      <th>色</th>
-      <th>HP</th>
-      <th>Bloom</th>
-      <th>アーツ</th>
-      <th>キーワード</th>
-      <th>バトンタッチ</th>
-      <th>エクストラ</th>
-      <th>商品</th>
-      <th>タグ</th>
-    </tr>
-  </thead>
-  <tbody id="cardTableBody"></tbody>
-</table>
-
 <script>
-// CSV パース
-function parseCSV(text) {
-  const lines = text.split(/\r?\n/);
-  const header = lines[0].split(",");
-  const rows = lines.slice(1).map(line => {
-    const cols = line.match(/("([^"]|"")*"|[^,]+)/g) || [];
-    return cols.map(c => {
-      if (!c) return "";
-      return c.replace(/^"|"$/g, "").replace(/""/g, '"');
-    });
+  let csvData = [];
+
+  // 1. ページ読み込み時に CSV を自動取得
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('hololive_cards.csv');
+      const text = await response.text();
+      
+      // CSVを行ごとに分割（単純な改行分割。データ内に改行がある場合は工夫が必要）
+      const rows = text.trim().split('\n').map(row => {
+        // カンマで分割するが、ダブルクォーテーション内のカンマを無視する正規表現
+        return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cell => cell.replace(/^"|"$/g, ''));
+      });
+
+      // ヘッダーを除去して保持
+      const header = rows.shift();
+      csvData = rows;
+
+      // 初期表示
+      displayCards(csvData);
+    } catch (error) {
+      console.error('CSVの読み込みに失敗しました:', error);
+    }
   });
-  return { header, rows };
-}
 
-let csvData = null;
+  // 2. カード一覧の表示関数
+  function displayCards(data) {
+    const tbody = document.querySelector('#cardTable tbody');
+    tbody.innerHTML = '';
 
-// CSV 読み込み
-document.getElementById("fileInput").addEventListener("change", e => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
-  reader.onload = () => {
-    csvData = parseCSV(reader.result);
-    renderCards(csvData.rows);
-  };
-  reader.readAsText(file, "UTF-8");
-});
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      // csvの列構造: url, img, name, cardType, color, hp, bloom, arts, keyword, baton, extra, number, product, tags...
+      const [url, img, name, cardType, color, hp, bloom, arts, keyword, baton, extra, number, product, ...tags] = row;
 
-// 表描画
-function renderCards(rows) {
-  const tbody = document.getElementById("cardTableBody");
-  tbody.innerHTML = "";
-
-  rows.forEach(r => {
-    const [
-      img, name, cardType, color, hp, bloom,
-      arts, keyword, baton, extra, number, product,
-      tag1, tag2, tag3, tag4, tag5, tag6
-    ] = r;
-
-    const tags = [tag1, tag2, tag3, tag4, tag5, tag6].filter(t => t).join(" ");
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td><img src="${img}" alt="${name}" style="width:80px;"></td>
-      <td>${cardType}</td>
-      <td>${name}</td>
-      <td>${color}</td>
-      <td>${hp}</td>
-      <td>${bloom}</td>
-      <td>${arts}</td>
-      <td>${keyword}</td>
-      <td>${baton}</td>
-      <td>${extra}</td>
-      <td>${product}</td>
-      <td>${tags}</td>
+      tr.innerHTML = `
+        <td><img src="${img}" width="80"></td>
+        <td>${name}</td>
+        <td>${color}</td>
+        <td>${cardType}</td>
+        <td>${hp}</td>
+        <td>${bloom}</td>
+        <td>${arts}</td>
+        <td>${keyword}</td>
+        <td>${baton}</td>
+        <td>${extra}</td>
+        <td>${product}</td>
+        <td>${tags.filter(t => t).join(', ')}</td>
+        <td><a href="${url}" target="_blank">詳細</a></td>
       `;
+      tbody.appendChild(tr);
+    });
+  }
 
-    tbody.appendChild(tr);
-  });
-}
+  // 3. 検索・フィルタ機能（既存のロジックを流用）
+  function applyFilters() {
+    const query = document.getElementById("search").value.toLowerCase();
+    const colorFilter = document.getElementById("colorFilter").value;
+    // ... 他のフィルタ要素も同様に取得
 
+    const filtered = csvData.filter(row => {
+      const textMatch = row.join(' ').toLowerCase().includes(query);
+      const colorMatch = !colorFilter || row[4] === colorFilter;
+      return textMatch && colorMatch;
+    });
 
-// フィルタ
-function applyFilters() {
-  if (!csvData) return;
+    displayCards(filtered);
+  }
 
-  const q = document.getElementById("search").value.toLowerCase();
-  const color = document.getElementById("colorFilter").value;
-  const baton = document.getElementById("batonFilter").value;
-  const tag = document.getElementById("tagFilter").value.toLowerCase();
-  const keyword = document.getElementById("keywordFilter").value.toLowerCase();
-
-  const filtered = csvData.rows.filter(r => {
-    const [
-      img, name, cardType, colorVal, hp, bloom,
-      arts, keywordVal, batonVal, extra, number, product,
-      tag1, tag2, tag3, tag4, tag5, tag6
-    ] = r;
-
-    const tags = [tag1, tag2, tag3, tag4, tag5, tag6].join(" ").toLowerCase();
-
-    if (q && !r.join(" ").toLowerCase().includes(q)) return false;
-    if (color && colorVal !== color) return false;
-    if (baton && batonVal !== baton) return false;
-    if (tag && !tags.includes(tag)) return false;
-    if (keyword && !keywordVal.toLowerCase().includes(keyword)) return false;
-
-    return true;
-  });
-
-  renderCards(filtered);
-}
-
-["search","colorFilter","batonFilter","tagFilter","keywordFilter"].forEach(id => {
-  document.getElementById(id).addEventListener("input", applyFilters);
-});
+  // 検索入力時に自動実行
+  document.getElementById("search").addEventListener("input", applyFilters);
+  document.getElementById("colorFilter").addEventListener("change", applyFilters);
 </script>
-
-</body>
-</html>
