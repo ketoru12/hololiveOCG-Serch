@@ -2,17 +2,19 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Standard Layout</title>
+    <title>Holo-Viewer | Full Info Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
         .label-pill {
             background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px;
-            font-size: 13px; font-weight: bold; min-width: 90px; text-align: center; flex-shrink: 0;
+            font-size: 13px; font-weight: bold; min-width: 95px; text-align: center; flex-shrink: 0;
         }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
+        .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .product-pill { background-color: #6366f1; }
+        .extra-pill { background-color: #f59e0b; }
         
         .value-box { font-size: 15px; font-weight: 600; line-height: 1.4; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 14px; font-weight: 800; border: 1px solid transparent; }
@@ -46,13 +48,13 @@
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none' };
 
         function getTokkouBadgeHtml(text) {
-            if (!text) return "";
+            if (!text || text === "nan") return "";
             const match = text.match(/(白|緑|赤|青|紫|黄|無)/);
             return `<span class="badge-base ${match ? colorClassMap[match[1]] : colorClassMap['無']}">${text}</span>`;
         }
 
         function renderCostHtml(iconsStr) {
-            if (!iconsStr) return "";
+            if (!iconsStr || iconsStr === "nan") return "";
             return iconsStr.split(',').map(c => `<span class="badge-base ${colorClassMap[c.trim()] || colorClassMap['無']} mr-1">${c.trim()}</span>`).join('');
         }
 
@@ -74,12 +76,22 @@
                 wrap.className = "bg-white rounded-2xl shadow-sm border p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-all";
                 
                 let details = "";
-                // 各要素を個別の行として表示
                 details += createRow('色', card.color);
+                
                 if (card.category === "ホロメン") {
                     details += createRow('HP', card.value);
                     details += createRow('Bloom', card.kind);
                     details += createRow('バトン', card.baton);
+                    
+                    if (card.keywordName) {
+                        details += `<div class="flex items-start mb-1.5 gap-3">
+                            <span class="label-pill keyword-pill">キーワード</span>
+                            <div class="value-box">
+                                <div class="font-black text-slate-800">【${card.keywordName}】</div>
+                                <div class="text-slate-600 text-[14px] leading-tight">${card.keywordEffect}</div>
+                            </div>
+                        </div>`;
+                    }
                 } else if (card.category === "推しホロメン") {
                     details += createRow('LIFE', card.value, 'bg-green-600');
                 }
@@ -92,7 +104,7 @@
                                 <div class="value-box">
                                     <div class="flex flex-wrap items-center gap-1.5 mb-0.5">
                                         <div class="flex">${renderCostHtml(art.icons)}</div>
-                                        <span class="font-black text-[16px]">${art.name} ${art.damage}</span>
+                                        <span class="font-black text-[17px]">${art.name} ${art.damage}</span>
                                         ${getTokkouBadgeHtml(art.tokkou)}
                                     </div>
                                     <div class="text-slate-600 text-[14px] leading-tight whitespace-pre-wrap">${art.text}</div>
@@ -103,11 +115,12 @@
 
                 if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, 'oshi-pill'));
                 if (card.description) details += createRow('効果', card.description);
+                if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
                 if (card.product) details += createRow('収録', card.product, 'product-pill text-[12px]');
 
                 wrap.innerHTML = `
-                    <div class="w-full md:w-[160px] shrink-0">
-                        <img src="${card.img}" class="rounded-lg border w-full h-auto" loading="lazy">
+                    <div class="w-full md:w-[170px] shrink-0">
+                        <img src="${card.img}" class="rounded-lg border w-full h-auto shadow-sm" loading="lazy">
                     </div>
                     <div class="flex-1">
                         <div class="flex justify-between items-baseline border-b pb-1 mb-1.5">
@@ -126,7 +139,7 @@
         async function init() {
             const res = await fetch('./master_cards.json');
             allCards = await res.json();
-            fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags'], threshold: 0.3 });
+            fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id'], threshold: 0.3 });
             renderCards(allCards);
         }
         document.getElementById('searchInput').addEventListener('input', e => {
