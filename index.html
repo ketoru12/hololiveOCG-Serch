@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(2.2)</title>
+<title>Hololive OCG カード検索ビューア(2.3)</title>
 <style>
   body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
@@ -26,12 +26,12 @@
   .name-text { font-weight: bold; color: #0055aa; display: block; }
   #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; cursor: zoom-out; }
   #modalImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
-  .load-more-row td { text-align: center; cursor: pointer; background: #f9f9f9; color: #0088cc; font-weight: bold; padding: 15px; border: 1px solid #ccc; }
+  .load-more-row td { text-align: center; cursor: pointer; background: #f0f8ff; color: #0088cc; font-weight: bold; padding: 15px; border: 1px solid #ccc; }
 </style>
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(2.2)</h2>
+<h2>Hololive OCG カード検索ビューア(2.3)</h2>
 
 <div class="search-container">
   <div class="filter-group"><label>カードタイプ</label><select id="typeFilter"><option value="すべて">すべて</option><option value="ホロメン">ホロメン</option><option value="サポート">サポート</option><option value="推しホロメン">推しホロメン</option></select></div>
@@ -60,8 +60,11 @@
         if (!r.ok) return [];
         const text = await r.text();
         const rows = parseCSV(text);
-        // 各CSVの1行目（ヘッダー）をここで確実に捨てる
-        return rows.length > 0 ? rows.slice(1) : [];
+        // 【修正】1行目がヘッダー（url等）であれば除去。そうでなければそのまま使う
+        if (rows.length > 0 && rows[0][0].toLowerCase().includes("url")) {
+            return rows.slice(1);
+        }
+        return rows;
       };
       
       allRawData.holomen = await load('hololive_cards.csv');
@@ -140,13 +143,17 @@
       if (color && c.color !== color) return false;
       return true;
     });
+    // フィルタ適用後は必ず0件目から再描画
     renderTable(0, false);
   }
 
   function renderTable(startIndex, append = false) {
     const tbody = document.getElementById('cardBody');
     if (!append) tbody.innerHTML = '';
-    else { const b = tbody.querySelector('.load-more-row'); if (b) b.remove(); }
+    
+    // 前の「もっと見る」ボタンを削除
+    const oldBtn = tbody.querySelector('.load-more-row');
+    if (oldBtn) oldBtn.remove();
     
     const chunk = currentFilteredData.slice(startIndex, startIndex + DISPLAY_CHUNK);
     const fragment = document.createDocumentFragment();
@@ -170,9 +177,10 @@
     });
     tbody.appendChild(fragment);
 
+    // まだ続きがあればボタンを表示
     if (startIndex + DISPLAY_CHUNK < currentFilteredData.length) {
       const r = document.createElement('tr'); r.className = 'load-more-row';
-      r.innerHTML = `<td colspan="9">もっと見る (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
+      r.innerHTML = `<td colspan="9">さらに表示する (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
       r.onclick = () => renderTable(startIndex + DISPLAY_CHUNK, true);
       tbody.appendChild(r);
     }
