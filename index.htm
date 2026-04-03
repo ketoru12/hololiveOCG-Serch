@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>HoloCG Viewer - Full Specs</title>
+    <title>HoloCG Viewer - Final Specification</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -15,16 +15,18 @@
         .oshi-pill { background-color: #ef4444; }
         .product-pill { background-color: #6366f1; }
         .value-box { font-size: 12px; font-weight: 500; line-height: 1.6; color: #1a202c; flex: 1; }
-        .icon-badge { background-color: #f1f5f9; color: #475569; padding: 1px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid #e2e8f0; }
-        .tokkou-badge { background-color: #fef2f2; color: #dc2626; padding: 1px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; border: 1px solid #fecaca; }
+        
+        /* コストと特攻のバッジスタイル */
+        .badge-cost { background-color: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; }
+        .badge-tokkou { background-color: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
     <header class="bg-white border-b sticky top-0 z-50 p-4 shadow-sm">
         <div class="max-w-[1600px] mx-auto flex gap-4 items-center">
-            <h1 class="font-bold text-xl text-[#5e5a9b] tracking-tighter uppercase">Holo Viewer</h1>
-            <input type="text" id="searchInput" placeholder="名前、アーツ、特攻、収録商品などで検索..." 
+            <h1 class="font-bold text-xl text-[#5e5a9b] tracking-tighter">HOLO-VIEWER</h1>
+            <input type="text" id="searchInput" placeholder="カード名、特攻(赤+50等)、タグ(#歌等)で検索..." 
                 class="flex-1 bg-slate-100 rounded-full px-6 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
             <div id="resultCount" class="text-xs font-mono text-slate-400">READY</div>
         </div>
@@ -42,14 +44,14 @@
             const res = await fetch('./master_cards.json?v=' + Date.now());
             allCards = await res.json();
             fuse = new Fuse(allCards, { 
-                keys: ['name', 'arts.name', 'arts.text', 'arts.tokkou', 'keywordName', 'id', 'product'], 
+                keys: ['name', 'arts.name', 'arts.text', 'arts.tokkou', 'tags', 'keywordName', 'id'], 
                 threshold: 0.3 
             });
             renderCards(allCards);
         }
 
         function createRow(label, value, extraClass = "") {
-            if (!value || value === "0" || value === "nan" || value === "") return "";
+            if (!value || value === "0" || value === "" || value === "nan") return "";
             return `<div class="flex items-start mb-4 gap-4">
                         <span class="label-pill ${extraClass}">${label}</span>
                         <div class="value-box whitespace-pre-wrap">${value}</div>
@@ -86,7 +88,7 @@
                                 </div>`;
                 }
 
-                // 複数アーツ（アイコン・特攻付き）
+                // アーツ（コスト・特攻のバッジ対応）
                 if (card.arts && card.arts.length > 0) {
                     card.arts.forEach(art => {
                         details += `
@@ -95,8 +97,8 @@
                                 <div class="value-box">
                                     <div class="flex flex-wrap items-center gap-2 mb-1">
                                         <span class="font-black text-slate-800 text-[13px]">${art.name}</span>
-                                        ${art.icons ? `<span class="icon-badge">コスト: ${art.icons}</span>` : ''}
-                                        ${art.tokkou ? `<span class="tokkou-badge">特攻: ${art.tokkou}</span>` : ''}
+                                        ${art.icons ? `<span class="badge-cost">コスト: ${art.icons}</span>` : ''}
+                                        ${art.tokkou ? `<span class="badge-tokkou">特攻: ${art.tokkou}</span>` : ''}
                                     </div>
                                     <div class="text-slate-600 text-[11px] whitespace-pre-wrap">${art.text}</div>
                                 </div>
@@ -106,11 +108,11 @@
 
                 if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, 'oshi-pill'));
                 if (card.description) details += createRow('効果', card.description);
-                details += createRow('エクストラ', card.extra, 'bg-orange-500');
-                details += createRow('収録商品', card.product, 'product-pill');
+                if (card.extra) details += createRow('エクストラ', card.extra, 'bg-orange-500');
+                if (card.product) details += createRow('収録商品', card.product, 'product-pill');
 
                 wrap.innerHTML = `
-                    <div class="flex flex-col md:flex-row gap-8 h-full">
+                    <div class="flex flex-col md:flex-row gap-8 h-full w-full">
                         <div class="w-full md:w-[240px] shrink-0 bg-slate-50 rounded-3xl p-3 flex items-center justify-center border border-slate-100 shadow-inner">
                             <img src="${card.img}" class="max-h-[350px] object-contain rounded-lg shadow-sm" loading="lazy">
                         </div>
