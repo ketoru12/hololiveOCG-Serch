@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(2.4)</title>
+<title>Hololive OCG カード検索ビューア(2.5)</title>
 <style>
   body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(2.4)</h2>
+<h2>Hololive OCG カード検索ビューア(2.5)</h2>
 
 <div class="search-container">
   <div class="filter-group"><label>カードタイプ</label><select id="typeFilter"><option value="すべて">すべて</option><option value="ホロメン">ホロメン</option><option value="サポート">サポート</option><option value="推しホロメン">推しホロメン</option></select></div>
@@ -60,16 +60,14 @@
         if (!r.ok) return [];
         const text = await r.text();
         let rows = parseCSV(text);
-        // 【修正】ヘッダー判定：1列目に "url" が含まれる行を完全に除去
-        rows = rows.filter(row => row.length > 0 && !row[0].toLowerCase().includes("url"));
-        return rows;
+        // ヘッダー行("url"を含む行)を確実に除去
+        return rows.filter(row => row.length > 0 && !row[0].toLowerCase().includes("url"));
       } catch(e) { return []; }
     };
     
     allRawData.holomen = await load('hololive_cards.csv');
     allRawData.support = await load('hololive_support.csv');
     allRawData.oshi = await load('hololive_oshi.csv');
-    
     applyFilters();
   });
 
@@ -90,13 +88,12 @@
         else if (c === ',') { row.push(col); col = ""; }
         else if (c === '\n') {
           row.push(col);
-          // 【修正】中身が空でない行のみ追加
-          if (row.some(x => x.trim() !== "")) rows.push(row);
+          if (row.some(x => x && x.trim() !== "")) rows.push(row);
           row = []; col = "";
         } else col += c;
       }
     }
-    if (row.length > 0 && row.some(x => x.trim() !== "")) { row.push(col); rows.push(row); }
+    if (row.length > 0 && row.some(x => x && x.trim() !== "")) { row.push(col); rows.push(row); }
     return rows;
   }
 
@@ -109,7 +106,8 @@
     // ホロメン
     if (type === "すべて" || type === "ホロメン") {
       allRawData.holomen.forEach(r => {
-        if (r.length < 12 || !r[2]) return; // 名前がない行は飛ばす
+        // 名前(r[2])が空、または「name」という文字列の場合は絶対に追加しない
+        if (r.length < 3 || !r[2] || r[2].trim() === "" || r[2].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
           hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
@@ -120,7 +118,7 @@
     // サポート
     if (type === "すべて" || type === "サポート") {
       allRawData.support.forEach(r => {
-        if (r.length < 6 || !r[1]) return;
+        if (r.length < 2 || !r[1] || r[1].trim() === "" || r[1].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: "", name: r[1], type: r[2], color: "-", 
           hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
@@ -131,7 +129,7 @@
     // 推し
     if (type === "すべて" || type === "推しホロメン") {
       allRawData.oshi.forEach(r => {
-        if (r.length < 9 || !r[1]) return;
+        if (r.length < 2 || !r[1] || r[1].trim() === "" || r[1].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
           hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
@@ -151,7 +149,6 @@
   function renderTable(startIndex, append = false) {
     const tbody = document.getElementById('cardBody');
     if (!append) tbody.innerHTML = '';
-    
     const oldBtn = tbody.querySelector('.load-more-row');
     if (oldBtn) oldBtn.remove();
     
