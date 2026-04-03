@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | High Visibility Edition</title>
+    <title>Holo-Viewer | High Visibility</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -60,13 +60,15 @@
             return iconsStr.split(',').map(c => `<span class="badge-base ${colorClassMap[c.trim()] || colorClassMap['無']} mr-1">${c.trim()}</span>`).join('');
         }
 
-        // バトンタッチ用に特別処理を追加した行作成関数
         function createRow(label, value, extraClass = "", forceShow = false) {
-            // 基本は値が空なら非表示だが、forceShowがtrueなら値が0や空でも表示する
-            if (!forceShow && (!value || value === "0" || value === "" || value === "nan")) return "";
+            // undefinedチェックを追加
+            const val = (value === undefined || value === null || value === "nan") ? "" : String(value);
             
-            // forceShowで値が0や空の場合は空白を表示
-            const displayValue = (forceShow && (value === "0" || value === "" || value === "nan")) ? "" : value;
+            // forceShowでない場合、値が空 or "0" なら非表示
+            if (!forceShow && (val === "" || val === "0")) return "";
+            
+            // 表示する値の最終調整（"0" のときは空白にする仕様の場合）
+            const displayValue = (forceShow && (val === "0" || val === "")) ? "" : val;
 
             return `<div class="flex items-start mb-1 gap-3">
                         <span class="label-pill ${extraClass}">${label}</span>
@@ -89,7 +91,6 @@
                 if (card.category === "ホロメン") {
                     details += createRow('HP', card.value);
                     details += createRow('Bloom', card.kind);
-                    // バトンタッチは強制表示
                     details += createRow('バトンタッチ', card.baton_touch, '', true);
                     
                     if (card.keywordName) {
