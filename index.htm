@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | High Visibility</title>
+    <title>Holo-Viewer | High Visibility Fixed</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -61,13 +61,8 @@
         }
 
         function createRow(label, value, extraClass = "", forceShow = false) {
-            // undefinedチェックを追加
-            const val = (value === undefined || value === null || value === "nan") ? "" : String(value);
-            
-            // forceShowでない場合、値が空 or "0" なら非表示
+            let val = (value === undefined || value === null || String(value) === "nan") ? "" : String(value).trim();
             if (!forceShow && (val === "" || val === "0")) return "";
-            
-            // 表示する値の最終調整（"0" のときは空白にする仕様の場合）
             const displayValue = (forceShow && (val === "0" || val === "")) ? "" : val;
 
             return `<div class="flex items-start mb-1 gap-3">
