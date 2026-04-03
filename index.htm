@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hololive CG Viewer</title>
+    <title>Hololive CG Viewer - Optimized</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -22,14 +22,14 @@
         <div class="max-w-[1600px] mx-auto px-4 py-3 flex flex-col md:flex-row gap-4 items-center">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-black text-white">H</div>
-                <h1 class="font-bold tracking-tighter text-lg text-white">HOLO-VIEWER</h1>
+                <h1 class="font-bold tracking-tighter text-lg text-white uppercase">Holo-Viewer</h1>
             </div>
             <div class="flex-1 w-full">
-                <input type="text" id="searchInput" placeholder="カード名、スキル内容、タグなどで検索..." 
+                <input type="text" id="searchInput" placeholder="カード名、スキル、タグで検索..." 
                     class="w-full bg-slate-800 border-none rounded-lg px-4 py-2 text-sm text-white focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
-            <div id="resultCount" class="text-[10px] font-mono bg-slate-800 px-3 py-1.5 rounded-md text-slate-400 border border-slate-700">
-                LOADING...
+            <div id="resultCount" class="text-[10px] font-mono bg-slate-800 px-3 py-1.5 rounded-md text-slate-400 border border-slate-700 uppercase">
+                Ready
             </div>
         </div>
     </header>
@@ -45,29 +45,21 @@
         let allCards = [];
         let fuse;
 
-        // 【重要】データの読み込み関数
         async function init() {
-            const countDisplay = document.getElementById('resultCount');
             try {
-                // キャッシュ回避のためにタイムスタンプを付与
                 const res = await fetch('./master_cards.json?v=' + new Date().getTime());
-                
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                
+                if (!res.ok) throw new Error("JSON load failed");
                 allCards = await res.json();
                 
                 fuse = new Fuse(allCards, {
-                    keys: [{name:'name', weight:2}, {name:'description', weight:1}, {name:'id', weight:1.5}],
+                    keys: ['name', 'description', 'id', 'tags'],
                     threshold: 0.3
                 });
 
                 render(allCards);
             } catch (e) {
-                console.error("データ読み込み失敗:", e);
-                countDisplay.innerText = "DATA LOAD ERROR";
-                countDisplay.classList.add("text-red-500");
+                console.error(e);
+                document.getElementById('resultCount').innerText = "LOAD ERROR";
             }
         }
 
@@ -85,38 +77,59 @@
 
             cards.forEach(card => {
                 const wrap = document.createElement('div');
-                wrap.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-all h-full";
+                // 基本の枠組み（エラー回避のためクラスは個別にaddするか文字列で指定）
+                wrap.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-all h-full border-t-[6px]";
                 
-                const colorMap = {'白':'border-t-[6px] border-slate-400','緑':'border-t-[6px] border-green-500','赤':'border-t-[6px] border-red-500','青':'border-t-[6px] border-blue-500','紫':'border-t-[6px] border-purple-500','黄':'border-t-[6px] border-yellow-400'};
-　　　　　　　　　// 修正：スペースで分割して個別にaddするか、classNameに直接入れる
-　　　　　　　　　const borderClasses = colorMap[card.color] || 'border-t-[6px] border-slate-200';
-　　　　　　　　　borderClasses.split(' ').forEach(cls => wrap.classList.add(cls));
+                // 4. 色（属性）を強調
+                const colorConfigs = {
+                    '白': 'border-slate-400', '緑': 'border-green-500', '赤': 'border-red-500',
+                    '青': 'border-blue-500', '紫': 'border-purple-500', '黄': 'border-yellow-400'
+                };
+                const colorClass = colorConfigs[card.color] || 'border-slate-200';
+                wrap.classList.add(colorClass);
 
-                let stats = "";
+                // ステータス表示の組み立て
+                let statsHtml = "";
                 if (card.category === "ホロメン") {
-                    stats = `<div class="grid grid-cols-3 gap-1 mb-2">
-                        <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase">HP</span><span class="text-[10px] font-black text-red-600">${card.value}</span></div>
-                        <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase">Bloom</span><span class="text-[9px] font-bold">${card.kind}</span></div>
-                        <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase">Baton</span><span class="text-[10px] font-bold">${card.baton}</span></div>
-                    </div>`;
+                    statsHtml = `
+                        <div class="grid grid-cols-3 gap-1 mb-2">
+                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase">HP</span><span class="text-[10px] font-black text-red-600">${card.value}</span></div>
+                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase text-[6px]">Bloomレベル</span><span class="text-[9px] font-bold">${card.kind}</span></div>
+                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase text-[6px]">バトンタッチ</span><span class="text-[10px] font-bold">${card.baton}</span></div>
+                        </div>`;
                 } else if (card.category === "推しホロメン") {
-                    stats = `<div class="bg-green-50 p-1 rounded flex justify-between px-3 mb-2"><span class="text-[8px] text-green-600 font-bold uppercase">LIFE</span><span class="text-xs font-black text-green-700">${card.value}</span></div>`;
+                    statsHtml = `<div class="bg-green-50 p-1 rounded flex justify-between px-3 mb-2 font-bold"><span class="text-[8px] text-green-600 uppercase tracking-widest">LIFE</span><span class="text-xs font-black text-green-700">${card.value}</span></div>`;
                 }
 
+                // 2. タグ情報の表示
+                const tagsHtml = (card.tags && card.tags.length > 0) 
+                    ? `<div class="flex flex-wrap gap-1 mb-2">${card.tags.map(t => `<span class="text-[8px] bg-blue-50 text-blue-500 px-1 rounded font-bold">${t}</span>`).join('')}</div>`
+                    : "";
+
                 wrap.innerHTML = `
-                    <div class="flex h-full">
-                        <div class="w-1/3 min-w-[100px] relative bg-slate-100">
-                            <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/200x280.png?text=No%20Image'">
+                    <div class="flex h-full min-h-[200px]">
+                        <div class="w-1/3 min-w-[120px] relative bg-slate-100 border-r border-slate-50">
+                            <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-contain p-1" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/200x280.png?text=No%20Image'">
                         </div>
-                        <div class="flex-1 p-2 flex flex-col justify-between bg-white overflow-hidden">
+                        
+                        <div class="flex-1 p-3 flex flex-col justify-between bg-white overflow-hidden">
                             <div>
-                                <div class="flex justify-between text-[8px] text-slate-400 mb-0.5"><span>${card.id}</span><span>${card.color}</span></div>
-                                <h3 class="font-black text-[11px] text-slate-800 mb-1 leading-tight">${card.name}</h3>
-                                ${stats}
-                                <div class="description-box text-[9px] text-slate-600 leading-tight space-y-1">${card.description.replace(/\n/g, '<br>')}</div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-[9px] font-mono text-slate-400">${card.id}</span>
+                                    <span class="text-[10px] font-black px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">${card.color}</span>
+                                </div>
+                                <h3 class="font-black text-[12px] text-slate-800 mb-2 leading-tight">${card.name}</h3>
+                                
+                                ${statsHtml}
+                                ${tagsHtml}
+
+                                <div class="description-box text-[9px] text-slate-600 leading-tight space-y-1">
+                                    ${card.description.replace(/\n/g, '<br>')}
+                                </div>
                             </div>
-                            <div class="mt-2 pt-1 border-t border-slate-50 flex justify-between items-end">
-                                <span class="text-[8px] text-blue-500 font-bold">${card.category}</span>
+                            
+                            <div class="mt-3 pt-1 border-t border-slate-50 flex justify-between items-end">
+                                <span class="text-[9px] text-blue-600 font-black uppercase tracking-tighter">${card.category}</span>
                             </div>
                         </div>
                     </div>`;
