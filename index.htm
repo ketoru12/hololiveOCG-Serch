@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Support Update</title>
+    <title>Holo-Viewer | Definitive Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -17,7 +17,7 @@
         .tag-pill { background-color: #94a3b8; }
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
-        .support-kind-pill { background-color: #64748b; }
+        .kind-pill { background-color: #64748b; } /* 種別用カラー */
         
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
@@ -83,7 +83,7 @@
                 
                 let details = "";
                 
-                // サポート以外は色を表示
+                // サポート以外（ホロメン、推し）は色を表示
                 if (card.category !== "サポート") {
                     details += createRow('色', card.color);
                 }
@@ -105,8 +105,8 @@
                 } else if (card.category === "推しホロメン") {
                     details += createRow('LIFE', card.value, 'bg-green-600');
                 } else if (card.category === "サポート") {
-                    // サポート専用：種別表示（cardType2の値を並べて表示）
-                    details += createRow('種別', card.kind, 'support-kind-pill');
+                    // サポート専用：cardType2（種別）を表示
+                    details += createRow('種別', card.kind, 'kind-pill');
                 }
 
                 if (card.arts) {
@@ -159,10 +159,10 @@
             try {
                 const res = await fetch('./master_cards.json');
                 allCards = await res.json();
-                fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id'], threshold: 0.3 });
+                fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id', 'kind'], threshold: 0.3 });
                 renderCards(allCards);
             } catch (e) {
-                console.error("データ読み込み失敗:", e);
+                console.error("データ読み取りエラー:", e);
             }
         }
         document.getElementById('searchInput').addEventListener('input', e => {
