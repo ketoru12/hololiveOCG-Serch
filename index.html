@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(1.7)</title>
+<title>Hololive OCG カード検索ビューア(1.8)</title>
 
 <style>
   body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
@@ -18,7 +18,7 @@
   .table-wrapper { background: white; border-radius: 10px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
   table { width: 100%; border-collapse: collapse; min-width: 1300px; border: 1px solid #ccc; table-layout: fixed; }
   
-  /* 列幅を固定して計算コストを下げる */
+  /* 列幅固定 */
   th:nth-child(1) { width: 90px; }  /* 画像 */
   th:nth-child(2) { width: 150px; } /* 名前 */
   th:nth-child(3) { width: 100px; } /* タイプ */
@@ -32,28 +32,25 @@
   th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; overflow: hidden; }
   th { background: #0088cc; color: white; position: sticky; top: 80px; z-index: 10; white-space: nowrap; }
   
-  /* 高速化のための設定 */
-  tr { contain: content; height: 120px; } 
   tr:hover { background-color: #f0faff; }
-
   .card-img { width: 80px; height: auto; border-radius: 4px; cursor: pointer; min-height: 110px; background: #eee; }
   .tag-container { display: flex; flex-direction: column; gap: 4px; }
   .tag { background: #e0e0e0; color: #555; padding: 2px 6px; border-radius: 4px; font-size: 10px; white-space: nowrap; }
   .arts-text { line-height: 1.4; color: #222; overflow-wrap: break-word; }
-  .prod-text { line-height: 1.4; font-size: 11px; white-space: nowrap; }
+  .prod-text { line-height: 1.4; font-size: 11px; white-space: nowrap; word-break: keep-all; }
   .name-text { font-weight: bold; color: #0055aa; display: block; }
 
-  /* モーダル */
-  #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+  #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; cursor: zoom-out; }
   #modalImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
-
-  /* 読み込み中表示 */
-  #loading { padding: 20px; text-align: center; font-weight: bold; color: #0088cc; }
+  
+  /* もっと見るボタンのスタイル */
+  .load-more-row td { text-align: center; cursor: pointer; background: #f9f9f9; color: #0088cc; font-weight: bold; padding: 15px; }
+  .load-more-row:hover td { background: #f0f0f0; }
 </style>
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(1.7)</h2>
+<h2>Hololive OCG カード検索ビューア(1.8)</h2>
 
 <div class="search-container">
   <div class="filter-group">
@@ -79,8 +76,6 @@
   </div>
 </div>
 
-<div id="loading" style="display:none;">検索中...</div>
-
 <div class="table-wrapper">
   <table id="cardTable">
     <thead>
@@ -105,14 +100,18 @@
 <script>
   let allData = { holomen: [], support: [], oshi: [] };
   let currentFilteredData = [];
-  const DISPLAY_CHUNK = 50; // 一度に描画する件数
+  const DISPLAY_CHUNK = 50;
 
   window.addEventListener('DOMContentLoaded', async () => {
     try {
+      const fetchText = async (url) => {
+        const r = await fetch(url);
+        return r.ok ? await r.text() : "";
+      };
       const [resC, resS, resO] = await Promise.all([
-        fetch('hololive_cards.csv').then(r => r.text()),
-        fetch('hololive_support.csv').then(r => r.text()),
-        fetch('hololive_oshi.csv').then(r => r.text())
+        fetchText('hololive_cards.csv'),
+        fetchText('hololive_support.csv'),
+        fetchText('hololive_oshi.csv')
       ]);
       allData.holomen = parseCSV(resC);
       allData.support = parseCSV(resS);
@@ -122,6 +121,7 @@
   });
 
   function parseCSV(text) {
+    if (!text) return [];
     const rows = [];
     let row = [], col = "", inQuote = false;
     for (let i = 0; i < text.length; i++) {
@@ -135,19 +135,20 @@
         else if (c === ',') { row.push(col); col = ""; }
         else if (c === '\r' || c === '\n') {
           row.push(col);
+          // 空白行（すべての列が空または空白）を厳密に除外
           if (row.some(x => x.trim() !== "")) rows.push(row);
           row = []; col = "";
           if (c === '\r' && next === '\n') i++;
         } else col += c;
       }
     }
-    if (row.length > 0 || col !== "") { row.push(col); rows.push(row); }
-    return rows.slice(1);
+    if (row.length > 0 && row.some(x => x.trim() !== "")) { row.push(col); rows.push(row); }
+    return rows.slice(1); // ヘッダー除去
   }
 
   function applyFilters() {
     const type = document.getElementById("typeFilter").value;
-    const kw = document.getElementById("searchKeyword").value.toLowerCase();
+    const kw = document.getElementById("searchKeyword").value.trim().toLowerCase();
     const color = document.getElementById("colorFilter").value;
     
     let combined = [];
@@ -155,7 +156,7 @@
       allData.holomen.forEach(r => combined.push({
         url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
         hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
-        tags: r.slice(13).filter(t => t.trim() !== ""), raw: r.join(" ").toLowerCase()
+        tags: r.slice(13).filter(t => t && t.trim() !== ""), raw: r.join(" ").toLowerCase()
       }));
     }
     if (type === "すべて" || type === "サポート") {
@@ -182,17 +183,26 @@
     renderTable(0, false);
   }
 
-  // 描画を分割して負荷を軽減
   function renderTable(startIndex, append = false) {
     const tbody = document.getElementById('cardBody');
-    if (!append) tbody.innerHTML = '';
+    if (!append) {
+        tbody.innerHTML = ''; // 検索し直した時は中身を完全クリア
+    } else {
+        // 「もっと見る」ボタン自体を削除してから追加描画
+        const oldButton = tbody.querySelector('.load-more-row');
+        if (oldButton) oldButton.remove();
+    }
     
     const chunk = currentFilteredData.slice(startIndex, startIndex + DISPLAY_CHUNK);
-    const fragment = document.createDocumentFragment();
+    if (chunk.length === 0 && !append) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">該当するカードがありません</td></tr>';
+        return;
+    }
 
+    const fragment = document.createDocumentFragment();
     chunk.forEach(c => {
       const tr = document.createElement('tr');
-      const cleanProd = c.prod.split('\n').map(p => p.trim()).join('<br>');
+      const cleanProd = c.prod ? c.prod.split('\n').map(p => p.trim()).join('<br>') : "";
       const tagsHtml = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
       const imgHtml = c.img ? `<img src="${c.img}" class="card-img" loading="lazy" onclick="openModal('${c.img}')">` : "-";
 
@@ -212,25 +222,24 @@
 
     tbody.appendChild(fragment);
 
-    // まだデータがある場合はスクロール時に読み込むか、ボタンを出す（今回は自動追加を簡易実装）
+    // 次のデータがある場合のみボタンを追加
     if (startIndex + DISPLAY_CHUNK < currentFilteredData.length) {
-        const nextButton = document.createElement('tr');
-        nextButton.innerHTML = `<td colspan="9" style="text-align:center; cursor:pointer; background:#eee;" onclick="this.remove(); renderTable(${startIndex + DISPLAY_CHUNK}, true)">もっと表示する (${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
-        tbody.appendChild(nextButton);
+        const nextButtonRow = document.createElement('tr');
+        nextButtonRow.className = 'load-more-row';
+        nextButtonRow.innerHTML = `<td colspan="9">もっと表示する (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
+        nextButtonRow.onclick = () => renderTable(startIndex + DISPLAY_CHUNK, true);
+        tbody.appendChild(nextButtonRow);
     }
   }
 
   function openModal(src) { document.getElementById("imageModal").style.display = "flex"; document.getElementById("modalImage").src = src; }
   function closeModal() { document.getElementById("imageModal").style.display = "none"; }
 
-  // 入力負荷軽減（デバウンス）
   let timeout = null;
-  const debouncedSearch = () => {
+  document.getElementById("searchKeyword").addEventListener("input", () => {
     clearTimeout(timeout);
     timeout = setTimeout(applyFilters, 300);
-  };
-
-  document.getElementById("searchKeyword").addEventListener("input", debouncedSearch);
+  });
   document.getElementById("colorFilter").addEventListener("change", applyFilters);
   document.getElementById("typeFilter").addEventListener("change", applyFilters);
 </script>
