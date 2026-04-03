@@ -2,23 +2,22 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Standard View V2</title>
+    <title>Holo-Viewer | High Visibility Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
         .label-pill {
             background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px;
-            font-size: 14px; font-weight: bold; min-width: 105px; text-align: center; flex-shrink: 0;
+            font-size: 14px; font-weight: bold; min-width: 115px; text-align: center; flex-shrink: 0;
         }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
-        .stage-pill { background-color: #3b82f6; } /* ステージスキル用カラー */
+        .stage-pill { background-color: #3b82f6; }
         .tag-pill { background-color: #94a3b8; }
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
         
-        /* 名前・番号以外の文字サイズをさらに大きく */
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         
@@ -61,11 +60,17 @@
             return iconsStr.split(',').map(c => `<span class="badge-base ${colorClassMap[c.trim()] || colorClassMap['無']} mr-1">${c.trim()}</span>`).join('');
         }
 
-        function createRow(label, value, extraClass = "") {
-            if (!value || value === "0" || value === "" || value === "nan") return "";
+        // バトンタッチ用に特別処理を追加した行作成関数
+        function createRow(label, value, extraClass = "", forceShow = false) {
+            // 基本は値が空なら非表示だが、forceShowがtrueなら値が0や空でも表示する
+            if (!forceShow && (!value || value === "0" || value === "" || value === "nan")) return "";
+            
+            // forceShowで値が0や空の場合は空白を表示
+            const displayValue = (forceShow && (value === "0" || value === "" || value === "nan")) ? "" : value;
+
             return `<div class="flex items-start mb-1 gap-3">
                         <span class="label-pill ${extraClass}">${label}</span>
-                        <div class="value-box whitespace-pre-wrap">${value}</div>
+                        <div class="value-box whitespace-pre-wrap">${displayValue}</div>
                     </div>`;
         }
 
@@ -84,7 +89,8 @@
                 if (card.category === "ホロメン") {
                     details += createRow('HP', card.value);
                     details += createRow('Bloom', card.kind);
-                    details += createRow('バトン', card.baton);
+                    // バトンタッチは強制表示
+                    details += createRow('バトンタッチ', card.baton_touch, '', true);
                     
                     if (card.keywordName) {
                         details += `<div class="flex items-start mb-1 gap-3">
@@ -116,7 +122,6 @@
                     });
                 }
 
-                // 推しスキルの表示
                 if (card.skills) {
                     card.skills.forEach(s => {
                         let pillClass = 'oshi-pill';
@@ -127,13 +132,8 @@
 
                 if (card.description) details += createRow('効果', card.description);
                 if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
-                
-                if (card.tags && card.tags.length > 0) {
-                    details += createRow('タグ', card.tags.join('　'), 'tag-pill');
-                }
-                if (card.product) {
-                    details += createRow('収録', card.product, 'product-pill');
-                }
+                if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
+                if (card.product) details += createRow('収録', card.product, 'product-pill');
 
                 wrap.innerHTML = `
                     <div class="w-full md:w-[180px] shrink-0">
