@@ -2,10 +2,11 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | DECKLOG Style</title>
+    <title>Holo-Viewer | Definitive Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
+        /* ラベルとバッジのスタイル */
         .label-pill {
             background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px;
             font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0;
@@ -16,11 +17,13 @@
         .stage-pill { background-color: #3b82f6; }
         .tag-pill { background-color: #94a3b8; }
         .product-pill { background-color: #6366f1; }
+        .extra-pill { background-color: #f59e0b; }
         .kind-pill { background-color: #64748b; }
         
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         
+        /* カラーマッピング */
         .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
         .color-green { background-color: #f0fdf4; color: #166534; border-color: #bbf7d0; }
         .color-red { background-color: #fef2f2; color: #991b1b; border-color: #fecaca; }
@@ -29,11 +32,12 @@
         .color-yellow { background-color: #fefce8; color: #854d0e; border-color: #fef08a; }
         .color-none { background-color: #f1f5f9; color: #334155; border-color: #cbd5e1; }
 
+        /* モーダル表示 */
         #modal { display: none; }
         #modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* スクロールバーのカスタマイズ */
+        /* スクロールバー */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
@@ -46,7 +50,7 @@
         <aside class="w-full md:w-72 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center">
                 <h1 class="font-bold tracking-wider">HOLO-VIEWER</h1>
-                <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0</span>
+                <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6">
@@ -59,10 +63,10 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Category</label>
                     <div id="filterCategory" class="grid grid-cols-1 gap-1">
-                        <button class="filter-btn active text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors border border-transparent" data-type="all">すべて</button>
-                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-type="category" data-val="ホロメン">ホロメン</button>
-                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-type="category" data-val="推しホロメン">推しホロメン</button>
-                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-type="category" data-val="サポート">サポート</button>
+                        <button class="filter-btn active text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors border border-transparent font-bold bg-slate-100" data-type="all">すべて</button>
+                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-val="ホロメン">ホロメン</button>
+                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-val="推しホロメン">推しホロメン</button>
+                        <button class="filter-btn text-left text-sm px-3 py-2 rounded-md hover:bg-slate-100 transition-colors" data-val="サポート">サポート</button>
                     </div>
                 </div>
 
@@ -91,10 +95,12 @@
 
     <div id="modal" class="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4" onclick="closeModal()">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-6 p-6 shadow-2xl relative" onclick="event.stopPropagation()">
-            <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-600" onclick="closeModal()">✕</button>
+            <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl" onclick="closeModal()">✕</button>
+            
             <div class="w-full md:w-1/3 shrink-0">
                 <img id="modalImg" src="" class="w-full rounded-lg shadow-lg border">
             </div>
+            
             <div class="flex-1">
                 <div class="flex justify-between items-baseline border-b-2 border-slate-100 pb-2 mb-4">
                     <h2 id="modalName" class="text-2xl font-bold text-[#5e5a9b]"></h2>
@@ -107,21 +113,28 @@
 
     <script>
         let allCards = [];
-        let filteredCards = [];
         let fuse;
         let activeFilters = { text: '', category: '', color: '' };
 
-        const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none' };
+        const colorClassMap = { 
+            '白': 'color-white', '緑': 'color-green', '赤': 'color-red', 
+            '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', 
+            '無': 'color-none', '◇': 'color-none' 
+        };
 
         function getTokkouBadgeHtml(text) {
             if (!text || text === "nan" || text === "") return "";
-            const match = text.match(/(白|緑|赤|青|紫|黄|無)/);
-            return `<span class="badge-base ${match ? colorClassMap[match[1]] : colorClassMap['無']} ml-1">${text}</span>`;
+            const match = text.match(/(白|緑|赤|青|紫|黄|無|◇)/);
+            const colorKey = match ? (match[1] === '◇' ? '無' : match[1]) : '無';
+            return `<span class="badge-base ${colorClassMap[colorKey]} ml-1">${text.replace('◇', '無')}</span>`;
         }
 
         function renderCostHtml(iconsStr) {
             if (!iconsStr || iconsStr === "nan" || iconsStr === "") return "";
-            return iconsStr.split(',').map(c => `<span class="badge-base ${colorClassMap[c.trim()] || colorClassMap['無']} mr-1">${c.trim()}</span>`).join('');
+            return iconsStr.split(',').map(c => {
+                const key = c.trim().replace('◇', '無');
+                return `<span class="badge-base ${colorClassMap[key] || colorClassMap['無']} mr-1">${key}</span>`;
+            }).join('');
         }
 
         function createRow(label, value, extraClass = "", forceShow = false) {
@@ -138,23 +151,19 @@
         function applyFilters() {
             let result = allCards;
 
-            // テキスト検索 (Fuse.js)
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
 
-            // カテゴリフィルタ
             if (activeFilters.category) {
                 result = result.filter(c => c.category === activeFilters.category);
             }
 
-            // 色フィルタ
             if (activeFilters.color) {
                 result = result.filter(c => c.color === activeFilters.color);
             }
 
-            filteredCards = result;
-            renderCards(filteredCards);
+            renderCards(result);
         }
 
         function renderCards(cards) {
@@ -178,35 +187,57 @@
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
+
             document.getElementById('modalImg').src = card.img;
             document.getElementById('modalName').innerText = card.name;
             document.getElementById('modalId').innerText = card.id;
 
             let details = "";
-            if (card.category !== "サポート") details += createRow('色', card.color);
+            if (card.category !== "サポート") details += createRow('色', card.color ? card.color.replace('◇', '無') : '');
+            
             if (card.category === "ホロメン") {
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
                 details += createRow('バトンタッチ', card.baton_touch, '', true);
                 if (card.keywordName) {
-                    details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black text-slate-800">【${card.keywordName}】</div><div class="text-slate-600 text-[15px] leading-tight">${card.keywordEffect}</div></div></div>`;
+                    details += `<div class="flex items-start mb-1 gap-3">
+                        <span class="label-pill keyword-pill">キーワード</span>
+                        <div class="value-box">
+                            <div class="font-black text-slate-800">【${card.keywordName}】</div>
+                            <div class="text-slate-600 text-[15px] leading-tight">${card.keywordEffect}</div>
+                        </div>
+                    </div>`;
                 }
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {
                 details += createRow('種別', card.kind, 'kind-pill');
             }
+
             if (card.arts) {
                 card.arts.forEach(art => {
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex flex-wrap items-center gap-1 mb-1"><div class="flex">${renderCostHtml(art.icons)}</div><span class="font-black text-[18px] text-slate-900">${art.name} ${art.damage}</span>${getTokkouBadgeHtml(art.tokkou)}</div><div class="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap">${art.text}</div></div></div>`;
+                    details += `
+                        <div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2">
+                            <span class="label-pill arts-pill">アーツ</span>
+                            <div class="value-box">
+                                <div class="flex flex-wrap items-center gap-1 mb-1">
+                                    <div class="flex">${renderCostHtml(art.icons)}</div>
+                                    <span class="font-black text-[18px] text-slate-900">${art.name} ${art.damage}</span>
+                                    ${getTokkouBadgeHtml(art.tokkou)}
+                                </div>
+                                <div class="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap">${art.text}</div>
+                            </div>
+                        </div>`;
                 });
             }
+
             if (card.skills) {
                 card.skills.forEach(s => {
                     let pillClass = (s.label === 'ステージスキル') ? 'stage-pill' : 'oshi-pill';
                     details += createRow(s.label, s.text, pillClass);
                 });
             }
+
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
@@ -222,7 +253,7 @@
             document.body.style.overflow = '';
         }
 
-        // イベントリスナー設定
+        // イベント設定
         document.getElementById('searchInput').addEventListener('input', e => {
             activeFilters.text = e.target.value;
             applyFilters();
@@ -265,7 +296,7 @@
                 allCards = await res.json();
                 fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id', 'kind'], threshold: 0.3 });
                 renderCards(allCards);
-            } catch (e) { console.error(e); }
+            } catch (e) { console.error("データ読み込み失敗:", e); }
         }
         init();
     </script>
