@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>HoloCG Viewer - Structured Data</title>
+    <title>HoloCG Viewer - Full Data Integration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -12,24 +12,19 @@
         }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
         .keyword-pill { background-color: #10b981; }
+        .oshi-pill { background-color: #ef4444; }
         .product-pill { background-color: #6366f1; }
-        .extra-pill { background-color: #f59e0b; }
         .value-box { font-size: 12px; font-weight: 500; line-height: 1.6; color: #1a202c; flex: 1; }
-        /* アーツ名とテキストを並べるためのスタイル */
-        .arts-box { margin-bottom: 12px; }
-        .arts-header { display: flex; items-center; gap: 10px; margin-bottom: 4px; }
-        .arts-name { font-size: 12px; font-weight: 900; color: #1a202c; }
-        .arts-text { font-size: 11px; color: #4a5568; line-height: 1.6; padding-left: 2px; whitespace-pre-wrap; }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="bg-slate-50 text-slate-900">
 
     <header class="bg-white border-b sticky top-0 z-50 p-4 shadow-sm">
         <div class="max-w-[1600px] mx-auto flex gap-4 items-center">
-            <h1 class="font-bold text-xl text-[#5e5a9b]">HOLO-VIEWER</h1>
-            <input type="text" id="searchInput" placeholder="名前、アーツ、キーワード、収録商品で検索..." 
-                class="flex-1 bg-slate-100 rounded-full px-6 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
-            <div id="resultCount" class="text-xs font-mono text-slate-400">READY</div>
+            <h1 class="font-bold text-xl text-[#5e5a9b] tracking-tighter uppercase">Holo Viewer</h1>
+            <input type="text" id="searchInput" placeholder="カード名、効果、キーワード、収録商品で検索..." 
+                class="flex-1 bg-slate-100 rounded-full px-6 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30 transition-all">
+            <div id="resultCount" class="text-xs font-mono text-slate-400">LOADING</div>
         </div>
     </header>
 
@@ -42,19 +37,15 @@
         let fuse;
 
         async function init() {
-            // master_cards.json を読み込み（キャッシュ回避）
             const res = await fetch('./master_cards.json?v=' + Date.now());
             allCards = await res.json();
-            
-            // 検索設定（ arts.name, arts.text を追加 ）
             fuse = new Fuse(allCards, { 
-                keys: ['name', 'category', 'id', 'tags', 'arts.name', 'arts.text', 'keywordName', 'keywordEffect', 'description', 'product'], 
+                keys: ['name', 'arts.name', 'arts.text', 'keywordName', 'keywordEffect', 'description', 'id', 'product'], 
                 threshold: 0.3 
             });
             renderCards(allCards);
         }
 
-        // 基本ステータスの行生成
         function createRow(label, value, extraClass = "") {
             if (!value || value === "0" || value === "nan" || value === "") return "";
             return `<div class="flex items-start mb-4 gap-4">
@@ -72,84 +63,75 @@
                 const wrap = document.createElement('div');
                 wrap.className = "bg-white rounded-[2.5rem] shadow-lg border p-6 md:p-8 flex flex-col md:flex-row gap-8 hover:shadow-2xl transition-all h-full";
                 
-                // 1. 基本情報の組み立て（色、HP、LIFEなど）
-                let statusGrid = "";
-                statusGrid += createRow('色', card.color);
-                
+                let detailHtml = "";
+
+                // 1. 基本ステータス
+                detailHtml += createRow('色', card.color);
                 if (card.category === "ホロメン") {
-                    statusGrid += createRow('HP', card.value);
-                    statusGrid += createRow('Bloomレベル', card.kind);
-                    statusGrid += createRow('バトンタッチ', card.baton);
+                    detailHtml += createRow('HP', card.value);
+                    detailHtml += createRow('Bloomレベル', card.kind);
+                    detailHtml += createRow('バトンタッチ', card.baton);
                 } else if (card.category === "推しホロメン") {
-                    statusGrid += createRow('LIFE', card.value, 'bg-green-600');
+                    detailHtml += createRow('LIFE', card.value, 'bg-green-600');
                 } else {
-                    statusGrid += createRow('種類', card.kind);
+                    detailHtml += createRow('種類', card.kind);
                 }
 
-                // 2. 詳細情報の組み立て（キーワード、アーツ、収録商品）
-                let detailSection = "";
-                
-                // キーワードの表示（デザイン調整）
+                // 2. キーワード（ホロメン専用）
                 if (card.keywordName) {
-                    detailSection += `<div class="flex items-start mb-4 gap-4">
-                                        <span class="label-pill keyword-pill">キーワード</span>
-                                        <div class="value-box">
-                                            <div class="font-black text-slate-800 mb-1">【${card.keywordName}】</div>
-                                            <div class="whitespace-pre-wrap text-slate-600">${card.keywordEffect}</div>
-                                        </div>
-                                      </div>`;
+                    detailHtml += `<div class="flex items-start mb-4 gap-4">
+                                    <span class="label-pill keyword-pill">キーワード</span>
+                                    <div class="value-box">
+                                        <div class="font-black text-slate-800 mb-0.5">【${card.keywordName}】</div>
+                                        <div class="text-slate-600 text-[11px]">${card.keywordEffect}</div>
+                                    </div>
+                                   </div>`;
                 }
 
-                // 3. 複数アーツのループ描画（ここが重要）
+                // 3. 複数アーツのループ表示（ホロメン専用）
                 if (card.arts && card.arts.length > 0) {
                     card.arts.forEach(art => {
-                        detailSection += `
-                            <div class="flex items-start mb-4 gap-4">
-                                <span class="label-pill arts-pill">アーツ</span>
-                                <div class="value-box">
-                                    <div class="font-black text-slate-800 mb-1 arts-name">${art.name}</div>
-                                    <div class="whitespace-pre-wrap text-slate-600 arts-text">${art.text.replace(/\n/g, '<br>')}</div>
-                                </div>
-                            </div>`;
+                        detailHtml += `<div class="flex items-start mb-4 gap-4">
+                                        <span class="label-pill arts-pill">アーツ</span>
+                                        <div class="value-box">
+                                            <div class="font-black text-slate-800 mb-0.5 text-[13px]">${art.name}</div>
+                                            <div class="text-slate-600 text-[11px] whitespace-pre-wrap">${art.text}</div>
+                                        </div>
+                                      </div>`;
                     });
                 }
 
-                // 4. その他の情報（エクストラ、推しスキル、サポート効果、収録商品）
-                if (card.description) {
-                    // 推しホロメンやサポートカードの場合
-                    if (card.category === "推しホロメン" || card.category === "サポート") {
-                        detailSection += createRow('効果', card.description);
-                    }
+                // 4. 推しスキル（推しホロメン専用）
+                if (card.skills && card.skills.length > 0) {
+                    card.skills.forEach(s => {
+                        detailHtml += createRow(s.label, s.text, 'oshi-pill');
+                    });
                 }
-                detailSection += createRow('エクストラ', card.extra, 'extra-pill');
-                detailSection += createRow('収録商品', card.product, 'product-pill');
 
-                // 5. カード全体のレイアウト生成
+                // 5. サポート効果
+                if (card.description) {
+                    detailHtml += createRow('効果', card.description);
+                }
+
+                // 6. 共通項目
+                detailHtml += createRow('エクストラ', card.extra, 'bg-orange-500');
+                detailHtml += createRow('収録商品', card.product, 'product-pill');
+
                 wrap.innerHTML = `
                     <div class="flex flex-col md:flex-row gap-8 h-full">
                         <div class="w-full md:w-[240px] shrink-0 bg-slate-50 rounded-3xl p-3 flex items-center justify-center border border-slate-100 shadow-inner">
-                            <img src="${card.img}" class="max-w-full max-h-[350px] object-contain rounded-lg shadow-sm" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/280x390.png?text=No%20Image'">
+                            <img src="${card.img}" class="max-h-[350px] object-contain rounded-lg" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/280x390.png?text=No%20Image'">
                         </div>
-                        
-                        <div class="flex-1 flex flex-col">
+                        <div class="flex-1">
                             <div class="flex justify-between items-baseline border-b pb-3 mb-4">
                                 <h3 class="text-2xl md:text-3xl font-black text-[#5e5a9b] tracking-tighter">${card.name}</h3>
-                                <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">${card.id}</span>
+                                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">${card.id}</span>
                             </div>
-                            
-                            <div class="flex flex-wrap gap-2 mb-6">
+                            <div class="flex items-center gap-3 mb-6">
                                 <span class="bg-slate-800 text-white px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">タグ</span>
-                                <div class="text-[10px] text-slate-500 font-bold">${card.tags.join(' ')}</div>
+                                <div class="text-[10px] text-slate-500 font-bold">${card.tags ? card.tags.join(' ') : ''}</div>
                             </div>
-                            
-                            <div class="flex-1">
-                                ${statusGrid}
-                                ${detailSection}
-                            </div>
-                            
-                            <div class="mt-6 text-right">
-                                <span class="text-[9px] font-black text-slate-200 uppercase tracking-[0.2em]">${card.category}</span>
-                            </div>
+                            ${detailHtml}
                         </div>
                     </div>`;
                 grid.appendChild(wrap);
