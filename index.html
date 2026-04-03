@@ -2,59 +2,73 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(1.6)</title>
+<title>Hololive OCG カード検索ビューア(1.7)</title>
 
 <style>
   body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
 
-  .search-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+  /* 検索エリア */
+  .search-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; position: sticky; top: 0; z-index: 100; }
   .filter-group { display: flex; flex-direction: column; }
-  .filter-group label { font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #666; }
+  .filter-group label { font-size: 11px; font-weight: bold; margin-bottom: 4px; color: #666; }
   input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
-  input#searchKeyword { width: 250px; border: 1px solid #0088cc; }
-
+  
+  /* テーブルエリア */
   .table-wrapper { background: white; border-radius: 10px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  table { width: 100%; border-collapse: collapse; min-width: 1300px; border: 1px solid #ccc; }
-  th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; }
-  th { background: #0088cc; color: white; position: sticky; top: 0; white-space: nowrap; z-index: 10; }
+  table { width: 100%; border-collapse: collapse; min-width: 1300px; border: 1px solid #ccc; table-layout: fixed; }
   
-  tr:hover { background-color: #f0faff; }
-  .card-img { width: 80px; height: auto; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
-  .card-img:hover { transform: scale(1.1); }
-  
-  .tag-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-  .tag { display: inline-block; background: #e0e0e0; color: #555; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; }
-  
-  .arts-text { line-height: 1.5; color: #222; min-width: 300px; }
-  .prod-text { line-height: 1.6; color: #444; font-size: 12px; white-space: nowrap; word-break: keep-all; }
-  .name-text { font-weight: bold; color: #0055aa; display: block; }
-  .number-text { font-size: 11px; color: #888; }
+  /* 列幅を固定して計算コストを下げる */
+  th:nth-child(1) { width: 90px; }  /* 画像 */
+  th:nth-child(2) { width: 150px; } /* 名前 */
+  th:nth-child(3) { width: 100px; } /* タイプ */
+  th:nth-child(4) { width: 50px; }  /* 色 */
+  th:nth-child(5) { width: 70px; }  /* HP */
+  th:nth-child(6) { width: auto; }  /* 効果 */
+  th:nth-child(7) { width: 100px; } /* タグ */
+  th:nth-child(8) { width: 250px; } /* 収録 */
+  th:nth-child(9) { width: 60px; }  /* リンク */
 
-  #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; cursor: zoom-out; }
-  #modalImage { max-width: 90%; max-height: 90%; box-shadow: 0 0 20px rgba(0,0,0,0.5); border-radius: 10px; }
+  th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; overflow: hidden; }
+  th { background: #0088cc; color: white; position: sticky; top: 80px; z-index: 10; white-space: nowrap; }
+  
+  /* 高速化のための設定 */
+  tr { contain: content; height: 120px; } 
+  tr:hover { background-color: #f0faff; }
+
+  .card-img { width: 80px; height: auto; border-radius: 4px; cursor: pointer; min-height: 110px; background: #eee; }
+  .tag-container { display: flex; flex-direction: column; gap: 4px; }
+  .tag { background: #e0e0e0; color: #555; padding: 2px 6px; border-radius: 4px; font-size: 10px; white-space: nowrap; }
+  .arts-text { line-height: 1.4; color: #222; overflow-wrap: break-word; }
+  .prod-text { line-height: 1.4; font-size: 11px; white-space: nowrap; }
+  .name-text { font-weight: bold; color: #0055aa; display: block; }
+
+  /* モーダル */
+  #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+  #modalImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
+
+  /* 読み込み中表示 */
+  #loading { padding: 20px; text-align: center; font-weight: bold; color: #0088cc; }
 </style>
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(1.6)</h2>
+<h2>Hololive OCG カード検索ビューア(1.7)</h2>
 
 <div class="search-container">
   <div class="filter-group">
-    <label>カードタイプ（参照ファイル切替）</label>
+    <label>カードタイプ</label>
     <select id="typeFilter">
       <option value="すべて">すべて表示</option>
-      <option value="ホロメン">ホロメン (hololive_cards.csv)</option>
-      <option value="サポート">サポート (hololive_support.csv)</option>
-      <option value="推しホロメン">推しホロメン (hololive_oshi.csv)</option>
+      <option value="ホロメン">ホロメン</option>
+      <option value="サポート">サポート</option>
+      <option value="推しホロメン">推しホロメン</option>
     </select>
   </div>
-
   <div class="filter-group">
-    <label>キーワード検索（内容）</label>
-    <input type="text" id="searchKeyword" placeholder="効果テキストなどで検索...">
+    <label>キーワード</label>
+    <input type="text" id="searchKeyword" placeholder="検索...">
   </div>
-
   <div class="filter-group">
     <label>色</label>
     <select id="colorFilter">
@@ -65,6 +79,8 @@
   </div>
 </div>
 
+<div id="loading" style="display:none;">検索中...</div>
+
 <div class="table-wrapper">
   <table id="cardTable">
     <thead>
@@ -73,14 +89,14 @@
         <th>名前(番号)</th>
         <th>タイプ</th>
         <th>色</th>
-        <th>HP/Life</th>
-        <th>詳細情報/効果</th>
+        <th>HP/L</th>
+        <th>効果/スキル</th>
         <th>タグ</th>
         <th>収録</th>
-        <th>リンク</th>
+        <th>詳細</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="cardBody"></tbody>
   </table>
 </div>
 
@@ -88,25 +104,21 @@
 
 <script>
   let allData = { holomen: [], support: [], oshi: [] };
+  let currentFilteredData = [];
+  const DISPLAY_CHUNK = 50; // 一度に描画する件数
 
   window.addEventListener('DOMContentLoaded', async () => {
     try {
-      // 3つのファイルを並列で読み込み
       const [resC, resS, resO] = await Promise.all([
         fetch('hololive_cards.csv').then(r => r.text()),
         fetch('hololive_support.csv').then(r => r.text()),
         fetch('hololive_oshi.csv').then(r => r.text())
       ]);
-      
       allData.holomen = parseCSV(resC);
       allData.support = parseCSV(resS);
       allData.oshi = parseCSV(resO);
-      
       applyFilters();
-    } catch (e) {
-      console.error(e);
-      alert("CSVファイルの読み込みに失敗しました。");
-    }
+    } catch (e) { console.error(e); }
   });
 
   function parseCSV(text) {
@@ -137,83 +149,88 @@
     const type = document.getElementById("typeFilter").value;
     const kw = document.getElementById("searchKeyword").value.toLowerCase();
     const color = document.getElementById("colorFilter").value;
-
+    
     let combined = [];
-
-    // ホロメンデータの正規化
     if (type === "すべて" || type === "ホロメン") {
-      allData.holomen.forEach(r => {
-        combined.push({
-          url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
-          hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
-          tags: r.slice(13).filter(t => t.trim() !== ""), 
-          raw: r.join(" ").toLowerCase()
-        });
-      });
+      allData.holomen.forEach(r => combined.push({
+        url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
+        hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
+        tags: r.slice(13).filter(t => t.trim() !== ""), raw: r.join(" ").toLowerCase()
+      }));
     }
-
-    // サポートデータの正規化
     if (type === "すべて" || type === "サポート") {
-      allData.support.forEach(r => {
-        combined.push({
-          url: r[0], img: "", name: r[1], type: r[2], color: "-", 
-          hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
-          tags: [], 
-          raw: r.join(" ").toLowerCase()
-        });
-      });
+      allData.support.forEach(r => combined.push({
+        url: r[0], img: "", name: r[1], type: r[2], color: "-", 
+        hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
+        tags: [], raw: r.join(" ").toLowerCase()
+      }));
     }
-
-    // 推しデータの正規化
     if (type === "すべて" || type === "推しホロメン") {
-      allData.oshi.forEach(r => {
-        combined.push({
-          url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
-          hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
-          tags: [], 
-          raw: r.join(" ").toLowerCase()
-        });
-      });
+      allData.oshi.forEach(r => combined.push({
+        url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
+        hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
+        tags: [], raw: r.join(" ").toLowerCase()
+      }));
     }
 
-    const filtered = combined.filter(c => {
+    currentFilteredData = combined.filter(c => {
       if (kw && !c.raw.includes(kw)) return false;
       if (color && c.color !== color) return false;
       return true;
     });
 
-    displayCards(filtered);
+    renderTable(0, false);
   }
 
-  function displayCards(data) {
-    const tbody = document.querySelector('#cardTable tbody');
-    tbody.innerHTML = '';
+  // 描画を分割して負荷を軽減
+  function renderTable(startIndex, append = false) {
+    const tbody = document.getElementById('cardBody');
+    if (!append) tbody.innerHTML = '';
+    
+    const chunk = currentFilteredData.slice(startIndex, startIndex + DISPLAY_CHUNK);
+    const fragment = document.createDocumentFragment();
 
-    data.forEach(c => {
-      const cleanProd = c.prod.split('\n').map(p => p.trim()).filter(p => p !== "").join('<br>');
-      const tagsHtml = `<div class="tag-container">${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
+    chunk.forEach(c => {
+      const tr = document.createElement('tr');
+      const cleanProd = c.prod.split('\n').map(p => p.trim()).join('<br>');
+      const tagsHtml = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
       const imgHtml = c.img ? `<img src="${c.img}" class="card-img" loading="lazy" onclick="openModal('${c.img}')">` : "-";
 
-      const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${imgHtml}</td>
-        <td><span class="name-text">${c.name}</span><span class="number-text">${c.num}</span></td>
-        <td>${c.type}</td>
+        <td><span class="name-text">${c.name}</span><small>${c.num}</small></td>
+        <td><small>${c.type}</small></td>
         <td>${c.color}</td>
         <td>${c.hp}</td>
-        <td class="arts-text">${c.info.replace(/\n/g, '<br>')}</td>
-        <td>${tagsHtml}</td>
+        <td class="arts-text">${c.info}</td>
+        <td><div class="tag-container">${tagsHtml}</div></td>
         <td class="prod-text">${cleanProd}</td>
         <td><a href="${c.url}" target="_blank">公式</a></td>
       `;
-      tbody.appendChild(tr);
+      fragment.appendChild(tr);
     });
+
+    tbody.appendChild(fragment);
+
+    // まだデータがある場合はスクロール時に読み込むか、ボタンを出す（今回は自動追加を簡易実装）
+    if (startIndex + DISPLAY_CHUNK < currentFilteredData.length) {
+        const nextButton = document.createElement('tr');
+        nextButton.innerHTML = `<td colspan="9" style="text-align:center; cursor:pointer; background:#eee;" onclick="this.remove(); renderTable(${startIndex + DISPLAY_CHUNK}, true)">もっと表示する (${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
+        tbody.appendChild(nextButton);
+    }
   }
 
   function openModal(src) { document.getElementById("imageModal").style.display = "flex"; document.getElementById("modalImage").src = src; }
   function closeModal() { document.getElementById("imageModal").style.display = "none"; }
 
-  document.getElementById("searchKeyword").addEventListener("input", applyFilters);
+  // 入力負荷軽減（デバウンス）
+  let timeout = null;
+  const debouncedSearch = () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(applyFilters, 300);
+  };
+
+  document.getElementById("searchKeyword").addEventListener("input", debouncedSearch);
   document.getElementById("colorFilter").addEventListener("change", applyFilters);
   document.getElementById("typeFilter").addEventListener("change", applyFilters);
 </script>
