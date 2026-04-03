@@ -107,7 +107,7 @@
         }
 
         // 2. カード描画
-        function renderCards(cards) {
+function renderCards(cards) {
             const grid = document.getElementById('cardGrid');
             const countDisplay = document.getElementById('resultCount');
             const noResult = document.getElementById('noResult');
@@ -123,28 +123,41 @@
                 
                 cards.forEach(card => {
                     const cardWrapper = document.createElement('div');
-                    cardWrapper.className = "card-zoom bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col";
+                    // カード全体のデザイン（高さを自動調節）
+                    cardWrapper.className = "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-md transition-shadow";
                     
-                    // 色に応じたボーダー強調
+                    // 色に応じたアクセントライン
                     const borderColor = {
-                        '白': 'border-t-4 border-t-gray-400',
-                        '緑': 'border-t-4 border-t-green-400',
-                        '赤': 'border-t-4 border-t-red-400',
-                        '青': 'border-t-4 border-t-blue-400',
-                        '紫': 'border-t-4 border-t-purple-400',
-                        '黄': 'border-t-4 border-t-yellow-400'
-                    }[card.color] || '';
+                        '白': 'border-t-4 border-gray-400',
+                        '緑': 'border-t-4 border-green-400',
+                        '赤': 'border-t-4 border-red-400',
+                        '青': 'border-t-4 border-blue-400',
+                        '紫': 'border-t-4 border-purple-400',
+                        '黄': 'border-t-4 border-yellow-400'
+                    }[card.color] || 'border-t-4 border-gray-200';
+
+                    // ラベルの出し分け（HPかLifeか）
+                    const valueLabel = card.category === "推しホロメン" ? "LIFE" : (card.category === "ホロメン" ? "HP" : "");
+                    const displayValue = card.value !== "0" ? `<span class="bg-red-50 text-red-600 px-1.5 py-0.5 rounded text-[10px] font-black">${valueLabel} ${card.value}</span>` : "";
 
                     cardWrapper.innerHTML = `
-                        <div class="relative pt-[140%] overflow-hidden bg-gray-200">
+                        <div class="relative pt-[140%] overflow-hidden bg-gray-100">
                             <img src="${card.img}" alt="${card.name}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy">
                         </div>
                         <div class="p-3 flex-1 flex flex-col ${borderColor}">
-                            <span class="text-[9px] font-mono text-gray-400 uppercase tracking-tighter">${card.id}</span>
-                            <h3 class="font-bold text-xs mb-1 line-clamp-1">${card.name}</h3>
-                            <div class="mt-auto pt-2 flex justify-between items-center">
-                                <span class="px-2 py-0.5 rounded-full bg-gray-100 text-[9px] font-bold text-gray-600">${card.category}</span>
-                                <span class="text-[10px] font-bold ${card.color !== '無' ? 'text-gray-800' : 'text-gray-400'}">${card.color}</span>
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="text-[9px] font-mono text-gray-400">${card.id}</span>
+                                ${displayValue}
+                            </div>
+                            <h3 class="font-bold text-sm mb-1 text-gray-800">${card.name}</h3>
+                            
+                            <div class="text-[10px] text-gray-600 leading-snug line-clamp-3 mb-2 min-h-[3em]">
+                                ${card.description.replace(/\n/g, ' ')}
+                            </div>
+
+                            <div class="mt-auto pt-2 border-t border-gray-50 flex flex-wrap gap-1">
+                                <span class="px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 text-[9px] font-bold">${card.category}</span>
+                                ${card.tags.slice(0, 2).map(t => `<span class="text-[9px] text-gray-400">${t}</span>`).join('')}
                             </div>
                         </div>
                     `;
@@ -153,6 +166,7 @@
             }
         }
 
+        
         // 3. 検索・フィルターロジック
         function handleFilter() {
             const query = document.getElementById('searchInput').value;
