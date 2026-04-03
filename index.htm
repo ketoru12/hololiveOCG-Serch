@@ -3,27 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hololive CG Viewer Full</title>
+    <title>Hololive CG Viewer - Data Rich Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
-        .line-clamp-custom { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        /* スキルテキストが長すぎる場合に高さを揃えるための設定 */
+        .description-box {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 5.5rem;
+        }
+        /* スクロールバーのカスタマイズ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-slate-50 text-slate-900">
 
-    <header class="bg-slate-800 text-white p-4 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-between">
-            <h1 class="font-bold text-lg">HoloCG Data Viewer</h1>
-            <input type="text" id="searchInput" placeholder="名前、スキル、#タグ..." 
-                class="flex-1 min-w-[200px] border-none rounded-lg p-2 text-gray-800 focus:ring-2 focus:ring-blue-400">
-            <div id="resultCount" class="text-xs font-mono bg-slate-700 px-3 py-1 rounded">Loading...</div>
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-[1600px] mx-auto px-4 py-3 flex flex-col md:flex-row gap-4 items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-black">H</div>
+                <h1 class="font-bold tracking-tighter text-lg">HOLO-VIEWER</h1>
+            </div>
+            
+            <div class="flex-1 w-full flex gap-2">
+                <input type="text" id="searchInput" placeholder="カード名、スキル内容、#タグ、型番で検索..." 
+                    class="w-full bg-slate-800 border-none rounded-lg px-4 py-2 text-sm text-white focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+
+            <div id="resultCount" class="text-[10px] font-mono bg-slate-800 px-3 py-1.5 rounded-md text-slate-400 border border-slate-700">
+                LOADING DATA...
+            </div>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto p-4">
-        <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"></div>
-    </div>
+    <main class="max-w-[1600px] mx-auto p-4">
+        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+            </div>
+
+        <div id="noResult" class="hidden flex flex-col items-center justify-center py-20 text-slate-400">
+            <p class="text-xl font-bold">カードが見つかりません</p>
+            <p class="text-sm">キーワードを変えてみてください</p>
+        </div>
+    </main>
 
     <script>
         let allCards = [];
@@ -32,68 +58,129 @@
         async function init() {
             try {
                 const res = await fetch('./master_cards.json');
+                if (!res.ok) throw new Error("JSON読み込み失敗");
                 allCards = await res.json();
-                fuse = new Fuse(allCards, { keys: ['name', 'description', 'tags', 'id'], threshold: 0.3 });
+                
+                // 検索の重み付け設定
+                fuse = new Fuse(allCards, {
+                    keys: [
+                        { name: 'name', weight: 2 },
+                        { name: 'description', weight: 1 },
+                        { name: 'id', weight: 1.5 },
+                        { name: 'tags', weight: 1 }
+                    ],
+                    threshold: 0.3
+                });
+
                 render(allCards);
-            } catch (e) { console.error("Data Load Error:", e); }
+            } catch (e) {
+                console.error(e);
+                document.getElementById('resultCount').innerText = "ERROR";
+            }
         }
 
         function render(cards) {
             const grid = document.getElementById('cardGrid');
-            document.getElementById('resultCount').innerText = `${cards.length} cards`;
+            const noResult = document.getElementById('noResult');
+            document.getElementById('resultCount').innerText = `${cards.length.toLocaleString()} CARDS FOUND`;
+            
             grid.innerHTML = '';
+            if (cards.length === 0) {
+                noResult.classList.remove('hidden');
+                return;
+            }
+            noResult.classList.add('hidden');
 
             cards.forEach(card => {
                 const wrap = document.createElement('div');
-                wrap.className = "bg-white rounded-lg shadow-sm overflow-hidden flex flex-col border-t-4 transition-transform hover:scale-[1.02]";
+                // カード全体の枠
+                wrap.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-all";
                 
-                // 色設定
-                const colors = {'白':'border-gray-400','緑':'border-green-500','赤':'border-red-500','青':'border-blue-500','紫':'border-purple-500','黄':'border-yellow-400'};
-                wrap.classList.add(colors[card.color] || 'border-slate-200');
+                // 属性カラーの設定
+                const colorMap = {
+                    '白': 'border-t-[6px] border-slate-400',
+                    '緑': 'border-t-[6px] border-green-500',
+                    '赤': 'border-t-[6px] border-red-500',
+                    '青': 'border-t-[6px] border-blue-500',
+                    '紫': 'border-t-[6px] border-purple-500',
+                    '黄': 'border-t-[6px] border-yellow-400'
+                };
+                wrap.classList.add(colorMap[card.color] || 'border-t-[6px] border-slate-200');
 
-                // 動的ステータス（HP/LIFE, Bloom, Baton）
-                const isOshi = card.category === "推しホロメン";
-                const valLabel = isOshi ? "LIFE" : "HP";
-                const valColor = isOshi ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50";
-                
-                let statsHtml = "";
+                // カテゴリ別のステータス表示ロジック
+                let statsSection = "";
+                let descriptionSection = "";
+
                 if (card.category === "ホロメン") {
-                    statsHtml = `
-                        <div class="flex gap-2 text-[9px] font-bold text-slate-500 mt-1 uppercase">
-                            <span>Bloom: ${card.kind}</span>
-                            <span>Baton: ${card.baton}</span>
+                    statsSection = `
+                        <div class="grid grid-cols-3 gap-2 mb-3">
+                            <div class="bg-slate-50 p-1.5 rounded text-center">
+                                <span class="block text-[8px] text-slate-400 font-bold uppercase text-center">HP</span>
+                                <span class="text-xs font-black text-red-600">${card.value}</span>
+                            </div>
+                            <div class="bg-slate-50 p-1.5 rounded text-center">
+                                <span class="block text-[8px] text-slate-400 font-bold uppercase text-center">Bloom</span>
+                                <span class="text-[10px] font-bold">${card.kind}</span>
+                            </div>
+                            <div class="bg-slate-50 p-1.5 rounded text-center">
+                                <span class="block text-[8px] text-slate-400 font-bold uppercase text-center">Baton</span>
+                                <span class="text-xs font-bold">${card.baton}</span>
+                            </div>
+                        </div>`;
+                    descriptionSection = `
+                        <div class="description-box text-[10px] text-slate-600 leading-relaxed whitespace-pre-wrap">
+                            <span class="font-bold text-blue-600">【アーツ】</span>${card.description}
+                        </div>`;
+                } else if (card.category === "推しホロメン") {
+                    statsSection = `
+                        <div class="grid grid-cols-1 mb-3">
+                            <div class="bg-green-50 p-1.5 rounded flex justify-between items-center px-4">
+                                <span class="text-[8px] text-green-600 font-bold uppercase">LIFE</span>
+                                <span class="text-sm font-black text-green-700">${card.value}</span>
+                            </div>
+                        </div>`;
+                    descriptionSection = `
+                        <div class="description-box text-[9px] text-slate-600 leading-tight space-y-1 overflow-y-auto">
+                            <p><span class="font-bold text-green-600">【推し】</span>${card.oshiSkill || '-'}</p>
+                            <p><span class="font-bold text-orange-600">【SP】</span>${card.spOshiSkill || '-'}</p>
+                            <p><span class="font-bold text-blue-600">【Stage】</span>${card.stageSkill || '-'}</p>
+                        </div>`;
+                } else {
+                    // サポートカード
+                    statsSection = `
+                        <div class="mb-3">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[10px] font-bold">${card.kind}</span>
+                        </div>`;
+                    descriptionSection = `
+                        <div class="description-box text-[10px] text-slate-600 leading-relaxed italic">
+                            ${card.description}
                         </div>`;
                 }
 
-// renderCards 内の cardWrapper.innerHTML を以下のように変更
-cardWrapper.innerHTML = `
-    <div class="relative pt-[140%] bg-slate-100">
-        <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy">
-    </div>
-    <div class="p-3 flex-1 flex flex-col">
-        <div class="flex justify-between text-[9px] text-slate-400 font-mono mb-1">
-            <span>${card.id}</span>
-            <span class="bg-blue-50 text-blue-600 px-1 rounded">${card.category}</span>
-        </div>
-        
-        <h3 class="font-black text-xs mb-2 line-clamp-1">${card.name}</h3>
+                wrap.innerHTML = `
+                    <div class="flex h-full">
+                        <div class="w-1/3 min-w-[120px] relative bg-slate-100 border-r border-slate-100">
+                            <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy">
+                        </div>
+                        
+                        <div class="flex-1 p-3 flex flex-col justify-between bg-white">
+                            <div>
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[9px] font-mono text-slate-400">${card.id}</span>
+                                    <span class="text-[8px] font-bold text-slate-300">${card.color}</span>
+                                </div>
+                                <h3 class="font-black text-xs text-slate-800 mb-2 leading-tight">${card.name}</h3>
+                                
+                                ${statsSection}
+                                ${descriptionSection}
+                            </div>
 
-        <div class="grid grid-cols-2 gap-1 text-[9px] font-bold text-slate-600 mb-2">
-            ${card.kind ? `<span class="bg-slate-100 p-1 rounded">Bloom: ${card.kind}</span>` : ""}
-            ${card.baton ? `<span class="bg-slate-100 p-1 rounded">Baton: ${card.baton}</span>` : ""}
-            ${card.value !== "0" ? `<span class="bg-red-50 text-red-600 p-1 rounded col-span-2 text-center">HP/LIFE: ${card.value}</span>` : ""}
-        </div>
-
-        <div class="text-[9px] text-slate-700 leading-tight space-y-1 overflow-hidden flex-1">
-            ${card.description.split('\n').map(line => `
-                <p class="border-l-2 border-slate-200 pl-1 py-0.5">${line}</p>
-            `).join('')}
-        </div>
-    </div>
-`;
-                        <div class="mt-3 pt-2 border-t border-slate-50 flex justify-between items-center text-[9px]">
-                            <span class="font-bold text-blue-500">${card.category}</span>
-                            <span class="text-slate-300">${card.tags.slice(0,1)}</span>
+                            <div class="mt-3 pt-2 border-t border-slate-50 flex justify-between items-end">
+                                <div class="flex flex-wrap gap-1">
+                                    ${card.tags.slice(0, 2).map(t => `<span class="text-[8px] text-blue-400 font-bold">${t}</span>`).join('')}
+                                </div>
+                                <span class="text-[8px] font-black text-slate-200 uppercase">${card.category}</span>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -101,8 +188,10 @@ cardWrapper.innerHTML = `
             });
         }
 
+        // 検索入力の監視
         document.getElementById('searchInput').addEventListener('input', (e) => {
-            const res = e.target.value ? fuse.search(e.target.value).map(r => r.item) : allCards;
+            const val = e.target.value;
+            const res = val ? fuse.search(val).map(r => r.item) : allCards;
             render(res);
         });
 
