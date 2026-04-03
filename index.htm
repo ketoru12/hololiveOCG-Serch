@@ -3,41 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hololive CG Viewer - Optimized</title>
+    <title>HoloCG Data Viewer (0.9)- Official Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script>
+        // Tailwindのカスタム設定（グラデーションラベル用）
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                // 公式風のラベルカラー
+                'holo-pill': '#5e5a9b', // タグ、色、HP、Bloom、Batonの背景
+                'holo-pill-text': '#ffffff',
+                'holo-arts-start': '#5f76e0', // アーツグラデーション開始
+                'holo-arts-end': '#e6659c',   // アーツグラデーション終了
+              }
+            }
+          }
+        }
+    </script>
     <style>
+        /* descriptionの省略（公式サイト風に3行で止める、または全表示にするかはお好みで。ここでは全表示にします） */
         .description-box {
-            display: -webkit-box;
-            -webkit-line-clamp: 6;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 5.5rem;
+            font-size: 11px;
+            line-height: 1.5;
+            color: #4a5568;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 text-slate-900 font-sans">
 
-    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-[1600px] mx-auto px-4 py-3 flex flex-col md:flex-row gap-4 items-center">
+    <header class="bg-white text-slate-900 sticky top-0 z-50 shadow-sm border-b border-slate-100 p-3">
+        <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row gap-3 items-center">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-black text-white">H</div>
-                <h1 class="font-bold tracking-tighter text-lg text-white uppercase">Holo-Viewer</h1>
+                <h1 class="font-bold tracking-tighter text-xl text-holo-pill uppercase">Holo Viewer</h1>
             </div>
             <div class="flex-1 w-full">
-                <input type="text" id="searchInput" placeholder="カード名、スキル、タグで検索..." 
-                    class="w-full bg-slate-800 border-none rounded-lg px-4 py-2 text-sm text-white focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="text" id="searchInput" placeholder="カード名、効果テキスト、タグ、型番で検索..." 
+                    class="w-full bg-slate-100 border border-slate-200 rounded-full px-5 py-2.5 text-sm text-slate-800 focus:ring-2 focus:ring-holo-pill/30 focus:bg-white focus:border-holo-pill outline-none transition-all">
             </div>
-            <div id="resultCount" class="text-[10px] font-mono bg-slate-800 px-3 py-1.5 rounded-md text-slate-400 border border-slate-700 uppercase">
-                Ready
+            <div id="resultCount" class="text-xs font-mono bg-slate-100 px-4 py-2 rounded-full text-slate-500 border border-slate-200 uppercase tracking-wider">
+                READY
             </div>
         </div>
     </header>
 
-    <main class="max-w-[1600px] mx-auto p-4">
-        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"></div>
-        <div id="noResult" class="hidden flex flex-col items-center justify-center py-20 text-slate-400">
-            <p class="text-xl font-bold">カードが見つかりません</p>
+    <main class="max-w-[1600px] mx-auto p-4 md:p-6">
+        <div id="cardGrid" class="grid grid-cols-1 xl:grid-cols-2 gap-6"></div>
+        
+        <div id="noResult" class="hidden flex flex-col items-center justify-center py-24 text-slate-400">
+            <p class="text-2xl font-bold">カードが見つかりません</p>
+            <p class="text-sm mt-1">キーワードを変えて検索してみてください。</p>
         </div>
     </main>
 
@@ -45,12 +61,15 @@
         let allCards = [];
         let fuse;
 
+        // データの読み込み
         async function init() {
             try {
+                // キャッシュ回避
                 const res = await fetch('./master_cards.json?v=' + new Date().getTime());
-                if (!res.ok) throw new Error("JSON load failed");
+                if (!res.ok) throw new Error("JSON読み込み失敗");
                 allCards = await res.json();
                 
+                // 検索の設定
                 fuse = new Fuse(allCards, {
                     keys: ['name', 'description', 'id', 'tags'],
                     threshold: 0.3
@@ -63,10 +82,15 @@
             }
         }
 
+        // ラベル（Pill）を生成する共通関数
+        function createPill(text, bgColor, textColor = 'text-white') {
+            return `<span class="${bgColor} ${textColor} px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase whitespace-nowrap">${text}</span>`;
+        }
+
         function render(cards) {
             const grid = document.getElementById('cardGrid');
             const noResult = document.getElementById('noResult');
-            document.getElementById('resultCount').innerText = `${cards.length.toLocaleString()} CARDS`;
+            document.getElementById('resultCount').innerText = `${cards.length.toLocaleString()} CARDS FOUND`;
             
             grid.innerHTML = '';
             if (cards.length === 0) {
@@ -77,59 +101,82 @@
 
             cards.forEach(card => {
                 const wrap = document.createElement('div');
-                // 基本の枠組み（エラー回避のためクラスは個別にaddするか文字列で指定）
-                wrap.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-all h-full border-t-[6px]";
+                wrap.className = "bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full border border-slate-100 p-4 md:p-6";
                 
-                // 4. 色（属性）を強調
-                const colorConfigs = {
-                    '白': 'border-slate-400', '緑': 'border-green-500', '赤': 'border-red-500',
-                    '青': 'border-blue-500', '紫': 'border-purple-500', '黄': 'border-yellow-400'
-                };
-                const colorClass = colorConfigs[card.color] || 'border-slate-200';
-                wrap.classList.add(colorClass);
+                // --- データ組み立て ---
 
-                // ステータス表示の組み立て
-                let statsHtml = "";
-                if (card.category === "ホロメン") {
-                    statsHtml = `
-                        <div class="grid grid-cols-3 gap-1 mb-2">
-                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase">HP</span><span class="text-[10px] font-black text-red-600">${card.value}</span></div>
-                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase text-[6px]">Bloomレベル</span><span class="text-[9px] font-bold">${card.kind}</span></div>
-                            <div class="bg-slate-50 p-1 rounded text-center"><span class="block text-[7px] text-slate-400 font-bold uppercase text-[6px]">バトンタッチ</span><span class="text-[10px] font-bold">${card.baton}</span></div>
-                        </div>`;
-                } else if (card.category === "推しホロメン") {
-                    statsHtml = `<div class="bg-green-50 p-1 rounded flex justify-between px-3 mb-2 font-bold"><span class="text-[8px] text-green-600 uppercase tracking-widest">LIFE</span><span class="text-xs font-black text-green-700">${card.value}</span></div>`;
-                }
-
-                // 2. タグ情報の表示
-                const tagsHtml = (card.tags && card.tags.length > 0) 
-                    ? `<div class="flex flex-wrap gap-1 mb-2">${card.tags.map(t => `<span class="text-[8px] bg-blue-50 text-blue-500 px-1 rounded font-bold">${t}</span>`).join('')}</div>`
+                // 1. タグ情報 (#JP #4期生)
+                const tagsPill = (card.tags && card.tags.length > 0)
+                    ? `<div class="flex flex-wrap gap-2 mb-3">
+                         ${card.tags.map(t => `<span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] font-bold">${t}</span>`).join('')}
+                       </div>`
                     : "";
 
+                // 2. ステータス行（色、HP、Bloom、Baton、LIFE）
+                const statusItems = [];
+                // 色（属性）
+                statusItems.push(createPill(`色: ${card.color}`, 'bg-holo-pill'));
+
+                if (card.category === "ホロメン") {
+                    if (card.value && card.value !== "0") statusItems.push(createPill(`HP ${card.value}`, 'bg-holo-pill'));
+                    if (card.kind) statusItems.push(createPill(`Bloomレベル ${card.kind}`, 'bg-holo-pill'));
+                    if (card.baton) statusItems.push(createPill(`バトンタッチ ${card.baton}`, 'bg-holo-pill'));
+                } else if (card.category === "推しホロメン") {
+                    if (card.value && card.value !== "0") statusItems.push(createPill(`LIFE ${card.value}`, 'bg-green-600'));
+                }
+
+                const statusRow = statusItems.length > 0 
+                    ? `<div class="flex flex-wrap gap-2 mb-5">${statusItems.join('')}</div>`
+                    : "";
+
+                // 3. アーツ/スキル表示ロジック（公式サイト再現）
+                let descriptionHtml = "";
+                
+                if (card.category === "ホロメン") {
+                    // アーツ名と威力（威力はdescriptionに含んでいる想定だが、分離できればよりきれいにできる）
+                    descriptionHtml = `
+                        <div class="mb-5 description-box">
+                            <div class="flex items-center gap-2 mb-2">
+                                ${createPill('アーツ', 'bg-gradient-to-r from-holo-arts-start to-holo-arts-end')}
+                            </div>
+                            <div class="whitespace-pre-wrap pl-1">${card.description.replace(/\n/g, '<br>')}</div>
+                        </div>`;
+                } else if (card.category === "推しホロメン") {
+                    descriptionHtml = `
+                        <div class="space-y-4 description-box">
+                            ${card.oshiSkill ? `<div>${createPill('推しスキル', 'bg-green-600')} <div class="mt-1 pl-1 whitespace-pre-wrap">${card.oshiSkill}</div></div>` : ""}
+                            ${card.spOshiSkill ? `<div>${createPill('SP推しスキル', 'bg-orange-500')} <div class="mt-1 pl-1 whitespace-pre-wrap">${card.spOshiSkill}</div></div>` : ""}
+                        </div>`;
+                } else {
+                    // サポート
+                    descriptionHtml = `
+                        <div class="description-box whitespace-pre-wrap">
+                            ${createPill(card.kind, 'bg-slate-500')}
+                            <div class="mt-2 pl-1 italic text-slate-500">${card.description}</div>
+                        </div>`;
+                }
+
+                // --- 最終レイアウト生成（イメージに合わせて object-contain） ---
                 wrap.innerHTML = `
-                    <div class="flex h-full min-h-[200px]">
-                        <div class="w-1/3 min-w-[120px] relative bg-slate-100 border-r border-slate-50">
-                            <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-contain p-1" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/200x280.png?text=No%20Image'">
+                    <div class="flex flex-col md:flex-row h-full gap-6">
+                        <div class="w-full md:w-[280px] flex-shrink-0 relative bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center p-2">
+                            <img src="${card.img}" class="max-w-full max-h-[360px] object-contain rounded-lg shadow-sm" loading="lazy" onerror="this.src='https://placehold.jp/48/cccccc/ffffff/280x390.png?text=No%20Image'">
                         </div>
                         
-                        <div class="flex-1 p-3 flex flex-col justify-between bg-white overflow-hidden">
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-[9px] font-mono text-slate-400">${card.id}</span>
-                                    <span class="text-[10px] font-black px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">${card.color}</span>
-                                </div>
-                                <h3 class="font-black text-[12px] text-slate-800 mb-2 leading-tight">${card.name}</h3>
-                                
-                                ${statsHtml}
-                                ${tagsHtml}
-
-                                <div class="description-box text-[9px] text-slate-600 leading-tight space-y-1">
-                                    ${card.description.replace(/\n/g, '<br>')}
-                                </div>
+                        <div class="flex-1 flex flex-col">
+                            <div class="flex flex-wrap items-baseline gap-x-4 mb-3 border-b border-slate-100 pb-3">
+                                <h3 class="font-black text-2xl md:text-3xl text-holo-pill tracking-tight">${card.name}</h3>
+                                <span class="text-xs md:text-sm font-mono text-slate-400 tracking-wider">カードナンバー：${card.id}</span>
                             </div>
                             
-                            <div class="mt-3 pt-1 border-t border-slate-50 flex justify-between items-end">
-                                <span class="text-[9px] text-blue-600 font-black uppercase tracking-tighter">${card.category}</span>
+                            <div class="flex-1">
+                                ${tagsPill}
+                                ${statusRow}
+                                ${descriptionHtml}
+                            </div>
+                            
+                            <div class="mt-6 pt-3 border-t border-slate-100 text-right">
+                                <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">${card.category}</span>
                             </div>
                         </div>
                     </div>`;
