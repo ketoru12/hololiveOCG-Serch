@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>HoloCG Viewer - Updated</title>
+    <title>HoloCG Viewer - Structured Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -13,20 +13,27 @@
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
         .keyword-pill { background-color: #10b981; }
         .product-pill { background-color: #6366f1; }
+        .extra-pill { background-color: #f59e0b; }
         .value-box { font-size: 12px; font-weight: 500; line-height: 1.6; color: #1a202c; flex: 1; }
+        /* アーツ名とテキストを並べるためのスタイル */
+        .arts-box { margin-bottom: 12px; }
+        .arts-header { display: flex; items-center; gap: 10px; margin-bottom: 4px; }
+        .arts-name { font-size: 12px; font-weight: 900; color: #1a202c; }
+        .arts-text { font-size: 11px; color: #4a5568; line-height: 1.6; padding-left: 2px; whitespace-pre-wrap; }
     </style>
 </head>
 <body class="bg-slate-50">
 
     <header class="bg-white border-b sticky top-0 z-50 p-4 shadow-sm">
-        <div class="max-w-[1400px] mx-auto flex gap-4 items-center">
+        <div class="max-w-[1600px] mx-auto flex gap-4 items-center">
             <h1 class="font-bold text-xl text-[#5e5a9b]">HOLO-VIEWER</h1>
             <input type="text" id="searchInput" placeholder="名前、アーツ、キーワード、収録商品で検索..." 
                 class="flex-1 bg-slate-100 rounded-full px-6 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
+            <div id="resultCount" class="text-xs font-mono text-slate-400">READY</div>
         </div>
     </header>
 
-    <main class="max-w-[1400px] mx-auto p-4 md:p-8">
+    <main class="max-w-[1600px] mx-auto p-4 md:p-8">
         <div id="cardGrid" class="grid grid-cols-1 xl:grid-cols-2 gap-8"></div>
     </main>
 
@@ -35,61 +42,122 @@
         let fuse;
 
         async function init() {
+            // master_cards.json を読み込み（キャッシュ回避）
             const res = await fetch('./master_cards.json?v=' + Date.now());
             allCards = await res.json();
+            
+            // 検索設定（ arts.name, arts.text を追加 ）
             fuse = new Fuse(allCards, { 
-                keys: ['name', 'description', 'keyword', 'product', 'id'], 
+                keys: ['name', 'category', 'id', 'tags', 'arts.name', 'arts.text', 'keywordName', 'keywordEffect', 'description', 'product'], 
                 threshold: 0.3 
             });
-            render(allCards);
+            renderCards(allCards);
         }
 
+        // 基本ステータスの行生成
         function createRow(label, value, extraClass = "") {
-            if (!value || value === "0" || value === "nan" || value === "" || value.includes('undefined')) return "";
+            if (!value || value === "0" || value === "nan" || value === "") return "";
             return `<div class="flex items-start mb-4 gap-4">
                         <span class="label-pill ${extraClass}">${label}</span>
                         <div class="value-box whitespace-pre-wrap">${value}</div>
                     </div>`;
         }
 
-        function render(cards) {
+        function renderCards(cards) {
             const grid = document.getElementById('cardGrid');
+            document.getElementById('resultCount').innerText = `${cards.length.toLocaleString()} CARDS`;
             grid.innerHTML = '';
 
             cards.forEach(card => {
                 const wrap = document.createElement('div');
                 wrap.className = "bg-white rounded-[2.5rem] shadow-lg border p-6 md:p-8 flex flex-col md:flex-row gap-8 hover:shadow-2xl transition-all h-full";
                 
+                // 1. 基本情報の組み立て（色、HP、LIFEなど）
+                let statusGrid = "";
+                statusGrid += createRow('色', card.color);
+                
+                if (card.category === "ホロメン") {
+                    statusGrid += createRow('HP', card.value);
+                    statusGrid += createRow('Bloomレベル', card.kind);
+                    statusGrid += createRow('バトンタッチ', card.baton);
+                } else if (card.category === "推しホロメン") {
+                    statusGrid += createRow('LIFE', card.value, 'bg-green-600');
+                } else {
+                    statusGrid += createRow('種類', card.kind);
+                }
+
+                // 2. 詳細情報の組み立て（キーワード、アーツ、収録商品）
+                let detailSection = "";
+                
+                // キーワードの表示（デザイン調整）
+                if (card.keywordName) {
+                    detailSection += `<div class="flex items-start mb-4 gap-4">
+                                        <span class="label-pill keyword-pill">キーワード</span>
+                                        <div class="value-box">
+                                            <div class="font-black text-slate-800 mb-1">【${card.keywordName}】</div>
+                                            <div class="whitespace-pre-wrap text-slate-600">${card.keywordEffect}</div>
+                                        </div>
+                                      </div>`;
+                }
+
+                // 3. 複数アーツのループ描画（ここが重要）
+                if (card.arts && card.arts.length > 0) {
+                    card.arts.forEach(art => {
+                        detailSection += `
+                            <div class="flex items-start mb-4 gap-4">
+                                <span class="label-pill arts-pill">アーツ</span>
+                                <div class="value-box">
+                                    <div class="font-black text-slate-800 mb-1 arts-name">${art.name}</div>
+                                    <div class="whitespace-pre-wrap text-slate-600 arts-text">${art.text.replace(/\n/g, '<br>')}</div>
+                                </div>
+                            </div>`;
+                    });
+                }
+
+                // 4. その他の情報（エクストラ、推しスキル、サポート効果、収録商品）
+                if (card.description) {
+                    // 推しホロメンやサポートカードの場合
+                    if (card.category === "推しホロメン" || card.category === "サポート") {
+                        detailSection += createRow('効果', card.description);
+                    }
+                }
+                detailSection += createRow('エクストラ', card.extra, 'extra-pill');
+                detailSection += createRow('収録商品', card.product, 'product-pill');
+
+                // 5. カード全体のレイアウト生成
                 wrap.innerHTML = `
-                    <div class="w-full md:w-[240px] shrink-0 bg-slate-50 rounded-3xl p-3 flex items-center justify-center border border-slate-100 shadow-inner">
-                        <img src="${card.img}" class="max-h-[350px] object-contain rounded-lg shadow-sm" loading="lazy">
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-baseline border-b pb-3 mb-4">
-                            <h3 class="text-2xl md:text-3xl font-black text-[#5e5a9b] tracking-tighter">${card.name}</h3>
-                            <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">${card.id}</span>
+                    <div class="flex flex-col md:flex-row gap-8 h-full">
+                        <div class="w-full md:w-[240px] shrink-0 bg-slate-50 rounded-3xl p-3 flex items-center justify-center border border-slate-100 shadow-inner">
+                            <img src="${card.img}" class="max-w-full max-h-[350px] object-contain rounded-lg shadow-sm" loading="lazy" onerror="this.src='https://placehold.jp/24/cccccc/ffffff/280x390.png?text=No%20Image'">
                         </div>
                         
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="bg-slate-800 text-white px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">タグ</span>
-                            <div class="flex flex-wrap gap-2 text-[10px] font-bold text-slate-500">${card.tags ? card.tags.join(' ') : ''}</div>
+                        <div class="flex-1 flex flex-col">
+                            <div class="flex justify-between items-baseline border-b pb-3 mb-4">
+                                <h3 class="text-2xl md:text-3xl font-black text-[#5e5a9b] tracking-tighter">${card.name}</h3>
+                                <span class="text-xs font-mono text-slate-400 uppercase tracking-widest">${card.id}</span>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-slate-800 text-white px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase">タグ</span>
+                                <div class="text-[10px] text-slate-500 font-bold">${card.tags.join(' ')}</div>
+                            </div>
+                            
+                            <div class="flex-1">
+                                ${statusGrid}
+                                ${detailSection}
+                            </div>
+                            
+                            <div class="mt-6 text-right">
+                                <span class="text-[9px] font-black text-slate-200 uppercase tracking-[0.2em]">${card.category}</span>
+                            </div>
                         </div>
-                        
-                        ${createRow('色', card.color)}
-                        ${card.category === 'ホロメン' ? createRow('HP', card.value) : createRow('LIFE', card.value, 'bg-green-600')}
-                        ${createRow('Bloomレベル', card.kind)}
-                        ${createRow('バトンタッチ', card.baton)}
-                        ${createRow('キーワード', card.keyword, 'keyword-pill')}
-                        ${createRow('アーツ', card.description, 'arts-pill')}
-                        ${createRow('エクストラ', card.extra, 'bg-orange-500')}
-                        ${createRow('収録商品', card.product, 'product-pill')}
                     </div>`;
                 grid.appendChild(wrap);
             });
         }
 
         document.getElementById('searchInput').addEventListener('input', e => {
-            render(e.target.value ? fuse.search(e.target.value).map(r => r.item) : allCards);
+            renderCards(e.target.value ? fuse.search(e.target.value).map(r => r.item) : allCards);
         });
         init();
     </script>
