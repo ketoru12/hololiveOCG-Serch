@@ -120,12 +120,18 @@
     } catch (e) { console.error(e); }
   });
 
+// ... (CSS部分は変更なし) ...
+
   function parseCSV(text) {
-    if (!text) return [];
+    if (!text || text.trim() === "") return [];
     const rows = [];
     let row = [], col = "", inQuote = false;
-    for (let i = 0; i < text.length; i++) {
-      let c = text[i], next = text[i+1];
+    
+    // 改行コードを統一
+    const cleanText = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+    for (let i = 0; i < cleanText.length; i++) {
+      let c = cleanText[i], next = cleanText[i+1];
       if (inQuote) {
         if (c === '"' && next === '"') { col += '"'; i++; }
         else if (c === '"') inQuote = false;
@@ -133,17 +139,17 @@
       } else {
         if (c === '"') inQuote = true;
         else if (c === ',') { row.push(col); col = ""; }
-        else if (c === '\r' || c === '\n') {
+        else if (c === '\n') {
           row.push(col);
-          // 空白行（すべての列が空または空白）を厳密に除外
           if (row.some(x => x.trim() !== "")) rows.push(row);
           row = []; col = "";
-          if (c === '\r' && next === '\n') i++;
         } else col += c;
       }
     }
     if (row.length > 0 && row.some(x => x.trim() !== "")) { row.push(col); rows.push(row); }
-    return rows.slice(1); // ヘッダー除去
+
+    // 【重要】1行目がヘッダー（url, name等）である可能性が高いため、必ず除去する
+    return rows.filter(r => r[0] !== "url" && r[0] !== "URL");
   }
 
   function applyFilters() {
@@ -152,26 +158,41 @@
     const color = document.getElementById("colorFilter").value;
     
     let combined = [];
+
+    // ホロメン
     if (type === "すべて" || type === "ホロメン") {
-      allData.holomen.forEach(r => combined.push({
-        url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
-        hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
-        tags: r.slice(13).filter(t => t && t.trim() !== ""), raw: r.join(" ").toLowerCase()
-      }));
+      allData.holomen.forEach(r => {
+        if (!r[2] || r[2] === "name") return; // ヘッダー混入防止
+        combined.push({
+          url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
+          hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
+          tags: r.slice(13).filter(t => t && t.trim() !== ""), raw: r.join(" ").toLowerCase()
+        });
+      });
     }
+
+    // サポート
     if (type === "すべて" || type === "サポート") {
-      allData.support.forEach(r => combined.push({
-        url: r[0], img: "", name: r[1], type: r[2], color: "-", 
-        hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
-        tags: [], raw: r.join(" ").toLowerCase()
-      }));
+      allData.support.forEach(r => {
+        if (!r[1] || r[1] === "name") return;
+        combined.push({
+          url: r[0], img: "", name: r[1], type: r[2], color: "-", 
+          hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
+          tags: [], raw: r.join(" ").toLowerCase()
+        });
+      });
     }
+
+    // 推し
     if (type === "すべて" || type === "推しホロメン") {
-      allData.oshi.forEach(r => combined.push({
-        url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
-        hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
-        tags: [], raw: r.join(" ").toLowerCase()
-      }));
+      allData.oshi.forEach(r => {
+        if (!r[1] || r[1] === "name") return;
+        combined.push({
+          url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
+          hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
+          tags: [], raw: r.join(" ").toLowerCase()
+        });
+      });
     }
 
     currentFilteredData = combined.filter(c => {
@@ -183,6 +204,7 @@
     renderTable(0, false);
   }
 
+// ... (残りの関数は1.8と同様) ...
   function renderTable(startIndex, append = false) {
     const tbody = document.getElementById('cardBody');
     if (!append) {
