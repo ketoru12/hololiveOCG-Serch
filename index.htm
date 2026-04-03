@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索_ver1.5</title>
+    <title>ホロカ検索_ver1.6</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -12,7 +12,8 @@
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
-        .tag-pill { background-color: #94a3b8; }
+        .tag-pill { background-color: #94a3b8; cursor: pointer; transition: all 0.2s; }
+        .tag-pill:hover { background-color: #64748b; transform: scale(1.05); }
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
         .kind-pill { background-color: #64748b; }
@@ -188,28 +189,33 @@
             applyFilters();
         }
 
+        // 外部（モーダル内など）から検索ワードを設定するための関数
+        function setSearchTag(tag) {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = tag;
+            activeFilters.text = tag;
+            closeModal();
+            applyFilters();
+            // スムーズにトップへ戻る
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function applyFilters() {
             let result = allCards;
-
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
                 if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
                 return filterList.every(f => cardValue.includes(f));
             };
-
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => checkLogic(c.category || '', activeFilters.category, logiceState.category));
             }
-
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             }
-
-            // LIMITED, ツール, イベント, アイテム, スタッフ判定：種別のみ判定
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
@@ -221,14 +227,12 @@
                     return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
                 });
             }
-
             if (activeFilters.color) {
                 result = result.filter(c => {
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
                     return cColor === activeFilters.color;
                 });
             }
-
             if (activeFilters.tokkou) {
                 result = result.filter(c => {
                     if (!c.arts || !Array.isArray(c.arts)) return false;
@@ -238,15 +242,12 @@
                     });
                 });
             }
-
             if (activeFilters.baton.length > 0) {
                 result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             }
-
             if (activeFilters.product) {
                 result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
-
             renderCards(result);
         }
 
@@ -283,6 +284,11 @@
             if (!value || value === "nan" || value === "0") {
                  if (label === 'バトンタッチ' && value === "0") return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box">0</div></div>`;
                  return "";
+            }
+            // タグの場合、クリック可能なピルとして描画
+            if (label === 'タグ') {
+                const tagsHtml = value.split('　').map(tag => `<span class="label-pill tag-pill mr-1 inline-block" onclick="setSearchTag('${tag}')">${tag}</span>`).join('');
+                return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box">${tagsHtml}</div></div>`;
             }
             return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
         }
