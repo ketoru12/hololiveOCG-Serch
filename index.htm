@@ -3,219 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロライブ カードビューアー | Hololive Card Search_ver0.9</title>
+    <title>Hololive CG Viewer Full</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
-        .card-zoom { transition: transform 0.2s; }
-        .card-zoom:hover { transform: scale(1.05); z-index: 10; }
-        .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 4px; border: 1px solid #ccc; }
-        .bg-white-card { background-color: #f8f9fa; }
-        .bg-green-card { background-color: #e6ffed; }
-        .bg-red-card { background-color: #fff5f5; }
-        .bg-blue-card { background-color: #ebf8ff; }
-        .bg-purple-card { background-color: #faf5ff; }
-        .bg-yellow-card { background-color: #fefced; }
+        .line-clamp-custom { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-900">
 
-    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wider">Hololive Card Viewer</h1>
-            <div id="resultCount" class="text-sm bg-blue-700 px-3 py-1 rounded-full text-blue-100">
-                読み込み中...
-            </div>
+    <header class="bg-slate-800 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-between">
+            <h1 class="font-bold text-lg">HoloCG Data Viewer</h1>
+            <input type="text" id="searchInput" placeholder="名前、スキル、#タグ..." 
+                class="flex-1 min-w-[200px] border-none rounded-lg p-2 text-gray-800 focus:ring-2 focus:ring-blue-400">
+            <div id="resultCount" class="text-xs font-mono bg-slate-700 px-3 py-1 rounded">Loading...</div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
-        
-        <aside class="w-full md:w-64 flex-shrink-0">
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 sticky top-24">
-                <h2 class="font-bold mb-4 flex items-center text-gray-600 text-sm uppercase tracking-widest">Search Filters</h2>
-                
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-400 mb-2">キーワード</label>
-                    <input type="text" id="searchInput" placeholder="名前, タグ, 効果..." 
-                        class="w-full border-2 border-gray-100 rounded-xl p-3 focus:border-blue-400 focus:outline-none transition-all">
-                </div>
-
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-400 mb-2">カード種別</label>
-                    <select id="typeFilter" class="w-full border-2 border-gray-100 rounded-xl p-2 bg-white cursor-pointer">
-                        <option value="">すべて表示</option>
-                        <option value="ホロメン">ホロメン</option>
-                        <option value="推しホロメン">推しホロメン</option>
-                        <option value="サポート">サポート</option>
-                    </select>
-                </div>
-
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-gray-400 mb-2">属性（色）</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="setColorFilter('')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100 active bg-gray-100" data-color="">ALL</button>
-                        <button onclick="setColorFilter('白')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="白">白</button>
-                        <button onclick="setColorFilter('緑')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="緑">緑</button>
-                        <button onclick="setColorFilter('赤')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="赤">赤</button>
-                        <button onclick="setColorFilter('青')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="青">青</button>
-                        <button onclick="setColorFilter('紫')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="紫">紫</button>
-                        <button onclick="setColorFilter('黄')" class="color-btn border border-gray-200 rounded-lg py-1 text-xs hover:bg-gray-100" data-color="黄">黄</button>
-                    </div>
-                </div>
-
-                <button onclick="resetFilters()" class="w-full text-sm text-blue-500 hover:underline mt-2">フィルターをリセット</button>
-            </div>
-        </aside>
-
-        <section class="flex-1">
-            <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                </div>
-            
-            <div id="noResult" class="hidden text-center py-20 text-gray-400">
-                <p class="text-lg">条件に合うカードが見つかりません</p>
-            </div>
-        </section>
-
-    </main>
+    <div class="max-w-7xl mx-auto p-4">
+        <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"></div>
+    </div>
 
     <script>
         let allCards = [];
         let fuse;
-        let activeColor = "";
 
-        // 1. データロード
-        async function loadData() {
+        async function init() {
             try {
-                // GitHub Pagesでも動作するように相対パスでfetch
-                const response = await fetch('./master_cards.json');
-                if (!response.ok) throw new Error("File not found");
-                allCards = await response.json();
-                
-                // 検索エンジンの初期化
-                fuse = new Fuse(allCards, {
-                    keys: ['name', 'description', 'tags', 'id', 'kind'],
-                    threshold: 0.3,
-                    ignoreLocation: true
-                });
-
-                renderCards(allCards);
-            } catch (error) {
-                document.getElementById('resultCount').innerText = "エラー: JSONが読み込めません";
-                console.error(error);
-            }
+                const res = await fetch('./master_cards.json');
+                allCards = await res.json();
+                fuse = new Fuse(allCards, { keys: ['name', 'description', 'tags', 'id'], threshold: 0.3 });
+                render(allCards);
+            } catch (e) { console.error("Data Load Error:", e); }
         }
 
-        // 2. カード描画
-function renderCards(cards) {
+        function render(cards) {
             const grid = document.getElementById('cardGrid');
-            const countDisplay = document.getElementById('resultCount');
-            const noResult = document.getElementById('noResult');
-            
+            document.getElementById('resultCount').innerText = `${cards.length} cards`;
             grid.innerHTML = '';
-            
-            if (cards.length === 0) {
-                noResult.classList.remove('hidden');
-                countDisplay.innerText = "0 items";
-            } else {
-                noResult.classList.add('hidden');
-                countDisplay.innerText = `${cards.length} items`;
+
+            cards.forEach(card => {
+                const wrap = document.createElement('div');
+                wrap.className = "bg-white rounded-lg shadow-sm overflow-hidden flex flex-col border-t-4 transition-transform hover:scale-[1.02]";
                 
-                cards.forEach(card => {
-                    const cardWrapper = document.createElement('div');
-                    // カード全体のデザイン（高さを自動調節）
-                    cardWrapper.className = "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-md transition-shadow";
-                    
-                    // 色に応じたアクセントライン
-                    const borderColor = {
-                        '白': 'border-t-4 border-gray-400',
-                        '緑': 'border-t-4 border-green-400',
-                        '赤': 'border-t-4 border-red-400',
-                        '青': 'border-t-4 border-blue-400',
-                        '紫': 'border-t-4 border-purple-400',
-                        '黄': 'border-t-4 border-yellow-400'
-                    }[card.color] || 'border-t-4 border-gray-200';
+                // 色設定
+                const colors = {'白':'border-gray-400','緑':'border-green-500','赤':'border-red-500','青':'border-blue-500','紫':'border-purple-500','黄':'border-yellow-400'};
+                wrap.classList.add(colors[card.color] || 'border-slate-200');
 
-                    // ラベルの出し分け（HPかLifeか）
-                    const valueLabel = card.category === "推しホロメン" ? "LIFE" : (card.category === "ホロメン" ? "HP" : "");
-                    const displayValue = card.value !== "0" ? `<span class="bg-red-50 text-red-600 px-1.5 py-0.5 rounded text-[10px] font-black">${valueLabel} ${card.value}</span>` : "";
-
-                    cardWrapper.innerHTML = `
-                        <div class="relative pt-[140%] overflow-hidden bg-gray-100">
-                            <img src="${card.img}" alt="${card.name}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy">
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col ${borderColor}">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="text-[9px] font-mono text-gray-400">${card.id}</span>
-                                ${displayValue}
-                            </div>
-                            <h3 class="font-bold text-sm mb-1 text-gray-800">${card.name}</h3>
-                            
-                            <div class="text-[10px] text-gray-600 leading-snug line-clamp-3 mb-2 min-h-[3em]">
-                                ${card.description.replace(/\n/g, ' ')}
-                            </div>
-
-                            <div class="mt-auto pt-2 border-t border-gray-50 flex flex-wrap gap-1">
-                                <span class="px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 text-[9px] font-bold">${card.category}</span>
-                                ${card.tags.slice(0, 2).map(t => `<span class="text-[9px] text-gray-400">${t}</span>`).join('')}
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(cardWrapper);
-                });
-            }
-        }
-
-        
-        // 3. 検索・フィルターロジック
-        function handleFilter() {
-            const query = document.getElementById('searchInput').value;
-            const type = document.getElementById('typeFilter').value;
-
-            // まずキーワードで絞り込み
-            let results = query ? fuse.search(query).map(r => r.item) : allCards;
-
-            // 次にカテゴリ(種別)で絞り込み
-            if (type) {
-                results = results.filter(c => c.category === type);
-            }
-
-            // 次に色で絞り込み
-            if (activeColor) {
-                results = results.filter(c => c.color === activeColor);
-            }
-
-            renderCards(results);
-        }
-
-        // 色ボタン専用
-        function setColorFilter(color) {
-            activeColor = color;
-            // UI上のボタン状態を更新
-            document.querySelectorAll('.color-btn').forEach(btn => {
-                if(btn.dataset.color === color) {
-                    btn.classList.add('bg-blue-100', 'border-blue-300', 'text-blue-600');
-                } else {
-                    btn.classList.remove('bg-blue-100', 'border-blue-300', 'text-blue-600');
+                // 動的ステータス（HP/LIFE, Bloom, Baton）
+                const isOshi = card.category === "推しホロメン";
+                const valLabel = isOshi ? "LIFE" : "HP";
+                const valColor = isOshi ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50";
+                
+                let statsHtml = "";
+                if (card.category === "ホロメン") {
+                    statsHtml = `
+                        <div class="flex gap-2 text-[9px] font-bold text-slate-500 mt-1 uppercase">
+                            <span>Bloom: ${card.kind}</span>
+                            <span>Baton: ${card.baton}</span>
+                        </div>`;
                 }
+
+                wrap.innerHTML = `
+                    <div class="relative pt-[140%] bg-slate-100">
+                        <img src="${card.img}" class="absolute top-0 left-0 w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="p-3 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-[9px] text-slate-400 font-mono">${card.id}</span>
+                            ${card.value !== "0" ? `<span class="${valColor} px-1.5 py-0.5 rounded text-[10px] font-black">${valLabel} ${card.value}</span>` : ""}
+                        </div>
+                        <h3 class="font-black text-xs mb-1 line-clamp-1">${card.name}</h3>
+                        ${statsHtml}
+                        
+                        <div class="mt-2 space-y-1 text-[10px] text-slate-600 leading-tight flex-1">
+                            ${card.description.split('\n').map(text => `
+                                <p class="line-clamp-custom border-l-2 border-slate-100 pl-1 mb-1">${text}</p>
+                            `).join('')}
+                        </div>
+
+                        <div class="mt-3 pt-2 border-t border-slate-50 flex justify-between items-center text-[9px]">
+                            <span class="font-bold text-blue-500">${card.category}</span>
+                            <span class="text-slate-300">${card.tags.slice(0,1)}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(wrap);
             });
-            handleFilter();
         }
 
-        function resetFilters() {
-            document.getElementById('searchInput').value = "";
-            document.getElementById('typeFilter').value = "";
-            activeColor = "";
-            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('bg-blue-100', 'border-blue-300', 'text-blue-600'));
-            renderCards(allCards);
-        }
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const res = e.target.value ? fuse.search(e.target.value).map(r => r.item) : allCards;
+            render(res);
+        });
 
-        // イベントリスナー
-        document.getElementById('searchInput').addEventListener('input', handleFilter);
-        document.getElementById('typeFilter').addEventListener('change', handleFilter);
-
-        // 実行
-        loadData();
+        init();
     </script>
 </body>
 </html>
