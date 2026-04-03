@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Advanced Filter</title>
+    <title>Holo-Viewer | Custom Search</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -31,68 +31,76 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
         
-        /* 選択中のフィルターを目立たせる */
-        .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; }
+        .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; }
+        .logic-toggle { font-size: 10px; padding: 1px 6px; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .logic-and { background-color: #ef4444; color: white; }
+        .logic-or { background-color: #3b82f6; color: white; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-slate-50 text-slate-900 font-sans">
 
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
         
         <aside class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider">HOLO-VIEWER</h1>
+                <h1 class="font-bold tracking-wider italic">HOLO-VIEWER</h1>
                 <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-5">
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Free Word Search</label>
+                    <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">検索ワード</label>
                     <input type="text" id="searchInput" placeholder="名前、タグ、ID、効果..." 
                         class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Expansion / Product</label>
+                    <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">収録</label>
                     <select id="filterProduct" class="w-full border rounded-lg px-3 py-2 text-sm bg-white outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
-                        <option value="">すべて選ぶ</option>
+                        <option value="">すべて</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Category</label>
-                    <div id="filterCategory" class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white hover:bg-slate-50 filter-active" data-group="category" data-val="">ALL</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white hover:bg-slate-50" data-group="category" data-val="ホロメン">ホロメン</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white hover:bg-slate-50" data-group="category" data-val="推しホロメン">推し</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white hover:bg-slate-50" data-group="category" data-val="サポート">サポート</button>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-[11px] font-black text-slate-400 uppercase tracking-tighter">カードタイプ</label>
+                        <div class="logic-toggle logic-or" id="logic-category" onclick="toggleLogic('category')">OR検索</div>
                     </div>
-                </div>
-
-                <div id="bloomFilterGroup">
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Bloom Level</label>
                     <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white filter-active" data-group="kind" data-val="">ALL</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="kind" data-val="Spot">Spot</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="kind" data-val="Debut">Debut</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="kind" data-val="1st">1st</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="kind" data-val="2nd">2nd</button>
-                    </div>
-                </div>
-
-                <div id="supportFilterGroup">
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Support Type</label>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white filter-active" data-group="subKind" data-val="">ALL</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="subKind" data-val="LIMITED">LIMITED</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="subKind" data-val="ツール">ツール</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="subKind" data-val="イベント">イベント</button>
-                        <button class="filter-btn px-3 py-1.5 text-xs border rounded-md bg-white" data-group="subKind" data-val="スタッフ">スタッフ</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="ホロメン">ホロメン</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="推しホロメン">推し</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="サポート">サポート</button>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-2 uppercase italic">Color</label>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-[11px] font-black text-slate-400 uppercase tracking-tighter">Bloomレベル</label>
+                        <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR検索</div>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="1st">1st</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-[11px] font-black text-slate-400 uppercase tracking-tighter">サポート</label>
+                        <div class="logic-toggle logic-or" id="logic-subKind" onclick="toggleLogic('subKind')">OR検索</div>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="LIMITED">LIMITED</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="ツール">ツール</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="イベント">イベント</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="スタッフ">スタッフ</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">色</label>
                     <div class="flex flex-wrap gap-2">
                         <button class="color-dot w-7 h-7 rounded-full border bg-red-500" data-val="赤"></button>
                         <button class="color-dot w-7 h-7 rounded-full border bg-blue-500" data-val="青"></button>
@@ -104,7 +112,7 @@
                     </div>
                 </div>
 
-                <button id="resetFilters" class="w-full py-2 text-xs font-bold text-slate-400 hover:text-red-500 border-2 border-dashed rounded-lg transition-colors">RESET ALL</button>
+                <button id="resetFilters" class="w-full py-2 text-[11px] font-black text-slate-400 hover:text-red-500 border-2 border-dashed rounded-lg transition-colors">フィルターリセット</button>
             </div>
         </aside>
 
@@ -130,27 +138,65 @@
     <script>
         let allCards = [];
         let fuse;
-        let activeFilters = { text: '', category: '', kind: '', subKind: '', color: '', product: '' };
+        let activeFilters = { 
+            text: '', 
+            category: [], 
+            kind: [], 
+            subKind: [], 
+            color: '', 
+            product: '' 
+        };
+        let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
+
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
+
+        function toggleLogic(group) {
+            const el = document.getElementById(`logic-${group}`);
+            if (logiceState[group] === 'OR') {
+                logiceState[group] = 'AND';
+                el.innerText = 'AND検索';
+                el.classList.replace('logic-or', 'logic-and');
+            } else {
+                logiceState[group] = 'OR';
+                el.innerText = 'OR検索';
+                el.classList.replace('logic-and', 'logic-or');
+            }
+            applyFilters();
+        }
 
         function applyFilters() {
             let result = allCards;
 
-            // 1. フリーワード検索 (Fuse.js)
+            // 1. フリーワード
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-            // 2. カテゴリ
-            if (activeFilters.category) result = result.filter(c => c.category === activeFilters.category);
+
+            // ロジック判定用の汎用関数
+            const checkLogic = (cardValue, filterList, logic) => {
+                if (filterList.length === 0) return true;
+                if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
+                return filterList.every(f => cardValue.includes(f));
+            };
+
+            // 2. カードタイプ
+            if (activeFilters.category.length > 0) {
+                result = result.filter(c => checkLogic(c.category || '', activeFilters.category, logiceState.category));
+            }
+
             // 3. Bloomレベル
-            if (activeFilters.kind) result = result.filter(c => c.kind && c.kind.includes(activeFilters.kind));
-            // 4. サポート種別 (LIMITED, ツール, etc)
-            if (activeFilters.subKind) {
+            if (activeFilters.kind.length > 0) {
+                result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
+            }
+
+            // 4. サポート
+            if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const fullText = (c.kind || '') + (c.description || '');
-                    return fullText.includes(activeFilters.subKind);
+                    return checkLogic(fullText, activeFilters.subKind, logiceState.subKind);
                 });
             }
+
             // 5. 色
             if (activeFilters.color) {
                 result = result.filter(c => {
@@ -158,8 +204,11 @@
                     return cColor === activeFilters.color;
                 });
             }
-            // 6. 商品名
-            if (activeFilters.product) result = result.filter(c => c.product === activeFilters.product);
+
+            // 6. 収録
+            if (activeFilters.product) {
+                result = result.filter(c => c.product === activeFilters.product);
+            }
 
             renderCards(result);
         }
@@ -177,7 +226,7 @@
             });
         }
 
-        // --- 以下、ユーティリティとイベント設定 ---
+        // --- 詳細表示モーダル関連 ---
         function getTokkouBadgeHtml(text) {
             if (!text || text === "nan") return "";
             const match = text.match(/(白|緑|赤|青|紫|黄|無|◇)/);
@@ -195,7 +244,6 @@
             if (!value || value === "nan" || value === "0") return "";
             return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
         }
-
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
@@ -228,7 +276,7 @@
         }
         function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
 
-        // --- イベントリスナー ---
+        // --- イベント設定 ---
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         
@@ -236,9 +284,13 @@
             btn.addEventListener('click', () => {
                 const group = btn.getAttribute('data-group');
                 const val = btn.getAttribute('data-val');
-                document.querySelectorAll(`.filter-btn[data-group="${group}"]`).forEach(b => b.classList.remove('filter-active'));
-                btn.classList.add('filter-active');
-                activeFilters[group] = val;
+                if (activeFilters[group].includes(val)) {
+                    activeFilters[group] = activeFilters[group].filter(v => v !== val);
+                    btn.classList.remove('filter-active');
+                } else {
+                    activeFilters[group].push(val);
+                    btn.classList.add('filter-active');
+                }
                 applyFilters();
             });
         });
@@ -254,11 +306,10 @@
         });
 
         document.getElementById('resetFilters').addEventListener('click', () => {
-            activeFilters = { text: '', category: '', kind: '', subKind: '', color: '', product: '' };
+            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '' };
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').value = '';
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.filter-btn[data-val=""]').forEach(b => b.classList.add('filter-active'));
             document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4'));
             applyFilters();
         });
@@ -267,8 +318,6 @@
             try {
                 const res = await fetch('./master_cards.json');
                 allCards = await res.json();
-                
-                // 商品名リストの自動生成
                 const products = [...new Set(allCards.map(c => c.product).filter(p => p && p !== 'nan'))].sort();
                 const productSelect = document.getElementById('filterProduct');
                 products.forEach(p => {
@@ -276,13 +325,8 @@
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
-
-                // Fuse.jsの設定（全項目を検索対象に）
                 fuse = new Fuse(allCards, { 
-                    keys: [
-                        'name', 'id', 'tags', 'kind', 'description', 'product',
-                        'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'
-                    ], 
+                    keys: ['name', 'id', 'tags', 'kind', 'description', 'product', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
                     threshold: 0.3 
                 });
                 renderCards(allCards);
