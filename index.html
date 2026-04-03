@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(2.3)</title>
+<title>Hololive OCG カード検索ビューア(2.4)</title>
 <style>
   body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(2.3)</h2>
+<h2>Hololive OCG カード検索ビューア(2.4)</h2>
 
 <div class="search-container">
   <div class="filter-group"><label>カードタイプ</label><select id="typeFilter"><option value="すべて">すべて</option><option value="ホロメン">ホロメン</option><option value="サポート">サポート</option><option value="推しホロメン">推しホロメン</option></select></div>
@@ -54,25 +54,23 @@
   const DISPLAY_CHUNK = 50;
 
   window.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const load = async (file) => {
+    const load = async (file) => {
+      try {
         const r = await fetch(file);
         if (!r.ok) return [];
         const text = await r.text();
-        const rows = parseCSV(text);
-        // 【修正】1行目がヘッダー（url等）であれば除去。そうでなければそのまま使う
-        if (rows.length > 0 && rows[0][0].toLowerCase().includes("url")) {
-            return rows.slice(1);
-        }
+        let rows = parseCSV(text);
+        // 【修正】ヘッダー判定：1列目に "url" が含まれる行を完全に除去
+        rows = rows.filter(row => row.length > 0 && !row[0].toLowerCase().includes("url"));
         return rows;
-      };
-      
-      allRawData.holomen = await load('hololive_cards.csv');
-      allRawData.support = await load('hololive_support.csv');
-      allRawData.oshi = await load('hololive_oshi.csv');
-      
-      applyFilters();
-    } catch (e) { console.error(e); }
+      } catch(e) { return []; }
+    };
+    
+    allRawData.holomen = await load('hololive_cards.csv');
+    allRawData.support = await load('hololive_support.csv');
+    allRawData.oshi = await load('hololive_oshi.csv');
+    
+    applyFilters();
   });
 
   function parseCSV(text) {
@@ -92,6 +90,7 @@
         else if (c === ',') { row.push(col); col = ""; }
         else if (c === '\n') {
           row.push(col);
+          // 【修正】中身が空でない行のみ追加
           if (row.some(x => x.trim() !== "")) rows.push(row);
           row = []; col = "";
         } else col += c;
@@ -107,9 +106,10 @@
     const color = document.getElementById("colorFilter").value;
     let combined = [];
 
+    // ホロメン
     if (type === "すべて" || type === "ホロメン") {
       allRawData.holomen.forEach(r => {
-        if (r.length < 12) return;
+        if (r.length < 12 || !r[2]) return; // 名前がない行は飛ばす
         combined.push({
           url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
           hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
@@ -117,9 +117,10 @@
         });
       });
     }
+    // サポート
     if (type === "すべて" || type === "サポート") {
       allRawData.support.forEach(r => {
-        if (r.length < 6) return;
+        if (r.length < 6 || !r[1]) return;
         combined.push({
           url: r[0], img: "", name: r[1], type: r[2], color: "-", 
           hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
@@ -127,9 +128,10 @@
         });
       });
     }
+    // 推し
     if (type === "すべて" || type === "推しホロメン") {
       allRawData.oshi.forEach(r => {
-        if (r.length < 9) return;
+        if (r.length < 9 || !r[1]) return;
         combined.push({
           url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
           hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
@@ -143,7 +145,6 @@
       if (color && c.color !== color) return false;
       return true;
     });
-    // フィルタ適用後は必ず0件目から再描画
     renderTable(0, false);
   }
 
@@ -151,7 +152,6 @@
     const tbody = document.getElementById('cardBody');
     if (!append) tbody.innerHTML = '';
     
-    // 前の「もっと見る」ボタンを削除
     const oldBtn = tbody.querySelector('.load-more-row');
     if (oldBtn) oldBtn.remove();
     
@@ -177,7 +177,6 @@
     });
     tbody.appendChild(fragment);
 
-    // まだ続きがあればボタンを表示
     if (startIndex + DISPLAY_CHUNK < currentFilteredData.length) {
       const r = document.createElement('tr'); r.className = 'load-more-row';
       r.innerHTML = `<td colspan="9">さらに表示する (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
