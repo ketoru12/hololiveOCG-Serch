@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索_ver1.0</title>
+    <title>ホロカ検索_ver1.1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -43,7 +43,7 @@
         
         <aside class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">HOLO-VIEWER</h1>
+                <h1 class="font-bold tracking-wider italic">ホロカ検索</h1>
                 <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
@@ -101,15 +101,37 @@
                 </div>
 
                 <div>
+                    <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">バトンタッチ</label>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="baton" data-val="0">0</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="baton" data-val="1">1</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="baton" data-val="2">2</button>
+                    </div>
+                </div>
+
+                <div>
                     <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">色</label>
                     <div class="flex flex-wrap gap-2">
-                        <button class="color-dot w-7 h-7 rounded-full border bg-red-500" data-val="赤"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-blue-500" data-val="青"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-green-500" data-val="緑"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-yellow-400" data-val="黄"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-purple-500" data-val="紫"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-white" data-val="白"></button>
-                        <button class="color-dot w-7 h-7 rounded-full border bg-slate-400" data-val="無"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-red-500" data-type="color" data-val="赤"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-blue-500" data-type="color" data-val="青"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-green-500" data-type="color" data-val="緑"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-yellow-400" data-type="color" data-val="黄"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-purple-500" data-type="color" data-val="紫"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-white" data-type="color" data-val="白"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-slate-400" data-type="color" data-val="無"></button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-black text-slate-400 mb-2 uppercase tracking-tighter">特攻</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="color-dot w-7 h-7 rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-green-500" data-type="tokkou" data-val="緑"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-yellow-400" data-type="tokkou" data-val="黄"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-purple-500" data-type="tokkou" data-val="紫"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-white" data-type="tokkou" data-val="白"></button>
+                        <button class="color-dot w-7 h-7 rounded-full border bg-slate-400" data-type="tokkou" data-val="無"></button>
                     </div>
                 </div>
 
@@ -139,7 +161,7 @@
     <script>
         let allCards = [];
         let fuse;
-        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '' };
+        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
@@ -161,6 +183,7 @@
         function applyFilters() {
             let result = allCards;
 
+            // 検索ワードがある場合 (LIMITEDの記載も全文検索される)
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
@@ -179,10 +202,30 @@
                 result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             }
 
+            // サポート種別フィルターのロジック修正
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
-                    const fullText = (c.kind || '') + (c.description || '');
-                    return checkLogic(fullText, activeFilters.subKind, logiceState.subKind);
+                    const kindValue = (c.kind || '');
+                    const descValue = (c.description || '');
+                    
+                    // 個別のフィルタリング条件をリストに適用
+                    if (logiceState.subKind === 'OR') {
+                        return activeFilters.subKind.some(f => {
+                            if (f === 'LIMITED') {
+                                // LIMITEDフィルターは種別(kind)のみをチェック
+                                return kindValue.includes('LIMITED');
+                            }
+                            // 他のフィルターは種別またはテキストをチェック
+                            return kindValue.includes(f) || descValue.includes(f);
+                        });
+                    } else {
+                        return activeFilters.subKind.every(f => {
+                            if (f === 'LIMITED') {
+                                return kindValue.includes('LIMITED');
+                            }
+                            return kindValue.includes(f) || descValue.includes(f);
+                        });
+                    }
                 });
             }
 
@@ -191,6 +234,17 @@
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
                     return cColor === activeFilters.color;
                 });
+            }
+
+            if (activeFilters.tokkou) {
+                result = result.filter(c => {
+                    if (!c.arts) return false;
+                    return c.arts.some(art => (art.tokkou || '').replace('◇', '無') === activeFilters.tokkou);
+                });
+            }
+
+            if (activeFilters.baton.length > 0) {
+                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             }
 
             if (activeFilters.product) {
@@ -227,7 +281,10 @@
             }).join('');
         }
         function createRow(label, value, extraClass = "") {
-            if (!value || value === "nan" || value === "0") return "";
+            if (!value || value === "nan" || value === "0") {
+                 if (label === 'バトンタッチ' && value === "0") return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box">0</div></div>`;
+                 return "";
+            }
             return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
         }
         
@@ -240,7 +297,7 @@
             let details = "";
             if (card.category !== "サポート") details += createRow('色', (card.color || '無').replace('◇', '無'));
             if (card.category === "ホロメン") {
-                details += createRow('HP', card.value); details += createRow('Bloom', card.kind); details += createRow('バトンタッチ', card.baton_touch);
+                details += createRow('HP', card.value); details += createRow('Bloom', card.kind); details += createRow('バトンタッチ', String(card.baton_touch));
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
@@ -288,16 +345,25 @@
 
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.addEventListener('click', () => {
+                const type = btn.getAttribute('data-type');
+                const val = btn.getAttribute('data-val');
                 const isSelected = btn.classList.contains('ring-4');
-                document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-                activeFilters.color = isSelected ? '' : btn.getAttribute('data-val');
+                
+                document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+                
+                if (type === 'color') {
+                    activeFilters.color = isSelected ? '' : val;
+                } else {
+                    activeFilters.tokkou = isSelected ? '' : val;
+                }
+
                 if (!isSelected) btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
                 applyFilters();
             });
         });
 
         document.getElementById('resetFilters').addEventListener('click', () => {
-            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '' };
+            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').value = '';
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
