@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Custom Search</title>
+    <title>Holo-Viewer | Integrated Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -138,14 +138,7 @@
     <script>
         let allCards = [];
         let fuse;
-        let activeFilters = { 
-            text: '', 
-            category: [], 
-            kind: [], 
-            subKind: [], 
-            color: '', 
-            product: '' 
-        };
+        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
@@ -167,29 +160,24 @@
         function applyFilters() {
             let result = allCards;
 
-            // 1. フリーワード
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
 
-            // ロジック判定用の汎用関数
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
                 if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
                 return filterList.every(f => cardValue.includes(f));
             };
 
-            // 2. カードタイプ
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => checkLogic(c.category || '', activeFilters.category, logiceState.category));
             }
 
-            // 3. Bloomレベル
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             }
 
-            // 4. サポート
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const fullText = (c.kind || '') + (c.description || '');
@@ -197,7 +185,6 @@
                 });
             }
 
-            // 5. 色
             if (activeFilters.color) {
                 result = result.filter(c => {
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
@@ -205,9 +192,9 @@
                 });
             }
 
-            // 6. 収録
+            // 修正：複数商品(配列)に対応したフィルタリング
             if (activeFilters.product) {
-                result = result.filter(c => c.product === activeFilters.product);
+                result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
 
             renderCards(result);
@@ -226,7 +213,6 @@
             });
         }
 
-        // --- 詳細表示モーダル関連 ---
         function getTokkouBadgeHtml(text) {
             if (!text || text === "nan") return "";
             const match = text.match(/(白|緑|赤|青|紫|黄|無|◇)/);
@@ -244,6 +230,7 @@
             if (!value || value === "nan" || value === "0") return "";
             return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
         }
+        
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
@@ -269,14 +256,19 @@
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
-            if (card.product) details += createRow('収録', card.product, 'product-pill');
+            
+            // 修正：複数商品(配列)を繋げて表示
+            if (card.products && card.products.length > 0) {
+                details += createRow('収録', card.products.join('　'), 'product-pill');
+            }
+
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+        
         function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
 
-        // --- イベント設定 ---
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         
@@ -318,15 +310,25 @@
             try {
                 const res = await fetch('./master_cards.json');
                 allCards = await res.json();
-                const products = [...new Set(allCards.map(c => c.product).filter(p => p && p !== 'nan'))].sort();
+                
+                // 修正：重複排除した商品名リストの作成
+                let productSet = new Set();
+                allCards.forEach(c => {
+                    if (c.products) {
+                        c.products.forEach(p => productSet.add(p));
+                    }
+                });
+                
+                const sortedProducts = Array.from(productSet).sort();
                 const productSelect = document.getElementById('filterProduct');
-                products.forEach(p => {
+                sortedProducts.forEach(p => {
                     const opt = document.createElement('option');
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
+
                 fuse = new Fuse(allCards, { 
-                    keys: ['name', 'id', 'tags', 'kind', 'description', 'product', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
+                    keys: ['name', 'id', 'tags', 'kind', 'description', 'products', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
                     threshold: 0.3 
                 });
                 renderCards(allCards);
