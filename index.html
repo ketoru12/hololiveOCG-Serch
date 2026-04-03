@@ -2,135 +2,68 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(2.0)</title>
-
+<title>Hololive OCG カード検索ビューア(2.1)</title>
 <style>
-  body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
-
-  /* 検索エリア：上部に固定 */
   .search-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; position: sticky; top: 0; z-index: 100; }
   .filter-group { display: flex; flex-direction: column; }
   .filter-group label { font-size: 11px; font-weight: bold; margin-bottom: 4px; color: #666; }
   input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
-  
-  /* テーブルエリア */
   .table-wrapper { background: white; border-radius: 10px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
   table { width: 100%; border-collapse: collapse; min-width: 1300px; border: 1px solid #ccc; table-layout: fixed; }
-  
-  /* 列幅を固定して描画負荷を軽減 */
-  th:nth-child(1) { width: 90px; }  /* 画像 */
-  th:nth-child(2) { width: 150px; } /* 名前 */
-  th:nth-child(3) { width: 100px; } /* タイプ(表示はするが検索も可) */
-  th:nth-child(4) { width: 50px; }  /* 色 */
-  th:nth-child(5) { width: 70px; }  /* HP/L */
-  th:nth-child(6) { width: auto; }  /* 効果 */
-  th:nth-child(7) { width: 100px; } /* タグ */
-  th:nth-child(8) { width: 250px; } /* 収録 */
-  th:nth-child(9) { width: 60px; }  /* リンク */
-
+  th:nth-child(1) { width: 90px; } th:nth-child(2) { width: 150px; } th:nth-child(3) { width: 100px; }
+  th:nth-child(4) { width: 50px; } th:nth-child(5) { width: 70px; } th:nth-child(6) { width: auto; }
+  th:nth-child(7) { width: 100px; } th:nth-child(8) { width: 250px; } th:nth-child(9) { width: 60px; }
   th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; font-size: 13px; overflow: hidden; }
   th { background: #0088cc; color: white; position: sticky; top: 80px; z-index: 10; white-space: nowrap; }
-  
   tr:hover { background-color: #f0faff; }
   .card-img { width: 80px; height: auto; border-radius: 4px; cursor: pointer; min-height: 110px; background: #eee; }
-  
-  /* タグを縦に並べる設定 */
-  .tag-container { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-  .tag { display: inline-block; background: #e0e0e0; color: #555; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; }
-  
+  .tag-container { display: flex; flex-direction: column; gap: 4px; }
+  .tag { background: #e0e0e0; color: #555; padding: 2px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; }
   .arts-text { line-height: 1.5; color: #222; overflow-wrap: break-word; }
-  
-  /* 収録：折り返し禁止 */
-  .prod-text { line-height: 1.6; color: #444; font-size: 11px; white-space: nowrap; word-break: keep-all; }
-  
+  .prod-text { line-height: 1.6; color: #444; font-size: 11px; white-space: nowrap; }
   .name-text { font-weight: bold; color: #0055aa; display: block; }
-  .number-text { font-size: 11px; color: #888; }
-
-  /* 画像拡大モーダル */
   #imageModal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; cursor: zoom-out; }
-  #modalImage { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-
-  /* もっと見るボタン */
-  .load-more-row td { text-align: center; cursor: pointer; background: #f9f9f9; color: #0088cc; font-weight: bold; padding: 15px; border: 1px solid #ccc; }
-  .load-more-row:hover td { background: #f0f0f0; }
+  #modalImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
+  .load-more-row td { text-align: center; cursor: pointer; background: #f9f9f9; color: #0088cc; font-weight: bold; padding: 15px; }
 </style>
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(2.0)</h2>
+<h2>Hololive OCG カード検索ビューア(2.1)</h2>
 
 <div class="search-container">
-  <div class="filter-group">
-    <label>カードタイプ</label>
-    <select id="typeFilter">
-      <option value="すべて">すべて表示</option>
-      <option value="ホロメン">ホロメン</option>
-      <option value="サポート">サポート</option>
-      <option value="推しホロメン">推しホロメン</option>
-    </select>
-  </div>
-  <div class="filter-group">
-    <label>キーワード検索</label>
-    <input type="text" id="searchKeyword" placeholder="名前や効果で検索...">
-  </div>
-  <div class="filter-group">
-    <label>色</label>
-    <select id="colorFilter">
-      <option value="">すべて</option>
-      <option value="白">白</option><option value="青">青</option><option value="赤">赤</option>
-      <option value="黄">黄</option><option value="紫">紫</option><option value="緑">緑</option><option value="無">無</option>
-    </select>
-  </div>
+  <div class="filter-group"><label>カードタイプ</label><select id="typeFilter"><option value="すべて">すべて</option><option value="ホロメン">ホロメン</option><option value="サポート">サポート</option><option value="推しホロメン">推しホロメン</option></select></div>
+  <div class="filter-group"><label>キーワード検索</label><input type="text" id="searchKeyword" placeholder="名前や効果で検索..."></div>
+  <div class="filter-group"><label>色</label><select id="colorFilter"><option value="">すべて</option><option value="白">白</option><option value="青">青</option><option value="赤">赤</option><option value="黄">黄</option><option value="紫">紫</option><option value="緑">緑</option><option value="無">無</option></select></div>
 </div>
 
 <div class="table-wrapper">
-  <table id="cardTable">
-    <thead>
-      <tr>
-        <th>画像</th>
-        <th>名前(番号)</th>
-        <th>タイプ</th>
-        <th>色</th>
-        <th>HP/L</th>
-        <th>効果/スキル</th>
-        <th>タグ</th>
-        <th>収録</th>
-        <th>詳細</th>
-      </tr>
-    </thead>
+  <table>
+    <thead><tr><th>画像</th><th>名前(番号)</th><th>タイプ</th><th>色</th><th>HP/L</th><th>効果/スキル</th><th>タグ</th><th>収録</th><th>詳細</th></tr></thead>
     <tbody id="cardBody"></tbody>
   </table>
 </div>
 
-<div id="imageModal" onclick="closeModal()"><img id="modalImage" src="" alt="拡大画像"></div>
+<div id="imageModal" onclick="closeModal()"><img id="modalImage" src=""></div>
 
 <script>
   let allRawData = { holomen: [], support: [], oshi: [] };
   let currentFilteredData = [];
-  const DISPLAY_CHUNK = 50; // 重さ対策：50件ずつ描画
+  const DISPLAY_CHUNK = 50;
 
   window.addEventListener('DOMContentLoaded', async () => {
     try {
-      const [resH, resS, resO] = await Promise.all([
-        fetch('hololive_cards.csv').then(r => r.text()),
-        fetch('hololive_support.csv').then(r => r.text()),
-        fetch('hololive_oshi.csv').then(r => r.text())
-      ]);
-      
-      allRawData.holomen = parseCSV(resH);
-      allRawData.support = parseCSV(resS);
-      allRawData.oshi = parseCSV(resO);
-      
+      const load = async (file) => { const r = await fetch(file); return r.ok ? await r.text() : ""; };
+      const [h, s, o] = await Promise.all([load('hololive_cards.csv'), load('hololive_support.csv'), load('hololive_oshi.csv')]);
+      allRawData.holomen = parseCSV(h); allRawData.support = parseCSV(s); allRawData.oshi = parseCSV(o);
       applyFilters();
-    } catch (e) {
-      console.error(e);
-      alert("CSVの読み込みに失敗しました。ファイル名を確認してください。");
-    }
+    } catch (e) { console.error(e); }
   });
 
   function parseCSV(text) {
-    if (!text || text.trim() === "") return [];
+    if (!text || !text.includes(',')) return [];
     const rows = [];
     let row = [], col = "", inQuote = false;
     const cleanText = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -144,61 +77,56 @@
       } else {
         if (c === '"') inQuote = true;
         else if (c === ',') { row.push(col); col = ""; }
-        else if (c === '\n') {
-          row.push(col);
-          if (row.some(x => x.trim() !== "")) rows.push(row);
-          row = []; col = "";
-        } else col += c;
+        else if (c === '\n') { row.push(col); rows.push(row); row = []; col = ""; }
+        else col += c;
       }
     }
-    if (row.length > 0 && row.some(x => x.trim() !== "")) { row.push(col); rows.push(row); }
-    
-    // ヘッダー行を厳密に除去
-    return rows.filter(r => r[0] !== "url" && r[0] !== "URL");
+    if (row.length > 0) row.push(col), rows.push(row);
+
+    // 【修正：ヘッダー除去ロジックを強化】
+    return rows.filter(r => {
+      if (!r || r.length < 3) return false; // あまりに短い行は除外
+      const firstCol = String(r[0]).toLowerCase().trim();
+      const secondCol = String(r[1]).toLowerCase().trim();
+      // 1列目や2列目が「url」「name」「img」などの予約語ならヘッダーとみなし除外
+      if (firstCol === "url" || secondCol === "name" || secondCol === "img") return false;
+      return true;
+    });
   }
 
   function applyFilters() {
     const type = document.getElementById("typeFilter").value;
     const kw = document.getElementById("searchKeyword").value.trim().toLowerCase();
     const color = document.getElementById("colorFilter").value;
-    
     let combined = [];
 
-    // ホロメン
     if (type === "すべて" || type === "ホロメン") {
       allRawData.holomen.forEach(r => {
-        if (!r[2] || r[2] === "name") return;
+        if (r.length < 12) return;
         combined.push({
           url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
           hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
-          tags: r.slice(13).filter(t => t && t.trim() !== ""), 
-          raw: r.join(" ").toLowerCase()
+          tags: r.slice(13).filter(t => t && t.trim() !== ""), raw: r.join(" ").toLowerCase()
         });
       });
     }
-
-    // サポート
     if (type === "すべて" || type === "サポート") {
       allRawData.support.forEach(r => {
-        if (!r[1] || r[1] === "name") return;
+        if (r.length < 6) return;
         combined.push({
           url: r[0], img: "", name: r[1], type: r[2], color: "-", 
           hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
-          tags: [], 
-          raw: r.join(" ").toLowerCase()
+          tags: [], raw: r.join(" ").toLowerCase()
         });
       });
     }
-
-    // 推し
     if (type === "すべて" || type === "推しホロメン") {
       allRawData.oshi.forEach(r => {
-        if (!r[1] || r[1] === "name") return;
+        if (r.length < 9) return;
         combined.push({
           url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
           hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
-          tags: [], 
-          raw: r.join(" ").toLowerCase()
+          tags: [], raw: r.join(" ").toLowerCase()
         });
       });
     }
@@ -208,17 +136,13 @@
       if (color && c.color !== color) return false;
       return true;
     });
-
     renderTable(0, false);
   }
 
   function renderTable(startIndex, append = false) {
     const tbody = document.getElementById('cardBody');
     if (!append) tbody.innerHTML = '';
-    else {
-      const oldBtn = tbody.querySelector('.load-more-row');
-      if (oldBtn) oldBtn.remove();
-    }
+    else { const b = tbody.querySelector('.load-more-row'); if (b) b.remove(); }
     
     const chunk = currentFilteredData.slice(startIndex, startIndex + DISPLAY_CHUNK);
     const fragment = document.createDocumentFragment();
@@ -227,11 +151,9 @@
       const tr = document.createElement('tr');
       const cleanProd = c.prod ? c.prod.split('\n').map(p => p.trim()).join('<br>') : "";
       const tagsHtml = c.tags.map(t => `<span class="tag">${t}</span>`).join('');
-      const imgHtml = c.img ? `<img src="${c.img}" class="card-img" loading="lazy" onclick="openModal('${c.img}')">` : "-";
-
       tr.innerHTML = `
-        <td>${imgHtml}</td>
-        <td><span class="name-text">${c.name}</span><small class="number-text">${c.num}</small></td>
+        <td>${c.img ? `<img src="${c.img}" class="card-img" loading="lazy" onclick="openModal('${c.img}')">` : "-"}</td>
+        <td><span class="name-text">${c.name}</span><small>${c.num}</small></td>
         <td><small>${c.type}</small></td>
         <td>${c.color}</td>
         <td>${c.hp}</td>
@@ -242,34 +164,23 @@
       `;
       fragment.appendChild(tr);
     });
-
     tbody.appendChild(fragment);
 
     if (startIndex + DISPLAY_CHUNK < currentFilteredData.length) {
-      const btnRow = document.createElement('tr');
-      btnRow.className = 'load-more-row';
-      btnRow.innerHTML = `<td colspan="9">もっと表示する (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
-      btnRow.onclick = () => renderTable(startIndex + DISPLAY_CHUNK, true);
-      tbody.appendChild(btnRow);
+      const r = document.createElement('tr'); r.className = 'load-more-row';
+      r.innerHTML = `<td colspan="9">もっと見る (残り ${currentFilteredData.length - (startIndex + DISPLAY_CHUNK)}件)</td>`;
+      r.onclick = () => renderTable(startIndex + DISPLAY_CHUNK, true);
+      tbody.appendChild(r);
     }
   }
 
-  function openModal(src) { 
-    document.getElementById("imageModal").style.display = "flex"; 
-    document.getElementById("modalImage").src = src; 
-  }
-  function closeModal() { 
-    document.getElementById("imageModal").style.display = "none"; 
-  }
+  function openModal(src) { document.getElementById("imageModal").style.display = "flex"; document.getElementById("modalImage").src = src; }
+  function closeModal() { document.getElementById("imageModal").style.display = "none"; }
 
-  let timeout = null;
-  document.getElementById("searchKeyword").addEventListener("input", () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(applyFilters, 300);
-  });
-  ["colorFilter", "typeFilter"].forEach(id => {
-    document.getElementById(id).addEventListener("change", applyFilters);
-  });
+  let t = null;
+  document.getElementById("searchKeyword").oninput = () => { clearTimeout(t); t = setTimeout(applyFilters, 300); };
+  document.getElementById("colorFilter").onchange = applyFilters;
+  document.getElementById("typeFilter").onchange = applyFilters;
 </script>
 </body>
 </html>
