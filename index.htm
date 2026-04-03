@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Final Fix</title>
+    <title>Holo-Viewer | Support Update</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -17,6 +17,7 @@
         .tag-pill { background-color: #94a3b8; }
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
+        .support-kind-pill { background-color: #64748b; }
         
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
@@ -61,21 +62,9 @@
         }
 
         function createRow(label, value, extraClass = "", forceShow = false) {
-            // 文字列に変換してトリミング
-            let val = (value === undefined || value === null) ? "" : String(value).trim();
-            
-            // forceShow（バトンタッチ）でない場合、空または"0"なら表示しない
-            if (!forceShow && (val === "" || val === "0" || val === "nan")) return "";
-            
-            // forceShowの場合の表示値決定
-            // 数値として0、または空文字、または"nan"の場合は空白
-            // それ以外（1以上など）はそのまま表示
-            let displayValue = val;
-            if (forceShow) {
-                if (val === "0" || val === "" || val === "nan") {
-                    displayValue = "";
-                }
-            }
+            let val = (value === undefined || value === null || String(value) === "nan" || String(value) === "None") ? "" : String(value).trim();
+            if (!forceShow && (val === "" || val === "0")) return "";
+            const displayValue = (forceShow && (val === "0" || val === "")) ? "" : val;
 
             return `<div class="flex items-start mb-1 gap-3">
                         <span class="label-pill ${extraClass}">${label}</span>
@@ -93,12 +82,15 @@
                 wrap.className = "bg-white rounded-xl shadow-sm border p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-all";
                 
                 let details = "";
-                details += createRow('色', card.color);
+                
+                // サポート以外は色を表示
+                if (card.category !== "サポート") {
+                    details += createRow('色', card.color);
+                }
                 
                 if (card.category === "ホロメン") {
                     details += createRow('HP', card.value);
                     details += createRow('Bloom', card.kind);
-                    // ここでJSONのキー名 'baton_touch' を確実に参照
                     details += createRow('バトンタッチ', card.baton_touch, '', true);
                     
                     if (card.keywordName) {
@@ -112,6 +104,9 @@
                     }
                 } else if (card.category === "推しホロメン") {
                     details += createRow('LIFE', card.value, 'bg-green-600');
+                } else if (card.category === "サポート") {
+                    // サポート専用：種別表示（cardType2の値を並べて表示）
+                    details += createRow('種別', card.kind, 'support-kind-pill');
                 }
 
                 if (card.arts) {
@@ -139,7 +134,8 @@
                     });
                 }
 
-                if (card.description) details += createRow('効果', card.description);
+                // 「効果」を「能力テキスト」に変更
+                if (card.description) details += createRow('能力テキスト', card.description);
                 if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
                 if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
                 if (card.product) details += createRow('収録', card.product, 'product-pill');
