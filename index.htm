@@ -88,7 +88,9 @@
                 wrap.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-all h-full";
                 
                 const colorMap = {'白':'border-t-[6px] border-slate-400','緑':'border-t-[6px] border-green-500','赤':'border-t-[6px] border-red-500','青':'border-t-[6px] border-blue-500','紫':'border-t-[6px] border-purple-500','黄':'border-t-[6px] border-yellow-400'};
-                wrap.classList.add(colorMap[card.color] || 'border-t-[6px] border-slate-200');
+　　　　　　　　　// 修正：スペースで分割して個別にaddするか、classNameに直接入れる
+　　　　　　　　　const borderClasses = colorMap[card.color] || 'border-t-[6px] border-slate-200';
+　　　　　　　　　borderClasses.split(' ').forEach(cls => wrap.classList.add(cls));
 
                 let stats = "";
                 if (card.category === "ホロメン") {
