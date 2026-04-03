@@ -13,7 +13,7 @@
         "damage": "40",
         "text": "このアーツは、相手のセンターホロメンしか対象にできない。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -41,7 +41,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　お出かけ天使",
@@ -69,7 +69,7 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -97,7 +97,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　アイドルかなたそを",
@@ -125,7 +125,7 @@
         "damage": "50",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　天使のお仕事",
@@ -181,7 +181,7 @@
         "damage": "10+",
         "text": "このターンに自分がサポートカードを使っていた時、このアーツ+20。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -210,7 +210,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　白いキャンバス",
@@ -239,14 +239,14 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "コーヒーブレイク",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -275,7 +275,7 @@
         "damage": "20+",
         "text": "自分のデッキの上から１枚を公開できる：公開したカードが#Promiseを持つ時、このアーツ+20。そして公開したカードを手札に加える。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -304,7 +304,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　みんなと歌って踊りたい！",
@@ -362,7 +362,7 @@
         "damage": "30",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -390,7 +390,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　楽しむ準備はできてる！？",
@@ -446,7 +446,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -473,7 +473,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -500,14 +500,14 @@
         "damage": "40",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "温泉でくつろぐ一日を",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -534,7 +534,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　新たな運命",
@@ -561,7 +561,7 @@
         "damage": "70+",
         "text": "自分のセンターホロメンが#IDを持つ時、このアーツ+50。",
         "icons": "白,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　V.7",
@@ -588,7 +588,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -616,7 +616,7 @@
         "damage": "50",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -644,7 +644,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ステージを希望で包もう！",
@@ -700,7 +700,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -729,7 +729,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -758,7 +758,7 @@
         "damage": "20",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ヒーリングランウェイ",
@@ -787,14 +787,14 @@
         "damage": "30",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "むぎゅむぎゅ雑談",
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -823,7 +823,7 @@
         "damage": "40",
         "text": "このホロメンにツールが付いている時、自分のエールデッキの上から１枚を、自分のホロメンに送る。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ブレーメンの音楽祭",
@@ -852,7 +852,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ロゼ隊のみんな応援しててね！",
@@ -910,7 +910,7 @@
         "damage": "20+",
         "text": "サイコロを１回振れる：偶数の時、このアーツ+20。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -938,7 +938,7 @@
         "damage": "20+",
         "text": "サイコロを１回振れる：偶数の時、このアーツ+20。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -966,7 +966,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ギャラクシーアイドル",
@@ -994,7 +994,7 @@
         "damage": "60",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1022,7 +1022,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　成長した兎田ぺこらを",
@@ -1050,14 +1050,14 @@
         "damage": "40",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "きｔらあああ",
         "damage": "50+",
         "text": "サイコロを１回振れる：出た目の数１につき、このアーツ+10。",
         "icons": "緑,緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1113,7 +1113,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1141,7 +1141,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1169,7 +1169,7 @@
         "damage": "20",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　Overwrite",
@@ -1197,7 +1197,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　開拓者のみんながいたから",
@@ -1253,7 +1253,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1280,7 +1280,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1307,7 +1307,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1334,14 +1334,14 @@
         "damage": "30",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おひとついかがでござるか？",
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1368,7 +1368,7 @@
         "damage": "20",
         "text": "自分のエールデッキの上から1枚を、自分の〈風真いろは〉以外の#秘密結社holoXを持つホロメンに送る。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　用心棒",
@@ -1395,7 +1395,7 @@
         "damage": "20",
         "text": "自分のエールデッキの上から1枚を、自分の〈風真いろは〉以外の#秘密結社holoXを持つホロメンに送る。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　用心棒",
@@ -1422,14 +1422,14 @@
         "damage": "50+",
         "text": "[コラボポジション限定]このホロメンのエール１枚につき、このアーツ+20（エールは最大５枚まで）。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "風華の輝き",
         "damage": "70",
         "text": "",
         "icons": "緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1456,7 +1456,7 @@
         "damage": "10",
         "text": "自分のステージのエール１枚を、自分の#IDを持つホロメンに付け替えられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1484,7 +1484,7 @@
         "damage": "10",
         "text": "自分のステージのエール１枚を、自分の#IDを持つホロメンに付け替えられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1512,7 +1512,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1540,7 +1540,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　緑の光が広がる海",
@@ -1596,7 +1596,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1625,7 +1625,7 @@
         "damage": "20",
         "text": "相手のコラボホロメンに特殊ダメージ10を与える。",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　アポイント",
@@ -1654,14 +1654,14 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おつルイルイ",
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1690,14 +1690,14 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Lui’s Party",
         "damage": "50",
         "text": "自分の手札１枚をアーカイブできる：自分のデッキから、Buzz以外の１stホロメン１枚を公開し、手札に加える。そしてデッキをシャッフルする。",
         "icons": "赤,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1726,7 +1726,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　本当にみんなのおかげ！！",
@@ -1784,7 +1784,7 @@
         "damage": "20+",
         "text": "自分の手札１枚をアーカイブできる：このアーツ+20。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1812,7 +1812,7 @@
         "damage": "20",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　きわわの魔法",
@@ -1840,7 +1840,7 @@
         "damage": "20",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1868,7 +1868,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Let's do this!!!!",
@@ -1896,14 +1896,14 @@
         "damage": "50",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "跪きなさい。",
         "damage": "40",
         "text": "このホロメンに重なっているホロメン１枚をアーカイブできる：相手のコラボホロメンに特殊ダメージ40を与える。",
         "icons": "赤,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1966,7 +1966,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -1994,7 +1994,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2022,14 +2022,14 @@
         "damage": "20",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おそぽる",
         "damage": "40",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2057,7 +2057,7 @@
         "damage": "70",
         "text": "このアーツは、このホロメンに〈座員〉が付いていないと使えない。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　宴の始まりだ！",
@@ -2085,7 +2085,7 @@
         "damage": "50+",
         "text": "自分のホロメン全員に付いているファン1枚につき、このアーツ+20。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ポルカイリュージョン",
@@ -2113,7 +2113,7 @@
         "damage": "20",
         "text": "このホロメンに赤エールが付いている時、サイコロを１回振れる：奇数の時、相手のコラボホロメンに特殊ダメージ20を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2141,7 +2141,7 @@
         "damage": "20",
         "text": "このホロメンに▲赤▲エールが付いているなら、サイコロを1回振れる：奇数なら、相手のコラボホロメンに特殊ダメージ20を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2169,7 +2169,7 @@
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2197,7 +2197,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ネズミアイドルがいよいよ登場！",
@@ -2253,7 +2253,7 @@
         "damage": "20",
         "text": "相手のバックホロメン１人に特殊ダメージ10を与える（ダウンしても相手のライフは減らない）。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2281,7 +2281,7 @@
         "damage": "20",
         "text": "相手のバックホロメン１人に特殊ダメージ10を与える（ダウンしても相手のライフは減らない）。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2309,7 +2309,7 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　煌きのワードローブ",
@@ -2337,14 +2337,14 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "木漏れ日のひと時",
         "damage": "50",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2372,7 +2372,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　あっと驚かせるから見逃さないでね！",
@@ -2400,7 +2400,7 @@
         "damage": "70",
         "text": "",
         "icons": "青,青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　雪山の記憶",
@@ -2456,7 +2456,7 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2483,7 +2483,7 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2510,7 +2510,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　こぼを海に連れて！",
@@ -2537,7 +2537,7 @@
         "damage": "50",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2564,14 +2564,14 @@
         "damage": "40",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "レインドロップス",
         "damage": "50",
         "text": "相手のバックホロメン３人に特殊ダメージ10を与える（ダウンしても相手のライフは減らない）。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2598,7 +2598,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　バーチャルマーケティング",
@@ -2659,7 +2659,7 @@
         "damage": "10",
         "text": "サイコロを１回振れる：偶数の時、相手のバックホロメン１人に特殊ダメージ20を与える（ダウンしても相手のライフは減らない）。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2687,7 +2687,7 @@
         "damage": "10",
         "text": "サイコロを1回振れる：偶数なら、相手のバックホロメン1人に特殊ダメージ20を与える。ただし、ダウンしても相手のライフは減らない。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2715,7 +2715,7 @@
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2743,7 +2743,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ラピスラズリ",
@@ -2771,14 +2771,14 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ムーンナイトディーバ",
         "damage": "80",
         "text": "このホロメンの[緑エールか青エール]１枚をアーカイブできる：相手のバックホロメン１人に特殊ダメージ30を与える。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2806,7 +2806,7 @@
         "damage": "10",
         "text": "このホロメンのエール１枚を、自分の他の#Promiseを持つホロメンに付け替えられる。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2833,7 +2833,7 @@
         "damage": "10",
         "text": "このホロメンのエール1枚を、自分の他の#Promiseを持つホロメンに付け替えられる。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2860,14 +2860,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "お休みクロタイム",
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -2894,7 +2894,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　クロにちは！",
@@ -2938,7 +2938,7 @@
     "id": "hBP01-096",
     "name": "兎田ぺこら",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "80",
     "baton_touch": "1",
@@ -2948,7 +2948,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　それは「冒険」",
@@ -2966,7 +2966,7 @@
     "id": "hBP01-097",
     "name": "不知火フレア",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "80",
     "baton_touch": "1",
@@ -2976,7 +2976,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　それは「愛と絆の物語」",
@@ -2994,7 +2994,7 @@
     "id": "hBP01-098",
     "name": "白銀ノエル",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "90",
     "baton_touch": "1",
@@ -3004,7 +3004,7 @@
         "damage": "20",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　それは「俺」",
@@ -3022,7 +3022,7 @@
     "id": "hBP01-099",
     "name": "宝鐘マリン",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -3032,7 +3032,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　それは「エジンバラ城」",
@@ -3051,7 +3051,7 @@
     "id": "hBP01-100",
     "name": "森カリオペ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -3061,7 +3061,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ソウル収穫",
@@ -3079,7 +3079,7 @@
     "id": "hBP01-101",
     "name": "ワトソン・アメリア",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "80",
     "baton_touch": "1",
@@ -3089,7 +3089,7 @@
         "damage": "20",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　手がかり発見",
@@ -3116,7 +3116,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3146,7 +3146,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3176,7 +3176,7 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　おはこんきーつね！",
@@ -3206,14 +3206,14 @@
         "damage": "40",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Thank You Friends♥",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3243,7 +3243,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　白上から目をそらしちゃ",
@@ -3273,7 +3273,7 @@
         "damage": "50+",
         "text": "このターンの間、自分のマスコットが付いている[センターホロメンとコラボホロメン]のアーツ+20。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ちょっと動かしますね",
@@ -3333,7 +3333,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3361,7 +3361,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3389,14 +3389,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おつまっする～",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3424,7 +3424,7 @@
         "damage": "30",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ノエちゃんの勇姿……",
@@ -3452,14 +3452,14 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "３期生ぱわー",
         "damage": "60+",
         "text": "[コラボポジション限定]自分のステージのこのホロメン以外の#3期生を持つホロメン1人につき、このアーツ+20。ただし、数える人数は4人まで。",
         "icons": "白,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3487,7 +3487,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3516,7 +3516,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　友達をHALUにさせる方法",
@@ -3545,7 +3545,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3574,7 +3574,7 @@
         "damage": "20",
         "text": "自分のアーカイブのエール1枚を自分のホロメンに送れる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　心を込めて歌って、踊ります。",
@@ -3603,7 +3603,7 @@
         "damage": "40+",
         "text": "自分のステージにエールが2色以上ある時、このアーツ+20。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　What AreYou Waiting For?",
@@ -3661,7 +3661,7 @@
         "damage": "10",
         "text": "自分のステージのエール1枚を、自分の#JPを持つホロメンに付け替えられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3690,7 +3690,7 @@
         "damage": "10",
         "text": "自分のステージのエール1枚を、自分の#JPを持つホロメンに付け替えられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3719,14 +3719,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おつみぉーん",
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3755,7 +3755,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　アイドルとして成長した姿",
@@ -3784,7 +3784,7 @@
         "damage": "60+",
         "text": "自分のデッキの上から1枚をアーカイブできる：アーカイブしたカードが、ホロメンの時、このアーツ+20。サポートカードの時、このアーツ+50。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3813,7 +3813,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3842,7 +3842,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　マリンと宅飲み",
@@ -3872,14 +3872,14 @@
         "damage": "40",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "もう、どスケベ♥",
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -3908,7 +3908,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　キミたちの声が船長の支えです！",
@@ -3937,7 +3937,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　宝鐘の海賊団",
@@ -3995,14 +3995,14 @@
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "オーガニックショット",
         "damage": "80",
         "text": "このホロメンにツールかマスコットが付いている時、相手のセンターホロメンかコラボホロメンに特殊ダメージ30を与える。",
         "icons": "赤,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4030,7 +4030,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4058,7 +4058,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　掃除屋でインターン",
@@ -4086,7 +4086,7 @@
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4114,7 +4114,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　君の心をばっくばっくばく～んしちゃうぞ♡",
@@ -4142,7 +4142,7 @@
         "damage": "20+",
         "text": "自分のデッキの上から3枚を公開できる：公開したホロメン1枚につき、このアーツ+20。そして公開したカードをアーカイブする。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ぷいぷいぷい～",
@@ -4198,7 +4198,7 @@
         "damage": "50",
         "text": "このホロメンの青エール1枚をアーカイブできる：相手のセンターホロメンとバックホロメン1人に特殊ダメージ20を与える。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　毒の愛",
@@ -4227,7 +4227,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4254,7 +4254,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　魔法見せてあげる",
@@ -4281,14 +4281,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "やだ、もー",
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4316,7 +4316,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　久しぶりの全体ライブーっ！！",
@@ -4343,7 +4343,7 @@
         "damage": "30",
         "text": "サイコロを1回振れる：5以上の時、相手のステージのエール1枚を、相手のホロメンに付け替える。",
         "icons": "紫,紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　入れ替えの魔法",
@@ -4397,7 +4397,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4425,7 +4425,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　オリーがいつも見てるよ",
@@ -4453,14 +4453,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "きゃ～！先輩ごめ～ん！",
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4488,7 +4488,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　限界化！！",
@@ -4516,7 +4516,7 @@
         "damage": "40+",
         "text": "このホロメンに紫以外のエールが付いている時、このアーツ+20。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　真実一路",
@@ -4572,7 +4572,7 @@
         "damage": "30+",
         "text": "自分のアーカイブにホロメンがある時、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4600,7 +4600,7 @@
         "damage": "30+",
         "text": "自分のアーカイブにホロメンがあるなら、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4628,7 +4628,7 @@
         "damage": "20",
         "text": "",
         "icons": "紫,紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ショータイム",
@@ -4656,7 +4656,7 @@
         "damage": "50",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4684,7 +4684,7 @@
         "damage": "50",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　みんなで作る最高のfes",
@@ -4712,7 +4712,7 @@
         "damage": "30+",
         "text": "このホロメンにツールかマスコットが付いている時、このアーツ+30。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　What's up?",
@@ -4768,7 +4768,7 @@
         "damage": "80",
         "text": "",
         "icons": "紫,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　誘惑の視線",
@@ -4796,7 +4796,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4825,7 +4825,7 @@
         "damage": "60",
         "text": "",
         "icons": "紫,紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4854,7 +4854,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　みんな「WAH」の準備はいいかー！",
@@ -4883,7 +4883,7 @@
         "damage": "60+",
         "text": "自分のアーカイブに#Mythを持つホロメンが、5枚以上ある時、このホロメンのエール1枚を、自分の他のホロメンに付け替えられる。10枚以上ある時、さらに、このアーツ+50。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4912,7 +4912,7 @@
         "damage": "30+",
         "text": "このホロメンに赤エールが付いている時、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4941,7 +4941,7 @@
         "damage": "30+",
         "text": "このホロメンに赤エールが付いている時、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -4970,14 +4970,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "アイドルソングというものは",
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5006,7 +5006,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ネリッサとお茶会",
@@ -5064,7 +5064,7 @@
         "damage": "10",
         "text": "自分の〈ルーナイト〉が付いているホロメンがいない時、自分のデッキから、〈ルーナイト〉1枚を公開し、自分のホロメンに付ける。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5092,7 +5092,7 @@
         "damage": "10",
         "text": "自分の〈ルーナイト〉が付いているホロメンがいないなら、自分のデッキから、〈ルーナイト〉1枚を公開し、自分のホロメンに付ける。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5120,7 +5120,7 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　お菓子の国のお姫様",
@@ -5148,14 +5148,14 @@
         "damage": "40",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ぐっどないと～",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5183,7 +5183,7 @@
         "damage": "40",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　一緒に最高のライブにしようね",
@@ -5211,7 +5211,7 @@
         "damage": "20",
         "text": "自分のアーカイブの〈ルーナイト〉1枚を自分の〈姫森ルーナ〉に付けられる。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　んなたんと一緒に、宇宙に行くのら～！",
@@ -5295,7 +5295,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5324,7 +5324,7 @@
         "damage": "20",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　プリペア",
@@ -5353,14 +5353,14 @@
         "damage": "40",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "絶対、ドキドキさせるから",
         "damage": "60",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5389,7 +5389,7 @@
         "damage": "30",
         "text": "自分の手札の〈角巻わため〉1枚を公開し、デッキの下に戻せる：このホロメンのHP20回復。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　歌う事は楽しい事",
@@ -5418,7 +5418,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　SSSSR",
@@ -5476,7 +5476,7 @@
         "damage": "50",
         "text": "自分の推しホロメンが〈アキ・ローゼンタール〉の時、自分のツールが付いているホロメン全員のHP10回復。",
         "icons": "緑,緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　異国の世界の姿",
@@ -5505,7 +5505,7 @@
         "damage": "80+",
         "text": "このターンに自分の〈兎田ぺこら〉の能力でサイコロを1回以上振っていた時、このアーツ+40。",
         "icons": "緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　あんたたちぃ",
@@ -5560,7 +5560,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5588,7 +5588,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　君と待ち合わせ",
@@ -5616,14 +5616,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ぷにち",
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5651,14 +5651,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "みこぴー！(｀・ω・´)🌸",
         "damage": "50",
         "text": "サイコロを1回振れる：2か4か6の時、相手のセンターホロメンに特殊ダメージ20を与える。3か5の時、相手のセンターホロメンとコラボホロメンに特殊ダメージ20を与える。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5686,7 +5686,7 @@
         "damage": "30+",
         "text": "このホロメンに〈35P〉が付いている時、このアーツ+30。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　にぇ",
@@ -5742,7 +5742,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5770,7 +5770,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5798,7 +5798,7 @@
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5826,7 +5826,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　全力でいくぞおおお！",
@@ -5854,7 +5854,7 @@
         "damage": "40+",
         "text": "サイコロを1回振れる：奇数の時、相手のセンターホロメンとコラボホロメンに特殊ダメージ20を与える。偶数の時、このアーツ+40。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　もう1人のはあと",
@@ -5882,7 +5882,7 @@
         "damage": "50",
         "text": "自分の推しホロメンが〈鷹嶺ルイ〉の時、自分の手札2枚をアーカイブできる：自分のデッキを3枚引く。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5911,7 +5911,7 @@
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ハッピータイム",
@@ -5939,7 +5939,7 @@
         "damage": "20",
         "text": "このアーツは、自分のセンターホロメンが〈フワワ・アビスガード〉の時、エール1枚を必要とせずに使える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -5967,7 +5967,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　遊びの時間だー！",
@@ -5995,7 +5995,7 @@
         "damage": "50+",
         "text": "[コラボポジション限定]自分のセンターホロメンが〈フワワ・アビスガード〉の時、このアーツ+30。",
         "icons": "赤,青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　魔界乃番犬の暴れん坊",
@@ -6023,7 +6023,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6051,14 +6051,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ふわふわしてる方",
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6086,7 +6086,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　フワ花流水",
@@ -6149,7 +6149,7 @@
         "damage": "40",
         "text": "自分の推しホロメンが〈星街すいせい〉の時、このホロメンの青エール1枚を、自分のバックホロメンの〈星街すいせい〉に付け替えられる。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　プラネットステージ",
@@ -6177,7 +6177,7 @@
         "damage": "40+",
         "text": "相手のHPが減っているバックホロメン1人につき、このアーツ+10。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ブルーレイン",
@@ -6204,14 +6204,14 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "じゃじゃーん！ 青くんでした。",
         "damage": "40",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6239,7 +6239,7 @@
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6267,14 +6267,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ReGLOSSのボーイッシュ担当",
         "damage": "40",
         "text": "このホロメンのエール1枚を、自分の#ReGLOSSを持つバックホロメンに付け替えられる。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6302,7 +6302,7 @@
         "damage": "50",
         "text": "相手のセンターホロメンかバックホロメン1人どちらかに、自分の異なるカード名の#ReGLOSSを持つバックホロメン1人につき、特殊ダメージ10を与える。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　困ったお姫様たちだね",
@@ -6330,14 +6330,14 @@
         "damage": "40",
         "text": "自分のエールデッキから、[赤エールか青エール]1枚を公開し、自分の#Adventを持つホロメンに送る。そしてエールデッキをシャッフルする。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "2人揃ってFUWAMOCOです！",
         "damage": "60",
         "text": "",
         "icons": "青,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6365,7 +6365,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6394,7 +6394,7 @@
         "damage": "20",
         "text": "相手のセンターホロメンに特殊ダメージ10を与える。その後、自分の推しホロメンが〈常闇トワ〉の時、相手の[センターホロメンかコラボホロメン]に付いているツール1枚をアーカイブできる。",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6423,14 +6423,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "きゅりん",
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6459,7 +6459,7 @@
         "damage": "30",
         "text": "このホロメンの紫エール4枚をアーカイブできる：相手のステージのエール1枚をエールデッキの下に戻す。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　トワにしか出せない色",
@@ -6488,14 +6488,14 @@
         "damage": "40",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "てんQ",
         "damage": "50",
         "text": "自分の#歌を持つバックホロメンがいる時、相手のコラボホロメンに特殊ダメージ20を与える。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6560,7 +6560,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6588,7 +6588,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6616,14 +6616,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "いちゃあま彼女",
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6651,7 +6651,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　PONしたらその分",
@@ -6707,14 +6707,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ゆびゆび～",
         "damage": "60",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6742,14 +6742,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ゆびゆび～",
         "damage": "60",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6777,7 +6777,7 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ころねダイナー",
@@ -6805,7 +6805,7 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6833,14 +6833,14 @@
         "damage": "40+",
         "text": "自分の初期ライフから減っているライフ1につき、このアーツ+10。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おーしぇーい",
         "damage": "70",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6868,7 +6868,7 @@
         "damage": "30",
         "text": "自分のエールデッキの上から1枚を、自分の#ゲーマーズを持つホロメンに送る。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ボクシングスタイル",
@@ -6924,7 +6924,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6953,7 +6953,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -6982,7 +6982,7 @@
         "damage": "20",
         "text": "自分の〈わためいと〉が付いているホロメンがいる時、自分のアーカイブのエール1枚を自分の黄ホロメンに送れる。",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7011,14 +7011,14 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "応援してくれるよねぇ？",
         "damage": "90",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7047,7 +7047,7 @@
         "damage": "30",
         "text": "自分のエールデッキの上から1枚を、自分のバックホロメンの〈角巻わため〉に送る。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　めいっぱい歌って踊ります！",
@@ -7076,7 +7076,7 @@
         "damage": "50",
         "text": "相手と勝敗が決まるまでじゃんけんできる：自分が勝った時、このターンの間、このホロメンは赤特攻+30を得る。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Member sheep おかえり～",
@@ -7134,14 +7134,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ぷるぷる～",
         "damage": "60",
         "text": "このホロメンのエール1枚を、自分の〈戌神ころね〉に付け替えられる。",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7170,7 +7170,7 @@
         "damage": "20+",
         "text": "■自分のステージに〈アイラニ・イオフィフティーン〉がいる時、このアーツ+10。\n■自分のステージに〈ムーナ･ホシノヴァ〉がいる時、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7199,14 +7199,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おやすみの思い出",
         "damage": "70",
         "text": "",
         "icons": "黄,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7235,7 +7235,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　いやっほー！ みんな元気？",
@@ -7264,7 +7264,7 @@
         "damage": "40",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　同期の絆",
@@ -7322,7 +7322,7 @@
         "damage": "50+",
         "text": "このホロメンにエールが3枚以上付いている時、このアーツ+30。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　今日はステキな日",
@@ -7350,14 +7350,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "音楽家の卵！ 音乃瀬～奏で～～～す！",
         "damage": "50",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7385,7 +7385,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7413,7 +7413,7 @@
         "damage": "60",
         "text": "",
         "icons": "黄,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ここが私のステージだから！",
@@ -7441,7 +7441,7 @@
         "damage": "120",
         "text": "",
         "icons": "黄,無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　なんちゅーこった",
@@ -7469,7 +7469,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7497,7 +7497,7 @@
         "damage": "20",
         "text": "自分のデッキの上から3枚を見る。その中から、[#秘密結社holoXを持つDebutホロメンか#こよラボを持つサポートカード]1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7525,14 +7525,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "こよに添い寝される？",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7560,7 +7560,7 @@
         "damage": "30",
         "text": "自分のアーカイブの〈こよりの助手くん〉1枚を、自分の他の〈博衣こより〉に付けられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7588,7 +7588,7 @@
         "damage": "30",
         "text": "このホロメンに〈こよりの助手くん〉が付いている時、自分のデッキを1枚引く。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　はい！ はい！ はい！ はい！",
@@ -7674,7 +7674,7 @@
         "damage": "30+",
         "text": "自分のステージの#Promiseを持つホロメン1人につき、このアーツ+10。ただし、数える人数は4人まで。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7702,7 +7702,7 @@
         "damage": "10",
         "text": "自分のステージのホロメンが5人以下の時、自分のデッキから、#Justiceを持つSpotホロメン1枚を公開し、ステージに出せる。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7731,7 +7731,7 @@
         "damage": "10",
         "text": "自分のステージのホロメンが5人以下なら、自分のデッキから、▲#Justice▲を持つSpotホロメン1枚を公開し、ステージに出せる。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7760,7 +7760,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7789,7 +7789,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　神眼の描き手",
@@ -7847,14 +7847,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "儒烏風亭らでんでございます！",
         "damage": "40",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7882,7 +7882,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　あなたに学びと面白いをお届け",
@@ -7910,14 +7910,14 @@
         "damage": "30",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "まぁそんなとこですな",
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -7945,7 +7945,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ReGLOSSの賑やかし",
@@ -7973,7 +7973,7 @@
         "damage": "30",
         "text": "自分のアーカイブのエール1枚をこのホロメンに送れる。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　冷静沈着",
@@ -8058,7 +8058,7 @@
         "damage": "30",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　HOLORO",
@@ -8087,7 +8087,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8115,7 +8115,7 @@
         "damage": "60",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8143,7 +8143,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　こんな旋律思いついたの",
@@ -8199,7 +8199,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8228,14 +8228,14 @@
         "damage": "20",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "リミットオーバー",
         "damage": "30",
         "text": "このターンに自分が〈限界飯〉を使っていた時、相手のコラボホロメンに特殊ダメージ20を与える。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8264,14 +8264,14 @@
         "damage": "40",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Subscribe or Die!",
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8300,7 +8300,7 @@
         "damage": "50",
         "text": "相手のコラボホロメンに特殊ダメージ20を与える。",
         "icons": "赤,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　限界飯料理人",
@@ -8329,7 +8329,7 @@
         "damage": "30",
         "text": "このアーツの対象が相手のコラボホロメンの時、自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　おいしいもの独り占め",
@@ -8416,7 +8416,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8443,14 +8443,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "DAHLAH",
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8477,7 +8477,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　JDON my soul",
@@ -8504,14 +8504,14 @@
         "damage": "30",
         "text": "自分のステージにこのホロメン以外の#ID3期生を持つホロメンがいる時、自分のデッキを1枚引く。",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "お墨付きの一品",
         "damage": "90",
         "text": "自分の#カエラ'sアームズを持つツールが付いているホロメンがいる時、相手のコラボホロメンに特殊ダメージ30を与える。",
         "icons": "赤,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8538,7 +8538,7 @@
         "damage": "20",
         "text": "相手のホロメン1人に特殊ダメージ10を与える。ただし、ダウンしても相手のライフは減らない。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8567,7 +8567,7 @@
         "damage": "20",
         "text": "相手のホロメン1人に特殊ダメージ10を与える。ただし、ダウンしても相手のライフは減らない。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8596,7 +8596,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Snow flower",
@@ -8625,14 +8625,14 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ボスが攻略できな～い",
         "damage": "50",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8661,7 +8661,7 @@
         "damage": "30",
         "text": "自分のファンが付いているホロメンがいる時、相手のホロメン1人に特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8690,7 +8690,7 @@
         "damage": "50",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　fleur",
@@ -8783,7 +8783,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8810,7 +8810,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8837,7 +8837,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8864,14 +8864,14 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "尽きない知識欲",
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8898,7 +8898,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　脱獄計画",
@@ -8925,7 +8925,7 @@
         "damage": "70",
         "text": "自分のホロパワーの上から1枚を公開できる：公開したカードが#ENを持つホロメンの時、相手のホロメン1人に特殊ダメージ20を与える。そして公開したカードを裏向きにしてホロパワーの下に戻す。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　禁断の知識",
@@ -8952,7 +8952,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -8980,7 +8980,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9008,7 +9008,7 @@
         "damage": "30+",
         "text": "相手のお休みしているホロメン1人につき、このアーツ+10。",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　そこに跪け！",
@@ -9036,14 +9036,14 @@
         "damage": "40",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ぷらすめいと諸君いつもありがとう",
         "damage": "70",
         "text": "",
         "icons": "紫,紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9071,7 +9071,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　holoX集合",
@@ -9099,7 +9099,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　貴様の運命試してみるか？",
@@ -9155,7 +9155,7 @@
         "damage": "40",
         "text": "相手のセンターホロメンとコラボホロメンに、相手のセンターホロメンのエール1枚につき、特殊ダメージ10を与える。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　エールリバース",
@@ -9210,7 +9210,7 @@
         "damage": "50",
         "text": "自分のデッキの上から2枚を見る。その中から、1枚をアーカイブする。そして残ったカードをデッキの上に戻す。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　永遠の休息",
@@ -9238,7 +9238,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　キラキラ コセキ！",
@@ -9266,7 +9266,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　キラキラ コセキ！",
@@ -9294,7 +9294,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9322,7 +9322,7 @@
         "damage": "30+",
         "text": "自分のアーカイブに赤エールがある時、このアーツ+20。",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　絶世の輝き",
@@ -9378,14 +9378,14 @@
         "damage": "20",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ちわーす！ ホロライブ2期生 大空スバルっス!!",
         "damage": "60",
         "text": "",
         "icons": "黄,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9413,14 +9413,14 @@
         "damage": "20",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ちわーす！ ホロライブ2期生 大空スバルっス!!",
         "damage": "60",
         "text": "",
         "icons": "黄,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9448,7 +9448,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　大空スバル盛り合わせセット",
@@ -9476,14 +9476,14 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "眠いんデスケド",
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9511,7 +9511,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　全力で頑張るから",
@@ -9539,14 +9539,14 @@
         "damage": "20",
         "text": "自分のエールデッキの上から1枚を、このホロメンに送る。",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "最強で楽しい毎日",
         "damage": "90",
         "text": "",
         "icons": "黄,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9603,7 +9603,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9631,7 +9631,7 @@
         "damage": "20",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　A Day at the Café",
@@ -9659,14 +9659,14 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "悪魔の囁き",
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9694,7 +9694,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　私から皆さんへの歌",
@@ -9722,7 +9722,7 @@
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ガラス越しの庭園",
@@ -9778,7 +9778,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　わっしょ～い！",
@@ -9806,7 +9806,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　わっしょ～い！",
@@ -9834,14 +9834,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "戦え！ 血を血で洗え！",
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9869,7 +9869,7 @@
         "damage": "20",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　大好きな君に届くように",
@@ -9925,7 +9925,7 @@
         "damage": "10",
         "text": "自分のステージのホロメンが5人以下の時、自分のデッキから、#5期生を持つDebutホロメン1枚を公開し、ステージに出せる。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9954,7 +9954,7 @@
         "damage": "10",
         "text": "自分のステージのホロメンが5人以下の時、自分のデッキから、#5期生を持つDebutホロメン1枚を公開し、ステージに出せる。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -9983,14 +9983,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "またねね",
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10019,7 +10019,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　最高の気分!!!!!!!!!!!!!!",
@@ -10074,7 +10074,7 @@
     "id": "hBP04-087",
     "name": "エリザベス・ローズ・ブラッドフレイム",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "140",
     "baton_touch": "1",
@@ -10084,7 +10084,7 @@
         "damage": "20",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　『緋色の女王』",
@@ -10102,7 +10102,7 @@
     "id": "hBP04-088",
     "name": "ジジ・ムリン",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "130",
     "baton_touch": "0",
@@ -10112,7 +10112,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　え？ でも面白かったじゃん！",
@@ -10139,7 +10139,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　まっするまっする",
@@ -10167,7 +10167,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　夏深し",
@@ -10195,7 +10195,7 @@
         "damage": "20+",
         "text": "このターンに自分が〈牛丼〉を使っていたなら、このアーツ+30。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　闘う団長",
@@ -10223,7 +10223,7 @@
         "damage": "40+",
         "text": "自分のステージの異なるカード名の#3期生を持つホロメン1人につき、このアーツ+10。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　みんなが居てくれて",
@@ -10314,7 +10314,7 @@
         "damage": "20",
         "text": "サイコロを1回振れる：偶数なら、自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10342,14 +10342,14 @@
         "damage": "30",
         "text": "自分のステージに#3期生を持つホロメンが3人以上いるなら、自分のエールデッキの上から1枚をこのホロメンに送る。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "いらないぺこ？",
         "damage": "30",
         "text": "自分の推しホロメンの色が白なら、自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10405,14 +10405,14 @@
         "damage": "50",
         "text": "自分のアーカイブの〈ルーナイト〉1枚をこのホロメンに付けられる。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ぱくぱく",
         "damage": "80",
         "text": "[コラボポジション限定]自分のセンターホロメンに付いている〈ルーナイト〉1枚につき、このアーツに必要な無色-1。",
         "icons": "白,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10474,7 +10474,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　イオフィとおでかけ",
@@ -10502,7 +10502,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　過去・今・未来の私と君へ",
@@ -10530,7 +10530,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Hello beb!",
@@ -10558,7 +10558,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　落日に染まる",
@@ -10614,14 +10614,14 @@
         "damage": "50",
         "text": "自分のステージに〈開拓者〉があるなら、自分のエールデッキの上から1枚を自分の〈AZKi〉に送る。",
         "icons": "緑,緑",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "帰っちゃうの？",
         "damage": "80+",
         "text": "自分の推しホロメンが〈AZKi〉なら、このホロメンのエール1枚につき、このアーツ+20。",
         "icons": "緑,緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10649,7 +10649,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10678,7 +10678,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　トワイライトリゾート",
@@ -10736,7 +10736,7 @@
         "damage": "40",
         "text": "自分の〈獅白ぼたん〉のエール1枚をアーカイブできる：相手のセンターホロメンに特殊ダメージ30を与える。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ちょっと頑張りました",
@@ -10765,14 +10765,14 @@
         "damage": "50",
         "text": "自分の推しホロメンが〈儒烏風亭らでん〉なら、自分のデッキから、#きのこを持つイベント1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "漸く自分の人生を生きてる",
         "damage": "80+",
         "text": "自分のステージに#ReGLOSSを持つ2ndホロメンがいるなら、このアーツ+40。",
         "icons": "緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10800,7 +10800,7 @@
         "damage": "20",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　まばゆい日常を君と",
@@ -10828,7 +10828,7 @@
         "damage": "30",
         "text": "自分が後攻で最初のターンなら、自分のデッキから、〈座員〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10856,7 +10856,7 @@
         "damage": "50",
         "text": "自分の手札1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ10を与える。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ポルカとのなんでもない休日",
@@ -10884,14 +10884,14 @@
         "damage": "40+",
         "text": "サイコロを1回振れる：出た目の数1につき、自分のデッキの上から1枚をアーカイブする。その後、自分のアーカイブが10枚以上あるなら、このアーツ+10。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "来年も君と見に来たいな",
         "damage": "70+",
         "text": "このホロメンに付いている〈座員〉1枚につき、このアーツ+10。",
         "icons": "赤,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -10975,7 +10975,7 @@
         "damage": "20+",
         "text": "相手のバックホロメンのHPが減っているなら、このアーツ+20。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11038,7 +11038,7 @@
         "damage": "30",
         "text": "このアーツは、自分のセンターホロメンが〈フワワ・アビスガード〉なら、エール1枚を必要とせずに使える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　モココェ",
@@ -11066,14 +11066,14 @@
         "damage": "40",
         "text": "このターンに自分が〈限界飯〉を使っていたなら、相手のセンターホロメンとコラボホロメンに特殊ダメージ20を与える。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "いつでも軌道修正できる",
         "damage": "70+",
         "text": "このアーツの対象が相手の1st以上のコラボホロメンなら、このアーツ+70。",
         "icons": "赤,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11102,7 +11102,7 @@
         "damage": "90",
         "text": "このホロメンのエール1枚を自分のバックホロメンに付け替えられる。",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ビジネスフレンド",
@@ -11131,7 +11131,7 @@
         "damage": "20",
         "text": "相手のセンターホロメンに特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11159,7 +11159,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　一緒に入ろ～！",
@@ -11187,7 +11187,7 @@
         "damage": "30",
         "text": "このホロメンの青エール1枚をアーカイブできる：相手のセンターホロメンとバックホロメン1人に特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　僕でよくな～い？",
@@ -11215,7 +11215,7 @@
         "damage": "40",
         "text": "相手のホロメン1人に特殊ダメージ10を与える。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　お弁当タイム…？",
@@ -11271,7 +11271,7 @@
         "damage": "40",
         "text": "自分のステージに#5期生を持つ2ndホロメンがいるなら、相手のホロメン1人に特殊ダメージ20を与える。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ラミィちゃんしか～？",
@@ -11300,7 +11300,7 @@
         "damage": "20",
         "text": "相手のバックホロメン1人に特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11327,7 +11327,7 @@
         "damage": "40",
         "text": "相手のバックホロメン2人に特殊ダメージ10を与える。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　幼馴染のドキドキ膝枕",
@@ -11388,7 +11388,7 @@
         "damage": "100+",
         "text": "このターンに自分の〈モココ・アビスガード〉がアーツを使っていたなら、このアーツ+40。このターンに自分の推しスキル「モコちゃん！」を使っていたなら、さらに、このアーツ+30。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　モゴジャ～～ン！！！",
@@ -11416,7 +11416,7 @@
         "damage": "20",
         "text": "自分のステージに#お酒を持つホロメンが3人以上いるなら、自分のアーカイブのエール1枚を自分の#お酒を持つバックホロメンに送れる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　僕の目だけ見て",
@@ -11445,7 +11445,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　秘密の保健室",
@@ -11473,7 +11473,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　すうすう…",
@@ -11501,7 +11501,7 @@
         "damage": "30",
         "text": "このアーツは、このターンに自分が#食べ物を持つイベントカードを2枚以上使っていたなら、エール1枚を必要とせずに使える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11529,7 +11529,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　寝坊助悪魔",
@@ -11592,7 +11592,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Going out!",
@@ -11621,7 +11621,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　SUGOIDEKAI",
@@ -11650,14 +11650,14 @@
         "damage": "30",
         "text": "自分の推しホロメンが〈ネリッサ・レイヴンクロフト〉なら、自分のデッキを1枚引く。",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ツノに触らないで！",
         "damage": "50",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -11686,7 +11686,7 @@
         "damage": "40",
         "text": "自分の手札1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　月の光",
@@ -11773,7 +11773,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　おうちでまったり",
@@ -11801,7 +11801,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Canvas",
@@ -11829,7 +11829,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　幸運の石",
@@ -11857,7 +11857,7 @@
         "damage": "30+",
         "text": "自分のステージの異なるカード名の#3期生を持つホロメン1人につき、このアーツ+10。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　冬の旅",
@@ -11913,7 +11913,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ゆるゆる休養日",
@@ -11943,7 +11943,7 @@
         "damage": "40",
         "text": "自分のエールデッキの上から1枚をこのホロメンに送れる。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　とびきりの笑顔",
@@ -12038,14 +12038,14 @@
         "damage": "50+",
         "text": "[センターポジション限定]このホロメンにエールが4枚以上付いているなら、このターンの間、このホロメンと自分のコラボホロメンのアーツ+50。",
         "icons": "黄,黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "わためと海辺デート",
         "damage": "80",
         "text": "自分の推しホロメンが〈角巻わため〉なら、自分のエールデッキの上から1枚を自分の〈角巻わため〉に送れる。",
         "icons": "黄,黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12103,7 +12103,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　BIG PINK CAT",
@@ -12132,7 +12132,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　夢みたいな最高のチーム",
@@ -12161,7 +12161,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　RAORAO",
@@ -12190,14 +12190,14 @@
         "damage": "30",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "LA FINE",
         "damage": "70",
         "text": "自分のデッキを2枚引く。",
         "icons": "白,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12226,7 +12226,7 @@
         "damage": "30",
         "text": "[センターポジション限定]このターンの間、自分の#絵を持つコラボホロメンのアーツ+20。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　CATCH ALL CHATTINI AROUND THE WORLD!!!",
@@ -12284,7 +12284,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12312,7 +12312,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　一緒に共闘しよ",
@@ -12340,14 +12340,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "タイフーン起こすこのホロライブ",
         "damage": "60",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12375,7 +12375,7 @@
         "damage": "30",
         "text": "自分のデッキの上から1枚をアーカイブする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FLOW GLOWのリーダー",
@@ -12403,7 +12403,7 @@
         "damage": "40",
         "text": "自分のデッキの上から1枚をアーカイブする。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ストイック負けず嫌い王",
@@ -12487,7 +12487,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12514,7 +12514,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ホップすてっぷジャンプ！",
@@ -12541,7 +12541,7 @@
         "damage": "80",
         "text": "",
         "icons": "緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12568,7 +12568,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　のんびり過ごす記念日",
@@ -12595,7 +12595,7 @@
         "damage": "60",
         "text": "",
         "icons": "緑,緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　元気をお届け！",
@@ -12649,7 +12649,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12677,14 +12677,14 @@
         "damage": "30",
         "text": "自分のファンが付いているホロメンがいるなら、自分のエールデッキの上から1枚をこのホロメンに送れる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ロイヤル・フラワーブーケ",
         "damage": "80",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12712,7 +12712,7 @@
         "damage": "20",
         "text": "自分のアーカイブの〈ルーナイト〉1枚を自分の〈姫森ルーナ〉に付けられる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　みんなへ感謝の気持ち",
@@ -12768,7 +12768,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FOR! JUSTICE!",
@@ -12796,7 +12796,7 @@
         "damage": "40",
         "text": "自分のアーカイブのエール1枚を自分の#ReGLOSSを持つホロメンに送れる。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　濡羽色のほころび",
@@ -12824,7 +12824,7 @@
         "damage": "10+",
         "text": "自分の手札1枚をアーカイブできる：このターンの間、自分のセンターホロメンの〈百鬼あやめ〉のアーツ+30。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -12852,7 +12852,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　かわ余",
@@ -12880,7 +12880,7 @@
         "damage": "30",
         "text": "自分のエールデッキの上から1枚をアーカイブできる：自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　まったり夜桜温泉デート",
@@ -12908,7 +12908,7 @@
         "damage": "50",
         "text": "自分のエールデッキの上から1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ30を与える。",
         "icons": "赤,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　お参りデート",
@@ -12936,7 +12936,7 @@
         "damage": "30",
         "text": "自分のエールデッキの上から1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　たまに増える余",
@@ -12992,7 +12992,7 @@
         "damage": "30",
         "text": "サイコロを1回振る。奇数なら、相手のセンターホロメンとコラボホロメンに特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13020,7 +13020,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　GYM RAT",
@@ -13048,7 +13048,7 @@
         "damage": "40+",
         "text": "自分の手札2枚をアーカイブできる：このアーツ+20。",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Strawberry Princess",
@@ -13076,7 +13076,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Once a Peasant,",
@@ -13104,14 +13104,14 @@
         "damage": "30+",
         "text": "このゲーム中に、自分のSP推しスキル「🎲ƎNOZ N∩Ⅎ ƎH⊥ O⊥ ƎWOϽ˥ƎM🎲」を使っていたなら、サイコロを1回振る。出た目の数1につき、このアーツ+10。",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ありがチュー！",
         "damage": "70",
         "text": "",
         "icons": "赤,赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13232,7 +13232,7 @@
         "damage": "20",
         "text": "このホロメンに青以外のエールが付いているなら、相手のバックホロメン1人に特殊ダメージ10を与える。ただし、ダウンしても相手のライフは減らない。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13260,7 +13260,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　青い琥珀",
@@ -13288,14 +13288,14 @@
         "damage": "20",
         "text": "相手のバックホロメン1人に特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Lunar Duality",
         "damage": "80",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13323,14 +13323,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "親愛の情",
         "damage": "50",
         "text": "自分の推しホロメンが〈ムーナ・ホシノヴァ〉なら、このホロメンのエール1枚をアーカイブできる：自分のデッキを1枚引く。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13358,7 +13358,7 @@
         "damage": "20+",
         "text": "自分の推しホロメンが〈ムーナ・ホシノヴァ〉で、このホロメンにエールが4枚以上付いているなら、このアーツ+60。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　新月",
@@ -13499,7 +13499,7 @@
         "damage": "20",
         "text": "自分のデッキを1枚引いた後、手札1枚をアーカイブする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13527,7 +13527,7 @@
         "damage": "30",
         "text": "このホロメンに紫エールが付いているなら、自分のデッキを1枚引く。その後、自分のデッキの上から2枚をアーカイブする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Yes, Chef.",
@@ -13555,7 +13555,7 @@
         "damage": "80",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　お泊りパーリナイ!",
@@ -13618,7 +13618,7 @@
         "damage": "20",
         "text": "このホロメンに〈ろぼさー〉が付いているなら、相手のセンターホロメンに特殊ダメージ20を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -13646,7 +13646,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ロボ子と一緒にあそぼ",
@@ -13674,7 +13674,7 @@
         "damage": "30",
         "text": "自分の推しホロメンが〈ロボ子さん〉なら、自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　プリンとお子様オムライス",
@@ -13702,7 +13702,7 @@
         "damage": "40",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　いたずらしちゃうぞ～！",
@@ -13730,7 +13730,7 @@
         "damage": "90",
         "text": "直前の相手のターンに自分のホロメンがダウンしていたなら、このアーツに必要な無色-1。",
         "icons": "紫,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　一言芳恩",
@@ -13786,7 +13786,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ホロライブの狂犬",
@@ -13814,7 +13814,7 @@
         "damage": "50",
         "text": "自分のサポートカードが付いているホロメンがいるなら、自分のデッキを1枚引いた後、手札1枚をアーカイブする。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　まかしなー",
@@ -13842,7 +13842,7 @@
         "damage": "30+",
         "text": "このターンにこのホロメンが自分の推しスキル「無限の体力」でアクティブになっていたなら、このアーツ+50。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　こぉねのことだけ見ててね？♡",
@@ -13933,7 +13933,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　勝てると思った？",
@@ -13961,7 +13961,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　いっしょに居てくれる…？",
@@ -13989,7 +13989,7 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　天使界隈",
@@ -14017,14 +14017,14 @@
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ダンスレッスン頑張るぞ！",
         "damage": "80+",
         "text": "自分のステージの[マスコットとファン]1枚につき、サイコロを1回振る。4以上が出た回数1回につき、このアーツ+10。ただし、振れる回数は4回まで。",
         "icons": "黄,黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -14052,7 +14052,7 @@
         "damage": "50+",
         "text": "このアーツの対象が相手の2ndホロメンで、このターンに自分がLIMITEDのイベントを使っていたなら、このアーツ+70。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　レッツパフォーミング",
@@ -14108,7 +14108,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　地球&テラ",
@@ -14136,7 +14136,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Subaru Duck Dance",
@@ -14164,7 +14164,7 @@
         "damage": "60+",
         "text": "このホロメンに付いている〈スバ友〉1枚につき、このアーツ+20。",
         "icons": "黄,黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　手を繋ごう",
@@ -14248,7 +14248,7 @@
         "damage": "80",
         "text": "[コラボポジション限定]自分の推しホロメンが〈角巻わため〉か〈大空スバル〉なら、このアーツに必要な黄-1。自分のセンターホロメンが2ndホロメンの〈角巻わため〉なら、かわりに、このアーツに必要な黄-3。",
         "icons": "黄,黄,黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　おしまいのあじまり",
@@ -14279,7 +14279,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　もういっぺぇ",
@@ -14308,7 +14308,7 @@
         "damage": "20+",
         "text": "[センターポジション限定]このアーツ+20。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -14337,7 +14337,7 @@
         "damage": "40",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　みんなー！ 楽しむぞおおー！！！！！",
@@ -14366,7 +14366,7 @@
         "damage": "70",
         "text": "このホロメンに白エールが2枚以上付いているなら、このアーツに必要な無色-1。",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　グルグルシープ",
@@ -14395,7 +14395,7 @@
         "damage": "20",
         "text": "自分のデッキを1枚引く。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　わたビーーーーーーーム！！！！！！",
@@ -14482,7 +14482,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Adopt Me？",
@@ -14509,7 +14509,7 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　Pat the BAZO",
@@ -14536,7 +14536,7 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　holoh3ro Shopping",
@@ -14563,7 +14563,7 @@
         "damage": "30+",
         "text": "このターンに自分がイベントを使っていたなら、このアーツ+30。",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Horse Doko?",
@@ -14590,7 +14590,7 @@
         "damage": "50",
         "text": "このホロメンにマスコットかファンが付いているなら、自分のデッキを1枚引く。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　準備万端！",
@@ -14699,7 +14699,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　占いパワー注入！",
@@ -14728,7 +14728,7 @@
         "damage": "10+",
         "text": "自分のデッキの上から1枚をアーカイブできる。アーカイブしたカードがサポートカードなら、このアーツ+30。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ウチの大切な家族",
@@ -14757,7 +14757,7 @@
         "damage": "20",
         "text": "自分のアーカイブのエール1枚を自分の#ゲーマーズを持つホロメンに送る。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　抹茶パフェ～！きゅんです",
@@ -14786,7 +14786,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　早く来ないかな…",
@@ -14815,7 +14815,7 @@
         "damage": "70",
         "text": "[センターポジション限定]このアーツで相手のホロメンをダウンさせた時、自分のデッキを1枚引く。",
         "icons": "緑,緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ハートの女王の采配",
@@ -14929,7 +14929,7 @@
         "damage": "50",
         "text": "自分の推しホロメンの色が緑か青か黄なら、自分のデッキの上から1枚をホロパワーにする。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　この輝きが私達！",
@@ -14957,7 +14957,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ドライブ行こうよ",
@@ -14985,7 +14985,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ティールマーメイド",
@@ -15013,7 +15013,7 @@
         "damage": "20+",
         "text": "このホロメンに〈ふぐ太郎〉が付いているなら、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ぶいぶい走らせるぞ！！！",
@@ -15069,7 +15069,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　AKAI HAATO VS HAACHAMA",
@@ -15097,7 +15097,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ちゃまと旅する！",
@@ -15125,7 +15125,7 @@
         "damage": "30",
         "text": "このターンの間、自分のステージの#ENを持つホロメン全員のアーツ+20。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　幻獣グルメハンター",
@@ -15153,7 +15153,7 @@
         "damage": "50",
         "text": "相手のセンターホロメンに特殊ダメージ20を与える。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　血ゃ舞ってる奴いる！？",
@@ -15181,7 +15181,7 @@
         "damage": "40",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　Haachama ♥ Restaurant",
@@ -15328,7 +15328,7 @@
         "damage": "20+",
         "text": "自分の手札1枚につき、このアーツ+20。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　テンション上がってきた！",
@@ -15356,7 +15356,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　後の先を取る！",
@@ -15384,7 +15384,7 @@
         "damage": "50",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　…Very well.",
@@ -15412,7 +15412,7 @@
         "damage": "60",
         "text": "自分のアーカイブの#ENを持つホロメン1枚を手札に戻す。",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　Queen of Impersonation",
@@ -15468,7 +15468,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　この日が来た！",
@@ -15495,7 +15495,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　TAKE YOUR TIME",
@@ -15522,7 +15522,7 @@
         "damage": "30+",
         "text": "自分のステージに〈オーロ・クロニー〉以外の#Promiseを持つホロメンがいるなら、このアーツ+10。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　お時間ですわ！",
@@ -15549,7 +15549,7 @@
         "damage": "50",
         "text": "自分のエールデッキの上から1枚を自分の#Promiseを持つホロメンに送る。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　時を超えた約束",
@@ -15576,7 +15576,7 @@
         "damage": "50",
         "text": "自分のエールデッキの上から1枚を自分の#Promiseを持つBuzzホロメンに送る。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -15685,7 +15685,7 @@
         "damage": "60",
         "text": "相手のHPが減っているバックホロメンが3人以上いるなら、自分のデッキを2枚引く。",
         "icons": "青,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Happy For You",
@@ -15712,7 +15712,7 @@
         "damage": "10",
         "text": "相手のホロメン1人に特殊ダメージ10を与える。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　It's Time to Play Dress-up!",
@@ -15739,14 +15739,14 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Don't Let Her Cook!",
         "damage": "50",
         "text": "このアーツは、自分のアーカイブにサポートカードが4枚以上なければ使えない。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -15773,7 +15773,7 @@
         "damage": "20",
         "text": "相手のバックホロメン1人に特殊ダメージ20を与える。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　A New Chapter Begins!",
@@ -15827,7 +15827,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ドキドキ夜キャンプ…",
@@ -15855,7 +15855,7 @@
         "damage": "20",
         "text": "自分のデッキから、〈開拓者〉1枚を公開し、自分の〈AZKi〉に付ける。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -15883,14 +15883,14 @@
         "damage": "30",
         "text": "自分のデッキを1枚引いた後、手札1枚をアーカイブする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "みんなの声聞かせてええええええ！！！",
         "damage": "120",
         "text": "",
         "icons": "紫,無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -15918,7 +15918,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　仮想世界の伴走する歌姫",
@@ -15946,7 +15946,7 @@
         "damage": "40",
         "text": "自分の手札1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ROMANTiC NiGHT",
@@ -16037,7 +16037,7 @@
         "damage": "30",
         "text": "自分の#料理を持つホロメンを1人選ぶ。このターンに自分が使っていた#食べ物を持つイベント1枚につき、このターンの間、選んだホロメンのアーツに必要な無色-1。",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　今日のご飯、何がいーい？",
@@ -16065,7 +16065,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　おい、お前",
@@ -16093,7 +16093,7 @@
         "damage": "60",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Secret Love -La+-",
@@ -16121,7 +16121,7 @@
         "damage": "30",
         "text": "自分のデッキから、〈ラプラス・ダークネス〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ライブだー！！！！！！！！！",
@@ -16207,7 +16207,7 @@
         "damage": "50+",
         "text": "自分のホロパワー1枚をアーカイブできる：このアーツ+30。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　SUGOISUGOIDEKAI",
@@ -16236,7 +16236,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　あぱぱ",
@@ -16265,7 +16265,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　君もこっちにおいで～！",
@@ -16294,7 +16294,7 @@
         "damage": "30",
         "text": "自分のデッキから、〈やめなー〉1枚を公開し、自分のホロメンに付ける。そしてデッキをシャッフルする。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ねねちライブスタート！",
@@ -16323,7 +16323,7 @@
         "damage": "40",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　オレンジアイドル！",
@@ -16352,7 +16352,7 @@
         "damage": "30",
         "text": "このホロメンに〈ギラファノコギリクワガタ〉が付いているなら、このアーツダメージは、アーツの対象のホロメンのかわりに、相手のセンターホロメンとコラボホロメンに与える。",
         "icons": "黄,黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　桃鈴ねねは昆虫博士になる！",
@@ -16467,7 +16467,7 @@
         "damage": "20+",
         "text": "自分の推しホロメンが〈不知火フレア〉なら、自分の〈不知火フレア〉1人を選ぶ。このターンの間、選んだホロメンのエール1枚につき、選んだホロメンのアーツ+20。",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　私のとっておき！",
@@ -16522,7 +16522,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ニコたん出動！",
@@ -16550,7 +16550,7 @@
         "damage": "50+",
         "text": "このターンに自分のステージのエールがアーカイブされていたなら、このアーツ+30。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　虎の威",
@@ -16578,7 +16578,7 @@
         "damage": "50",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　っしゃ反撃抜刀",
@@ -16634,7 +16634,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16662,7 +16662,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　レッツダンス！",
@@ -16690,14 +16690,14 @@
         "damage": "30",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "あなたの心は…くもりのち晴れ！",
         "damage": "50",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16725,14 +16725,14 @@
         "damage": "50",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "SorAZ シンパシー",
         "damage": "60+",
         "text": "自分のステージにホロメンの〈AZKi〉がいる時、このアーツ+50。",
         "icons": "白,緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16760,7 +16760,7 @@
         "damage": "20",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　HOPE",
@@ -16788,7 +16788,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16816,7 +16816,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　広がる地図",
@@ -16844,7 +16844,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16907,7 +16907,7 @@
         "damage": "20",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　一緒にお絵かき！",
@@ -16935,7 +16935,7 @@
         "damage": "50",
         "text": "サイコロを１回振れる：奇数の時、自分のエールデッキの上から１枚を、このホロメンに送る。偶数の時、自分のデッキを１枚引く。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16953,7 +16953,7 @@
     "id": "hSD01-014",
     "name": "天音かなた",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "150",
     "baton_touch": "1",
@@ -16963,7 +16963,7 @@
         "damage": "30",
         "text": "",
         "icons": "白,緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -16981,7 +16981,7 @@
     "id": "hSD01-015",
     "name": "博衣こより",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "50",
     "baton_touch": "1",
@@ -16991,7 +16991,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　SoAzKo",
@@ -17019,7 +17019,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17047,7 +17047,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17075,7 +17075,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　業",
@@ -17103,7 +17103,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　あやめのひととせ",
@@ -17131,14 +17131,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "おつなきりー",
         "damage": "60",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17166,7 +17166,7 @@
         "damage": "30",
         "text": "",
         "icons": "赤",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　お誕生日会",
@@ -17194,7 +17194,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　どーっちどっち♪",
@@ -17222,14 +17222,14 @@
         "damage": "40",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "プレゼント何かな？",
         "damage": "50",
         "text": "自分の手札1枚をアーカイブできる：相手のセンターホロメンかコラボホロメンに特殊ダメージ50を与える。",
         "icons": "赤,赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17282,7 +17282,7 @@
     "id": "hSD02-010",
     "name": "白上フブキ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "80",
     "baton_touch": "1",
@@ -17292,7 +17292,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　帰ってきなさーい",
@@ -17312,7 +17312,7 @@
     "id": "hSD02-011",
     "name": "大神ミオ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "50",
     "baton_touch": "1",
@@ -17322,7 +17322,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　おにけもの会",
@@ -17351,7 +17351,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17379,7 +17379,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17407,7 +17407,7 @@
         "damage": "10",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　お家にお邪魔します…！",
@@ -17435,7 +17435,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　僕と登校しよう…？",
@@ -17463,14 +17463,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "えへへないたずら",
         "damage": "50",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17498,14 +17498,14 @@
         "damage": "30",
         "text": "",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "しゃー",
         "damage": "40",
         "text": "このホロメンの青エール1枚をアーカイブできる：相手のセンターホロメンとバックホロメン1人に特殊ダメージ10を与える。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17534,7 +17534,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　また、たくさん笑ってよね！",
@@ -17562,7 +17562,7 @@
         "damage": "60",
         "text": "",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　泥棒建設代表取締役 CEO",
@@ -17615,7 +17615,7 @@
     "id": "hSD03-010",
     "name": "戌神ころね",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -17625,7 +17625,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　泥棒建設インターン",
@@ -17643,7 +17643,7 @@
     "id": "hSD03-011",
     "name": "ラプラス・ダークネス",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -17653,14 +17653,14 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "絶対、食わせてみせるわ",
         "damage": "20",
         "text": "自分の手札が2枚以下の時、手札が3枚になるまで、自分のデッキを引く。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17688,7 +17688,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17716,7 +17716,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17744,7 +17744,7 @@
         "damage": "30",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　グッイブニ～ング",
@@ -17772,7 +17772,7 @@
         "damage": "20",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　地獄盛りごはん",
@@ -17800,14 +17800,14 @@
         "damage": "20",
         "text": "",
         "icons": "紫",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "あ～む（ﾁｭｯ）",
         "damage": "40",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17835,7 +17835,7 @@
         "damage": "30",
         "text": "このアーツで相手のホロメンにダメージを与えた時、与えたダメージ10につき、このホロメンのHP10回復。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17863,7 +17863,7 @@
         "damage": "30",
         "text": "自分のバックホロメン1人のHP20回復。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　ちょっこーん！",
@@ -17891,14 +17891,14 @@
         "damage": "40",
         "text": "",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "召し上がれ",
         "damage": "60+",
         "text": "自分のアーカイブの#食べ物を持つイベント1枚を手札に戻せる：このアーツ+20。",
         "icons": "紫,紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -17951,7 +17951,7 @@
     "id": "hSD04-010",
     "name": "大空スバル",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -17961,7 +17961,7 @@
         "damage": "20",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ちよこーーッ！！",
@@ -17978,7 +17978,7 @@
     "id": "hSD04-011",
     "name": "姫森ルーナ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -17988,7 +17988,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ちょこてんて～",
@@ -18015,7 +18015,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18043,7 +18043,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　こんちくわ",
@@ -18071,7 +18071,7 @@
         "damage": "40",
         "text": "",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18099,14 +18099,14 @@
         "damage": "40",
         "text": "",
         "icons": "白",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "うぃー！",
         "damage": "60",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18134,14 +18134,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "ありあとりゃあすっ",
         "damage": "50+",
         "text": "自分のステージに異なるカード名の#ReGLOSSを持つホロメンが3人以上いる時、このアーツ+20。",
         "icons": "白,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18169,7 +18169,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　宇宙一の番長を目指すなんでも屋",
@@ -18197,7 +18197,7 @@
         "damage": "50",
         "text": "このターンの間、自分のステージの#ReGLOSSを持つDebutホロメン1人のアーツ+40。",
         "icons": "白,白",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18253,7 +18253,7 @@
         "damage": "20",
         "text": "自分のアーカイブのエール1枚を、自分の#ReGLOSSを持つホロメンに送れる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18281,7 +18281,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　任せておきなさい！",
@@ -18309,7 +18309,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ドーンッ！",
@@ -18337,7 +18337,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　クレッシェンドな日々",
@@ -18365,7 +18365,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　のっと！ﾆﾝﾆﾝ！！",
@@ -18392,7 +18392,7 @@
         "damage": "30+",
         "text": "自分のセンターホロメンのHPが減っている時、このアーツ+10。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18419,7 +18419,7 @@
         "damage": "60",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18446,7 +18446,7 @@
         "damage": "30",
         "text": "",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　かざまとおでかけ",
@@ -18473,7 +18473,7 @@
         "damage": "50",
         "text": "",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　サムライ少女",
@@ -18527,7 +18527,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ずのー！",
@@ -18555,7 +18555,7 @@
         "damage": "20",
         "text": "自分のアーカイブの#秘密結社holoXを持つDebutホロメン1枚を手札に戻せる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18584,7 +18584,7 @@
         "damage": "30+",
         "text": "[コラボポジション限定]このターンの自分のメインステップに自分のSP推しスキルを使っていた時、このアーツ+50。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18612,14 +18612,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "不知火フレアだよ！",
         "damage": "60",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18647,14 +18647,14 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "不知火フレアだよ！",
         "damage": "60",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18682,7 +18682,7 @@
         "damage": "20",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　大切な仲間たちと",
@@ -18710,7 +18710,7 @@
         "damage": "30+",
         "text": "自分の手札の枚数が相手より少ない時、このアーツ+10。",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18738,14 +18738,14 @@
         "damage": "30",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "キミとティータイム",
         "damage": "50",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18773,7 +18773,7 @@
         "damage": "30+",
         "text": "自分のライフが3以下の時、このアーツ+30。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　エルフレンドのさえずり",
@@ -18801,7 +18801,7 @@
         "damage": "40",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　また一つ成長した私を",
@@ -18829,7 +18829,7 @@
         "damage": "50",
         "text": "自分のアーカイブの〈エルフレンド〉1枚をこのホロメンに付けられる。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -18885,7 +18885,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　大物の確証",
@@ -18913,7 +18913,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　バーニン♪ バーニン♪",
@@ -18941,7 +18941,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　僕らに水を",
@@ -18969,7 +18969,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ご飯が底をつきそう……",
@@ -18997,7 +18997,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ホロサマー",
@@ -19082,7 +19082,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　なんでも入る巾着",
@@ -19111,7 +19111,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　花火見ていく？",
@@ -19141,7 +19141,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　みんなと夏祭り",
@@ -19171,7 +19171,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ホロサマー",
@@ -19201,7 +19201,7 @@
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　みんな優勝するぞ",
@@ -19266,7 +19266,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　3期生の海の家",
@@ -19295,7 +19295,7 @@
         "damage": "10",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　あんたたち働くぺこー！",
@@ -19324,7 +19324,7 @@
         "damage": "80",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　クールダウンしよ",
@@ -19353,7 +19353,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19381,7 +19381,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19409,14 +19409,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "全身全霊 越えてく限界",
         "damage": "80",
         "text": "",
         "icons": "緑,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19444,7 +19444,7 @@
         "damage": "50",
         "text": "自分のステージに#FLOW GLOWを持つホロメンが3人以上いるなら、自分のエールデッキの上から1枚を自分のバックホロメンに送れる。",
         "icons": "緑,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　300馬力だよ！",
@@ -19472,7 +19472,7 @@
         "damage": "20+",
         "text": "このターンに自分のホロメンがBloomしていたなら、このターンの間、自分のステージの〈輪堂千速〉1人のアーツ+20。",
         "icons": "緑",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FLOW GLOWのDJ兼運転手担当",
@@ -19525,7 +19525,7 @@
     "id": "hSD10-010",
     "name": "響咲リオナ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "170",
     "baton_touch": "0",
@@ -19535,7 +19535,7 @@
         "damage": "50+",
         "text": "自分のステージに#FLOW GLOWを持つ2nd以上のホロメンがいるなら、このアーツ+30。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　私の元においで～っ",
@@ -19563,7 +19563,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19591,7 +19591,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19619,14 +19619,14 @@
         "damage": "50",
         "text": "",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "期待せよ 牙で噛まれちゃうシゲキ",
         "damage": "80",
         "text": "",
         "icons": "無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19654,7 +19654,7 @@
         "damage": "30",
         "text": "自分のエールデッキの上から1枚を自分の〈虎金妃笑虎〉に送れる。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　人を笑顔にするためならば",
@@ -19682,7 +19682,7 @@
         "damage": "30+",
         "text": "自分のステージにエールが5枚以上あるなら、このアーツ+20。",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FLOW GLOWのお笑い担当",
@@ -19738,7 +19738,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　パレ・モンローズのお話をお聞きになったことは？",
@@ -19765,14 +19765,14 @@
         "damage": "20",
         "text": "このアーツは、相手のバックホロメンも対象にできる。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Just a Humble, Kind Witch",
         "damage": "30",
         "text": "自分のアーカイブにサポートカードが4枚以上あるなら、自分のエールデッキの上から1枚を自分の#Adventを持つホロメンに送る。",
         "icons": "青",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19799,7 +19799,7 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　『異世界への旅立ちと幸せ』",
@@ -19826,7 +19826,7 @@
         "damage": "40",
         "text": "相手のホロメン1人に特殊ダメージ20を与える。",
         "icons": "青,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　A Study in Advent",
@@ -19880,7 +19880,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　花売りの少女",
@@ -19908,7 +19908,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　賑やかな家族",
@@ -19936,14 +19936,14 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "Your Princess AWAKENS!",
         "damage": "50",
         "text": "このホロメンの紫以外のエール1枚をアーカイブできる：自分のアーカイブのホロメン1枚を手札に戻す。",
         "icons": "紫,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -19999,7 +19999,7 @@
         "damage": "80",
         "text": "自分のライフが3以下なら、このアーツに必要な無色-2。",
         "icons": "紫,無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20028,7 +20028,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20056,14 +20056,14 @@
         "damage": "40",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "私の心の炎は青い",
         "damage": "140",
         "text": "",
         "icons": "赤,無,無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20091,7 +20091,7 @@
         "damage": "50",
         "text": "",
         "icons": "赤,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　For Justice! -ERB-",
@@ -20119,7 +20119,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　Bring It On!",
@@ -20175,7 +20175,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　For Justice! -GG-",
@@ -20202,7 +20202,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　イタズラ増殖！",
@@ -20229,14 +20229,14 @@
         "damage": "40",
         "text": "",
         "icons": "黄",
-        "tokkou": ""
+        "tokkou": "無"
       },
       {
         "name": "悪戯好きのグレムリン",
         "damage": "60",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20263,7 +20263,7 @@
         "damage": "40+",
         "text": "このホロメンに重なっているホロメンが0枚なら、このアーツ+20。",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ブルームエフェクト　I am Gonathan G.",
@@ -20290,7 +20290,7 @@
         "damage": "60",
         "text": "",
         "icons": "黄,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　ご苦労さん！",
@@ -20334,7 +20334,7 @@
     "id": "hBP02-069",
     "name": "魔法少女みこ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -20344,7 +20344,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　みんなの願いを咲かせる祈り！",
@@ -20362,7 +20362,7 @@
     "id": "hBP02-070",
     "name": "魔法少女かなた",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -20372,7 +20372,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　この手を差し伸べ、つかんで握る！",
@@ -20390,7 +20390,7 @@
     "id": "hBP02-071",
     "name": "魔法少女ルーナ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "60",
     "baton_touch": "1",
@@ -20400,7 +20400,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　甘～い幸せ、おすそわけ！",
@@ -20418,7 +20418,7 @@
     "id": "hBP02-072",
     "name": "魔法少女シオン",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -20428,7 +20428,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　眠れる神秘を我が物に！",
@@ -20446,7 +20446,7 @@
     "id": "hBP02-073",
     "name": "魔法少女マリン",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -20456,7 +20456,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　きらめくお宝、ロックオン！",
@@ -20474,7 +20474,7 @@
     "id": "hBP02-074",
     "name": "魔法少女クロヱ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "70",
     "baton_touch": "1",
@@ -20484,7 +20484,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　荒波をゆく奔放の牙！",
@@ -20512,7 +20512,7 @@
         "damage": "20",
         "text": "相手のセンターポジションのホロメン1人は、次の相手のターンが終了するまでバトンタッチに必要な無色+1。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20540,7 +20540,7 @@
         "damage": "30",
         "text": "このアーツの対象が相手のバトンタッチに必要な無色が2つ以上のホロメンなら、自分のエールデッキの上から1枚を自分のバックホロメンに送る。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FLOW GLOWのえらい宣伝担当",
@@ -20596,7 +20596,7 @@
         "damage": "20",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "",
@@ -20624,7 +20624,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　FLOW GLOWのメイク担当",
@@ -20670,7 +20670,7 @@
     "id": "hBP06-084",
     "name": "AIこより",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "150",
     "baton_touch": "0",
@@ -20680,7 +20680,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　「こんこよ」、古くなっちゃったかな？",
@@ -20698,7 +20698,7 @@
     "id": "hSD13-014",
     "name": "セシリア・イマーグリーン",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "160",
     "baton_touch": "1",
@@ -20708,7 +20708,7 @@
         "damage": "40",
         "text": "自分のエールデッキの上から1枚を自分の#Justiceを持つホロメンに送る。",
         "icons": "無,無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "ギフト　正義の旋律",
@@ -20726,7 +20726,7 @@
     "id": "hSD13-015",
     "name": "ラオーラ・パンテーラ",
     "category": "ホロメン",
-    "color": "◇",
+    "color": "無",
     "kind": "Spot",
     "value": "160",
     "baton_touch": "1",
@@ -20736,7 +20736,7 @@
         "damage": "30+",
         "text": "自分の#Justiceを持つ[センターホロメンとコラボホロメン]に異なる色のエールが付いているなら、このアーツ+20。",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　正義の諧調",
@@ -20765,7 +20765,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ハッピー☆パピー -MOCOCO-",
@@ -20793,7 +20793,7 @@
         "damage": "30",
         "text": "",
         "icons": "無",
-        "tokkou": ""
+        "tokkou": "無"
       }
     ],
     "keywordName": "コラボエフェクト　ハッピー☆パピー -FUWAWA-",
