@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | High Visibility Fixed</title>
+    <title>Holo-Viewer | Final Fix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -61,9 +61,21 @@
         }
 
         function createRow(label, value, extraClass = "", forceShow = false) {
-            let val = (value === undefined || value === null || String(value) === "nan") ? "" : String(value).trim();
-            if (!forceShow && (val === "" || val === "0")) return "";
-            const displayValue = (forceShow && (val === "0" || val === "")) ? "" : val;
+            // 文字列に変換してトリミング
+            let val = (value === undefined || value === null) ? "" : String(value).trim();
+            
+            // forceShow（バトンタッチ）でない場合、空または"0"なら表示しない
+            if (!forceShow && (val === "" || val === "0" || val === "nan")) return "";
+            
+            // forceShowの場合の表示値決定
+            // 数値として0、または空文字、または"nan"の場合は空白
+            // それ以外（1以上など）はそのまま表示
+            let displayValue = val;
+            if (forceShow) {
+                if (val === "0" || val === "" || val === "nan") {
+                    displayValue = "";
+                }
+            }
 
             return `<div class="flex items-start mb-1 gap-3">
                         <span class="label-pill ${extraClass}">${label}</span>
@@ -86,6 +98,7 @@
                 if (card.category === "ホロメン") {
                     details += createRow('HP', card.value);
                     details += createRow('Bloom', card.kind);
+                    // ここでJSONのキー名 'baton_touch' を確実に参照
                     details += createRow('バトンタッチ', card.baton_touch, '', true);
                     
                     if (card.keywordName) {
@@ -147,10 +160,14 @@
         }
 
         async function init() {
-            const res = await fetch('./master_cards.json');
-            allCards = await res.json();
-            fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id'], threshold: 0.3 });
-            renderCards(allCards);
+            try {
+                const res = await fetch('./master_cards.json');
+                allCards = await res.json();
+                fuse = new Fuse(allCards, { keys: ['name', 'arts.name', 'tags', 'id'], threshold: 0.3 });
+                renderCards(allCards);
+            } catch (e) {
+                console.error("データ読み込み失敗:", e);
+            }
         }
         document.getElementById('searchInput').addEventListener('input', e => {
             renderCards(e.target.value ? fuse.search(e.target.value).map(r => r.item) : allCards);
