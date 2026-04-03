@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索_ver1.1</title>
+    <title>ホロカ検索_1.2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -43,7 +43,7 @@
         
         <aside class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">ホロカ検索</h1>
+                <h1 class="font-bold tracking-wider italic">HOLO-VIEWER</h1>
                 <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
@@ -183,7 +183,6 @@
         function applyFilters() {
             let result = allCards;
 
-            // 検索ワードがある場合 (LIMITEDの記載も全文検索される)
             if (activeFilters.text) {
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
@@ -202,29 +201,25 @@
                 result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             }
 
-            // サポート種別フィルターのロジック修正
+            // サポート種別フィルター：LIMITED, ツール, イベント, アイテム, スタッフは種別(kind)のみを完全判定
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
-                    const descValue = (c.description || '');
                     
-                    // 個別のフィルタリング条件をリストに適用
+                    const matchesFilter = (f) => {
+                        const targetKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ'];
+                        if (targetKeywords.includes(f)) {
+                            // 指定されたキーワードは種別(kind)のみをチェック
+                            return kindValue.includes(f);
+                        }
+                        // その他のキーワード（もし追加された場合）は従来通りテキストも含む
+                        return kindValue.includes(f) || (c.description || '').includes(f);
+                    };
+
                     if (logiceState.subKind === 'OR') {
-                        return activeFilters.subKind.some(f => {
-                            if (f === 'LIMITED') {
-                                // LIMITEDフィルターは種別(kind)のみをチェック
-                                return kindValue.includes('LIMITED');
-                            }
-                            // 他のフィルターは種別またはテキストをチェック
-                            return kindValue.includes(f) || descValue.includes(f);
-                        });
+                        return activeFilters.subKind.some(f => matchesFilter(f));
                     } else {
-                        return activeFilters.subKind.every(f => {
-                            if (f === 'LIMITED') {
-                                return kindValue.includes('LIMITED');
-                            }
-                            return kindValue.includes(f) || descValue.includes(f);
-                        });
+                        return activeFilters.subKind.every(f => matchesFilter(f));
                     }
                 });
             }
