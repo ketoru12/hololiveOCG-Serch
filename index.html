@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>Hololive OCG カード検索ビューア(2.5)</title>
+<title>Hololive OCG カード検索ビューア(2.6)</title>
 <style>
   body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; color: #333; background-color: #f4f7f8; }
   h2 { color: #0088cc; border-left: 5px solid #0088cc; padding-left: 10px; }
@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<h2>Hololive OCG カード検索ビューア(2.5)</h2>
+<h2>Hololive OCG カード検索ビューア(2.6)</h2>
 
 <div class="search-container">
   <div class="filter-group"><label>カードタイプ</label><select id="typeFilter"><option value="すべて">すべて</option><option value="ホロメン">ホロメン</option><option value="サポート">サポート</option><option value="推しホロメン">推しホロメン</option></select></div>
@@ -59,9 +59,22 @@
         const r = await fetch(file);
         if (!r.ok) return [];
         const text = await r.text();
-        let rows = parseCSV(text);
-        // ヘッダー行("url"を含む行)を確実に除去
-        return rows.filter(row => row.length > 0 && !row[0].toLowerCase().includes("url"));
+        const rows = parseCSV(text);
+        
+        // 強力なフィルタリング：ヘッダー文字列("url", "name")が含まれる、または名前が空の行を完全に除外
+        return rows.filter(row => {
+          if (row.length < 2) return false;
+          const col0 = (row[0] || "").toLowerCase().trim();
+          const col1 = (row[1] || "").toLowerCase().trim();
+          const col2 = (row[2] || "").toLowerCase().trim();
+          
+          // ヘッダー行判定
+          if (col0 === "url" || col1 === "name" || col2 === "name") return false;
+          // 実質的な空行判定
+          if (col0 === "" && col1 === "") return false;
+          
+          return true;
+        });
       } catch(e) { return []; }
     };
     
@@ -85,15 +98,18 @@
         else col += c;
       } else {
         if (c === '"') inQuote = true;
-        else if (c === ',') { row.push(col); col = ""; }
+        else if (c === ',') { row.push(col.trim()); col = ""; }
         else if (c === '\n') {
-          row.push(col);
-          if (row.some(x => x && x.trim() !== "")) rows.push(row);
+          row.push(col.trim());
+          if (row.some(x => x !== "")) rows.push(row);
           row = []; col = "";
         } else col += c;
       }
     }
-    if (row.length > 0 && row.some(x => x && x.trim() !== "")) { row.push(col); rows.push(row); }
+    if (row.length > 0) {
+      row.push(col.trim());
+      if (row.some(x => x !== "")) rows.push(row);
+    }
     return rows;
   }
 
@@ -103,11 +119,9 @@
     const color = document.getElementById("colorFilter").value;
     let combined = [];
 
-    // ホロメン
     if (type === "すべて" || type === "ホロメン") {
       allRawData.holomen.forEach(r => {
-        // 名前(r[2])が空、または「name」という文字列の場合は絶対に追加しない
-        if (r.length < 3 || !r[2] || r[2].trim() === "" || r[2].toLowerCase() === "name") return;
+        if (!r[2] || r[2].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: r[1], name: r[2], type: "ホロメン", color: r[4], 
           hp: r[5], info: `[${r[6]}] ${r[7]}<br>${r[8]}`, num: r[11], prod: r[12],
@@ -115,10 +129,9 @@
         });
       });
     }
-    // サポート
     if (type === "すべて" || type === "サポート") {
       allRawData.support.forEach(r => {
-        if (r.length < 2 || !r[1] || r[1].trim() === "" || r[1].toLowerCase() === "name") return;
+        if (!r[1] || r[1].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: "", name: r[1], type: r[2], color: "-", 
           hp: "-", info: `[${r[3]}]<br>${r[4]}`, num: r[6], prod: r[5],
@@ -126,10 +139,9 @@
         });
       });
     }
-    // 推し
     if (type === "すべて" || type === "推しホロメン") {
       allRawData.oshi.forEach(r => {
-        if (r.length < 2 || !r[1] || r[1].trim() === "" || r[1].toLowerCase() === "name") return;
+        if (!r[1] || r[1].toLowerCase() === "name") return;
         combined.push({
           url: r[0], img: "", name: r[1], type: "推しホロメン", color: r[3], 
           hp: r[4], info: `スキル: ${r[5]}<br>SP: ${r[6]}`, num: r[9], prod: r[8],
