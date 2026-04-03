@@ -2,22 +2,24 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Standard Full Edition</title>
+    <title>Holo-Viewer | Standard View V2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
         .label-pill {
             background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px;
-            font-size: 14px; font-weight: bold; min-width: 100px; text-align: center; flex-shrink: 0;
+            font-size: 14px; font-weight: bold; min-width: 105px; text-align: center; flex-shrink: 0;
         }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
+        .stage-pill { background-color: #3b82f6; } /* ステージスキル用カラー */
         .tag-pill { background-color: #94a3b8; }
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
         
-        .value-box { font-size: 16px; font-weight: 600; line-height: 1.4; color: #1a202c; flex: 1; }
+        /* 名前・番号以外の文字サイズをさらに大きく */
+        .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         
         .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
@@ -34,7 +36,7 @@
     <header class="bg-white border-b sticky top-0 z-50 p-2 shadow-sm">
         <div class="max-w-[1600px] mx-auto flex gap-3 items-center">
             <h1 class="font-bold text-base text-[#5e5a9b]">HOLO-VIEWER</h1>
-            <input type="text" id="searchInput" placeholder="検索..." class="flex-1 bg-slate-100 rounded-full px-4 py-1 text-sm outline-none">
+            <input type="text" id="searchInput" placeholder="検索..." class="flex-1 bg-slate-100 rounded-full px-4 py-1 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
             <div id="resultCount" class="text-xs font-mono text-slate-400">READY</div>
         </div>
     </header>
@@ -114,11 +116,18 @@
                     });
                 }
 
-                if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, 'oshi-pill'));
+                // 推しスキルの表示
+                if (card.skills) {
+                    card.skills.forEach(s => {
+                        let pillClass = 'oshi-pill';
+                        if (s.label === 'ステージスキル') pillClass = 'stage-pill';
+                        details += createRow(s.label, s.text, pillClass);
+                    });
+                }
+
                 if (card.description) details += createRow('効果', card.description);
                 if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
                 
-                // タグと収録を独立して表示
                 if (card.tags && card.tags.length > 0) {
                     details += createRow('タグ', card.tags.join('　'), 'tag-pill');
                 }
