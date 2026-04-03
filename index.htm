@@ -12,9 +12,11 @@
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
-        /* タグのリボン色を #5e5a9b に統一 */
-        .tag-pill { background-color: #5e5a9b; cursor: pointer; transition: all 0.2s; }
-        .tag-pill:hover { background-color: #4a4682; transform: scale(1.05); }
+        
+        /* タグ自体の背景色（項目ラベルではなく、タグの内容部分） */
+        .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
+        .tag-item-pill:hover { background-color: #4a4682; transform: scale(1.05); }
+        
         .product-pill { background-color: #6366f1; }
         .extra-pill { background-color: #f59e0b; }
         .kind-pill { background-color: #64748b; }
@@ -277,8 +279,8 @@
                  return "";
             }
             if (label === 'タグ') {
-                const tagsHtml = value.split('　').map(tag => `<span class="label-pill tag-pill mr-1 mb-1 inline-block" onclick="setSearchTag('${tag}')">${tag}</span>`).join('');
-                return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box flex flex-wrap">${tagsHtml}</div></div>`;
+                const tagsHtml = value.split('　').map(tag => `<span class="tag-item-pill mr-1 mb-1 inline-block" onclick="setSearchTag('${tag}')">${tag}</span>`).join('');
+                return `<div class="flex items-start mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex flex-wrap">${tagsHtml}</div></div>`;
             }
             return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
         }
@@ -338,13 +340,14 @@
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.addEventListener('click', () => {
                 const type = btn.getAttribute('data-type');
-                const val = btn.getAttribute('data-val');
+                const val = document.getElementById('searchInput'); // 不要な代入を避けるため修正
+                const filterVal = btn.getAttribute('data-val');
                 const isSelected = btn.classList.contains('ring-4');
                 document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
                 if (type === 'color') {
-                    activeFilters.color = isSelected ? '' : val;
+                    activeFilters.color = isSelected ? '' : filterVal;
                 } else {
-                    activeFilters.tokkou = isSelected ? '' : val;
+                    activeFilters.tokkou = isSelected ? '' : filterVal;
                 }
                 if (!isSelected) btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
                 applyFilters();
