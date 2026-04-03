@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Integrated Edition</title>
+    <title>ホロカ検索_ver1.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -95,6 +95,7 @@
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="LIMITED">LIMITED</button>
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="ツール">ツール</button>
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="イベント">イベント</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="アイテム">アイテム</button>
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="スタッフ">スタッフ</button>
                     </div>
                 </div>
@@ -192,7 +193,6 @@
                 });
             }
 
-            // 修正：複数商品(配列)に対応したフィルタリング
             if (activeFilters.product) {
                 result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
@@ -257,7 +257,6 @@
             if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
             
-            // 修正：複数商品(配列)を繋げて表示
             if (card.products && card.products.length > 0) {
                 details += createRow('収録', card.products.join('　'), 'product-pill');
             }
@@ -311,7 +310,6 @@
                 const res = await fetch('./master_cards.json');
                 allCards = await res.json();
                 
-                // 修正：重複排除した商品名リストの作成
                 let productSet = new Set();
                 allCards.forEach(c => {
                     if (c.products) {
