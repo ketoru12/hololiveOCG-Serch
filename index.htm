@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索_1.2</title>
+    <title>Holo-Viewer | Integrated Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -67,9 +67,9 @@
                         <div class="logic-toggle logic-or" id="logic-category" onclick="toggleLogic('category')">OR検索</div>
                     </div>
                     <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="ホロメン">ホロメン</button>
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="推しホロメン">推し</button>
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white hover:bg-slate-50" data-group="category" data-val="サポート">サポート</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="category" data-val="サポート">サポート</button>
                     </div>
                 </div>
 
@@ -201,26 +201,15 @@
                 result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             }
 
-            // サポート種別フィルター：LIMITED, ツール, イベント, アイテム, スタッフは種別(kind)のみを完全判定
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
-                    
                     const matchesFilter = (f) => {
                         const targetKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ'];
-                        if (targetKeywords.includes(f)) {
-                            // 指定されたキーワードは種別(kind)のみをチェック
-                            return kindValue.includes(f);
-                        }
-                        // その他のキーワード（もし追加された場合）は従来通りテキストも含む
+                        if (targetKeywords.includes(f)) return kindValue.includes(f);
                         return kindValue.includes(f) || (c.description || '').includes(f);
                     };
-
-                    if (logiceState.subKind === 'OR') {
-                        return activeFilters.subKind.some(f => matchesFilter(f));
-                    } else {
-                        return activeFilters.subKind.every(f => matchesFilter(f));
-                    }
+                    return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
                 });
             }
 
@@ -231,10 +220,15 @@
                 });
             }
 
+            // 特攻フィルター：ガードを強化
             if (activeFilters.tokkou) {
                 result = result.filter(c => {
-                    if (!c.arts) return false;
-                    return c.arts.some(art => (art.tokkou || '').replace('◇', '無') === activeFilters.tokkou);
+                    if (!c.arts || !Array.isArray(c.arts)) return false;
+                    return c.arts.some(art => {
+                        if (!art.tokkou || art.tokkou === "nan") return false;
+                        const tVal = art.tokkou.replace('◇', '無');
+                        return tVal.includes(activeFilters.tokkou);
+                    });
                 });
             }
 
@@ -264,10 +258,13 @@
 
         function getTokkouBadgeHtml(text) {
             if (!text || text === "nan") return "";
-            const match = text.match(/(白|緑|赤|青|紫|黄|無|◇)/);
-            const colorKey = match ? (match[1] === '◇' ? '無' : match[1]) : '無';
-            return `<span class="badge-base ${colorClassMap[colorKey]} ml-1">${text.replace('◇', '無')}</span>`;
+            // 文字列から色を抽出
+            const colors = ['白', '緑', '赤', '青', '紫', '黄', '無'];
+            let foundColor = colors.find(color => text.includes(color)) || (text.includes('◇') ? '無' : null);
+            if (!foundColor) return `<span class="badge-base color-none ml-1">${text}</span>`;
+            return `<span class="badge-base ${colorClassMap[foundColor]} ml-1">${text.replace('◇', '無')}</span>`;
         }
+
         function renderCostHtml(iconsStr) {
             if (!iconsStr || iconsStr === "nan") return "";
             return iconsStr.split(',').map(c => {
@@ -275,6 +272,7 @@
                 return `<span class="badge-base ${colorClassMap[key] || colorClassMap['無']} mr-1">${key}</span>`;
             }).join('');
         }
+
         function createRow(label, value, extraClass = "") {
             if (!value || value === "nan" || value === "0") {
                  if (label === 'バトンタッチ' && value === "0") return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box">0</div></div>`;
@@ -308,10 +306,7 @@
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.extra) details += createRow('エクストラ', card.extra, 'extra-pill');
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'), 'tag-pill');
-            
-            if (card.products && card.products.length > 0) {
-                details += createRow('収録', card.products.join('　'), 'product-pill');
-            }
+            if (card.products && card.products.length > 0) details += createRow('収録', card.products.join('　'), 'product-pill');
 
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
@@ -370,22 +365,14 @@
             try {
                 const res = await fetch('./master_cards.json');
                 allCards = await res.json();
-                
                 let productSet = new Set();
-                allCards.forEach(c => {
-                    if (c.products) {
-                        c.products.forEach(p => productSet.add(p));
-                    }
-                });
-                
-                const sortedProducts = Array.from(productSet).sort();
+                allCards.forEach(c => { if (c.products) c.products.forEach(p => productSet.add(p)); });
                 const productSelect = document.getElementById('filterProduct');
-                sortedProducts.forEach(p => {
+                Array.from(productSet).sort().forEach(p => {
                     const opt = document.createElement('option');
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
-
                 fuse = new Fuse(allCards, { 
                     keys: ['name', 'id', 'tags', 'kind', 'description', 'products', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
                     threshold: 0.3 
