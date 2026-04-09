@@ -189,23 +189,17 @@
             applyFilters();
         }
 
-        // 名前クリック：カードタイプ指定があれば維持、なければ「ホロメン」固定
         function setSearchNameOnly(name) {
             const searchInput = document.getElementById('searchInput');
             searchInput.value = name;
             activeFilters.text = name;
-            
             if (activeFilters.category.length === 0) {
                 activeFilters.category = ['ホロメン'];
                 document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
-                    if (btn.getAttribute('data-val') === 'ホロメン') {
-                        btn.classList.add('filter-active');
-                    } else {
-                        btn.classList.remove('filter-active');
-                    }
+                    if (btn.getAttribute('data-val') === 'ホロメン') btn.classList.add('filter-active');
+                    else btn.classList.remove('filter-active');
                 });
             }
-
             closeModal();
             applyFilters();
             document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
@@ -223,23 +217,38 @@
         function applyFilters() {
             let result = allCards;
             
+            // 1. テキスト検索
             if (activeFilters.text) {
-                // カードタイプ指定がある場合は検索対象を「name」のみにする
+                let searchKeys = [];
+                // カードタイプ指定時は「名前」のみ
                 if (activeFilters.category.length > 0) {
-                    const tempFuse = new Fuse(allCards, { keys: ['name'], threshold: 0.3 });
-                    result = tempFuse.search(activeFilters.text).map(r => r.item);
+                    searchKeys = ['name'];
                 } else {
-                    result = fuse.search(activeFilters.text).map(r => r.item);
+                    // 基本検索セットから products を除外。productが選択されている時のみ追加する。
+                    searchKeys = ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'];
+                    if (activeFilters.product) {
+                        searchKeys.push('products');
+                    }
                 }
+                const tempFuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3 });
+                result = tempFuse.search(activeFilters.text).map(r => r.item);
             }
             
+            // 2. カードタイプ（カテゴリー）のフィルタリング
+            if (activeFilters.category.length > 0) {
+                result = result.filter(c => {
+                    const cardCat = c.category || '';
+                    return logiceState.category === 'OR' ? activeFilters.category.includes(cardCat) : activeFilters.category.every(f => cardCat === f);
+                });
+            }
+
+            // 3. その他のフィルター
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
                 if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
                 return filterList.every(f => cardValue.includes(f));
             };
 
-            if (activeFilters.category.length > 0) result = result.filter(c => checkLogic(c.category || '', activeFilters.category, logiceState.category));
             if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
@@ -317,10 +326,8 @@
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
-            
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
-            
             if (card.category === "ホロメン") {
                 nameEl.className = "text-2xl font-bold text-[#5e5a9b] clickable-name";
                 nameEl.onclick = () => setSearchNameOnly(card.name);
@@ -328,10 +335,8 @@
                 nameEl.className = "text-2xl font-bold text-[#5e5a9b] non-clickable-name";
                 nameEl.onclick = null;
             }
-
             document.getElementById('modalImg').src = card.img;
             document.getElementById('modalId').innerText = card.id;
-            
             let details = "";
             if (card.category !== "サポート") details += createRow('色', (card.color || '無').replace('◇', '無'));
             if (card.category === "ホロメン") {
@@ -384,11 +389,8 @@
                 const filterVal = btn.getAttribute('data-val');
                 const isSelected = btn.classList.contains('ring-4');
                 document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-                if (type === 'color') {
-                    activeFilters.color = isSelected ? '' : filterVal;
-                } else {
-                    activeFilters.tokkou = isSelected ? '' : filterVal;
-                }
+                if (type === 'color') activeFilters.color = isSelected ? '' : filterVal;
+                else activeFilters.tokkou = isSelected ? '' : filterVal;
                 if (!isSelected) btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
                 applyFilters();
             });
@@ -415,8 +417,9 @@
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
+                // 初期化時のキーから products を外す
                 fuse = new Fuse(allCards, { 
-                    keys: ['name', 'id', 'tags', 'kind', 'description', 'products', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
+                    keys: ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
                     threshold: 0.3 
                 });
                 renderCards(allCards);
