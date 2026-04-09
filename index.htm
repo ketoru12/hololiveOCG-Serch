@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索</title>
+    <title>ホロカ検索_ver2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -37,7 +37,6 @@
         .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
         .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; }
         
-        /* スイッチスタイル */
         .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
@@ -78,7 +77,7 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、ID、効果..." 
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." 
                         class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
                 </div>
 
@@ -189,7 +188,6 @@
 
     <script>
         let allCards = [];
-        let fuse;
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
@@ -236,20 +234,37 @@
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
             
-            // 1. テキスト検索ロジックの構築
             if (activeFilters.text) {
-                let searchKeys = ['name', 'id', 'tags']; // 基本項目
+                // 本文を含める場合とそうでない場合でキー構成を変更
+                let searchKeys = [
+                    { name: 'name', weight: 1.0 },
+                    { name: 'id', weight: 0.5 },
+                    { name: 'tags', weight: 0.7 }
+                ];
                 
-                // 本文を含めるスイッチが ON の場合、効果テキスト等を追加
                 if (includeText) {
-                    searchKeys.push('description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect');
+                    searchKeys.push(
+                        { name: 'description', weight: 0.4 },
+                        { name: 'arts.name', weight: 0.4 },
+                        { name: 'arts.text', weight: 0.4 },
+                        { name: 'skills.text', weight: 0.4 },
+                        { name: 'keywordName', weight: 0.4 },
+                        { name: 'keywordEffect', weight: 0.4 }
+                    );
                 }
 
-                const tempFuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3 });
+                const fuseOptions = {
+                    keys: searchKeys,
+                    threshold: 0.2,      // 0.2に下げることでより正確な一致を優先
+                    ignoreLocation: true, // 文字列内の場所に関わらずヒットさせる
+                    useExtendedSearch: true,
+                    findAllMatches: true
+                };
+
+                const tempFuse = new Fuse(allCards, fuseOptions);
                 result = tempFuse.search(activeFilters.text).map(r => r.item);
             }
             
-            // 2. カテゴリフィルタ（厳密一致判定）
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => {
                     const cardCat = c.category || '';
@@ -261,40 +276,32 @@
 
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
-                if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
-                return filterList.every(f => cardValue.includes(f));
+                const val = String(cardValue);
+                if (logic === 'OR') return filterList.some(f => val.includes(f));
+                return filterList.every(f => val.includes(f));
             };
 
-            // 3. 属性フィルタ
             if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
-            
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
-                    const matchesFilter = (f) => kindValue.includes(f);
                     return logiceState.subKind === 'OR' 
-                        ? activeFilters.subKind.some(f => matchesFilter(f)) 
-                        : activeFilters.subKind.every(f => matchesFilter(f));
+                        ? activeFilters.subKind.some(f => kindValue.includes(f)) 
+                        : activeFilters.subKind.every(f => kindValue.includes(f));
                 });
             }
-
             if (activeFilters.color) {
                 result = result.filter(c => {
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
                     return cColor === activeFilters.color;
                 });
             }
-
             if (activeFilters.tokkou) {
                 result = result.filter(c => {
                     if (!c.arts || !Array.isArray(c.arts)) return false;
-                    return c.arts.some(art => {
-                        if (!art.tokkou || art.tokkou === "nan" || art.tokkou.includes('無') || art.tokkou.includes('◇')) return false;
-                        return art.tokkou.includes(activeFilters.tokkou);
-                    });
+                    return c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou));
                 });
             }
-
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             
@@ -314,20 +321,20 @@
             });
         }
 
-        function getTokkouBadgeHtml(text) {
-            if (!text || text === "nan" || text.includes('無') || text.includes('◇')) return "";
-            const colors = ['白', '緑', '赤', '青', '紫', '黄'];
-            let foundColor = colors.find(color => text.includes(color));
-            if (!foundColor) return "";
-            return `<span class="badge-base ${colorClassMap[foundColor]} ml-1">${text}</span>`;
-        }
-
         function renderCostHtml(iconsStr) {
             if (!iconsStr || iconsStr === "nan") return "";
             return iconsStr.split(',').map(c => {
                 const key = c.trim().replace('◇', '無');
                 return `<span class="badge-base ${colorClassMap[key] || colorClassMap['無']} mr-1">${key}</span>`;
             }).join('');
+        }
+
+        function getTokkouBadgeHtml(text) {
+            if (!text || text === "nan" || text.includes('無') || text.includes('◇')) return "";
+            const colors = ['白', '緑', '赤', '青', '紫', '黄'];
+            let foundColor = colors.find(color => text.includes(color));
+            if (!foundColor) return "";
+            return `<span class="badge-base ${colorClassMap[foundColor]} ml-1">${text}</span>`;
         }
 
         function createRow(label, value, extraClass = "") {
@@ -419,7 +426,7 @@
             activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').value = '';
-            document.getElementById('searchIncludeText').checked = true; // デフォルトに戻す
+            document.getElementById('searchIncludeText').checked = true;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
             document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4'));
             applyFilters();
