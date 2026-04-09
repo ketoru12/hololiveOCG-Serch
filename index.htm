@@ -249,23 +249,11 @@
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
-                    const descValue = (c.description || '');
+                    // subKindボタンをクリックした場合の判定：
+                    // kind（種別フィールド）にその文字が含まれているかのみを確認する。
+                    // description（テキスト）は検索対象から除外。
                     const matchesFilter = (f) => {
-                        // 1. まず種別（kind）との完全一致を確認
-                        if (kindValue.split('/').some(part => part.trim() === f)) return true;
-                        
-                        // 2. マスコットやファンの場合は、テキスト内検索も許可（ただし種別が他の主要カテゴリでない場合）
-                        const textMatchKeywords = ['マスコット', 'ファン'];
-                        if (textMatchKeywords.includes(f)) {
-                            return descValue.includes(f);
-                        }
-                        
-                        // 3. その他（LIMITEDなど）のキーワード判定
-                        const otherKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ'];
-                        if (otherKeywords.includes(f)) {
-                            return kindValue.includes(f);
-                        }
-                        return false;
+                        return kindValue.includes(f);
                     };
                     return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
                 });
