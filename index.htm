@@ -219,7 +219,6 @@
         function applyFilters() {
             let result = allCards;
             
-            // 1. テキスト検索
             if (activeFilters.text) {
                 let searchKeys = [];
                 if (activeFilters.category.length > 0) {
@@ -232,7 +231,6 @@
                 result = tempFuse.search(activeFilters.text).map(r => r.item);
             }
             
-            // 2. カードタイプ
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => {
                     const cardCat = c.category || '';
@@ -240,7 +238,6 @@
                 });
             }
 
-            // 3. その他のフィルター
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
                 if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
@@ -248,17 +245,32 @@
             };
 
             if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
+            
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
+                    const descValue = (c.description || '');
                     const matchesFilter = (f) => {
-                        const targetKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ', 'マスコット', 'ファン'];
-                        if (targetKeywords.includes(f)) return kindValue.includes(f) || (c.description || '').includes(f);
-                        return kindValue.includes(f);
+                        // 1. まず種別（kind）との完全一致を確認
+                        if (kindValue.split('/').some(part => part.trim() === f)) return true;
+                        
+                        // 2. マスコットやファンの場合は、テキスト内検索も許可（ただし種別が他の主要カテゴリでない場合）
+                        const textMatchKeywords = ['マスコット', 'ファン'];
+                        if (textMatchKeywords.includes(f)) {
+                            return descValue.includes(f);
+                        }
+                        
+                        // 3. その他（LIMITEDなど）のキーワード判定
+                        const otherKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ'];
+                        if (otherKeywords.includes(f)) {
+                            return kindValue.includes(f);
+                        }
+                        return false;
                     };
                     return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
                 });
             }
+
             if (activeFilters.color) {
                 result = result.filter(c => {
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
