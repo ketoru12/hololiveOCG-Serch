@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ホロカ検索</title>
+    <title>Holo-Viewer | Integrated Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -13,12 +13,10 @@
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
         
-        /* キャラクター名：ホロメンのみクリック可能にするスタイル */
         .clickable-name { cursor: pointer; transition: color 0.2s; }
         .clickable-name:hover { color: #4a4682; text-decoration: underline; }
         .non-clickable-name { cursor: default; }
 
-        /* タグ自体の背景色 */
         .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .tag-item-pill:hover { background-color: #4a4682; transform: scale(1.05); }
         
@@ -27,7 +25,6 @@
         .kind-pill { background-color: #64748b; }
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         
-        /* バッジカラー */
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
         .color-green { background-color: #f0fdf4; color: #166534; border-color: #bbf7d0; }
@@ -56,7 +53,7 @@
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
         <aside class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">ホロカ検索</h1>
+                <h1 class="font-bold tracking-wider italic">HOLO-VIEWER</h1>
                 <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
@@ -192,20 +189,22 @@
             applyFilters();
         }
 
-        // ホロメン限定の検索実行関数
+        // 名前クリック：カードタイプ指定があれば維持、なければ「ホロメン」固定
         function setSearchNameOnly(name) {
             const searchInput = document.getElementById('searchInput');
             searchInput.value = name;
             activeFilters.text = name;
-            activeFilters.category = ['ホロメン'];
             
-            document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
-                if (btn.getAttribute('data-val') === 'ホロメン') {
-                    btn.classList.add('filter-active');
-                } else {
-                    btn.classList.remove('filter-active');
-                }
-            });
+            if (activeFilters.category.length === 0) {
+                activeFilters.category = ['ホロメン'];
+                document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
+                    if (btn.getAttribute('data-val') === 'ホロメン') {
+                        btn.classList.add('filter-active');
+                    } else {
+                        btn.classList.remove('filter-active');
+                    }
+                });
+            }
 
             closeModal();
             applyFilters();
@@ -223,14 +222,23 @@
 
         function applyFilters() {
             let result = allCards;
+            
             if (activeFilters.text) {
-                result = fuse.search(activeFilters.text).map(r => r.item);
+                // カードタイプ指定がある場合は検索対象を「name」のみにする
+                if (activeFilters.category.length > 0) {
+                    const tempFuse = new Fuse(allCards, { keys: ['name'], threshold: 0.3 });
+                    result = tempFuse.search(activeFilters.text).map(r => r.item);
+                } else {
+                    result = fuse.search(activeFilters.text).map(r => r.item);
+                }
             }
+            
             const checkLogic = (cardValue, filterList, logic) => {
                 if (filterList.length === 0) return true;
                 if (logic === 'OR') return filterList.some(f => cardValue.includes(f));
                 return filterList.every(f => cardValue.includes(f));
             };
+
             if (activeFilters.category.length > 0) result = result.filter(c => checkLogic(c.category || '', activeFilters.category, logiceState.category));
             if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             if (activeFilters.subKind.length > 0) {
@@ -261,6 +269,7 @@
             }
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
+            
             renderCards(result);
         }
 
@@ -312,7 +321,6 @@
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
             
-            // カテゴリーが「ホロメン」の時だけクリック可能にする
             if (card.category === "ホロメン") {
                 nameEl.className = "text-2xl font-bold text-[#5e5a9b] clickable-name";
                 nameEl.onclick = () => setSearchNameOnly(card.name);
