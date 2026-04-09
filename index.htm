@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Holo-Viewer | Integrated Edition</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -36,6 +36,15 @@
 
         .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
         .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; }
+        
+        /* スイッチスタイル */
+        .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #5e5a9b; }
+        input:checked + .slider:before { transform: translateX(14px); }
+
         .logic-toggle { font-size: 10px; padding: 1px 6px; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
         .logic-and { background-color: #ef4444; color: white; }
         .logic-or { background-color: #3b82f6; color: white; }
@@ -59,7 +68,16 @@
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6">
                 <div>
-                    <label class="filter-label mb-2">検索ワード</label>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="filter-label">検索ワード</label>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400">本文を含める</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="searchIncludeText" checked onchange="applyFilters()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
                     <input type="text" id="searchInput" placeholder="名前、タグ、ID、効果..." 
                         class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
                 </div>
@@ -195,13 +213,11 @@
             const searchInput = document.getElementById('searchInput');
             searchInput.value = name;
             activeFilters.text = name;
-            if (activeFilters.category.length === 0) {
-                activeFilters.category = ['ホロメン'];
-                document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
-                    if (btn.getAttribute('data-val') === 'ホロメン') btn.classList.add('filter-active');
-                    else btn.classList.remove('filter-active');
-                });
-            }
+            activeFilters.category = ['ホロメン'];
+            document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
+                if (btn.getAttribute('data-val') === 'ホロメン') btn.classList.add('filter-active');
+                else btn.classList.remove('filter-active');
+            });
             closeModal();
             applyFilters();
             document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
@@ -218,23 +234,28 @@
 
         function applyFilters() {
             let result = allCards;
+            const includeText = document.getElementById('searchIncludeText').checked;
             
+            // 1. テキスト検索ロジックの構築
             if (activeFilters.text) {
-                let searchKeys = [];
-                if (activeFilters.category.length > 0) {
-                    searchKeys = ['name'];
-                } else {
-                    searchKeys = ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'];
-                    if (activeFilters.product) searchKeys.push('products');
+                let searchKeys = ['name', 'id', 'tags']; // 基本項目
+                
+                // 本文を含めるスイッチが ON の場合、効果テキスト等を追加
+                if (includeText) {
+                    searchKeys.push('description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect');
                 }
+
                 const tempFuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3 });
                 result = tempFuse.search(activeFilters.text).map(r => r.item);
             }
             
+            // 2. カテゴリフィルタ（厳密一致判定）
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => {
                     const cardCat = c.category || '';
-                    return logiceState.category === 'OR' ? activeFilters.category.includes(cardCat) : activeFilters.category.every(f => cardCat === f);
+                    return logiceState.category === 'OR' 
+                        ? activeFilters.category.includes(cardCat) 
+                        : activeFilters.category.every(f => cardCat === f);
                 });
             }
 
@@ -244,18 +265,16 @@
                 return filterList.every(f => cardValue.includes(f));
             };
 
+            // 3. 属性フィルタ
             if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
             
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
-                    // subKindボタンをクリックした場合の判定：
-                    // kind（種別フィールド）にその文字が含まれているかのみを確認する。
-                    // description（テキスト）は検索対象から除外。
-                    const matchesFilter = (f) => {
-                        return kindValue.includes(f);
-                    };
-                    return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
+                    const matchesFilter = (f) => kindValue.includes(f);
+                    return logiceState.subKind === 'OR' 
+                        ? activeFilters.subKind.some(f => matchesFilter(f)) 
+                        : activeFilters.subKind.every(f => matchesFilter(f));
                 });
             }
 
@@ -265,6 +284,7 @@
                     return cColor === activeFilters.color;
                 });
             }
+
             if (activeFilters.tokkou) {
                 result = result.filter(c => {
                     if (!c.arts || !Array.isArray(c.arts)) return false;
@@ -274,6 +294,7 @@
                     });
                 });
             }
+
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             
@@ -398,6 +419,7 @@
             activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').value = '';
+            document.getElementById('searchIncludeText').checked = true; // デフォルトに戻す
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
             document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4'));
             applyFilters();
@@ -414,10 +436,6 @@
                     const opt = document.createElement('option');
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
-                });
-                fuse = new Fuse(allCards, { 
-                    keys: ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
-                    threshold: 0.3 
                 });
                 renderCards(allCards);
             } catch (e) { console.error(e); }
