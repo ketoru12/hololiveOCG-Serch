@@ -107,6 +107,8 @@
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="イベント">イベント</button>
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="アイテム">アイテム</button>
                         <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="スタッフ">スタッフ</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="マスコット">マスコット</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="subKind" data-val="ファン">ファン</button>
                     </div>
                 </div>
 
@@ -220,21 +222,17 @@
             // 1. テキスト検索
             if (activeFilters.text) {
                 let searchKeys = [];
-                // カードタイプ指定時は「名前」のみ
                 if (activeFilters.category.length > 0) {
                     searchKeys = ['name'];
                 } else {
-                    // 基本検索セットから products を除外。productが選択されている時のみ追加する。
                     searchKeys = ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'];
-                    if (activeFilters.product) {
-                        searchKeys.push('products');
-                    }
+                    if (activeFilters.product) searchKeys.push('products');
                 }
                 const tempFuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3 });
                 result = tempFuse.search(activeFilters.text).map(r => r.item);
             }
             
-            // 2. カードタイプ（カテゴリー）のフィルタリング
+            // 2. カードタイプ
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => {
                     const cardCat = c.category || '';
@@ -254,9 +252,9 @@
                 result = result.filter(c => {
                     const kindValue = (c.kind || '');
                     const matchesFilter = (f) => {
-                        const targetKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ'];
-                        if (targetKeywords.includes(f)) return kindValue.includes(f);
-                        return kindValue.includes(f) || (c.description || '').includes(f);
+                        const targetKeywords = ['LIMITED', 'ツール', 'イベント', 'アイテム', 'スタッフ', 'マスコット', 'ファン'];
+                        if (targetKeywords.includes(f)) return kindValue.includes(f) || (c.description || '').includes(f);
+                        return kindValue.includes(f);
                     };
                     return logiceState.subKind === 'OR' ? activeFilters.subKind.some(f => matchesFilter(f)) : activeFilters.subKind.every(f => matchesFilter(f));
                 });
@@ -417,7 +415,6 @@
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
-                // 初期化時のキーから products を外す
                 fuse = new Fuse(allCards, { 
                     keys: ['name', 'id', 'tags', 'kind', 'description', 'arts.name', 'arts.text', 'skills.text', 'keywordName', 'keywordEffect'], 
                     threshold: 0.3 
