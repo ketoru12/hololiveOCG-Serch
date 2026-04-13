@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 & デッキビルダー 最終完全統合版</title>
+    <title>ホロカ検索システム - ホロメン限定クリック検索版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -80,7 +80,7 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30 transition-all">
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none">
                 </div>
 
                 <div>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="filter-label mb-2">特攻（対色）</label>
+                        <label class="filter-label mb-2">特攻（対象色）</label>
                         <div class="grid grid-cols-6 gap-1">
                             <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
                             <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
@@ -150,7 +150,7 @@
                     </div>
                 </div>
 
-                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg transition-colors hover:text-red-400">フィルターリセット</button>
+                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg">フィルターリセット</button>
             </div>
         </aside>
 
@@ -165,9 +165,9 @@
             <div class="w-full md:w-1/3 shrink-0 text-center">
                 <img id="modalImg" src="" class="w-full rounded-lg shadow-lg mb-6">
                 <div class="bg-slate-100 p-4 rounded-2xl flex items-center justify-around">
-                    <button onclick="changeDeckCount(-1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold">-</button>
+                    <button onclick="changeDeckCount(-1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold hover:bg-slate-50 transition-colors">-</button>
                     <span id="currentCardCount" class="text-3xl font-black text-[#5e5a9b]">0</span>
-                    <button onclick="changeDeckCount(1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold">+</button>
+                    <button onclick="changeDeckCount(1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold hover:bg-slate-50 transition-colors">+</button>
                 </div>
             </div>
             <div class="flex-1">
@@ -189,7 +189,7 @@
             <div id="deckListContent" class="flex-1 overflow-y-auto p-4 bg-white grid grid-cols-5 md:grid-cols-10 gap-2"></div>
             <div class="p-6 border-t bg-slate-50 flex flex-wrap gap-4 items-center justify-between">
                 <div class="text-xl font-bold">合計: <span id="deckTotalStat" class="text-red-500">0</span> / 50 枚</div>
-                <button onclick="copyForDeckLog()" class="bg-orange-500 text-white px-5 py-2 rounded-lg font-bold">DeckLog形式コピー</button>
+                <button onclick="copyForDeckLog()" class="bg-orange-500 text-white px-5 py-2 rounded-lg font-bold shadow-lg hover:bg-orange-600">DeckLog形式コピー</button>
             </div>
         </div>
     </div>
@@ -202,49 +202,25 @@
         let logiceState = { category: 'OR', kind: 'OR' };
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
 
-        // --- 検索システム ---
         function applyFilters() {
-            let result = allCards;
+            let result = [...allCards];
             const includeText = document.getElementById('searchIncludeText').checked;
             
             if (activeFilters.text) {
                 const fuse = new Fuse(allCards, { 
-                    keys: includeText 
-                        ? [{name:'name',weight:1},{name:'id',weight:0.5},{name:'tags',weight:0.7},{name:'description',weight:0.4},{name:'arts.name',weight:0.4},{name:'arts.text',weight:0.4},{name:'skills.text',weight:0.4}] 
-                        : ['name', 'id', 'tags'],
-                    threshold: 0.3,
-                    ignoreLocation: true
+                    keys: includeText ? [{name:'name',weight:1},{name:'id',weight:0.5},{name:'tags',weight:0.7},{name:'description',weight:0.4},{name:'arts.name',weight:0.4},{name:'arts.text',weight:0.4},{name:'skills.text',weight:0.4}] : ['name', 'id', 'tags'],
+                    threshold: 0.3
                 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-
-            if (activeFilters.category.length > 0) {
-                result = result.filter(c => activeFilters.category.includes(c.category));
-            }
-
-            if (activeFilters.color) {
-                result = result.filter(c => c.color && c.color.replace('◇', '無') === activeFilters.color);
-            }
-
+            if (activeFilters.category.length > 0) result = result.filter(c => activeFilters.category.includes(c.category));
+            if (activeFilters.color) result = result.filter(c => c.color && c.color.replace('◇', '無') === activeFilters.color);
             if (activeFilters.kind.length > 0) {
-                result = result.filter(c => {
-                    const ck = c.kind || '';
-                    return logiceState.kind === 'OR' ? activeFilters.kind.some(f => ck.includes(f)) : activeFilters.kind.every(f => ck.includes(f));
-                });
+                result = result.filter(c => logiceState.kind === 'OR' ? activeFilters.kind.some(f => (c.kind||'').includes(f)) : activeFilters.kind.every(f => (c.kind||'').includes(f)));
             }
-
-            if (activeFilters.product) {
-                result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            }
-
-            if (activeFilters.baton.length > 0) {
-                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
-            }
-
-            if (activeFilters.tokkou) {
-                result = result.filter(c => c.arts && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
-            }
-
+            if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
+            if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
+            if (activeFilters.tokkou) result = result.filter(c => c.arts && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
             renderCards(result);
         }
 
@@ -254,16 +230,14 @@
             grid.innerHTML = '';
             cards.forEach(card => {
                 const div = document.createElement('div');
-                div.className = "relative group cursor-pointer hover:-translate-y-1 transition-all";
+                div.className = "relative cursor-pointer hover:-translate-y-1 transition-all";
                 div.onclick = () => showDetail(card.id);
                 const count = deck[card.id] || 0;
-                const badge = count > 0 ? `<div class="deck-badge">${count}</div>` : '';
-                div.innerHTML = `<img src="${card.img}" class="w-full rounded shadow-sm border bg-white">${badge}`;
+                div.innerHTML = `<img src="${card.img}" class="w-full rounded shadow-sm border bg-white">${count > 0 ? `<div class="deck-badge">${count}</div>` : ''}`;
                 grid.appendChild(div);
             });
         }
 
-        // --- 名前のクリック検索 ---
         function jumpToSearch(text) {
             activeFilters.text = text;
             document.getElementById('searchInput').value = text;
@@ -271,7 +245,6 @@
             applyFilters();
         }
 
-        // --- 詳細表示 (推しホロメン表示・タグ検索復元) ---
         function showDetail(cardId) {
             currentEditingId = cardId;
             const card = allCards.find(c => c.id === cardId);
@@ -279,8 +252,15 @@
             
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
-            nameEl.className = "text-2xl font-bold text-[#5e5a9b] clickable-name";
-            nameEl.onclick = () => jumpToSearch(card.name);
+            
+            // 【重要】ホロメンのみクリック検索を有効化
+            if (card.category === "ホロメン" || card.category === "推しホロメン") {
+                nameEl.className = "text-2xl font-bold text-[#5e5a9b] clickable-name";
+                nameEl.onclick = () => jumpToSearch(card.name);
+            } else {
+                nameEl.className = "text-2xl font-bold text-[#5e5a9b]";
+                nameEl.onclick = null;
+            }
 
             document.getElementById('modalId').innerText = card.id;
             document.getElementById('currentCardCount').innerText = deck[cardId] || 0;
@@ -297,19 +277,22 @@
                 details += createRow('ライフ', card.value, 'oshi-pill');
                 if (card.skills) {
                     card.skills.forEach(sk => {
-                        const skillLabel = sk.name.includes("SP") ? "SP推しスキル" : "常時スキル";
-                        const pillClass = sk.name.includes("SP") ? "oshi-pill" : "skill-pill";
-                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill ${pillClass}">${skillLabel}</span><div class="value-box"><div class="font-black">${sk.name}</div><div class="text-xs text-slate-500">${sk.text}</div></div></div>`;
+                        const isSP = sk.name.includes("SP");
+                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill ${isSP ? 'oshi-pill':'skill-pill'}">${isSP ? 'SP推しスキル':'常時スキル'}</span><div class="value-box"><div class="font-black text-red-600">${sk.name}</div><div class="text-xs text-slate-500">${sk.text}</div></div></div>`;
                     });
                 }
-            } else if (card.category === "ホロメン") {
-                details += createRow('HP', card.value);
-                details += createRow('Bloom', card.kind);
-                details += createRow('バトン', String(card.baton_touch));
+            } else {
+                if (card.category === "ホロメン") {
+                    details += createRow('HP', card.value);
+                    details += createRow('Bloom', card.kind);
+                    details += createRow('バトン', String(card.baton_touch));
+                }
                 if (card.arts) {
                     card.arts.forEach(art => {
                         const icons = art.icons ? art.icons.split(',').map(i => `<span class="badge-base ${colorClassMap[i.trim()] || 'color-none'} mr-1 text-[10px]">${i.trim()}</span>`).join('') : '';
-                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div>${icons}<span class="font-black">${art.name} ${art.damage}</span></div><div class="text-xs text-slate-500">${art.text}</div></div></div>`;
+                        let artBody = `<div class="font-black text-blue-800">${icons}${art.name} ${art.damage}</div><div class="text-xs text-slate-500">${art.text}</div>`;
+                        if (art.tokkou && art.tokkou_text) artBody += `<div class="text-[10px] text-red-500 font-bold mt-1">【特攻】${art.tokkou}: ${art.tokkou_text}</div>`;
+                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box">${artBody}</div></div>`;
                     });
                 }
             }
@@ -324,9 +307,7 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        // --- デッキ & UI操作 ---
         function changeDeckCount(delta) {
-            if (!currentEditingId) return;
             const card = allCards.find(c => c.id === currentEditingId);
             const limit = card.category === "推しホロメン" ? 1 : 4;
             const val = Math.max(0, Math.min(limit, (deck[currentEditingId] || 0) + delta));
@@ -342,15 +323,6 @@
             applyFilters();
         }
 
-        document.getElementById('resetFilters').onclick = () => {
-            activeFilters = { text: '', category: [], kind: [], color: '', product: '', baton: [], tokkou: '' };
-            document.getElementById('searchInput').value = '';
-            document.getElementById('filterProduct').selectedIndex = 0;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-            applyFilters();
-        };
-
         function toggleLogic(group) {
             logiceState[group] = logiceState[group] === 'OR' ? 'AND' : 'OR';
             const el = document.getElementById(`logic-${group}`);
@@ -360,12 +332,11 @@
         }
 
         function copyForDeckLog() {
-            let txt = "";
-            for (const [id, count] of Object.entries(deck)) txt += `${id}×${count}\n`;
+            let txt = ""; Object.entries(deck).forEach(([id, count]) => txt += `${id}×${count}\n`);
             navigator.clipboard.writeText(txt).then(() => alert("DeckLog形式でコピーしました"));
         }
 
-        function closeModal() { document.getElementById('modal').classList.remove('active'); currentEditingId = null; }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
         function closeDeckModal() { document.getElementById('deckModal').classList.remove('active'); }
         function openDeckModal() {
             const content = document.getElementById('deckListContent');
@@ -387,18 +358,15 @@
         }
 
         async function init() {
-            try {
-                const res = await fetch('./master_cards.json');
-                allCards = await res.json();
-                const pSelect = document.getElementById('filterProduct');
-                const pSet = new Set();
-                allCards.forEach(c => c.products?.forEach(p => pSet.add(p)));
-                pSet.forEach(p => { const o = document.createElement('option'); o.value = o.textContent = p; pSelect.appendChild(o); });
-                applyFilters();
-            } catch (e) { console.error("Data load error:", e); }
+            const res = await fetch('./master_cards.json');
+            allCards = await res.json();
+            const pSelect = document.getElementById('filterProduct');
+            const pSet = new Set();
+            allCards.forEach(c => c.products?.forEach(p => pSet.add(p)));
+            pSet.forEach(p => { const o = document.createElement('option'); o.value = o.textContent = p; pSelect.appendChild(o); });
+            applyFilters();
         }
 
-        // イベントリスナー
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -413,17 +381,15 @@
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.onclick = () => {
                 const type = btn.dataset.type; const val = btn.dataset.val;
-                if (activeFilters[type] === val) {
-                    activeFilters[type] = '';
-                    btn.classList.remove('ring-4', 'ring-[#5e5a9b]/50');
-                } else {
+                if (activeFilters[type] === val) { activeFilters[type] = ''; btn.classList.remove('ring-4', 'ring-[#5e5a9b]/50'); }
+                else {
                     document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-                    activeFilters[type] = val; 
-                    btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
+                    activeFilters[type] = val; btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
                 }
                 applyFilters();
             };
         });
+        document.getElementById('resetFilters').onclick = () => location.reload();
         init();
     </script>
 </body>
