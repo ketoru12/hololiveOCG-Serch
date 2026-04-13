@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 & デッキビルダー</title>
+    <title>ホロカ検索 & デッキビルダー 完全版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -13,13 +13,8 @@
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
-        .clickable-name { cursor: pointer; transition: color 0.2s; }
-        .clickable-name:hover { color: #4a4682; text-decoration: underline; }
-        .non-clickable-name { cursor: default; }
         .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .tag-item-pill:hover { background-color: #4a4682; transform: scale(1.05); }
-        .product-pill { background-color: #6366f1; }
-        .kind-pill { background-color: #64748b; }
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
@@ -40,23 +35,20 @@
         .logic-toggle { font-size: 10px; padding: 1px 6px; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
         .logic-and { background-color: #ef4444; color: white; }
         .logic-or { background-color: #3b82f6; color: white; }
-
+        
+        #modal, #deckModal { display: none; }
+        #modal.active, #deckModal.active { display: flex; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .deck-badge { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); pointer-events: none; z-index: 10; }
         @media (max-width: 768px) {
             #filterSidebar { position: fixed; bottom: 0; left: 0; right: 0; height: 85vh; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 200; border-radius: 20px 20px 0 0; }
             #filterSidebar.mobile-open { transform: translateY(0); }
             #filterOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; backdrop-filter: blur(2px); }
             #filterOverlay.active { display: block; }
         }
-
-        #modal, #deckModal { display: none; }
-        #modal.active, #deckModal.active { display: flex; animation: fadeIn 0.2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .deck-badge { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); pointer-events: none; z-index: 10; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
-
     <div id="filterOverlay" onclick="toggleMobileFilter()"></div>
 
     <button onclick="openDeckModal()" class="fixed bottom-6 right-6 z-[100] bg-red-500 text-white px-6 py-4 rounded-full shadow-2xl font-bold flex items-center gap-3 hover:scale-105 transition-transform">
@@ -171,9 +163,9 @@
             <div class="w-full md:w-1/3 shrink-0 text-center">
                 <img id="modalImg" src="" class="w-full rounded-lg shadow-lg mb-6">
                 <div class="bg-slate-100 p-4 rounded-2xl flex items-center justify-around">
-                    <button onclick="changeDeckCount(-1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold hover:bg-slate-50">-</button>
+                    <button onclick="changeDeckCount(-1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold">-</button>
                     <span id="currentCardCount" class="text-3xl font-black text-[#5e5a9b]">0</span>
-                    <button onclick="changeDeckCount(1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold hover:bg-slate-50">+</button>
+                    <button onclick="changeDeckCount(1)" class="w-12 h-12 bg-white rounded-full shadow text-2xl font-bold">+</button>
                 </div>
             </div>
             <div class="flex-1">
@@ -209,9 +201,9 @@
         let currentEditingId = null;
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
-        const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none' };
+        const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
 
-        // --- 検索システム (ロジック完全統合) ---
+        // --- 検索ロジック ---
         function applyFilters() {
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
@@ -226,21 +218,35 @@
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
             }
+
+            // 色フィルター：色情報がないサポートカードを厳密に除外
             if (activeFilters.color) {
-                result = result.filter(c => (c.color || '無').replace('◇','無') === activeFilters.color);
+                result = result.filter(c => {
+                    if (!c.color) return false;
+                    const cColor = c.color.replace('◇', '無');
+                    return cColor === activeFilters.color;
+                });
             }
+
             if (activeFilters.kind.length > 0) {
-                result = result.filter(c => logiceState.kind === 'OR' ? activeFilters.kind.some(f => (c.kind || '').includes(f)) : activeFilters.kind.every(f => (c.kind || '').includes(f)));
+                result = result.filter(c => {
+                    const cKind = c.kind || '';
+                    return logiceState.kind === 'OR' ? activeFilters.kind.some(f => cKind.includes(f)) : activeFilters.kind.every(f => cKind.includes(f));
+                });
             }
+
             if (activeFilters.tokkou) {
                 result = result.filter(c => c.arts && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
             }
+
             if (activeFilters.baton.length > 0) {
                 result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             }
+
             if (activeFilters.product) {
                 result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
+
             renderCards(result);
         }
 
@@ -259,7 +265,7 @@
             });
         }
 
-        // --- 詳細表示 (リッチUI完全統合) ---
+        // --- 詳細表示 ---
         function showDetail(cardId) {
             currentEditingId = cardId;
             const card = allCards.find(c => c.id === cardId);
@@ -274,11 +280,11 @@
                 return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
             };
 
-            details += createRow('カードタイプ', card.category);
+            details += createRow('タイプ', card.category);
             if (card.category === "ホロメン") {
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
-                details += createRow('バトンタッチ', String(card.baton_touch));
+                details += createRow('バトン', String(card.baton_touch));
             }
             if (card.arts) {
                 card.arts.forEach(art => {
@@ -286,20 +292,19 @@
                     details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div>${icons}<span class="font-black">${art.name} ${art.damage}</span></div><div class="text-xs text-slate-500">${art.text}</div></div></div>`;
                 });
             }
-            if (card.description) details += createRow('能力テキスト', card.description);
+            if (card.description) details += createRow('テキスト', card.description);
             if (card.tags) details += createRow('タグ', card.tags.join(' '));
             
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
         }
 
-        // --- デッキ & UI操作 ---
+        // --- デッキ操作 ---
         function changeDeckCount(delta) {
             if (!currentEditingId) return;
             const card = allCards.find(c => c.id === currentEditingId);
             const limit = card.category === "推しホロメン" ? 1 : 4;
-            const next = (deck[currentEditingId] || 0) + delta;
-            const val = Math.max(0, Math.min(limit, next));
+            const val = Math.max(0, Math.min(limit, (deck[currentEditingId] || 0) + delta));
             if (val === 0) delete deck[currentEditingId]; else deck[currentEditingId] = val;
             updateDeckTotal();
         }
@@ -312,8 +317,10 @@
             applyFilters();
         }
 
+        // --- フィルターリセット (デッキ維持) ---
         document.getElementById('resetFilters').onclick = () => {
             activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
+            logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').selectedIndex = 0;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
@@ -345,8 +352,7 @@
                 const card = allCards.find(c => c.id === id);
                 for(let i=0; i<count; i++) {
                     const img = document.createElement('img');
-                    img.src = card.img;
-                    img.className = "w-full rounded border";
+                    img.src = card.img; img.className = "w-full rounded border";
                     content.appendChild(img);
                 }
             });
