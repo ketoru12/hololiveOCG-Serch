@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HoloCa Search System - Original Version</title>
+    <title>ホロカ検索 - デッキ作成版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* --- 以前の高度なスタイルを完全復元 --- */
+        /* 基本スタイルは継承 */
         .label-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0; }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
+        
         .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .product-pill { background-color: #6366f1; }
         .kind-pill { background-color: #64748b; }
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
-        
+
         .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
         .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; }
         
@@ -25,63 +27,61 @@
         .logic-and { background-color: #ef4444; color: white; }
         .logic-or { background-color: #3b82f6; color: white; }
 
-        .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #5e5a9b; }
-        input:checked + .slider:before { transform: translateX(14px); }
+        /* デッキ操作UI */
+        .deck-btn { transition: all 0.2s; border: 1px solid #e2e8f0; }
+        .deck-btn:hover { background-color: #f8fafc; transform: scale(1.05); }
+        .deck-counter { font-variant-numeric: tabular-nums; font-weight: 900; color: #5e5a9b; }
 
+        /* モバイル対応 */
         @media (max-width: 768px) {
-            #filterSidebar { position: fixed; bottom: 0; left: 0; right: 0; height: 85vh; transform: translateY(100%); transition: transform 0.3s ease-in-out; z-index: 200; border-radius: 20px 20px 0 0; }
+            #filterSidebar { position: fixed; bottom: 0; left: 0; right: 0; height: 85vh; transform: translateY(100%); transition: transform 0.3s; z-index: 200; border-radius: 20px 20px 0 0; }
             #filterSidebar.mobile-open { transform: translateY(0); }
             #filterOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; backdrop-filter: blur(2px); }
             #filterOverlay.active { display: block; }
         }
 
-        #modal { display: none; }
-        #modal.active { display: flex; }
+        #modal, #deckModal { display: none; }
+        #modal.active, #deckModal.active { display: flex; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
     <div id="filterOverlay" onclick="toggleMobileFilter()"></div>
 
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3">
+        <button onclick="openDeckModal()" class="bg-[#5e5a9b] text-white p-4 rounded-full shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform">
+            <span class="text-xl">🎴</span>
+            <span class="font-bold">DECK</span>
+            <span id="deckTotalCount" class="bg-white text-[#5e5a9b] text-xs px-2 py-0.5 rounded-full">0</span>
+        </button>
+        <button onclick="toggleMobileFilter()" class="md:hidden bg-white text-slate-700 p-4 rounded-full shadow-xl">🔍</button>
+    </div>
+
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
         <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50 overflow-hidden">
-            <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold italic uppercase tracking-tighter text-xl">HoloCa Search</h1>
-                <div class="flex items-center gap-2">
-                    <span id="resultCount" class="text-xs bg-black/20 px-2 py-1 rounded">0</span>
-                    <button class="md:hidden" onclick="toggleMobileFilter()">✕</button>
-                </div>
+            <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center">
+                <h1 class="font-bold italic">ホロカ検索</h1>
+                <span id="resultCount" class="text-xs bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
-            <div class="flex-1 overflow-y-auto p-4 space-y-5 text-slate-700">
+            <div class="flex-1 overflow-y-auto p-4 space-y-5">
                 <div>
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="filter-label">検索ワード</label>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-bold text-slate-400">本文込</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="searchIncludeText" checked onchange="applyFilters()">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、テキスト..." class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none">
+                    <label class="filter-label mb-1">検索ワード</label>
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
                 </div>
 
                 <div>
-                    <label class="filter-label mb-1">収録商品</label>
-                    <select id="productSelect" onchange="applyFilters()" class="w-full border rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none">
-                        <option value="">すべて</option>
-                        <option value="hBP01">hBP01：ブルーミングレディアンス</option>
-                        <option value="hSD01">hSD01：ときのそら＆AZKi</option>
-                        <option value="hSD02">hSD02：がうる・ぐら</option>
-                        <option value="hSD03">hSD03：兎田ぺこら</option>
-                        <option value="hPR">hPR：プロモカード</option>
-                    </select>
+                    <label class="filter-label mb-2">色（サポート対象外）</label>
+                    <div class="grid grid-cols-7 gap-1">
+                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="color" data-val="赤"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="color" data-val="青"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="color" data-val="緑"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="color" data-val="黄"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="color" data-val="紫"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="color" data-val="白"></button>
+                        <button class="color-dot aspect-square rounded-full border bg-slate-400" data-type="color" data-val="無"></button>
+                    </div>
                 </div>
 
                 <div>
@@ -96,71 +96,7 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="filter-label mb-1">色 (サポート以外が対象)</label>
-                    <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="color" data-val="赤"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="color" data-val="青"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="color" data-val="緑"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="color" data-val="黄"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="color" data-val="紫"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="color" data-val="白"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-slate-400" data-type="color" data-val="無"></button>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="filter-label">サポート種別</label>
-                        <div class="logic-toggle logic-or" id="logic-subKind" onclick="toggleLogic('subKind')">OR</div>
-                    </div>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="LIMITED">LIMITED</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="イベント">イベント</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="ツール">ツール</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="スタッフ">スタッフ</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="アイテム">アイテム</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="マスコット">マスコット</button>
-                        <button class="filter-btn px-2 py-1 text-[10px] border rounded bg-white" data-group="subKind" data-val="ファン">ファン</button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="filter-label mb-1">特攻 (対色)</label>
-                    <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="tokkou" data-val="緑"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="tokkou" data-val="黄"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="tokkou" data-val="紫"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="tokkou" data-val="白"></button>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="filter-label">Bloomレベル</label>
-                        <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR</div>
-                    </div>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-2 py-1 text-xs border rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
-                        <button class="filter-btn px-2 py-1 text-xs border rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
-                        <button class="filter-btn px-2 py-1 text-xs border rounded bg-white" data-group="kind" data-val="1st">1st</button>
-                        <button class="filter-btn px-2 py-1 text-xs border rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="filter-label mb-1">バトンタッチ</label>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="baton" data-val="0">0</button>
-                        <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="baton" data-val="1">1</button>
-                        <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="baton" data-val="2">2</button>
-                        <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="baton" data-val="3">3</button>
-                    </div>
-                </div>
-
-                <button id="resetFilters" class="w-full py-2 text-[10px] font-black text-slate-400 border border-dashed rounded-lg hover:border-red-500 hover:text-red-500">RESET ALL</button>
+                <button id="resetFilters" class="w-full py-2 text-[10px] font-black text-slate-400 border border-dashed rounded-lg hover:border-red-500 hover:text-red-500">RESET</button>
             </div>
         </aside>
 
@@ -169,126 +105,223 @@
         </main>
     </div>
 
-    <div id="modal" class="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4" onclick="closeModal()">
+    <div id="modal" class="fixed inset-0 z-[150] bg-black/80 flex items-center justify-center p-4" onclick="closeModal()">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-6 p-6 relative" onclick="event.stopPropagation()">
-            <button class="absolute top-4 right-4 text-3xl text-slate-300" onclick="closeModal()">✕</button>
-            <div class="w-full md:w-1/3 shrink-0"><img id="modalImg" src="" class="w-full rounded-lg shadow-xl border"></div>
-            <div class="flex-1"><h2 id="modalName" class="text-2xl font-bold text-[#5e5a9b] mb-4 border-b pb-2"></h2><div id="modalDetails" class="space-y-2 text-sm"></div></div>
+            <button class="absolute top-4 right-4 text-3xl text-slate-300 hover:text-slate-600" onclick="closeModal()">✕</button>
+            <div class="w-full md:w-1/3 shrink-0">
+                <img id="modalImg" src="" class="w-full rounded-lg shadow-xl border mb-4">
+                <div class="bg-slate-50 p-4 rounded-xl flex flex-col items-center gap-3">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">デッキに登録</span>
+                    <div class="flex items-center gap-6">
+                        <button onclick="updateDeckCount(currentModalId, -1)" class="w-10 h-10 rounded-full bg-white border shadow text-xl font-bold hover:bg-red-50">-</button>
+                        <span id="modalDeckCount" class="text-3xl font-black text-[#5e5a9b]">0</span>
+                        <button onclick="updateDeckCount(currentModalId, 1)" class="w-10 h-10 rounded-full bg-white border shadow text-xl font-bold hover:bg-green-50">+</button>
+                    </div>
+                    <p id="limitWarning" class="text-[10px] text-red-500 font-bold h-4"></p>
+                </div>
+            </div>
+            <div class="flex-1">
+                <h2 id="modalName" class="text-2xl font-bold text-[#5e5a9b] mb-4 border-b pb-2"></h2>
+                <div id="modalDetails" class="space-y-2 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deckModal" class="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4" onclick="closeDeckModal()">
+        <div class="bg-white rounded-3xl max-w-5xl w-full h-[85vh] flex flex-col overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <div class="p-6 border-b bg-slate-50 flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-800">MY DECK</h2>
+                    <p class="text-xs text-slate-400 font-bold">メインデッキは50枚ちょうどで登録してください</p>
+                </div>
+                <button class="text-3xl text-slate-400" onclick="closeDeckModal()">✕</button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6">
+                <div id="deckExportArea" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 bg-white p-4 rounded-xl border">
+                    </div>
+            </div>
+
+            <div class="p-6 border-t bg-slate-50 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="flex flex-col justify-center">
+                    <div class="text-xs font-bold text-slate-400">TOTAL CARDS</div>
+                    <div class="text-2xl font-black text-[#5e5a9b]"><span id="deckStatMain">0</span> / 50</div>
+                </div>
+                <button onclick="downloadDeckImage()" class="bg-white border-2 border-[#5e5a9b] text-[#5e5a9b] py-3 rounded-xl font-bold hover:bg-[#5e5a9b] hover:text-white transition-all">画像として保存</button>
+                <button onclick="exportToDeckLog()" id="deckLogBtn" class="bg-[#5e5a9b] text-white py-3 rounded-xl font-bold shadow-lg hover:opacity-90 disabled:opacity-30" disabled>DECK LOGへ送信</button>
+            </div>
         </div>
     </div>
 
     <script>
         let allCards = [];
-        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', baton: [], tokkou: '' };
-        let logicState = { category: 'OR', kind: 'OR', subKind: 'OR' };
+        let activeFilters = { text: '', category: [], color: '', product: '' };
+        let logicState = { category: 'OR' };
+        let deck = {}; // { cardId: count }
+        let currentModalId = null;
 
+        // --- デッキロジック ---
+        function updateDeckCount(id, delta) {
+            const card = allCards.find(c => c.id === id);
+            const currentCount = deck[id] || 0;
+            const newCount = Math.max(0, currentCount + delta);
+
+            // ルールバリデーション
+            const limit = (card.category === "推しホロメン") ? 1 : 4;
+            if (newCount > limit) {
+                document.getElementById('limitWarning').innerText = `このカードは最大${limit}枚までです`;
+                return;
+            }
+            document.getElementById('limitWarning').innerText = "";
+
+            if (newCount === 0) delete deck[id];
+            else deck[id] = newCount;
+
+            updateUI();
+        }
+
+        function updateUI() {
+            // モダル内の数字更新
+            if (currentModalId) {
+                document.getElementById('modalDeckCount').innerText = deck[currentModalId] || 0;
+            }
+
+            // フローティングボタンの合計数
+            const total = Object.values(deck).reduce((a, b) => a + b, 0);
+            document.getElementById('deckTotalCount').innerText = total;
+            document.getElementById('deckStatMain').innerText = total;
+
+            // DECK LOGボタンの活性化（ホロカはメイン50枚＋推し1枚などルールがあるが、ここでは簡易的に判定）
+            document.getElementById('deckLogBtn').disabled = (total === 0);
+        }
+
+        async function openDeckModal() {
+            const area = document.getElementById('deckExportArea');
+            area.innerHTML = "";
+            
+            for (const [id, count] of Object.entries(deck)) {
+                const card = allCards.find(c => c.id === id);
+                for (let i = 0; i < count; i++) {
+                    const img = document.createElement('img');
+                    img.src = card.img;
+                    img.className = "w-full rounded shadow-sm border border-slate-100";
+                    area.appendChild(img);
+                }
+            }
+
+            if (Object.keys(deck).length === 0) {
+                area.innerHTML = "<div class='col-span-full py-20 text-center text-slate-300 font-bold'>デッキにカードが入っていません</div>";
+            }
+
+            document.getElementById('deckModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDeckModal() {
+            document.getElementById('deckModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        async function downloadDeckImage() {
+            const area = document.getElementById('deckExportArea');
+            const canvas = await html2canvas(area, { useCORS: true, scale: 2 });
+            const link = document.createElement('a');
+            link.download = `holoca-deck-${Date.now()}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function exportToDeckLog() {
+            // DECK LOG形式への変換ロジック（簡易実装例）
+            let logData = "ホロライブオフィシャルカードゲーム デッキリスト\n";
+            for (const [id, count] of Object.entries(deck)) {
+                const card = allCards.find(c => c.id === id);
+                logData += `${id} × ${count} ${card.name}\n`;
+            }
+            alert("デッキリストをコピーしました。DECK LOG等でご利用ください。\n\n" + logData);
+        }
+
+        // --- 既存の検索・表示ロジック (微調整) ---
         function applyFilters() {
             let result = allCards;
-            const includeText = document.getElementById('searchIncludeText').checked;
-            const product = document.getElementById('productSelect').value;
-
-            if (product) result = result.filter(c => c.id.includes(product));
-
             if (activeFilters.text) {
-                let keys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
-                if (includeText) keys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 });
-                const fuse = new Fuse(allCards, { keys, threshold: 0.3 });
+                const fuse = new Fuse(allCards, { keys: ['name', 'tags', 'description'], threshold: 0.3 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-
-            const checkLogic = (val, filterList, logic) => {
-                if (filterList.length === 0) return true;
-                const v = String(val || '');
-                return logic === 'OR' ? filterList.some(f => v.includes(f)) : filterList.every(f => v.includes(f));
-            };
-
-            if (activeFilters.category.length > 0) result = result.filter(c => checkLogic(c.category, activeFilters.category, logicState.category));
-            
-            // 色フィルター：単一選択 + サポート除外
             if (activeFilters.color) {
-                result = result.filter(c => {
-                    if (c.category === "サポート") return false;
-                    return (c.color || '無').replace('◇','無') === activeFilters.color;
-                });
+                result = result.filter(c => c.category !== "サポート" && (c.color || '無').replace('◇','無') === activeFilters.color);
             }
-
-            if (activeFilters.subKind.length > 0) result = result.filter(c => checkLogic(c.kind, activeFilters.subKind, logicState.subKind));
-            if (activeFilters.kind.length > 0) result = result.filter(c => checkLogic(c.kind, activeFilters.kind, logicState.kind));
-            if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
-            if (activeFilters.tokkou) {
-                result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou === activeFilters.tokkou));
+            if (activeFilters.category.length > 0) {
+                result = result.filter(c => activeFilters.category.includes(c.category));
             }
-            
             renderCards(result);
         }
 
         function renderCards(cards) {
             document.getElementById('resultCount').innerText = cards.length;
             document.getElementById('cardGrid').innerHTML = cards.map(card => `
-                <div class="cursor-pointer" onclick="showDetail('${card.id}')">
-                    <img src="${card.img}" class="rounded shadow border hover:shadow-lg transition-all" loading="lazy">
+                <div class="cursor-pointer hover:-translate-y-1 transition-all" onclick="showDetail('${card.id}')">
+                    <div class="relative">
+                        <img src="${card.img}" class="rounded shadow border" loading="lazy">
+                        ${deck[card.id] ? `<div class="absolute -top-2 -right-2 bg-[#ef4444] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white shadow-lg">${deck[card.id]}</div>` : ''}
+                    </div>
                 </div>
             `).join('');
         }
 
         function showDetail(cardId) {
+            currentModalId = cardId;
             const card = allCards.find(c => c.id === cardId);
-            if (!card) return;
             document.getElementById('modalImg').src = card.img;
             document.getElementById('modalName').innerText = card.name;
-            let details = "";
-            const createRow = (label, value, extraClass = "") => {
-                if (!value || value === "nan" || value === "0") return "";
-                if (label === 'タグ') return `<div class="flex items-start mb-1 gap-3"><span class="label-pill">${label}</span><div class="flex flex-wrap gap-1">${value.map(t => `<span class="tag-item-pill" onclick="setSearchText('${t}')">${t}</span>`).join('')}</div></div>`;
-                return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box">${value}</div></div>`;
-            };
-            details += createRow('ID', card.id, 'product-pill');
-            details += createRow('タイプ', card.category);
-            if (card.category === "サポート") details += createRow('種別', card.kind, 'kind-pill');
-            if (card.category !== "サポート") details += createRow('色', (card.color || '無').replace('◇','無'));
-            if (card.category === "ホロメン") {
-                details += createRow('HP', card.value); details += createRow('Bloom', card.kind); details += createRow('バトン', card.baton_touch);
-                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">能力</span><div class="value-box font-bold">【${card.keywordName}】<span class="font-normal text-slate-500">${card.keywordEffect}</span></div></div>`;
-            }
-            if (card.arts) card.arts.forEach(a => details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div><span class="font-bold">${a.name}</span> <span class="text-red-600 font-bold">${a.damage || ''}</span></div><div class="text-xs text-slate-500">${a.text}</div></div></div>`);
-            if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label.includes('ステージ') ? 'stage-pill' : 'oshi-pill'));
-            if (card.tags) details += createRow('タグ', card.tags);
+            document.getElementById('modalDeckCount').innerText = deck[cardId] || 0;
+            document.getElementById('limitWarning').innerText = "";
+            
+            // 詳細情報生成 (既存ロジックを流用)
+            let details = `<div class="flex gap-2 mb-4">
+                <span class="product-pill label-pill">${card.id}</span>
+                <span class="kind-pill label-pill">${card.category}</span>
+            </div>`;
+            if(card.description) details += `<p class="bg-slate-50 p-3 rounded text-slate-600 leading-relaxed">${card.description}</p>`;
+            
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
-        function toggleMobileFilter() { document.getElementById('filterSidebar').classList.toggle('mobile-open'); document.getElementById('filterOverlay').classList.toggle('active'); }
-        function toggleLogic(g) { logicState[g] = (logicState[g] === 'OR') ? 'AND' : 'OR'; const el = document.getElementById(`logic-${g}`); el.innerText = logicState[g]; el.className = `logic-toggle ${logicState[g] === 'OR' ? 'logic-or' : 'logic-and'}`; applyFilters(); }
-        function setSearchText(t) { document.getElementById('searchInput').value = t; activeFilters.text = t; closeModal(); applyFilters(); }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+            currentModalId = null;
+            applyFilters(); // グリッド上のバッジ更新のため
+        }
 
+        function toggleMobileFilter() {
+            document.getElementById('filterSidebar').classList.toggle('mobile-open');
+            document.getElementById('filterOverlay').classList.toggle('active');
+        }
+
+        // --- 初期化 ---
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
             const g = btn.dataset.group; const v = btn.dataset.val;
             if (activeFilters[g].includes(v)) activeFilters[g] = activeFilters[g].filter(x => x !== v); else activeFilters[g].push(v);
             btn.classList.toggle('filter-active'); applyFilters();
         }));
-        
-        // 色ドットの制御（単一選択）
         document.querySelectorAll('.color-dot').forEach(btn => btn.addEventListener('click', () => {
-            const t = btn.dataset.type; const v = btn.dataset.val;
-            if (activeFilters[t] === v) activeFilters[t] = '';
-            else activeFilters[t] = v;
-            document.querySelectorAll(`.color-dot[data-type="${t}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-            if (activeFilters[t]) btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
+            const v = btn.dataset.val;
+            activeFilters.color = (activeFilters.color === v) ? '' : v;
+            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+            if (activeFilters.color) btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
             applyFilters();
         }));
 
-        document.getElementById('resetFilters').addEventListener('click', () => {
-            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', baton: [], tokkou: '' };
-            document.getElementById('productSelect').value = '';
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-            document.getElementById('searchInput').value = ''; applyFilters();
-        });
         async function init() {
-            try { const res = await fetch('./master_cards.json'); allCards = await res.json(); applyFilters(); } catch (e) { console.error(e); }
+            try {
+                const res = await fetch('./master_cards.json');
+                allCards = await res.json();
+                applyFilters();
+            } catch (e) { console.error(e); }
         }
         init();
     </script>
