@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 & デッキビルダー 完全版</title>
+    <title>ホロカ検索 & デッキビルダー 最終完全統合版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -80,7 +80,7 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none">
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30 transition-all">
                 </div>
 
                 <div>
@@ -91,7 +91,10 @@
                 </div>
 
                 <div>
-                    <label class="filter-label mb-2">タイプ</label>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="filter-label">タイプ</label>
+                        <div class="logic-toggle logic-or" id="logic-category" onclick="toggleLogic('category')">OR検索</div>
+                    </div>
                     <div class="flex flex-wrap gap-1">
                         <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
                         <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
@@ -112,7 +115,42 @@
                     </div>
                 </div>
 
-                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg">フィルターリセット</button>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="filter-label">Bloomレベル</label>
+                        <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR検索</div>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="1st">1st</button>
+                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-2 border-t">
+                    <div>
+                        <label class="filter-label mb-2">バトンタッチ</label>
+                        <div class="flex gap-1">
+                            <button class="filter-btn px-4 py-1 border rounded bg-white text-xs" data-group="baton" data-val="0">0</button>
+                            <button class="filter-btn px-4 py-1 border rounded bg-white text-xs" data-group="baton" data-val="1">1</button>
+                            <button class="filter-btn px-4 py-1 border rounded bg-white text-xs" data-group="baton" data-val="2">2</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="filter-label mb-2">特攻（対色）</label>
+                        <div class="grid grid-cols-6 gap-1">
+                            <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
+                            <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
+                            <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="tokkou" data-val="緑"></button>
+                            <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="tokkou" data-val="黄"></button>
+                            <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="tokkou" data-val="紫"></button>
+                            <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="tokkou" data-val="白"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg transition-colors hover:text-red-400">フィルターリセット</button>
             </div>
         </aside>
 
@@ -151,9 +189,7 @@
             <div id="deckListContent" class="flex-1 overflow-y-auto p-4 bg-white grid grid-cols-5 md:grid-cols-10 gap-2"></div>
             <div class="p-6 border-t bg-slate-50 flex flex-wrap gap-4 items-center justify-between">
                 <div class="text-xl font-bold">合計: <span id="deckTotalStat" class="text-red-500">0</span> / 50 枚</div>
-                <div class="flex gap-2">
-                    <button onclick="copyForDeckLog()" class="bg-orange-500 text-white px-5 py-2 rounded-lg font-bold">DeckLog形式コピー</button>
-                </div>
+                <button onclick="copyForDeckLog()" class="bg-orange-500 text-white px-5 py-2 rounded-lg font-bold">DeckLog形式コピー</button>
             </div>
         </div>
     </div>
@@ -162,30 +198,53 @@
         let allCards = [];
         let deck = {}; 
         let currentEditingId = null;
-        let activeFilters = { text: '', category: [], kind: [], color: '', product: '' };
-        let logiceState = { category: 'OR' };
+        let activeFilters = { text: '', category: [], kind: [], color: '', product: '', baton: [], tokkou: '' };
+        let logiceState = { category: 'OR', kind: 'OR' };
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
 
-        // --- 検索ロジック ---
+        // --- 検索システム ---
         function applyFilters() {
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
+            
             if (activeFilters.text) {
                 const fuse = new Fuse(allCards, { 
-                    keys: includeText ? ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text', 'skills.text'] : ['name', 'id', 'tags'],
-                    threshold: 0.3 
+                    keys: includeText 
+                        ? [{name:'name',weight:1},{name:'id',weight:0.5},{name:'tags',weight:0.7},{name:'description',weight:0.4},{name:'arts.name',weight:0.4},{name:'arts.text',weight:0.4},{name:'skills.text',weight:0.4}] 
+                        : ['name', 'id', 'tags'],
+                    threshold: 0.3,
+                    ignoreLocation: true
                 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
+
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => activeFilters.category.includes(c.category));
             }
+
             if (activeFilters.color) {
                 result = result.filter(c => c.color && c.color.replace('◇', '無') === activeFilters.color);
             }
+
+            if (activeFilters.kind.length > 0) {
+                result = result.filter(c => {
+                    const ck = c.kind || '';
+                    return logiceState.kind === 'OR' ? activeFilters.kind.some(f => ck.includes(f)) : activeFilters.kind.every(f => ck.includes(f));
+                });
+            }
+
             if (activeFilters.product) {
                 result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
+
+            if (activeFilters.baton.length > 0) {
+                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
+            }
+
+            if (activeFilters.tokkou) {
+                result = result.filter(c => c.arts && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
+            }
+
             renderCards(result);
         }
 
@@ -204,7 +263,15 @@
             });
         }
 
-        // --- 詳細表示 (推しホロメン専用ロジックを完全復元) ---
+        // --- 名前のクリック検索 ---
+        function jumpToSearch(text) {
+            activeFilters.text = text;
+            document.getElementById('searchInput').value = text;
+            closeModal();
+            applyFilters();
+        }
+
+        // --- 詳細表示 (推しホロメン表示・タグ検索復元) ---
         function showDetail(cardId) {
             currentEditingId = cardId;
             const card = allCards.find(c => c.id === cardId);
@@ -224,12 +291,9 @@
                 return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
             };
 
-            // 1. タイプ
             details += createRow('タイプ', card.category);
 
-            // 2. カテゴリ別の表示切り替え
             if (card.category === "推しホロメン") {
-                // 推しホロメン専用
                 details += createRow('ライフ', card.value, 'oshi-pill');
                 if (card.skills) {
                     card.skills.forEach(sk => {
@@ -239,7 +303,6 @@
                     });
                 }
             } else if (card.category === "ホロメン") {
-                // 通常ホロメン専用
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
                 details += createRow('バトン', String(card.baton_touch));
@@ -251,7 +314,6 @@
                 }
             }
 
-            // 3. 共通項目 (テキスト・タグ)
             if (card.description) details += createRow('テキスト', card.description);
             if (card.tags && card.tags.length > 0) {
                 const tagHtml = card.tags.map(tag => `<span class="tag-item-pill" onclick="jumpToSearch('${tag}')">${tag}</span>`).join(' ');
@@ -262,14 +324,7 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        // --- 補助機能 ---
-        function jumpToSearch(text) {
-            activeFilters.text = text;
-            document.getElementById('searchInput').value = text;
-            closeModal();
-            applyFilters();
-        }
-
+        // --- デッキ & UI操作 ---
         function changeDeckCount(delta) {
             if (!currentEditingId) return;
             const card = allCards.find(c => c.id === currentEditingId);
@@ -285,6 +340,29 @@
             document.getElementById('deckTotalStat').innerText = total;
             if (currentEditingId) document.getElementById('currentCardCount').innerText = deck[currentEditingId] || 0;
             applyFilters();
+        }
+
+        document.getElementById('resetFilters').onclick = () => {
+            activeFilters = { text: '', category: [], kind: [], color: '', product: '', baton: [], tokkou: '' };
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterProduct').selectedIndex = 0;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+            applyFilters();
+        };
+
+        function toggleLogic(group) {
+            logiceState[group] = logiceState[group] === 'OR' ? 'AND' : 'OR';
+            const el = document.getElementById(`logic-${group}`);
+            el.innerText = logiceState[group] + '検索';
+            el.className = `logic-toggle logic-${logiceState[group].toLowerCase()}`;
+            applyFilters();
+        }
+
+        function copyForDeckLog() {
+            let txt = "";
+            for (const [id, count] of Object.entries(deck)) txt += `${id}×${count}\n`;
+            navigator.clipboard.writeText(txt).then(() => alert("DeckLog形式でコピーしました"));
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); currentEditingId = null; }
@@ -303,26 +381,24 @@
             document.getElementById('deckModal').classList.add('active');
         }
 
-        document.getElementById('resetFilters').onclick = () => {
-            activeFilters = { text: '', category: [], kind: [], color: '', product: '' };
-            document.getElementById('searchInput').value = '';
-            document.getElementById('filterProduct').selectedIndex = 0;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-            applyFilters();
-        };
-
-        async function init() {
-            const res = await fetch('./master_cards.json');
-            allCards = await res.json();
-            const pSelect = document.getElementById('filterProduct');
-            const pSet = new Set();
-            allCards.forEach(c => c.products?.forEach(p => pSet.add(p)));
-            pSet.forEach(p => { const o = document.createElement('option'); o.value = o.textContent = p; pSelect.appendChild(o); });
-            applyFilters();
+        function toggleMobileFilter() {
+            document.getElementById('filterSidebar').classList.toggle('mobile-open');
+            document.getElementById('filterOverlay').classList.toggle('active');
         }
 
-        // イベントリスナー設定
+        async function init() {
+            try {
+                const res = await fetch('./master_cards.json');
+                allCards = await res.json();
+                const pSelect = document.getElementById('filterProduct');
+                const pSet = new Set();
+                allCards.forEach(c => c.products?.forEach(p => pSet.add(p)));
+                pSet.forEach(p => { const o = document.createElement('option'); o.value = o.textContent = p; pSelect.appendChild(o); });
+                applyFilters();
+            } catch (e) { console.error("Data load error:", e); }
+        }
+
+        // イベントリスナー
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -337,16 +413,17 @@
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.onclick = () => {
                 const type = btn.dataset.type; const val = btn.dataset.val;
-                document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-                if (activeFilters[type] === val) activeFilters[type] = '';
-                else { activeFilters[type] = val; btn.classList.add('ring-4', 'ring-[#5e5a9b]/50'); }
+                if (activeFilters[type] === val) {
+                    activeFilters[type] = '';
+                    btn.classList.remove('ring-4', 'ring-[#5e5a9b]/50');
+                } else {
+                    document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+                    activeFilters[type] = val; 
+                    btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
+                }
                 applyFilters();
             };
         });
-        function toggleMobileFilter() {
-            document.getElementById('filterSidebar').classList.toggle('mobile-open');
-            document.getElementById('filterOverlay').classList.toggle('active');
-        }
         init();
     </script>
 </body>
