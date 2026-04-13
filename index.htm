@@ -6,15 +6,15 @@
     <title>ホロカ検索 & デッキビルダー 完全版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         .label-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0; }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
-        .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
-        .stage-pill { background-color: #3b82f6; }
+        .skill-pill { background-color: #10b981; }
         .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
         .tag-item-pill:hover { background-color: #4a4682; transform: scale(1.05); }
+        .clickable-name { cursor: pointer; transition: color 0.2s; }
+        .clickable-name:hover { color: #4a4682; text-decoration: underline; }
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
         .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
         .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
@@ -40,6 +40,7 @@
         #modal.active, #deckModal.active { display: flex; animation: fadeIn 0.2s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .deck-badge { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2); pointer-events: none; z-index: 10; }
+        
         @media (max-width: 768px) {
             #filterSidebar { position: fixed; bottom: 0; left: 0; right: 0; height: 85vh; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 200; border-radius: 20px 20px 0 0; }
             #filterSidebar.mobile-open { transform: translateY(0); }
@@ -72,28 +73,25 @@
                     <div class="flex justify-between items-center mb-2">
                         <label class="filter-label">検索ワード</label>
                         <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-bold text-slate-400">本文を含める</span>
+                            <span class="text-[10px] font-bold text-slate-400">本文含</span>
                             <label class="toggle-switch">
                                 <input type="checkbox" id="searchIncludeText" checked onchange="applyFilters()">
                                 <span class="slider"></span>
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30 transition-all">
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none">
                 </div>
 
                 <div>
-                    <label class="filter-label mb-2">収録</label>
+                    <label class="filter-label mb-2">収録商品</label>
                     <select id="filterProduct" class="w-full border rounded-lg px-3 py-2 text-sm bg-white outline-none">
                         <option value="">すべて</option>
                     </select>
                 </div>
 
                 <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="filter-label">カードタイプ</label>
-                        <div class="logic-toggle logic-or" id="logic-category" onclick="toggleLogic('category')">OR検索</div>
-                    </div>
+                    <label class="filter-label mb-2">タイプ</label>
                     <div class="flex flex-wrap gap-1">
                         <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
                         <button class="filter-btn px-3 py-1 text-xs border rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
@@ -114,41 +112,7 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="filter-label mb-2">特攻（対色）</label>
-                    <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="tokkou" data-val="緑"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="tokkou" data-val="黄"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="tokkou" data-val="紫"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="tokkou" data-val="白"></button>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="filter-label">Bloomレベル</label>
-                        <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR検索</div>
-                    </div>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="1st">1st</button>
-                        <button class="filter-btn px-2.5 py-1.5 text-xs border rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="filter-label mb-2">バトンタッチ</label>
-                    <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-4 py-2 text-xs border rounded bg-white" data-group="baton" data-val="0">0</button>
-                        <button class="filter-btn px-4 py-2 text-xs border rounded bg-white" data-group="baton" data-val="1">1</button>
-                        <button class="filter-btn px-4 py-2 text-xs border rounded bg-white" data-group="baton" data-val="2">2</button>
-                    </div>
-                </div>
-
-                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg transition-colors hover:text-red-400">フィルターリセット</button>
+                <button id="resetFilters" class="w-full py-3 text-[11px] font-black text-slate-400 border-2 border-dashed rounded-lg">フィルターリセット</button>
             </div>
         </aside>
 
@@ -189,7 +153,6 @@
                 <div class="text-xl font-bold">合計: <span id="deckTotalStat" class="text-red-500">0</span> / 50 枚</div>
                 <div class="flex gap-2">
                     <button onclick="copyForDeckLog()" class="bg-orange-500 text-white px-5 py-2 rounded-lg font-bold">DeckLog形式コピー</button>
-                    <button onclick="openDeckLog()" class="bg-black text-white px-5 py-2 rounded-lg font-bold">DeckLogを開く</button>
                 </div>
             </div>
         </div>
@@ -199,54 +162,30 @@
         let allCards = [];
         let deck = {}; 
         let currentEditingId = null;
-        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
-        let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
+        let activeFilters = { text: '', category: [], kind: [], color: '', product: '' };
+        let logiceState = { category: 'OR' };
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
 
         // --- 検索ロジック ---
         function applyFilters() {
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
-            
             if (activeFilters.text) {
-                let keys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
-                if (includeText) keys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
-                const fuse = new Fuse(allCards, { keys: keys, threshold: 0.3, ignoreLocation: true });
+                const fuse = new Fuse(allCards, { 
+                    keys: includeText ? ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text', 'skills.text'] : ['name', 'id', 'tags'],
+                    threshold: 0.3 
+                });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-
             if (activeFilters.category.length > 0) {
-                result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
+                result = result.filter(c => activeFilters.category.includes(c.category));
             }
-
-            // 色フィルター：色情報がないサポートカードを厳密に除外
             if (activeFilters.color) {
-                result = result.filter(c => {
-                    if (!c.color) return false;
-                    const cColor = c.color.replace('◇', '無');
-                    return cColor === activeFilters.color;
-                });
+                result = result.filter(c => c.color && c.color.replace('◇', '無') === activeFilters.color);
             }
-
-            if (activeFilters.kind.length > 0) {
-                result = result.filter(c => {
-                    const cKind = c.kind || '';
-                    return logiceState.kind === 'OR' ? activeFilters.kind.some(f => cKind.includes(f)) : activeFilters.kind.every(f => cKind.includes(f));
-                });
-            }
-
-            if (activeFilters.tokkou) {
-                result = result.filter(c => c.arts && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
-            }
-
-            if (activeFilters.baton.length > 0) {
-                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
-            }
-
             if (activeFilters.product) {
                 result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
-
             renderCards(result);
         }
 
@@ -265,12 +204,17 @@
             });
         }
 
-        // --- 詳細表示 ---
+        // --- 詳細表示 (推しホロメン専用ロジックを完全復元) ---
         function showDetail(cardId) {
             currentEditingId = cardId;
             const card = allCards.find(c => c.id === cardId);
             document.getElementById('modalImg').src = card.img;
-            document.getElementById('modalName').innerText = card.name;
+            
+            const nameEl = document.getElementById('modalName');
+            nameEl.innerText = card.name;
+            nameEl.className = "text-2xl font-bold text-[#5e5a9b] clickable-name";
+            nameEl.onclick = () => jumpToSearch(card.name);
+
             document.getElementById('modalId').innerText = card.id;
             document.getElementById('currentCardCount').innerText = deck[cardId] || 0;
             
@@ -280,26 +224,52 @@
                 return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
             };
 
+            // 1. タイプ
             details += createRow('タイプ', card.category);
-            if (card.category === "ホロメン") {
+
+            // 2. カテゴリ別の表示切り替え
+            if (card.category === "推しホロメン") {
+                // 推しホロメン専用
+                details += createRow('ライフ', card.value, 'oshi-pill');
+                if (card.skills) {
+                    card.skills.forEach(sk => {
+                        const skillLabel = sk.name.includes("SP") ? "SP推しスキル" : "常時スキル";
+                        const pillClass = sk.name.includes("SP") ? "oshi-pill" : "skill-pill";
+                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill ${pillClass}">${skillLabel}</span><div class="value-box"><div class="font-black">${sk.name}</div><div class="text-xs text-slate-500">${sk.text}</div></div></div>`;
+                    });
+                }
+            } else if (card.category === "ホロメン") {
+                // 通常ホロメン専用
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
                 details += createRow('バトン', String(card.baton_touch));
+                if (card.arts) {
+                    card.arts.forEach(art => {
+                        const icons = art.icons ? art.icons.split(',').map(i => `<span class="badge-base ${colorClassMap[i.trim()] || 'color-none'} mr-1 text-[10px]">${i.trim()}</span>`).join('') : '';
+                        details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div>${icons}<span class="font-black">${art.name} ${art.damage}</span></div><div class="text-xs text-slate-500">${art.text}</div></div></div>`;
+                    });
+                }
             }
-            if (card.arts) {
-                card.arts.forEach(art => {
-                    const icons = art.icons ? art.icons.split(',').map(i => `<span class="badge-base ${colorClassMap[i.trim()] || 'color-none'} mr-1 text-[10px]">${i.trim()}</span>`).join('') : '';
-                    details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div>${icons}<span class="font-black">${art.name} ${art.damage}</span></div><div class="text-xs text-slate-500">${art.text}</div></div></div>`;
-                });
-            }
+
+            // 3. 共通項目 (テキスト・タグ)
             if (card.description) details += createRow('テキスト', card.description);
-            if (card.tags) details += createRow('タグ', card.tags.join(' '));
+            if (card.tags && card.tags.length > 0) {
+                const tagHtml = card.tags.map(tag => `<span class="tag-item-pill" onclick="jumpToSearch('${tag}')">${tag}</span>`).join(' ');
+                details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill">タグ</span><div class="flex flex-wrap gap-1">${tagHtml}</div></div>`;
+            }
             
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
         }
 
-        // --- デッキ操作 ---
+        // --- 補助機能 ---
+        function jumpToSearch(text) {
+            activeFilters.text = text;
+            document.getElementById('searchInput').value = text;
+            closeModal();
+            applyFilters();
+        }
+
         function changeDeckCount(delta) {
             if (!currentEditingId) return;
             const card = allCards.find(c => c.id === currentEditingId);
@@ -317,32 +287,6 @@
             applyFilters();
         }
 
-        // --- フィルターリセット (デッキ維持) ---
-        document.getElementById('resetFilters').onclick = () => {
-            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
-            logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
-            document.getElementById('searchInput').value = '';
-            document.getElementById('filterProduct').selectedIndex = 0;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
-            applyFilters();
-        };
-
-        function toggleLogic(group) {
-            logiceState[group] = logiceState[group] === 'OR' ? 'AND' : 'OR';
-            const el = document.getElementById(`logic-${group}`);
-            el.innerText = logiceState[group] + '検索';
-            el.className = `logic-toggle logic-${logiceState[group].toLowerCase()}`;
-            applyFilters();
-        }
-
-        function copyForDeckLog() {
-            let txt = "";
-            for (const [id, count] of Object.entries(deck)) txt += `${id}×${count}\n`;
-            navigator.clipboard.writeText(txt).then(() => alert("DeckLog形式でコピーしました"));
-        }
-
-        function openDeckLog() { window.open("https://decklog.bushiroad.com/create?c=9", "_blank"); }
         function closeModal() { document.getElementById('modal').classList.remove('active'); currentEditingId = null; }
         function closeDeckModal() { document.getElementById('deckModal').classList.remove('active'); }
         function openDeckModal() {
@@ -358,10 +302,15 @@
             });
             document.getElementById('deckModal').classList.add('active');
         }
-        function toggleMobileFilter() {
-            document.getElementById('filterSidebar').classList.toggle('mobile-open');
-            document.getElementById('filterOverlay').classList.toggle('active');
-        }
+
+        document.getElementById('resetFilters').onclick = () => {
+            activeFilters = { text: '', category: [], kind: [], color: '', product: '' };
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterProduct').selectedIndex = 0;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+            applyFilters();
+        };
 
         async function init() {
             const res = await fetch('./master_cards.json');
@@ -373,6 +322,7 @@
             applyFilters();
         }
 
+        // イベントリスナー設定
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -393,7 +343,10 @@
                 applyFilters();
             };
         });
-
+        function toggleMobileFilter() {
+            document.getElementById('filterSidebar').classList.toggle('mobile-open');
+            document.getElementById('filterOverlay').classList.toggle('active');
+        }
         init();
     </script>
 </body>
