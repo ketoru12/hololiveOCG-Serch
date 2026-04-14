@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,18 +26,15 @@
         .extra-pill { background-color: #f59e0b; }
         .kind-pill { background-color: #64748b; }
         .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
-        
-        .badge-base { padding: 2px 8px; border-radius: 4px; font-size: 15px; font-weight: 800; border: 1px solid transparent; }
-        .color-white { background-color: #f8fafc; color: #475569; border-color: #e2e8f0; }
-        .color-green { background-color: #f0fdf4; color: #166534; border-color: #bbf7d0; }
-        .color-red { background-color: #fef2f2; color: #991b1b; border-color: #fecaca; }
-        .color-blue { background-color: #eff6ff; color: #1e40af; border-color: #bfdbfe; }
-        .color-purple { background-color: #faf5ff; color: #6b21a8; border-color: #e9d5ff; }
-        .color-yellow { background-color: #fefce8; color: #854d0e; border-color: #fef08a; }
-        .color-none { background-color: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+
+        /* ▼ 色アイコン（type / arts）共通 */
+        .color-icon { width: 28px; height: 28px; object-fit: contain; }
+        .arts-color-icon { width: 22px; height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; }
+        /* バトンタッチアイコン */
+        .baton-icon { width: 22px; height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; }
 
         .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
-        .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; }
+        .filter-active-img { outline: 3px solid #5e5a9b; outline-offset: 2px; border-radius: 999px; }
         
         .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -148,28 +146,56 @@
                     </div>
                 </div>
 
+                <!-- ▼ 色フィルター：画像ボタンに変更 -->
                 <div>
                     <label class="filter-label mb-2">色（ホロメン・推し対象）</label>
                     <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="color" data-val="赤"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="color" data-val="青"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="color" data-val="緑"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="color" data-val="黄"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="color" data-val="紫"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="color" data-val="白"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-slate-400" data-type="color" data-val="無"></button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="赤">
+                            <img src="holocg-viewer/image/type_red.png" class="color-icon rounded-full" alt="赤">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="青">
+                            <img src="holocg-viewer/image/type_blue.png" class="color-icon rounded-full" alt="青">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="緑">
+                            <img src="holocg-viewer/image/type_green.png" class="color-icon rounded-full" alt="緑">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="黄">
+                            <img src="holocg-viewer/image/type_yellow.png" class="color-icon rounded-full" alt="黄">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="紫">
+                            <img src="holocg-viewer/image/type_purple.png" class="color-icon rounded-full" alt="紫">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="白">
+                            <img src="holocg-viewer/image/type_white.png" class="color-icon rounded-full" alt="白">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="無">
+                            <img src="holocg-viewer/image/type_null.png" class="color-icon rounded-full" alt="無">
+                        </button>
                     </div>
                 </div>
 
+                <!-- ▼ 特攻フィルター：画像ボタンに変更 -->
                 <div>
                     <label class="filter-label mb-2">特攻（対色）</label>
                     <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot aspect-square rounded-full border bg-red-500" data-type="tokkou" data-val="赤"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-blue-500" data-type="tokkou" data-val="青"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-green-500" data-type="tokkou" data-val="緑"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-yellow-400" data-type="tokkou" data-val="黄"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-purple-500" data-type="tokkou" data-val="紫"></button>
-                        <button class="color-dot aspect-square rounded-full border bg-white shadow-inner" data-type="tokkou" data-val="白"></button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="赤">
+                            <img src="holocg-viewer/image/type_red.png" class="color-icon rounded-full" alt="赤">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="青">
+                            <img src="holocg-viewer/image/type_blue.png" class="color-icon rounded-full" alt="青">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="緑">
+                            <img src="holocg-viewer/image/type_green.png" class="color-icon rounded-full" alt="緑">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="黄">
+                            <img src="holocg-viewer/image/type_yellow.png" class="color-icon rounded-full" alt="黄">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="紫">
+                            <img src="holocg-viewer/image/type_purple.png" class="color-icon rounded-full" alt="紫">
+                        </button>
+                        <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="白">
+                            <img src="holocg-viewer/image/type_white.png" class="color-icon rounded-full" alt="白">
+                        </button>
                     </div>
                 </div>
 
@@ -239,7 +265,29 @@
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
-        const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
+        // ▼ 色→画像パスのマッピング（type用・arts用）
+        const typeImgMap = {
+            '白': 'holocg-viewer/image/type_white.png',
+            '緑': 'holocg-viewer/image/type_green.png',
+            '赤': 'holocg-viewer/image/type_red.png',
+            '青': 'holocg-viewer/image/type_blue.png',
+            '紫': 'holocg-viewer/image/type_purple.png',
+            '黄': 'holocg-viewer/image/type_yellow.png',
+            '無': 'holocg-viewer/image/type_null.png',
+            '◇': 'holocg-viewer/image/type_null.png',
+        };
+        const artsImgMap = {
+            '白': 'holocg-viewer/image/arts_white.png',
+            '緑': 'holocg-viewer/image/arts_green.png',
+            '赤': 'holocg-viewer/image/arts_red.png',
+            '青': 'holocg-viewer/image/arts_blue.png',
+            '紫': 'holocg-viewer/image/arts_purple.png',
+            '黄': 'holocg-viewer/image/arts_yellow.png',
+            '無': 'holocg-viewer/image/arts_null.png',
+            '◇': 'holocg-viewer/image/arts_null.png',
+        };
+        // バトンタッチアイコン（arts_null.png を流用）
+        const BATON_ICON = 'holocg-viewer/image/arts_null.png';
 
         function toggleMobileFilter() {
             document.getElementById('filterSidebar').classList.toggle('mobile-open');
@@ -357,11 +405,33 @@
             });
         }
 
+        // ▼ 色名を正規化するヘルパー
+        function normalizeColor(c) {
+            if (!c || c === 'nan' || c === '◇') return '無';
+            return c;
+        }
+
+        // ▼ アーツのコストアイコンを画像で生成
+        function renderArtsIcons(icons) {
+            if (!icons) return '';
+            return icons.split(',').map(c => {
+                const col = normalizeColor(c.trim());
+                const src = artsImgMap[col] || artsImgMap['無'];
+                return `<img src="${src}" class="arts-color-icon" alt="${col}" title="${col}">`;
+            }).join('');
+        }
+
+        // ▼ バトンタッチアイコンをarts_null.pngで表示
+        function renderBatonIcons(count) {
+            const n = parseInt(count, 10);
+            if (isNaN(n) || n <= 0) return '<span class="text-slate-400">0</span>';
+            return Array(n).fill(`<img src="${BATON_ICON}" class="baton-icon" alt="バトンタッチ">`).join('');
+        }
+
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
             
-            // スマホなら詳細表示時にフィルターを閉じる
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById('filterSidebar');
                 if (sidebar.classList.contains('mobile-open')) toggleMobileFilter();
@@ -376,6 +446,7 @@
             document.getElementById('modalId').innerText = card.id;
             
             let details = "";
+
             const createRow = (label, value, extraClass = "") => {
                 if (!value || value === "nan" || (label !== 'バトンタッチ' && value === "0")) return "";
                 if (label === 'タグ') {
@@ -385,9 +456,23 @@
                 return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
             };
 
-            if (card.category !== "サポート") details += createRow('色', (card.color || '無').replace('◇', '無'));
+            // ▼ 色行：type画像で表示
+            const createColorRow = (label, colorVal) => {
+                const col = normalizeColor(colorVal);
+                const src = typeImgMap[col] || typeImgMap['無'];
+                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${src}" class="color-icon" alt="${col}"><span class="font-bold">${col}</span></div></div>`;
+            };
+
+            // ▼ バトンタッチ行：アイコン画像で表示
+            const createBatonRow = (label, count) => {
+                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-1">${renderBatonIcons(count)}<span class="ml-1 text-slate-500 text-sm">(${count})</span></div></div>`;
+            };
+
+            if (card.category !== "サポート") details += createColorRow('色', card.color);
             if (card.category === "ホロメン") {
-                details += createRow('HP', card.value); details += createRow('Bloom', card.kind); details += createRow('バトンタッチ', String(card.baton_touch));
+                details += createRow('HP', card.value);
+                details += createRow('Bloom', card.kind);
+                details += createBatonRow('バトンタッチ', card.baton_touch);
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
@@ -395,12 +480,22 @@
                 details += createRow('種別', card.kind, 'kind-pill');
             }
 
+            // ▼ アーツ：コストアイコンを画像で表示
             if (card.arts) {
                 card.arts.forEach(art => {
-                    const renderIcons = (icons) => icons ? icons.split(',').map(c => `<span class="badge-base ${colorClassMap[c.trim().replace('◇','無')] || 'color-none'} mr-1 text-[10px]">${c.trim().replace('◇','無')}</span>`).join('') : '';
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex flex-wrap items-center gap-1"><div>${renderIcons(art.icons)}</div><span class="font-black text-lg">${art.name} ${art.damage}</span></div><div class="text-slate-600 text-sm leading-relaxed">${art.text}</div></div></div>`;
+                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2">
+                        <span class="label-pill arts-pill">アーツ</span>
+                        <div class="value-box">
+                            <div class="flex flex-wrap items-center gap-1">
+                                <div class="flex items-center gap-0.5">${renderArtsIcons(art.icons)}</div>
+                                <span class="font-black text-lg">${art.name} ${art.damage}</span>
+                            </div>
+                            <div class="text-slate-600 text-sm leading-relaxed">${art.text}</div>
+                        </div>
+                    </div>`;
                 });
             }
+
             if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'));
@@ -432,14 +527,15 @@
             });
         });
 
+        // ▼ 色ドット：選択時に filter-active-img クラスでアウトラインを付与
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.addEventListener('click', () => {
                 const type = btn.getAttribute('data-type');
                 const val = btn.getAttribute('data-val');
-                const isSelected = btn.classList.contains('ring-4');
-                document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('ring-4', 'ring-[#5e5a9b]/50'));
+                const isSelected = btn.classList.contains('filter-active-img');
+                document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('filter-active-img'));
                 if (!isSelected) {
-                    btn.classList.add('ring-4', 'ring-[#5e5a9b]/50');
+                    btn.classList.add('filter-active-img');
                     if (type === 'color') activeFilters.color = val;
                     else activeFilters.tokkou = val;
                 } else {
@@ -455,7 +551,7 @@
             document.getElementById('searchInput').value = '';
             document.getElementById('filterProduct').value = '';
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
-            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('ring-4'));
+            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('filter-active-img'));
             applyFilters();
         });
 
