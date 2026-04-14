@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 - 最終確定版</title>
+    <title>ホロカ検索 - 修正完了版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -51,7 +51,7 @@
                     <div class="flex flex-wrap gap-1">
                         <button class="filter-btn px-2 py-1 rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
                         <button class="filter-btn px-2 py-1 rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
-                        <button class="filter-btn px-2 py-1 rounded bg-white" data-group="category" data-val="サポート">サポート</button>
+                        <button class="filter-btn px-2 py-1 rounded bg-white" data-group="category" data-val="サポートカード">サポート</button>
                     </div>
                 </div>
 
@@ -153,14 +153,32 @@
 
         function applyFilters() {
             let result = [...allCards];
+
             if (activeFilters.text.trim()) {
                 const fuse = new Fuse(result, { keys: ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text'], threshold: 0.3 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            if (activeFilters.tokkou) result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou.includes(activeFilters.tokkou)));
-            if (activeFilters.category.length > 0) result = result.filter(c => activeFilters.category.includes(c.cardType));
-            if (activeFilters.color) result = result.filter(c => (c.cardType !== "サポート") && (c.color || '無') === activeFilters.color);
+            
+            // 特攻フィルタ
+            if (activeFilters.tokkou) {
+                result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou.includes(activeFilters.tokkou)));
+            }
+
+            // カードタイプフィルタ (推しホロメン, サポートカードをデータ上の名称に完全一致)
+            if (activeFilters.category.length > 0) {
+                result = result.filter(c => activeFilters.category.includes(c.cardType));
+            }
+
+            // 色フィルタ (色を持つカードタイプのみ対象、色未選択時は全て表示)
+            if (activeFilters.color) {
+                result = result.filter(c => {
+                    const isColoredType = ["ホロメン", "Buzzホロメン", "推しホロメン"].includes(c.cardType);
+                    return isColoredType && (c.color || '無') === activeFilters.color;
+                });
+            }
+
+            // Bloomレベル
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
                     const isBuzz = activeFilters.kind.includes('Buzz') && c.cardType === "Buzzホロメン";
@@ -168,8 +186,17 @@
                     return activeFilters.kind.includes('Buzz') ? (isBuzz || isOther) : isOther;
                 });
             }
-            if (activeFilters.subKind.length > 0) result = result.filter(c => activeFilters.subKind.some(k => (c.kind || '').includes(k)));
-            if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
+
+            // サポート種別
+            if (activeFilters.subKind.length > 0) {
+                result = result.filter(c => activeFilters.subKind.some(k => (c.kind || '').includes(k)));
+            }
+
+            // バトンタッチ
+            if (activeFilters.baton.length > 0) {
+                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
+            }
+
             renderCards(result);
         }
 
@@ -189,7 +216,7 @@
             let details = "";
             const createRow = (label, val, cls = "") => (val && val !== "nan") ? `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${cls}">${label}</span><div class="font-bold flex-1">${val}</div></div>` : "";
 
-            if (card.cardType !== "サポート") {
+            if (card.cardType !== "サポートカード") {
                 details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">色</span><div class="flex items-center gap-2 font-bold"><img src="${typeImgMap[card.color] || typeImgMap['無']}" class="color-icon">${card.color || '無'}</div></div>`;
             }
 
@@ -199,7 +226,7 @@
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="flex-1"><div class="font-black text-green-700">【${card.keywordName}】</div><div>${card.keywordEffect}</div></div></div>`;
             } else if (card.cardType === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
-            } else if (card.cardType === "サポート") {
+            } else if (card.cardType === "サポートカード") {
                 details += createRow('種別', card.kind, 'bg-slate-500');
             }
 
@@ -249,7 +276,7 @@
                 const products = [...new Set(allCards.flatMap(c => c.products || []))].sort();
                 products.forEach(p => document.getElementById('filterProduct').add(new Option(p, p)));
                 renderCards(allCards);
-            } catch (e) { console.error("Data load error:", e); }
+            } catch (e) { console.error("Load Error:", e); }
         }
         init();
     </script>
