@@ -3,107 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 - 検索機能・Buzz完全版</title>
+    <title>ホロカ検索 - フル機能統合版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
         .label-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0; }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
-        .keyword-pill { background-color: #10b981; }
-        .oshi-pill { background-color: #ef4444; }
-        .stage-pill { background-color: #3b82f6; }
         .tag-item-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; }
-        .tag-item-pill:hover { background-color: #4a4682; transform: scale(1.05); }
-        .kind-pill { background-color: #64748b; }
-        .value-box { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1a202c; flex: 1; }
-        .color-icon { width: 28px; height: 28px; object-fit: contain; }
-        .arts-color-icon { width: 22px; height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; }
-        .baton-icon { width: 22px; height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; }
-        .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
-        .filter-btn { position: relative; transition: all 0.15s ease; font-weight: 600; color: #475569; border-color: #cbd5e1; border-width: 1px; border-style: solid; }
+        .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; }
+        .filter-btn { transition: all 0.15s ease; font-weight: 600; color: #475569; border: 1px solid #cbd5e1; min-height: 32px; }
         .filter-btn:hover { border-color: #5e5a9b; color: #5e5a9b; background-color: #f5f3ff; }
-        .filter-active { background-color: #5e5a9b !important; color: white !important; font-weight: bold; border-color: #5e5a9b !important; box-shadow: 0 2px 8px rgba(94,90,155,0.35); transform: scale(1.05); }
-        .color-dot { cursor: pointer; transition: all 0.15s ease; border-radius: 999px; border: 2px solid transparent; }
+        .filter-active { background-color: #5e5a9b !important; color: white !important; border-color: #5e5a9b !important; box-shadow: 0 2px 6px rgba(94,90,155,0.3); }
+        .color-dot { cursor: pointer; border: 2px solid transparent; border-radius: 999px; transition: all 0.15s; }
         .filter-active-img { border-color: #5e5a9b; background-color: #ede9fe; box-shadow: 0 0 0 2px #5e5a9b; }
-        .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #5e5a9b; }
-        input:checked + .slider:before { transform: translateX(14px); }
-        @media (max-width: 768px) {
-            #filterSidebar { position: fixed; bottom: 0; left: 0; right: 0; height: 85vh; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 200; border-radius: 20px 20px 0 0; }
-            #filterSidebar.mobile-open { transform: translateY(0); }
-            #filterOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; backdrop-filter: blur(2px); }
-            #filterOverlay.active { display: block; }
-            .mobile-nav { display: flex; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; }
-        }
+        .logic-toggle { font-size: 10px; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .logic-or { background-color: #3b82f6; color: white; }
+        .logic-and { background-color: #ef4444; color: white; }
         #modal { display: none; }
         #modal.active { display: flex; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
-    <div id="filterOverlay" onclick="toggleMobileFilter()"></div>
-    <div class="mobile-nav md:hidden">
-        <button onclick="toggleMobileFilter()" class="bg-[#5e5a9b] text-white px-8 py-3 rounded-full shadow-2xl font-bold flex items-center gap-3">
-            <span>🔍 フィルター</span>
-            <span id="mobileResultCount" class="text-xs bg-white/20 px-2 py-0.5 rounded">0 枚</span>
-        </button>
-    </div>
-
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
-        <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
+        <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50 overflow-hidden">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">ホロカ検索</h1>
-                <div class="flex items-center gap-3">
-                    <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
-                    <button class="md:hidden text-xl" onclick="toggleMobileFilter()">✕</button>
-                </div>
+                <h1 class="font-bold italic">ホロカ検索</h1>
+                <span id="resultCount" class="text-xs bg-white/20 px-2 py-1 rounded">0 枚</span>
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6 pb-20">
                 <div>
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="filter-label">キーワード検索</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="searchIncludeText" checked onchange="applyFilters()">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <input type="text" id="searchInput" placeholder="カード名、タグ、テキスト..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
+                    <label class="filter-label mb-2">キーワード検索</label>
+                    <input type="text" id="searchInput" placeholder="名前、タグ、テキスト..." class="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
+                </div>
+
+                <div>
+                    <label class="filter-label mb-2">収録商品</label>
+                    <select id="filterProduct" class="w-full border rounded-lg px-3 py-2 text-sm bg-white outline-none focus:ring-2 focus:ring-[#5e5a9b]/30">
+                        <option value="">すべて</option>
+                    </select>
                 </div>
 
                 <div>
                     <label class="filter-label mb-2">カードタイプ</label>
                     <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-3 py-2 text-xs border rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
-                        <button class="filter-btn px-3 py-2 text-xs border rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
-                        <button class="filter-btn px-3 py-2 text-xs border rounded bg-white" data-group="category" data-val="サポート">サポート</button>
+                        <button class="filter-btn px-3 py-1 text-xs rounded bg-white" data-group="category" data-val="ホロメン">ホロメン</button>
+                        <button class="filter-btn px-3 py-1 text-xs rounded bg-white" data-group="category" data-val="推しホロメン">推し</button>
+                        <button class="filter-btn px-3 py-1 text-xs rounded bg-white" data-group="category" data-val="サポート">サポート</button>
                     </div>
                 </div>
 
                 <div>
                     <label class="filter-label mb-2">色</label>
                     <div class="grid grid-cols-7 gap-1">
-                        <button class="color-dot p-0.5" data-val="赤"><img src="image/Colors/type_red.png" class="w-full" alt="赤"></button>
-                        <button class="color-dot p-0.5" data-val="青"><img src="image/Colors/type_blue.png" class="w-full" alt="青"></button>
-                        <button class="color-dot p-0.5" data-val="緑"><img src="image/Colors/type_green.png" class="w-full" alt="緑"></button>
-                        <button class="color-dot p-0.5" data-val="黄"><img src="image/Colors/type_yellow.png" class="w-full" alt="黄"></button>
-                        <button class="color-dot p-0.5" data-val="紫"><img src="image/Colors/type_purple.png" class="w-full" alt="紫"></button>
-                        <button class="color-dot p-0.5" data-val="白"><img src="image/Colors/type_white.png" class="w-full" alt="白"></button>
-                        <button class="color-dot p-0.5" data-val="無"><img src="image/Colors/type_null.png" class="w-full" alt="無"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="赤"><img src="image/Colors/type_red.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="青"><img src="image/Colors/type_blue.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="緑"><img src="image/Colors/type_green.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="黄"><img src="image/Colors/type_yellow.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="紫"><img src="image/Colors/type_purple.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="白"><img src="image/Colors/type_white.png" class="w-full"></button>
+                        <button class="color-dot p-0.5" data-type="color" data-val="無"><img src="image/Colors/type_null.png" class="w-full"></button>
                     </div>
                 </div>
 
                 <div>
-                    <label class="filter-label mb-2">Bloom / Buzz</label>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="filter-label">Bloom / Buzz</label>
+                        <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR</div>
+                    </div>
                     <div class="flex flex-wrap gap-1">
-                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
-                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
-                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="kind" data-val="1st">1st</button>
-                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
-                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white font-bold text-purple-600 border-purple-300" data-group="kind" data-val="Buzz">Buzz</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="kind" data-val="Spot">Spot</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="kind" data-val="Debut">Debut</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="kind" data-val="1st">1st</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="kind" data-val="2nd">2nd</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white font-bold text-purple-600 border-purple-200" data-group="kind" data-val="Buzz">Buzz</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="filter-label mb-2">サポート種別</label>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="subKind" data-val="LIMITED">LIMITED</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="subKind" data-val="ツール">ツール</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="subKind" data-val="イベント">イベント</button>
+                        <button class="filter-btn px-2 py-1 text-[10px] rounded bg-white" data-group="subKind" data-val="アイテム">アイテム</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="filter-label mb-2">バトンタッチ</label>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-4 py-1 text-xs rounded bg-white" data-group="baton" data-val="0">0</button>
+                        <button class="filter-btn px-4 py-1 text-xs rounded bg-white" data-group="baton" data-val="1">1</button>
+                        <button class="filter-btn px-4 py-1 text-xs rounded bg-white" data-group="baton" data-val="2">2</button>
                     </div>
                 </div>
 
@@ -116,8 +109,8 @@
         </main>
     </div>
 
-    <div id="modal" class="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4" onclick="closeModal()">
-        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-6 p-6 relative shadow-2xl" onclick="event.stopPropagation()">
+    <div id="modal" class="fixed inset-0 z-[100] bg-black/80 items-center justify-center p-4" onclick="closeModal()">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-6 p-6 relative" onclick="event.stopPropagation()">
             <button class="absolute top-4 right-4 text-slate-400 text-2xl" onclick="closeModal()">✕</button>
             <div class="w-full md:w-1/3 shrink-0"><img id="modalImg" src="" class="w-full rounded-lg shadow border"></div>
             <div class="flex-1">
@@ -132,54 +125,68 @@
 
     <script>
         let allCards = [];
-        let activeFilters = { text: '', category: [], kind: [], color: '' };
+        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [] };
+        let logicState = { kind: 'OR' };
+
         const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png' };
         const artsImgMap = { '白': 'image/Colors/arts_white.png', '緑': 'image/Colors/arts_green.png', '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '紫': 'image/Colors/arts_purple.png', '黄': 'image/Colors/arts_yellow.png', '無': 'image/Colors/arts_null.png' };
         const BATON_ICON = 'image/Colors/arts_null.png';
 
-        function toggleMobileFilter() {
-            document.getElementById('filterSidebar').classList.toggle('mobile-open');
-            document.getElementById('filterOverlay').classList.toggle('active');
+        function toggleLogic(group) {
+            logicState[group] = logicState[group] === 'OR' ? 'AND' : 'OR';
+            const btn = document.getElementById(`logic-${group}`);
+            btn.innerText = logicState[group];
+            btn.className = `logic-toggle logic-${logicState[group].toLowerCase()}`;
+            applyFilters();
         }
 
         function applyFilters() {
-            let result = allCards;
-            const includeText = document.getElementById('searchIncludeText').checked;
+            let result = [...allCards];
 
-            // 1. キーワード検索
-            if (activeFilters.text) {
-                const fuse = new Fuse(result, { 
-                    keys: includeText ? ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text'] : ['name', 'id', 'tags'],
-                    threshold: 0.3 
-                });
+            // 1. 検索
+            if (activeFilters.text.trim()) {
+                const fuse = new Fuse(result, { keys: ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text'], threshold: 0.3 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
 
-            // 2. カードタイプ (cardType参照)
+            // 2. 収録商品
+            if (activeFilters.product) {
+                result = result.filter(c => c.products && c.products.includes(activeFilters.product));
+            }
+
+            // 3. カードタイプ
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => activeFilters.category.includes(c.cardType));
             }
 
-            // 3. 色 (cardType参照)
+            // 4. 色
             if (activeFilters.color) {
-                result = result.filter(c => 
-                    (c.cardType === "ホロメン" || c.cardType === "推しホロメン" || c.cardType === "Buzzホロメン") && 
-                    (c.color || '無') === activeFilters.color
-                );
+                result = result.filter(c => (c.cardType === "ホロメン" || c.cardType === "推しホロメン" || c.cardType === "Buzzホロメン") && (c.color || '無') === activeFilters.color);
             }
 
-            // 4. Bloom / Buzz 
+            // 5. Bloom / Buzz (統合ロジック)
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
                     const isBuzzSelected = activeFilters.kind.includes('Buzz');
                     const otherKinds = activeFilters.kind.filter(k => k !== 'Buzz');
-
-                    const matchBuzz = isBuzzSelected && (c.cardType === "Buzzホロメン");
-                    const matchOthers = otherKinds.length > 0 && otherKinds.some(k => (c.kind || '').includes(k));
-
-                    if (isBuzzSelected && otherKinds.length > 0) return matchBuzz || matchOthers;
+                    const matchBuzz = isBuzzSelected && c.cardType === "Buzzホロメン";
+                    const matchOthers = otherKinds.length > 0 && (logicState.kind === 'OR' 
+                        ? otherKinds.some(k => (c.kind || '').includes(k)) 
+                        : otherKinds.every(k => (c.kind || '').includes(k)));
+                    
+                    if (isBuzzSelected && otherKinds.length > 0) return logicState.kind === 'OR' ? (matchBuzz || matchOthers) : (matchBuzz && matchOthers);
                     return isBuzzSelected ? matchBuzz : matchOthers;
                 });
+            }
+
+            // 6. サポート種別
+            if (activeFilters.subKind.length > 0) {
+                result = result.filter(c => activeFilters.subKind.some(k => (c.kind || '').includes(k)));
+            }
+
+            // 7. バトンタッチ
+            if (activeFilters.baton.length > 0) {
+                result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             }
 
             renderCards(result);
@@ -187,12 +194,14 @@
 
         function renderCards(cards) {
             const grid = document.getElementById('cardGrid');
-            document.getElementById('resultCount').innerText = document.getElementById('mobileResultCount').innerText = cards.length + " 枚";
-            grid.innerHTML = cards.map(c => `<div class="cursor-pointer group" onclick="showDetail('${c.id}')">
-                <div class="aspect-[3/4.2] rounded-md border bg-white shadow-sm overflow-hidden group-hover:shadow-md transition-all">
-                    <img src="${c.img}" class="w-full h-full object-cover" loading="lazy">
+            document.getElementById('resultCount').innerText = cards.length + " 枚";
+            grid.innerHTML = cards.map(c => `
+                <div class="cursor-pointer group" onclick="showDetail('${c.id}')">
+                    <div class="aspect-[3/4.2] rounded-md border bg-white shadow-sm overflow-hidden group-hover:shadow-md transition-all">
+                        <img src="${c.img}" class="w-full h-full object-cover">
+                    </div>
                 </div>
-            </div>`).join('');
+            `).join('');
         }
 
         function showDetail(cardId) {
@@ -202,35 +211,33 @@
             document.getElementById('modalImg').src = card.img;
             document.getElementById('modalId').innerText = card.id;
             let details = "";
-            const createRow = (label, val, cls = "") => (val && val !== "nan") ? `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${cls}">${label}</span><div class="value-box">${val}</div></div>` : "";
-            if (card.cardType !== "サポート") details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">色</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[card.color] || typeImgMap['無']}" class="color-icon"><span class="font-bold">${card.color || '無'}</span></div></div>`;
+            const createRow = (label, val, cls = "") => (val && val !== "nan") ? `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${cls}">${label}</span><div class="value-box font-bold flex-1">${val}</div></div>` : "";
+            
+            if (card.cardType !== "サポート") details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">色</span><div class="value-box font-bold flex items-center gap-2"><img src="${typeImgMap[card.color] || typeImgMap['無']}" class="w-6 h-6">${card.color || '無'}</div></div>`;
             if (card.cardType === "ホロメン" || card.cardType === "Buzzホロメン") {
                 details += createRow('HP', card.value) + createRow('Bloom', card.cardType === "Buzzホロメン" ? "Buzz" : card.kind);
-                details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${Array(parseInt(card.baton_touch) || 0).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('') || 0}</div></div>`;
+                details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex gap-1">${Array(parseInt(card.baton_touch) || 0).fill(`<img src="${BATON_ICON}" class="w-5 h-5">`).join('') || 0}</div></div>`;
             } else if (card.cardType === "推しホロメン") details += createRow('LIFE', card.value, 'bg-green-600');
-            if (card.arts) card.arts.forEach(a => details += `<div class="flex items-start mb-1 gap-3 border-t pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div><span class="font-black">${a.name} ${a.damage}</span></div><div class="text-sm">${a.text}</div></div></div>`);
-            if (card.description) details += createRow('能力テキスト', card.description);
-            if (card.tags) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill">タグ</span><div class="value-box flex flex-wrap">${card.tags.map(t => `<span class="tag-item-pill mr-1 mb-1">${t}</span>`).join('')}</div></div>`;
+            if (card.arts) card.arts.forEach(a => details += `<div class="border-t pt-2 mt-2"><div class="flex gap-2 mb-1"><span class="label-pill arts-pill">アーツ</span><span class="font-black text-lg">${a.name} ${a.damage}</span></div><p class="text-sm bg-slate-50 p-2 rounded">${a.text}</p></div>`);
+            if (card.description) details += createRow('効果', card.description);
+            if (card.tags) details += `<div class="flex flex-wrap gap-1 mt-3">${card.tags.map(t => `<span class="tag-item-pill text-xs px-2 py-1 rounded-full" onclick="event.stopPropagation(); setTag('${t}')">${t}</span>`).join('')}</div>`;
+            
             document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('modal').classList.add('active');
         }
 
+        function setTag(tag) { activeFilters.text = tag; document.getElementById('searchInput').value = tag; closeModal(); applyFilters(); }
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
 
-        // 検索窓の入力監視
-        document.getElementById('searchInput').addEventListener('input', e => {
-            activeFilters.text = e.target.value;
-            applyFilters();
-        });
-
-        // ボタン系イベント
+        // イベント設定
+        document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
+        document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
             const group = btn.dataset.group, val = btn.dataset.val;
             activeFilters[group] = activeFilters[group].includes(val) ? activeFilters[group].filter(v => v !== val) : [...activeFilters[group], val];
             btn.classList.toggle('filter-active');
             applyFilters();
         }));
-
         document.querySelectorAll('.color-dot').forEach(btn => btn.addEventListener('click', () => {
             const val = btn.dataset.val;
             const isSelected = btn.classList.contains('filter-active-img');
@@ -239,12 +246,14 @@
             else { activeFilters.color = ''; }
             applyFilters();
         }));
-
         document.getElementById('resetFilters').addEventListener('click', () => location.reload());
 
         async function init() {
             const res = await fetch('./master_cards.json');
             allCards = await res.json();
+            // 収録セレクトボックス生成
+            const products = [...new Set(allCards.flatMap(c => c.products || []))].sort();
+            products.forEach(p => document.getElementById('filterProduct').add(new Option(p, p)));
             renderCards(allCards);
         }
         init();
