@@ -140,8 +140,8 @@
         let allCards = [];
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
 
-        const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png' };
-        const artsImgMap = { '白': 'image/Colors/arts_white.png', '緑': 'image/Colors/arts_green.png', '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '紫': 'image/Colors/arts_purple.png', '黄': 'image/Colors/arts_yellow.png', '無': 'image/Colors/arts_null.png' };
+        const typeImgMap = { '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '緑': 'image/Colors/type_green.png', '黄': 'image/Colors/type_yellow.png', '紫': 'image/Colors/type_purple.png', '白': 'image/Colors/type_white.png', '無': 'image/Colors/type_null.png' };
+        const artsImgMap = { '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '緑': 'image/Colors/arts_green.png', '黄': 'image/Colors/arts_yellow.png', '紫': 'image/Colors/arts_purple.png', '白': 'image/Colors/arts_white.png', '無': 'image/Colors/arts_null.png' };
 
         function setSearchText(text) {
             if (!text) return;
@@ -154,31 +154,37 @@
         function applyFilters() {
             let result = [...allCards];
 
+            // 1. テキスト検索
             if (activeFilters.text.trim()) {
                 const fuse = new Fuse(result, { keys: ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text'], threshold: 0.3 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
-            if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            
-            // 特攻フィルタ
-            if (activeFilters.tokkou) {
-                result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou.includes(activeFilters.tokkou)));
+
+            // 2. 収録商品
+            if (activeFilters.product) {
+                result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             }
 
-            // カードタイプフィルタ (推しホロメン, サポートカードをデータ上の名称に完全一致)
+            // 3. カードタイプフィルタ (ホロメン, 推しホロメン, サポートカード)
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => activeFilters.category.includes(c.cardType));
             }
 
-            // 色フィルタ (色を持つカードタイプのみ対象、色未選択時は全て表示)
+            // 4. 色フィルタ (選択時のみ発動)
             if (activeFilters.color) {
                 result = result.filter(c => {
+                    // 色フィルタ選択時は、色を持つタイプのみを表示（サポートカードは除外される仕様）
                     const isColoredType = ["ホロメン", "Buzzホロメン", "推しホロメン"].includes(c.cardType);
                     return isColoredType && (c.color || '無') === activeFilters.color;
                 });
             }
 
-            // Bloomレベル
+            // 5. 特攻フィルタ
+            if (activeFilters.tokkou) {
+                result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou.includes(activeFilters.tokkou)));
+            }
+
+            // 6. Bloomレベル/Buzz (ホロメン用)
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
                     const isBuzz = activeFilters.kind.includes('Buzz') && c.cardType === "Buzzホロメン";
@@ -187,12 +193,12 @@
                 });
             }
 
-            // サポート種別
+            // 7. サポート種別
             if (activeFilters.subKind.length > 0) {
                 result = result.filter(c => activeFilters.subKind.some(k => (c.kind || '').includes(k)));
             }
 
-            // バトンタッチ
+            // 8. バトンタッチ
             if (activeFilters.baton.length > 0) {
                 result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             }
@@ -276,7 +282,7 @@
                 const products = [...new Set(allCards.flatMap(c => c.products || []))].sort();
                 products.forEach(p => document.getElementById('filterProduct').add(new Option(p, p)));
                 renderCards(allCards);
-            } catch (e) { console.error("Load Error:", e); }
+            } catch (e) { console.error("JSON Read Error:", e); }
         }
         init();
     </script>
