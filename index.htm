@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 - 安定版</title>
+    <title>ホロカ検索 - 最終修正版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -121,7 +121,7 @@
 
     <script>
         let allCards = [];
-        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', tokkou: '' };
+        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', tokkou: '' };
 
         const typeImgMap = { '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '緑': 'image/Colors/type_green.png', '黄': 'image/Colors/type_yellow.png', '紫': 'image/Colors/type_purple.png', '白': 'image/Colors/type_white.png', '無': 'image/Colors/type_null.png' };
         const artsImgMap = { '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '緑': 'image/Colors/arts_green.png', '黄': 'image/Colors/arts_yellow.png', '紫': 'image/Colors/arts_purple.png', '白': 'image/Colors/arts_white.png', '無': 'image/Colors/arts_null.png' };
@@ -137,38 +137,49 @@
         function applyFilters() {
             let result = [...allCards];
 
+            // 1. キーワード検索
             if (activeFilters.text.trim()) {
                 const fuse = new Fuse(result, { keys: ['name', 'id', 'tags', 'description', 'arts.name', 'arts.text'], threshold: 0.3 });
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
 
-            // カードタイプ
+            // 2. カードタイプフィルタ (もっとも緩い判定に変更)
             if (activeFilters.category.length > 0) {
-                result = result.filter(c => activeFilters.category.includes(c.cardType));
+                result = result.filter(c => {
+                    const cType = String(c.cardType || "").trim();
+                    return activeFilters.category.some(filterVal => cType === filterVal);
+                });
             }
 
-            // 色
+            // 3. 色フィルタ
             if (activeFilters.color) {
-                result = result.filter(c => (c.cardType !== "サポートカード") && (c.color || '無') === activeFilters.color);
+                result = result.filter(c => {
+                    if (String(c.cardType).includes("サポート")) return false; // サポートは除外
+                    return (c.color || '無') === activeFilters.color;
+                });
             }
 
-            // 特攻
+            // 4. 特攻
             if (activeFilters.tokkou) {
                 result = result.filter(c => c.arts && c.arts.some(a => a.tokkou && a.tokkou.includes(activeFilters.tokkou)));
             }
 
-            // Bloomレベル
+            // 5. Bloomレベル
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
-                    const isBuzz = activeFilters.kind.includes('Buzz') && c.cardType === "Buzzホロメン";
-                    const isOther = activeFilters.kind.filter(k => k !== 'Buzz').some(k => (c.kind || '').includes(k));
+                    const cardKind = String(c.kind || "");
+                    const isBuzz = activeFilters.kind.includes('Buzz') && String(c.cardType).includes("Buzz");
+                    const isOther = activeFilters.kind.filter(k => k !== 'Buzz').some(k => cardKind.includes(k));
                     return activeFilters.kind.includes('Buzz') ? (isBuzz || isOther) : isOther;
                 });
             }
 
-            // サポート種別
+            // 6. サポート種別
             if (activeFilters.subKind.length > 0) {
-                result = result.filter(c => activeFilters.subKind.some(k => (c.kind || '').includes(k)));
+                result = result.filter(c => {
+                    const cardKind = String(c.kind || "");
+                    return activeFilters.subKind.some(k => cardKind.includes(k));
+                });
             }
 
             renderCards(result);
@@ -190,16 +201,19 @@
             let details = "";
             const createRow = (label, val, cls = "") => (val && val !== "nan") ? `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${cls}">${label}</span><div class="font-bold flex-1">${val}</div></div>` : "";
 
-            if (card.cardType !== "サポートカード") {
+            const isSupport = String(card.cardType).includes("サポート");
+            const isOshi = String(card.cardType).includes("推し");
+
+            if (!isSupport) {
                 details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">色</span><div class="flex items-center gap-2 font-bold"><img src="${typeImgMap[card.color] || typeImgMap['無']}" class="color-icon">${card.color || '無'}</div></div>`;
             }
 
-            if (card.cardType === "ホロメン" || card.cardType === "Buzzホロメン") {
-                details += createRow('HP', card.value) + createRow('Bloomレベル', card.cardType === "Buzzホロメン" ? "Buzz" : card.kind);
+            if (!isSupport && !isOshi) {
+                details += createRow('HP', card.value) + createRow('Bloomレベル', String(card.cardType).includes("Buzz") ? "Buzz" : card.kind);
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="flex-1 font-bold text-green-700">【${card.keywordName}】<br><span class="text-slate-900 font-normal">${card.keywordEffect}</span></div></div>`;
-            } else if (card.cardType === "推しホロメン") {
+            } else if (isOshi) {
                 details += createRow('LIFE', card.value, 'bg-green-600');
-            } else if (card.cardType === "サポートカード") {
+            } else if (isSupport) {
                 details += createRow('種別', card.kind, 'bg-slate-500');
             }
 
