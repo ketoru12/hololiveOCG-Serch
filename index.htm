@@ -456,9 +456,17 @@
                 const div = document.createElement('div');
                 div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
                 div.onclick = () => showDetail(card.id);
-                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
+                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${resolveImg(card)}" class="w-full h-full object-cover" loading="lazy"></div>`;
                 grid.appendChild(div);
             });
+        }
+
+        // ▼ カード画像URLを解決するヘルパー
+        function resolveImg(card) {
+            if (card.category === 'ホロメン') return `image/holomen/${card.id}.png`;
+            if (card.category === '推しホロメン') return `image/OSR/${card.id}.png`;
+            if (card.category === 'サポート') return `image/support/${card.id}.png`;
+            return card.img;
         }
 
         // ▼ 色名を正規化するヘルパー
@@ -498,7 +506,7 @@
             nameEl.className = card.category === "ホロメン" ? "text-xl md:text-2xl font-bold text-[#5e5a9b] clickable-name" : "text-xl md:text-2xl font-bold text-[#5e5a9b] non-clickable-name";
             nameEl.onclick = card.category === "ホロメン" ? () => setSearchNameOnly(card.name) : null;
 
-            document.getElementById('modalImg').src = card.img;
+            document.getElementById('modalImg').src = resolveImg(card);
             document.getElementById('modalId').innerText = card.id;
             
             let details = "";
