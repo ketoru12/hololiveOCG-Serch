@@ -461,12 +461,11 @@
             });
         }
 
-        // ▼ カード画像URLを解決するヘルパー
+        // ▼ カード画像URLを解決するヘルパー（JSONのimgをそのまま相対パスで使用）
         function resolveImg(card) {
-            if (card.category === 'ホロメン') return `image/holomen/${card.id}.png`;
-            if (card.category === '推しホロメン') return `image/OSR/${card.id}.png`;
-            if (card.category === 'サポート') return `image/support/${card.id}.png`;
-            return card.img;
+            const img = card.img || '';
+            // 先頭の / を除去して相対パスに
+            return img.startsWith('/') ? img.slice(1) : img;
         }
 
         // ▼ 色名を正規化するヘルパー
