@@ -34,7 +34,63 @@
         .baton-icon { width: 22px; height: 22px; object-fit: contain; display: inline-block; vertical-align: middle; }
 
         .filter-label { display: block; font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: -0.01em; }
-        .filter-active-img { outline: 3px solid #5e5a9b; outline-offset: 2px; border-radius: 999px; }
+
+        /* ▼ テキスト系フィルターボタン（カードタイプ・Bloom・サポート種別・バトン） */
+        .filter-btn {
+            position: relative;
+            transition: all 0.15s ease;
+            font-weight: 600;
+            color: #475569;
+            border-color: #cbd5e1;
+        }
+        .filter-btn:hover {
+            border-color: #5e5a9b;
+            color: #5e5a9b;
+            background-color: #f5f3ff;
+        }
+        .filter-active {
+            background-color: #5e5a9b !important;
+            color: white !important;
+            font-weight: bold;
+            border-color: #5e5a9b !important;
+            box-shadow: 0 2px 8px rgba(94,90,155,0.35);
+            transform: scale(1.05);
+        }
+        .filter-active::after {
+            content: " ✓";
+            font-size: 10px;
+        }
+
+        /* ▼ 色・特攻ボタン（画像） */
+        .color-dot {
+            position: relative;
+            transition: all 0.15s ease;
+            border-radius: 999px;
+        }
+        .color-dot:hover img {
+            transform: scale(1.12);
+        }
+        .color-dot img {
+            transition: transform 0.15s ease;
+        }
+        .filter-active-img {
+            outline: 3px solid #5e5a9b;
+            outline-offset: 3px;
+            border-radius: 999px;
+            background-color: #ede9fe;
+        }
+        .filter-active-img img {
+            transform: scale(1.15) !important;
+            filter: drop-shadow(0 0 4px rgba(94,90,155,0.6));
+        }
+
+        /* ▼ 収録セレクト選択中 */
+        select.filter-select-active {
+            border-color: #5e5a9b;
+            background-color: #f5f3ff;
+            color: #5e5a9b;
+            font-weight: bold;
+        }
         
         .toggle-switch { position: relative; display: inline-block; width: 34px; height: 20px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -510,7 +566,11 @@
 
         // イベントリスナー設定
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
-        document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
+        document.getElementById('filterProduct').addEventListener('change', e => {
+            activeFilters.product = e.target.value;
+            e.target.classList.toggle('filter-select-active', !!e.target.value);
+            applyFilters();
+        });
         
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -549,7 +609,9 @@
         document.getElementById('resetFilters').addEventListener('click', () => {
             activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
             document.getElementById('searchInput').value = '';
-            document.getElementById('filterProduct').value = '';
+            const productSelect = document.getElementById('filterProduct');
+            productSelect.value = '';
+            productSelect.classList.remove('filter-select-active');
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
             document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('filter-active-img'));
             applyFilters();
