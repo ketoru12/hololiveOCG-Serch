@@ -528,7 +528,7 @@
 
             // ▼ バトンタッチ行：アイコン画像で表示
             const createBatonRow = (label, count) => {
-                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-1">${renderBatonIcons(count)}<span class="ml-1 text-slate-500 text-sm">(${count})</span></div></div>`;
+                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-1">${renderBatonIcons(count)}</div></div>`;
             };
 
             if (card.category !== "サポート") details += createColorRow('色', card.color);
