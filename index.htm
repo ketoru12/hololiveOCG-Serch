@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -81,143 +80,30 @@
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 100;
-                gap: 12px;
             }
         }
 
         #modal { display: none; }
         #modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* デッキドロワー */
-        #deckDrawer {
-            position: fixed;
-            right: 0;
-            top: 0;
-            height: 100vh;
-            width: 360px;
-            background: white;
-            box-shadow: -4px 0 24px rgba(0,0,0,0.15);
-            z-index: 300;
-            transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-        }
-        #deckDrawer.open { transform: translateX(0); }
-        
-        @media (max-width: 768px) {
-            #deckDrawer {
-                width: 100%;
-                height: 85vh;
-                top: auto;
-                bottom: 0;
-                transform: translateY(100%);
-                border-radius: 20px 20px 0 0;
-            }
-            #deckDrawer.open { transform: translateY(0); }
-        }
-
-        #deckOverlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 250;
-            backdrop-filter: blur(2px);
-        }
-        #deckOverlay.active { display: block; }
-
-        /* デッキFABボタン */
-        #deckFab {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 100;
-        }
-        @media (max-width: 768px) {
-            #deckFab { bottom: 90px; right: 16px; }
-        }
-
-        .deck-card-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .deck-card-row img { width: 36px; height: 50px; object-fit: cover; border-radius: 3px; border: 1px solid #e2e8f0; flex-shrink: 0; }
-        .qty-btn { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #5e5a9b; color: #5e5a9b; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; flex-shrink: 0; background: white; }
-        .qty-btn:hover { background: #5e5a9b; color: white; }
-        .qty-num { font-weight: 800; font-size: 15px; min-width: 18px; text-align: center; color: #1a202c; }
-
-        .add-to-deck-btn {
-            display: flex; align-items: center; gap: 6px;
-            background: linear-gradient(135deg, #5e5a9b, #7c78c0);
-            color: white; border: none; border-radius: 8px;
-            padding: 8px 16px; font-size: 13px; font-weight: 700;
-            cursor: pointer; transition: all 0.2s; width: 100%;
-            justify-content: center; margin-top: 8px;
-        }
-        .add-to-deck-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(94,90,155,0.4); }
-        .add-to-deck-btn:active { transform: scale(0.97); }
-        .add-to-deck-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-
-        .deck-count-badge {
-            position: absolute; top: -6px; right: -6px;
-            background: #ef4444; color: white;
-            font-size: 11px; font-weight: 800;
-            width: 20px; height: 20px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            border: 2px solid white;
-        }
-
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
-
-        /* デッキリスト内カテゴリ区切り */
-        .deck-section-label {
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            color: #94a3b8; letter-spacing: 0.08em;
-            padding: 8px 0 2px;
-        }
-
-        /* コピー成功トースト */
-        #copyToast {
-            position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
-            background: #1a202c; color: white; padding: 8px 20px; border-radius: 999px;
-            font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none;
-            transition: all 0.3s; z-index: 9999;
-        }
-        #copyToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
     <div id="filterOverlay" onclick="toggleMobileFilter()"></div>
-    <div id="deckOverlay" onclick="closeDeckDrawer()"></div>
-    <div id="copyToast">📋 コピーしました！</div>
 
-    <!-- モバイルナビ -->
     <div class="mobile-nav md:hidden">
-        <button onclick="toggleMobileFilter()" class="bg-[#5e5a9b] text-white px-6 py-3 rounded-full shadow-2xl font-bold flex items-center gap-2 active:scale-95 transition-transform">
-            <span>🔍</span>
+        <button onclick="toggleMobileFilter()" class="bg-[#5e5a9b] text-white px-8 py-3 rounded-full shadow-2xl font-bold flex items-center gap-3 active:scale-95 transition-transform">
+            <span class="text-lg">🔍</span>
             <span>フィルター</span>
             <span id="mobileResultCount" class="text-xs bg-white/20 px-2 py-0.5 rounded">0 枚</span>
         </button>
     </div>
 
-    <!-- デッキFABボタン -->
-    <div id="deckFab">
-        <button onclick="openDeckDrawer()" class="relative bg-gradient-to-br from-[#5e5a9b] to-[#8b87cc] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-xl font-bold active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(94,90,155,0.5)]">
-            🃏
-            <span id="deckBadge" class="deck-count-badge" style="display:none">0</span>
-        </button>
-    </div>
-
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
-        <!-- フィルターサイドバー -->
         <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
                 <h1 class="font-bold tracking-wider italic">ホロカ検索</h1>
@@ -329,25 +215,15 @@
             </div>
         </aside>
 
-        <!-- メインコンテンツ -->
         <main class="flex-1 overflow-y-auto p-4 bg-slate-50 pb-32 md:pb-4">
             <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4"></div>
         </main>
     </div>
 
-    <!-- カード詳細モーダル -->
     <div id="modal" class="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4" onclick="closeModal()">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-6 p-6 relative shadow-2xl" onclick="event.stopPropagation()">
             <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl z-10" onclick="closeModal()">✕</button>
-            <div class="w-full md:w-1/3 shrink-0 flex flex-col gap-3">
-                <img id="modalImg" src="" class="w-full rounded-lg shadow border">
-                <!-- デッキ追加ボタン -->
-                <button id="addToDeckBtn" class="add-to-deck-btn" onclick="addCurrentCardToDeck()">
-                    <span>🃏</span>
-                    <span id="addToDeckBtnText">デッキに追加</span>
-                </button>
-                <div id="currentCardDeckCount" class="text-center text-xs text-slate-400 hidden"></div>
-            </div>
+            <div class="w-full md:w-1/3 shrink-0"><img id="modalImg" src="" class="w-full rounded-lg shadow border"></div>
             <div class="flex-1">
                 <div class="flex justify-between items-baseline border-b-2 border-slate-100 pb-2 mb-4">
                     <h2 id="modalName" class="text-xl md:text-2xl font-bold text-[#5e5a9b]"></h2>
@@ -358,66 +234,13 @@
         </div>
     </div>
 
-    <!-- デッキドロワー -->
-    <div id="deckDrawer">
-        <!-- ヘッダー -->
-        <div class="p-4 border-b bg-gradient-to-r from-[#5e5a9b] to-[#7c78c0] text-white flex justify-between items-center shrink-0">
-            <div>
-                <h2 class="font-bold text-base">デッキ構築</h2>
-                <p id="deckTotalCount" class="text-xs opacity-80 mt-0.5">0枚 / 50枚</p>
-            </div>
-            <button class="text-white/70 hover:text-white text-2xl" onclick="closeDeckDrawer()">✕</button>
-        </div>
-
-        <!-- デッキリスト -->
-        <div id="deckList" class="flex-1 overflow-y-auto p-4">
-            <div id="deckEmpty" class="text-center py-16 text-slate-300">
-                <div class="text-5xl mb-3">🃏</div>
-                <div class="text-sm font-semibold">カードを追加してください</div>
-                <div class="text-xs mt-1">カード詳細から「デッキに追加」</div>
-            </div>
-            <div id="deckCards"></div>
-        </div>
-
-        <!-- フッター -->
-        <div class="p-4 border-t bg-slate-50 shrink-0 space-y-2">
-            <!-- デッキ検証バー -->
-            <div id="deckValidation" class="hidden">
-                <div class="flex justify-between text-xs text-slate-500 mb-1">
-                    <span>デッキ枚数</span>
-                    <span id="deckValidationText"></span>
-                </div>
-                <div class="w-full bg-slate-200 rounded-full h-1.5">
-                    <div id="deckProgressBar" class="h-1.5 rounded-full transition-all" style="width:0%"></div>
-                </div>
-            </div>
-
-            <button onclick="copyDeckText()" class="w-full py-2.5 rounded-lg border-2 border-[#5e5a9b] text-[#5e5a9b] font-bold text-sm hover:bg-[#5e5a9b]/5 transition-colors flex items-center justify-center gap-2">
-                📋 デッキリストをコピー
-            </button>
-            <button onclick="openDeckLog()" class="w-full py-2.5 rounded-lg bg-[#5e5a9b] text-white font-bold text-sm hover:bg-[#4a4682] transition-colors flex items-center justify-center gap-2">
-                🔗 DECK LOGで開く
-            </button>
-            <button onclick="clearDeck()" class="w-full py-1.5 text-xs text-slate-400 hover:text-red-400 transition-colors">デッキをクリア</button>
-        </div>
-    </div>
-
     <script>
         let allCards = [];
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
-        
-        // デッキ状態: { cardId: count }
-        let deck = {};
-        let currentModalCardId = null;
-
-        // ホロカのルール: 推しホロメン1枚、ホロメン+サポート合計50枚
-        const DECK_LIMIT = 50;
-        const MAX_PER_CARD = 4;
 
         const colorClassMap = { '白': 'color-white', '緑': 'color-green', '赤': 'color-red', '青': 'color-blue', '紫': 'color-purple', '黄': 'color-yellow', '無': 'color-none', '◇': 'color-none' };
 
-        // ===== フィルターサイドバー =====
         function toggleMobileFilter() {
             document.getElementById('filterSidebar').classList.toggle('mobile-open');
             document.getElementById('filterOverlay').classList.toggle('active');
@@ -439,7 +262,8 @@
         }
 
         function setSearchNameOnly(name) {
-            document.getElementById('searchInput').value = name;
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = name;
             activeFilters.text = name;
             activeFilters.category = ['ホロメン'];
             document.querySelectorAll('.filter-btn[data-group="category"]').forEach(btn => {
@@ -452,7 +276,8 @@
         }
 
         function setSearchText(text) {
-            document.getElementById('searchInput').value = text;
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = text;
             activeFilters.text = text;
             closeModal();
             applyFilters();
@@ -525,22 +350,18 @@
 
             cards.forEach(card => {
                 const div = document.createElement('div');
-                div.className = "group cursor-pointer hover:-translate-y-1 transition-all relative";
+                div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
                 div.onclick = () => showDetail(card.id);
-                const deckCount = deck[card.id] || 0;
-                const badge = deckCount > 0 ? `<div class="absolute top-1 right-1 bg-[#5e5a9b] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">${deckCount}</div>` : '';
-                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${card.img}" class="w-full h-full object-cover" loading="lazy"></div>${badge}`;
+                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
                 grid.appendChild(div);
             });
         }
 
-        // ===== カード詳細モーダル =====
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
             
-            currentModalCardId = cardId;
-
+            // スマホなら詳細表示時にフィルターを閉じる
             if (window.innerWidth <= 768) {
                 const sidebar = document.getElementById('filterSidebar');
                 if (sidebar.classList.contains('mobile-open')) toggleMobileFilter();
@@ -553,8 +374,6 @@
 
             document.getElementById('modalImg').src = card.img;
             document.getElementById('modalId').innerText = card.id;
-            
-            updateAddToDeckButton(card);
             
             let details = "";
             const createRow = (label, value, extraClass = "") => {
@@ -592,255 +411,9 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function updateAddToDeckButton(card) {
-            const btn = document.getElementById('addToDeckBtn');
-            const btnText = document.getElementById('addToDeckBtnText');
-            const countInfo = document.getElementById('currentCardDeckCount');
-            
-            if (!card) { btn.disabled = true; return; }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
 
-            const currentCount = deck[card.id] || 0;
-            const totalCount = getDeckTotal();
-            
-            // 推しホロメンは1枚のみ
-            const isOshi = card.category === '推しホロメン';
-            const maxAllowed = isOshi ? 1 : MAX_PER_CARD;
-            
-            // 推しホロメンは別枠なので50枚制限は非対象
-            const reachedLimit = isOshi ? currentCount >= 1 : (currentCount >= maxAllowed || totalCount >= DECK_LIMIT);
-
-            btn.disabled = reachedLimit;
-            
-            if (currentCount === 0) {
-                btnText.textContent = 'デッキに追加';
-                countInfo.classList.add('hidden');
-            } else {
-                btnText.textContent = reachedLimit ? `上限に達しました（${currentCount}/${maxAllowed}）` : `もう1枚追加（${currentCount}/${maxAllowed}）`;
-                countInfo.textContent = `現在 ${currentCount} 枚投入中`;
-                countInfo.classList.remove('hidden');
-            }
-        }
-
-        function addCurrentCardToDeck() {
-            if (!currentModalCardId) return;
-            const card = allCards.find(c => c.id === currentModalCardId);
-            if (!card) return;
-
-            const isOshi = card.category === '推しホロメン';
-            const maxAllowed = isOshi ? 1 : MAX_PER_CARD;
-            const currentCount = deck[card.id] || 0;
-            const totalCount = getDeckTotal();
-
-            if (currentCount >= maxAllowed) return;
-            if (!isOshi && totalCount >= DECK_LIMIT) return;
-
-            deck[card.id] = currentCount + 1;
-            updateAddToDeckButton(card);
-            updateDeckUI();
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-            document.body.style.overflow = '';
-            currentModalCardId = null;
-        }
-
-        // ===== デッキ管理 =====
-        function getDeckTotal() {
-            let total = 0;
-            for (const [id, count] of Object.entries(deck)) {
-                const card = allCards.find(c => c.id === id);
-                if (card && card.category !== '推しホロメン') total += count;
-            }
-            return total;
-        }
-
-        function getDeckTotalAll() {
-            return Object.values(deck).reduce((a, b) => a + b, 0);
-        }
-
-        function updateDeckUI() {
-            // FABバッジ
-            const total = getDeckTotalAll();
-            const badge = document.getElementById('deckBadge');
-            if (total > 0) {
-                badge.style.display = 'flex';
-                badge.textContent = total > 99 ? '99+' : total;
-            } else {
-                badge.style.display = 'none';
-            }
-
-            // デッキドロワー内リスト
-            renderDeckList();
-
-            // グリッドのバッジ更新
-            const cards = document.querySelectorAll('#cardGrid > div');
-            // グリッド再描画が最も確実
-            applyFilters();
-        }
-
-        function renderDeckList() {
-            const deckTotal = getDeckTotal();
-            const deckAllTotal = getDeckTotalAll();
-            document.getElementById('deckTotalCount').textContent = `${deckTotal}枚 / ${DECK_LIMIT}枚`;
-
-            const deckEmpty = document.getElementById('deckEmpty');
-            const deckCards = document.getElementById('deckCards');
-
-            const deckIds = Object.keys(deck).filter(id => deck[id] > 0);
-            if (deckIds.length === 0) {
-                deckEmpty.style.display = '';
-                deckCards.innerHTML = '';
-                document.getElementById('deckValidation').classList.add('hidden');
-                return;
-            }
-            deckEmpty.style.display = 'none';
-            document.getElementById('deckValidation').classList.remove('hidden');
-
-            // 検証バー
-            const pct = Math.min(100, Math.round(deckTotal / DECK_LIMIT * 100));
-            const bar = document.getElementById('deckProgressBar');
-            bar.style.width = pct + '%';
-            bar.className = `h-1.5 rounded-full transition-all ${pct >= 100 ? 'bg-green-500' : pct >= 80 ? 'bg-yellow-400' : 'bg-[#5e5a9b]'}`;
-            document.getElementById('deckValidationText').textContent = `${deckTotal} / ${DECK_LIMIT}`;
-
-            // カードをカテゴリ別にグループ化
-            const groups = { '推しホロメン': [], 'ホロメン': [], 'サポート': [] };
-            deckIds.forEach(id => {
-                const card = allCards.find(c => c.id === id);
-                if (card) groups[card.category]?.push(card);
-            });
-
-            let html = '';
-            const categoryLabels = { '推しホロメン': '推しホロメン', 'ホロメン': 'ホロメン', 'サポート': 'サポート' };
-
-            for (const [cat, cards] of Object.entries(groups)) {
-                if (cards.length === 0) continue;
-                html += `<div class="deck-section-label">${categoryLabels[cat]}</div>`;
-                cards.forEach(card => {
-                    const count = deck[card.id];
-                    const isOshi = card.category === '推しホロメン';
-                    const maxAllowed = isOshi ? 1 : MAX_PER_CARD;
-                    const canAdd = isOshi ? count < 1 : (count < maxAllowed && deckTotal < DECK_LIMIT);
-                    html += `
-                    <div class="deck-card-row">
-                        <img src="${card.img}" alt="${card.name}" onclick="showDetail('${card.id}'); closeDeckDrawer();" style="cursor:pointer">
-                        <div style="flex:1;min-width:0">
-                            <div style="font-size:12px;font-weight:700;color:#1a202c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${card.name}</div>
-                            <div style="font-size:10px;color:#94a3b8">${card.id}</div>
-                        </div>
-                        <button class="qty-btn" onclick="changeDeckCount('${card.id}', -1)" title="減らす">－</button>
-                        <span class="qty-num">${count}</span>
-                        <button class="qty-btn" onclick="changeDeckCount('${card.id}', 1)" title="増やす" ${!canAdd ? 'disabled style="opacity:0.3;cursor:not-allowed"' : ''}>＋</button>
-                    </div>`;
-                });
-            }
-            deckCards.innerHTML = html;
-        }
-
-        function changeDeckCount(cardId, delta) {
-            const card = allCards.find(c => c.id === cardId);
-            if (!card) return;
-            const isOshi = card.category === '推しホロメン';
-            const maxAllowed = isOshi ? 1 : MAX_PER_CARD;
-            const current = deck[cardId] || 0;
-            const newCount = current + delta;
-
-            if (newCount <= 0) {
-                delete deck[cardId];
-            } else if (newCount > maxAllowed) {
-                return;
-            } else if (!isOshi && delta > 0 && getDeckTotal() >= DECK_LIMIT) {
-                return;
-            } else {
-                deck[cardId] = newCount;
-            }
-            updateDeckUI();
-        }
-
-        function openDeckDrawer() {
-            renderDeckList();
-            document.getElementById('deckDrawer').classList.add('open');
-            document.getElementById('deckOverlay').classList.add('active');
-        }
-
-        function closeDeckDrawer() {
-            document.getElementById('deckDrawer').classList.remove('open');
-            document.getElementById('deckOverlay').classList.remove('active');
-        }
-
-        function clearDeck() {
-            if (!confirm('デッキをクリアしますか？')) return;
-            deck = {};
-            updateDeckUI();
-        }
-
-        function copyDeckText() {
-            const deckIds = Object.keys(deck).filter(id => deck[id] > 0);
-            if (deckIds.length === 0) { alert('デッキにカードがありません'); return; }
-
-            const groups = { '推しホロメン': [], 'ホロメン': [], 'サポート': [] };
-            deckIds.forEach(id => {
-                const card = allCards.find(c => c.id === id);
-                if (card) groups[card.category]?.push(card);
-            });
-
-            let text = '【ホロカ デッキレシピ】\n\n';
-            const labels = { '推しホロメン': '◆ 推しホロメン', 'ホロメン': '◆ ホロメン', 'サポート': '◆ サポート' };
-            for (const [cat, cards] of Object.entries(groups)) {
-                if (cards.length === 0) continue;
-                text += labels[cat] + '\n';
-                cards.forEach(c => { text += `  ${c.name}（${c.id}）× ${deck[c.id]}\n`; });
-                text += '\n';
-            }
-            text += `合計: ${getDeckTotal()}枚\n`;
-            text += `\nDECK LOGで編集: https://decklog.bushiroad.com/create?c=9`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('copyToast');
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2500);
-            });
-        }
-
-        function openDeckLog() {
-            // DECK LOGのURLパラメータでカードIDを渡す（decklog独自形式）
-            // 実際にはJavaScriptベースSPAのため直接インポートは不可。
-            // カードリストをコピーしてから開く案内を出す。
-            const deckIds = Object.keys(deck).filter(id => deck[id] > 0);
-            if (deckIds.length === 0) { alert('デッキにカードがありません'); return; }
-
-            // デッキテキストをコピーしてからDECK LOGを開く
-            const groups = { '推しホロメン': [], 'ホロメン': [], 'サポート': [] };
-            deckIds.forEach(id => {
-                const card = allCards.find(c => c.id === id);
-                if (card) groups[card.category]?.push(card);
-            });
-            let text = '【ホロカ デッキレシピ】\n\n';
-            const labels = { '推しホロメン': '◆ 推しホロメン', 'ホロメン': '◆ ホロメン', 'サポート': '◆ サポート' };
-            for (const [cat, cards] of Object.entries(groups)) {
-                if (cards.length === 0) continue;
-                text += labels[cat] + '\n';
-                cards.forEach(c => { text += `  ${c.name}（${c.id}）× ${deck[c.id]}\n`; });
-                text += '\n';
-            }
-            text += `合計: ${getDeckTotal()}枚`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('copyToast');
-                toast.textContent = '📋 デッキリストをコピーしました！DECK LOGを開きます';
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.textContent = '📋 コピーしました！';
-                    toast.classList.remove('show');
-                }, 3000);
-                setTimeout(() => window.open('https://decklog.bushiroad.com/create?c=9', '_blank'), 500);
-            }).catch(() => {
-                window.open('https://decklog.bushiroad.com/create?c=9', '_blank');
-            });
-        }
-
-        // ===== イベントリスナー =====
+        // イベントリスナー設定
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => { activeFilters.product = e.target.value; applyFilters(); });
         
@@ -886,7 +459,6 @@
             applyFilters();
         });
 
-        // ===== 初期化 =====
         async function init() {
             try {
                 const res = await fetch('./master_cards.json');
