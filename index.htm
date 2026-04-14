@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 - 完全版</title>
+    <title>ホロカ検索 - 完全版（Buzzロジック修正済）</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -306,6 +306,8 @@
             applyFilters();
         }
 
+        const checkLogic = (val, list, logic) => list.length === 0 || (logic === 'OR' ? list.some(f => String(val).includes(f)) : list.every(f => String(val).includes(f)));
+
         function applyFilters() {
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
@@ -318,18 +320,33 @@
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
             
+            // カテゴリーフィルター
             if (activeFilters.category.length > 0) {
                 result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
             }
 
+            // 色フィルター（ホロメン・推しホロメン対象）
             if (activeFilters.color) {
-                result = result.filter(c => (c.category === "ホロメン" || c.category === "推しホロメン") && (c.color || '無') === activeFilters.color);
+                result = result.filter(c => (c.category === "ホロメン" || c.category === "推しホロメン" || c.category === "Buzzホロメン") && (c.color || '無') === activeFilters.color);
             }
 
-            const checkLogic = (val, list, logic) => list.length === 0 || (logic === 'OR' ? list.some(f => String(val).includes(f)) : list.every(f => String(val).includes(f)));
-
+            // Bloomレベル（修正：Buzz選択時は category を優先チェック）
             if (activeFilters.kind.length > 0) {
-                result = result.filter(c => (activeFilters.kind.includes('Buzz') && c.category === 'Buzzホロメン') || checkLogic(c.kind || '', activeFilters.kind, logiceState.kind));
+                result = result.filter(c => {
+                    const isBuzzSelected = activeFilters.kind.includes('Buzz');
+                    const otherKinds = activeFilters.kind.filter(k => k !== 'Buzz');
+
+                    const matchBuzz = isBuzzSelected && c.category === 'Buzzホロメン';
+                    const matchOthers = otherKinds.length > 0 && checkLogic(c.kind || '', otherKinds, logiceState.kind);
+
+                    if (isBuzzSelected && otherKinds.length > 0) {
+                        return logiceState.kind === 'OR' ? (matchBuzz || matchOthers) : (matchBuzz && matchOthers);
+                    } else if (isBuzzSelected) {
+                        return matchBuzz;
+                    } else {
+                        return matchOthers;
+                    }
+                });
             }
             
             if (activeFilters.subKind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.subKind, logiceState.subKind));
@@ -358,8 +375,8 @@
             const createRow = (label, val, cls = "") => (val && val !== "nan") ? `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${cls}">${label}</span><div class="value-box">${val}</div></div>` : "";
 
             if (card.category !== "サポート") details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">色</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[card.color] || typeImgMap['無']}" class="color-icon"><span class="font-bold">${card.color || '無'}</span></div></div>`;
-            if (card.category === "ホロメン") {
-                details += createRow('HP', card.value) + createRow('Bloom', card.kind) + `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${Array(parseInt(card.baton_touch) || 0).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('') || 0}</div></div>`;
+            if (card.category === "ホロメン" || card.category === "Buzzホロメン") {
+                details += createRow('HP', card.value) + createRow('Bloom', card.kind || (card.category === 'Buzzホロメン' ? 'Buzz' : '')) + `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${Array(parseInt(card.baton_touch) || 0).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('') || 0}</div></div>`;
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div>${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
