@@ -397,10 +397,10 @@
                 return logic === 'OR' ? filterList.some(f => val.includes(f)) : filterList.every(f => val.includes(f));
             };
 
-            // ▼ 修正箇所: Buzz選択時は category: "Buzzホロメン" のみを抽出
+            // ここにBuzzフィルタのロジックのみを修正
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
-                    if (activeFilters.kind.includes('Buzz')) {
+                    if (activeFilters.kind.includes('Buzz') && activeFilters.kind.length === 1) {
                         return c.category === 'Buzzホロメン';
                     }
                     return checkLogic(c.kind || '', activeFilters.kind, logiceState.kind);
