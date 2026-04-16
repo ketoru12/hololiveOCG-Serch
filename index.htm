@@ -144,45 +144,22 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
 
-        /* ===== デッキカート統合UI ===== */
-        #deckBar { background:#1e3a5f; border-left:4px solid #5e5a9b; padding:8px 12px; display:flex; align-items:center; gap:10px; flex-shrink:0; font-size:12px; color:white; }
-        #deckBar .oshi-name { color:#fde68a; font-weight:bold; max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        #deckBar .main-count { font-weight:900; font-size:15px; color:#86efac; }
-        #deckBar .sep { color:#334155; }
-        #deckBar button { border:none; border-radius:6px; padding:4px 10px; font-size:11px; font-weight:bold; cursor:pointer; }
-        #deckBar .btn-confirm { background:#5e5a9b; color:white; }
-        #deckBar .btn-decklog { background:#ea580c; color:white; }
-        #deckBar .spacer { flex:1; }
-        .hc-wrap { position:relative !important; overflow:visible !important; }
-        .hc-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; align-items:center; justify-content:center; gap:8px; opacity:0; transition:opacity 0.15s; pointer-events:none; border-radius:6px; z-index:2; }
-        .hc-wrap:hover .hc-overlay { opacity:1; pointer-events:auto; background:rgba(0,0,0,0.45); }
-        .hc-overlay button { border:none; border-radius:50%; width:34px; height:34px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.4); }
-        .hc-btn-loupe { background:white; font-size:16px; }
-        .hc-btn-add { background:#5e5a9b; color:white; font-size:22px; font-weight:bold; }
-        .hc-btn-oshi { background:#10b981; color:white; font-size:16px; }
-        .hc-badge { display:none; position:absolute; bottom:-18px; left:0; right:0; text-align:center; font-size:11px; font-weight:bold; color:white; padding:2px 0; border-radius:0 0 6px 6px; z-index:3; pointer-events:none; }
-        #deckModal,#exportModal { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; padding:16px; }
-        #deckModal.active,#exportModal.active { display:flex; }
-        #exportModal { z-index:300; background:rgba(0,0,0,0.85); }
-        #deckModalBox { background:white; border-radius:16px; width:100%; max-width:640px; max-height:80vh; display:flex; flex-direction:column; overflow:hidden; }
-        #deckModalHead { padding:14px 18px; background:#5e5a9b; color:white; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
-        #deckModalList { overflow-y:auto; flex:1; padding:12px; }
-        .ds-head { font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; padding-bottom:4px; }
-        .ds-oshi .ds-head { color:#10b981; border-bottom:2px solid #d1fae5; }
-        .ds-main .ds-head { color:#3b82f6; border-bottom:2px solid #dbeafe; }
-        .dk-row { display:flex; align-items:center; gap:10px; padding:6px 4px; border-bottom:1px solid #f1f5f9; }
-        .dk-row img { width:36px; height:50px; object-fit:cover; border-radius:4px; flex-shrink:0; }
-        .dk-info { flex:1; min-width:0; }
-        .dk-nm { font-weight:bold; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .dk-id { color:#94a3b8; font-size:11px; }
-        .dk-ctrl { display:flex; align-items:center; gap:6px; }
-        .dk-ctrl button { border:none; border-radius:4px; width:24px; height:24px; font-size:15px; font-weight:bold; cursor:pointer; }
-        .dk-qty { font-weight:bold; font-size:14px; min-width:20px; text-align:center; }
-        #exportModalBox { background:#1e1b4b; border-radius:16px; width:100%; max-width:560px; padding:24px; color:white; }
-        #exportTextarea { width:100%; background:#0a0818; color:#a78bfa; border:2px solid #5e5a9b; border-radius:8px; padding:10px 12px; font-family:monospace; font-size:11px; resize:none; box-sizing:border-box; word-break:break-all; line-height:1.5; margin-top:10px; }
-        #modalCartCtrl { display:flex; align-items:center; gap:8px; margin-top:10px; padding:10px; border-radius:10px; }
-        #modalCartCtrl.is-oshi { border:2px solid #10b981; background:#f0fdf4; }
-        #modalCartCtrl.is-main { border:2px solid #e2e8f0; background:#f8fafc; }
+        /* HC cart */
+        #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;font-size:12px;color:white;}
+        #hcBar button{border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:bold;cursor:pointer;}
+        .hcWrap{position:relative!important;overflow:visible!important;}
+        .hcOv{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity .15s;pointer-events:none;border-radius:6px;z-index:2;}
+        .hcWrap:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
+        .hcOv button{border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0006;}
+        .hcBdg{display:none;position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
+        #hcDeckModal,#hcExpModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
+        #hcDeckModal.on,#hcExpModal.on{display:flex;}
+        #hcDeckBox{background:white;border-radius:16px;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;}
+        #hcExpBox{background:#1e1b4b;border-radius:16px;width:100%;max-width:560px;padding:24px;color:white;}
+        #hcExpTa{width:100%;background:#0a0818;color:#a78bfa;border:2px solid #5e5a9b;border-radius:8px;padding:10px;font-family:monospace;font-size:11px;resize:none;box-sizing:border-box;word-break:break-all;line-height:1.5;margin-top:10px;}
+        #hcCartCtrl{display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px;border-radius:10px;}
+        #hcCartCtrl.oshi{border:2px solid #10b981;background:#f0fdf4;}
+        #hcCartCtrl.main{border:2px solid #e2e8f0;background:#f8fafc;}
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -208,17 +185,16 @@
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6">
-            <!-- ===== デッキバー ===== -->
-            <div id="deckBar" style="display:none;">
-                <span style="color:#86efac;font-weight:bold;">推し：</span>
-                <span id="hcOshiName" class="oshi-name">未選択</span>
-                <span class="sep">｜</span>
-                <span style="color:#93c5fd;font-weight:bold;">メイン：</span>
-                <span id="hcMainCount" class="main-count">0</span>
-                <span style="color:#94a3b8;"> / 50枚</span>
-                <span class="spacer"></span>
-                <button class="btn-confirm" onclick="openDeckModal()">デッキ確認</button>
-                <button class="btn-decklog" onclick="openExportModal()">DECKLOGへ</button>
+            <div id="hcBar" style="display:none">
+                <span style="color:#86efac;font-weight:bold">推し：</span>
+                <span id="hcON" style="color:#fde68a;font-weight:bold;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">未選択</span>
+                <span style="color:#334155">｜</span>
+                <span style="color:#93c5fd;font-weight:bold">メイン：</span>
+                <span id="hcMC" style="font-weight:900;font-size:15px;color:#86efac">0</span>
+                <span style="color:#94a3b8"> / 50枚</span>
+                <div style="flex:1"></div>
+                <button style="background:#5e5a9b;color:white" onclick="hcOpenDeck()">デッキ確認</button>
+                <button style="background:#ea580c;color:white" onclick="hcOpenExp()">DECKLOGへ</button>
             </div>
                 <div>
                     <div class="flex justify-between items-center mb-2">
@@ -367,105 +343,7 @@
         </div>
     </div>
 
-    <!-- ===== デッキ確認モーダル ===== -->
-    <div id="deckModal" onclick="if(event.target===this)closeDeckModal()">
-        <div id="deckModalBox">
-            <div id="deckModalHead">
-                <span style="font-weight:bold;font-size:15px;">デッキ確認</span>
-                <span id="deckModalBadge" style="font-size:12px;background:rgba(255,255,255,0.2);border-radius:999px;padding:2px 10px;"></span>
-                <div style="display:flex;gap:8px;align-items:center;">
-                    <button onclick="clearDeck()" style="background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;">クリア</button>
-                    <button onclick="closeDeckModal()" style="background:none;color:white;border:none;font-size:18px;cursor:pointer;">✕</button>
-                </div>
-            </div>
-            <div id="deckModalList"></div>
-        </div>
-    </div>
-    <!-- ===== DECKLOGエクスポートモーダル ===== -->
-    <div id="exportModal" onclick="if(event.target===this)closeExportModal()">
-        <div id="exportModalBox">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                <span style="font-weight:bold;font-size:16px;">DECKLOGへ送る</span>
-                <button onclick="closeExportModal()" style="background:none;color:#94a3b8;border:none;font-size:20px;cursor:pointer;">✕</button>
-            </div>
-            <div style="font-size:13px;color:#94a3b8;line-height:1.9;">
-                ① <b style="color:#e2e8f0;">DECKLOGのデッキ作成画面</b>を別タブで開く<br>
-                ② 下のコードを全選択（クリック→Ctrl+A）してコピー（Ctrl+C）<br>
-                ③ DECKLOGの <b style="color:#a78bfa;">F12→コンソール</b> に貼り付けてEnter
-            </div>
-            <textarea id="exportTextarea" rows="5" readonly onclick="this.focus();this.select()" onfocus="this.select()"></textarea>
-            <div style="margin-top:10px;font-size:11px;color:#475569;">※ スタンダード選択後のカード選択画面で実行してください</div>
-        </div>
-    </div>
-
     <script>
-
-        // =============================================
-        // カート状態（renderCards定義より前に宣言）
-        // =============================================
-        const HC = {
-            cart: {},
-            oshi: null,
-            MAX_PER: 4,
-            MAX_TOTAL: 50,
-            getTotal() { return Object.values(this.cart).reduce((s,c)=>s+c.qty,0); },
-            isOshi(id) { const c=allCards.find(x=>x.id===id); return c&&c.category==='推しホロメン'; },
-            add(id,name,img) {
-                if(this.isOshi(id)){
-                    if(this.oshi&&this.oshi.id===id){this.flash(name+'はすでに選択中','#f59e0b');return;}
-                    const prev=this.oshi?this.oshi.name:null;
-                    this.oshi={id,name,img};this.updateBar();this.updateBadges();
-                    this.flash('推しに'+name+'をセット'+(prev?' ('+prev+'から入替え)':''),'#10b981');return;
-                }
-                if(this.getTotal()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
-                if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
-                if(this.cart[id])this.cart[id].qty++;else this.cart[id]={name,img,qty:1};
-                this.updateBar();this.updateBadges();
-                this.flash('追加: '+name+' ('+this.getTotal()+'/'+this.MAX_TOTAL+'枚)','#22c55e');
-            },
-            dec(id){if(!this.cart[id])return;this.cart[id].qty--;if(!this.cart[id].qty)delete this.cart[id];this.updateBar();this.updateBadges();},
-            inc(id){
-                if(!this.cart[id])return;
-                if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
-                if(this.getTotal()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
-                this.cart[id].qty++;this.updateBar();this.updateBadges();
-            },
-            removeOshi(){this.oshi=null;this.updateBar();this.updateBadges();},
-            updateBar(){
-                const bar=document.getElementById('deckBar');if(!bar)return;
-                bar.style.display='flex';
-                const t=this.getTotal();
-                document.getElementById('hcOshiName').textContent=this.oshi?this.oshi.name:'未選択';
-                const mc=document.getElementById('hcMainCount');
-                mc.textContent=t;mc.style.color=t>=this.MAX_TOTAL?'#fbbf24':'#86efac';
-            },
-            updateBadges(){
-                document.querySelectorAll('.hc-wrap').forEach(wrap=>{
-                    const id=wrap.dataset.hcId,badge=wrap.querySelector('.hc-badge');
-                    if(!badge||!id)return;
-                    if(this.isOshi(id)){
-                        if(this.oshi&&this.oshi.id===id){badge.textContent='推し ⭐';badge.style.display='block';badge.style.background='rgba(16,185,129,0.9)';}
-                        else{badge.style.display='none';}
-                    } else {
-                        const qty=this.cart[id]?this.cart[id].qty:0;
-                        if(qty>0){badge.textContent=qty+'/'+this.MAX_PER+'枚';badge.style.display='block';badge.style.background=qty>=this.MAX_PER?'rgba(245,158,11,0.9)':'rgba(94,90,155,0.9)';}
-                        else{badge.style.display='none';}
-                    }
-                });
-            },
-            flash(msg,color){
-                const f=document.createElement('div');f.textContent=msg;
-                f.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;background:'+color+';color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:bold;pointer-events:none;white-space:nowrap;';
-                document.body.appendChild(f);setTimeout(()=>f.remove(),1500);
-            },
-            buildExportCode(){
-                const oshi=this.oshi;
-                const main=Object.keys(this.cart).map(id=>({id,count:this.cart[id].qty}));
-                const ds=JSON.stringify({oshi:oshi?{id:oshi.id,count:1}:null,main});
-                return '(function(){var data='+ds+';var oshi=data.oshi;var cards=data.main;var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};var selType=async function(label){var lbl=Array.from(document.querySelectorAll("label")).find(function(l){return l.textContent.trim().indexOf(label)>-1;});if(lbl){var inp=lbl.querySelector("input[type=radio]");if(!inp&&lbl.htmlFor)inp=document.getElementById(lbl.htmlFor);if(inp){inp.click();inp.dispatchEvent(new Event("change",{bubbles:true}));await delay(700);return true;}}return false;};var tryAdd=async function(cardNo,count){var tabs=Array.from(document.querySelectorAll("button,span,[role=tab]"));var t=tabs.find(function(t){var tx=t.textContent.trim();return tx==="カード番号"||tx==="No.";});if(t){t.click();await delay(400);}var input=document.querySelector('input[placeholder*="カード番号"],input[placeholder*="番号"],input[placeholder*="キーワード"]');if(!input){return false;}input.focus();Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"value").set.call(input,cardNo);["input","change","keyup"].forEach(function(ev){input.dispatchEvent(new Event(ev,{bubbles:true}));});await delay(1500);var cardEl=document.querySelector(".card-item");if(!cardEl){return false;}var incEl=cardEl.querySelector(".card-inc");if(!incEl){return false;}for(var i=0;i<count;i++){incEl.click();await delay(350);}return true;};(async function(){var ok=0,ng=[];if(oshi){await selType("推しホロメン");var s0=await tryAdd(oshi.id,1);if(s0)ok++;else ng.push(oshi.id+"(推し)");await delay(400);}if(cards.length){await selType("メインデッキ");}for(var i=0;i<cards.length;i++){var c=cards[i];if(!c.id)continue;var s=await tryAdd(c.id,c.count);if(s)ok++;else ng.push(c.id);await delay(300);}alert("完了: "+ok+"件成功"+(ng.length?"\n失敗: "+ng.join(", "):""));})();})()';
-            }
-        };
-
         let allCards = [];
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
@@ -715,144 +593,250 @@
         }
         init();
 
-        // =============================================
-        // renderCards上書き・showDetail上書き・UI関数
-        // （全関数定義後・init()より後に実行される）
-        // =============================================
-        function renderCards(cards) {
-            const grid = document.getElementById('cardGrid');
-            const countText = `${cards.length} 枚`;
-            document.getElementById('resultCount').innerText = countText;
-            document.getElementById('mobileResultCount').innerText = countText;
-            grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
-            cards.forEach(card => {
-                const div = document.createElement('div');
-                div.className = 'group cursor-pointer hover:-translate-y-1 transition-all hc-wrap';
-                div.dataset.hcId = card.id;
-                const imgSrc = card.img || '';
-                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${imgSrc}" class="w-full h-full object-cover" loading="lazy"></div>`;
-                // オーバーレイ
-                const ov = document.createElement('div');
-                ov.className = 'hc-overlay';
-                const loupe = document.createElement('button');
-                loupe.className = 'hc-btn-loupe';
-                loupe.textContent = '🔍';
-                loupe.onclick = e => { e.stopPropagation(); showDetail(card.id); };
-                const addBtn = document.createElement('button');
-                if (card.category === '推しホロメン') {
-                    addBtn.className = 'hc-btn-oshi'; addBtn.textContent = '⭐'; addBtn.title = '推しにセット';
-                } else {
-                    addBtn.className = 'hc-btn-add'; addBtn.textContent = '+'; addBtn.title = 'カートに追加';
+        // ========== HC カート機能 ==========
+        var HC = {
+            cart: {}, oshi: null, MAX_PER: 4, MAX_TOTAL: 50,
+            total: function(){ var s=0; Object.values(this.cart).forEach(function(c){s+=c.qty;}); return s; },
+            isOshi: function(id){ var c=allCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
+            add: function(id,name,img){
+                if(this.isOshi(id)){
+                    if(this.oshi&&this.oshi.id===id){this.flash(name+'はすでに選択中','#f59e0b');return;}
+                    var prev=this.oshi?this.oshi.name:null;
+                    this.oshi={id:id,name:name,img:img};
+                    this.updateBar();this.updateBadges();
+                    this.flash('推しに'+name+'をセット'+(prev?' ('+prev+'から入替え)':''),'#10b981');return;
                 }
-                addBtn.onclick = e => { e.stopPropagation(); HC.add(card.id, card.name, imgSrc); hcRefreshModal(card.id); };
-                ov.appendChild(loupe); ov.appendChild(addBtn); div.appendChild(ov);
+                if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
+                if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
+                if(this.cart[id])this.cart[id].qty++;
+                else this.cart[id]={name:name,img:img,qty:1};
+                this.updateBar();this.updateBadges();
+                this.flash('追加: '+name+' ('+this.total()+'/'+this.MAX_TOTAL+'枚)','#22c55e');
+            },
+            dec: function(id){if(!this.cart[id])return;this.cart[id].qty--;if(!this.cart[id].qty)delete this.cart[id];this.updateBar();this.updateBadges();},
+            inc: function(id){
+                if(!this.cart[id])return;
+                if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
+                if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
+                this.cart[id].qty++;this.updateBar();this.updateBadges();
+            },
+            removeOshi: function(){this.oshi=null;this.updateBar();this.updateBadges();},
+            updateBar: function(){
+                var bar=document.getElementById('hcBar');if(!bar)return;
+                bar.style.display='flex';
+                var t=this.total();
+                document.getElementById('hcON').textContent=this.oshi?this.oshi.name:'未選択';
+                var mc=document.getElementById('hcMC');
+                mc.textContent=t;mc.style.color=t>=this.MAX_TOTAL?'#fbbf24':'#86efac';
+            },
+            updateBadges: function(){
+                var self=this;
+                document.querySelectorAll('.hcWrap').forEach(function(wrap){
+                    var id=wrap.dataset.hcId,badge=wrap.querySelector('.hcBdg');
+                    if(!badge||!id)return;
+                    if(self.isOshi(id)){
+                        if(self.oshi&&self.oshi.id===id){badge.textContent='推し ⭐';badge.style.display='block';badge.style.background='rgba(16,185,129,.9)';}
+                        else badge.style.display='none';
+                    } else {
+                        var qty=self.cart[id]?self.cart[id].qty:0;
+                        if(qty>0){badge.textContent=qty+'/'+self.MAX_PER+'枚';badge.style.display='block';badge.style.background=qty>=self.MAX_PER?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
+                        else badge.style.display='none';
+                    }
+                });
+            },
+            flash: function(msg,color){
+                var f=document.createElement('div');f.textContent=msg;
+                f.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;background:'+color+';color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:bold;pointer-events:none;white-space:nowrap;';
+                document.body.appendChild(f);setTimeout(function(){f.remove();},1500);
+            }
+        };
+
+        // グリッドにオーバーレイを後付けする
+        function hcPatchGrid(){
+            var grid=document.getElementById('cardGrid');
+            if(!grid)return;
+            Array.from(grid.children).forEach(function(wrap){
+                if(wrap.dataset.hcPatched)return;
+                wrap.dataset.hcPatched='1';
+                // カードIDをimgのsrcから特定
+                var img=wrap.querySelector('img');
+                if(!img)return;
+                var src=img.src;
+                var found=allCards.find(function(c){
+                    var ci=c.img||'';
+                    var fn=ci.split('/').pop();
+                    return fn&&src.indexOf(fn)>-1;
+                });
+                if(!found)return;
+                var cardId=found.id;
+                wrap.classList.add('hcWrap');
+                wrap.dataset.hcId=cardId;
+                // 元のonclickを保持
+                var origClick=wrap.onclick;
+                wrap.onclick=null;
+                // オーバーレイ
+                var ov=document.createElement('div');ov.className='hcOv';
+                var loupe=document.createElement('button');
+                loupe.style.background='white';loupe.style.fontSize='16px';
+                loupe.textContent='🔍';loupe.title='詳細';
+                loupe.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(wrap);};
+                var addBtn=document.createElement('button');
+                if(found.category==='推しホロメン'){
+                    addBtn.style.cssText='background:#10b981;color:white;font-size:16px;';addBtn.textContent='⭐';addBtn.title='推しにセット';
+                } else {
+                    addBtn.style.cssText='background:#5e5a9b;color:white;font-size:22px;font-weight:bold;';addBtn.textContent='+';addBtn.title='カートに追加';
+                }
+                addBtn.onclick=function(e){e.stopPropagation();HC.add(cardId,found.name,found.img||'');hcRefreshModal(cardId);};
+                ov.appendChild(loupe);ov.appendChild(addBtn);wrap.appendChild(ov);
                 // バッジ
-                const badge = document.createElement('div');
-                badge.className = 'hc-badge'; div.appendChild(badge);
-                grid.appendChild(div);
+                var badge=document.createElement('div');badge.className='hcBdg';wrap.appendChild(badge);
             });
             HC.updateBadges();
         }
 
-        // showDetailを拡張（元の処理後にカートUIを追加）
-        const _origShowDetail = showDetail;
-        function showDetail(cardId) {
-            _origShowDetail(cardId);
-            const existing = document.getElementById('modalCartCtrl');
-            if (existing) existing.remove();
-            const ctrl = document.createElement('div');
-            ctrl.id = 'modalCartCtrl';
-            const details = document.getElementById('modalDetails');
-            if (details) details.parentNode.insertBefore(ctrl, details);
-            hcRefreshModal(cardId);
-        }
+        // MutationObserverでグリッド更新を監視
+        var hcObserver=new MutationObserver(function(){hcPatchGrid();});
+        document.addEventListener('DOMContentLoaded',function(){
+            var grid=document.getElementById('cardGrid');
+            if(grid)hcObserver.observe(grid,{childList:true});
+        });
 
-        function hcRefreshModal(cardId) {
-            const ctrl = document.getElementById('modalCartCtrl');
-            if (!ctrl) return;
-            const card = allCards.find(c => c.id === cardId);
-            if (!card) return;
-            const isOshi = card.category === '推しホロメン';
-            const imgSrc = card.img || '';
-            ctrl.className = 'is-' + (isOshi ? 'oshi' : 'main');
-            ctrl.innerHTML = '';
-            const lbl = document.createElement('span');
-            lbl.style.cssText = 'font-size:12px;font-weight:bold;flex:1;color:'+(isOshi?'#10b981':'#64748b')+';';
-            lbl.textContent = isOshi
-                ? '推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択')
-                : 'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
+        // showDetailを拡張
+        var _hcOrigShowDetail=null;
+        document.addEventListener('DOMContentLoaded',function(){
+            if(typeof showDetail==='function'){
+                _hcOrigShowDetail=showDetail;
+                showDetail=function(cardId){
+                    _hcOrigShowDetail(cardId);
+                    var ex=document.getElementById('hcCartCtrl');if(ex)ex.remove();
+                    var ctrl=document.createElement('div');ctrl.id='hcCartCtrl';
+                    var details=document.getElementById('modalDetails');
+                    if(details)details.parentNode.insertBefore(ctrl,details);
+                    hcRefreshModal(cardId);
+                };
+            }
+        });
+
+        function hcRefreshModal(cardId){
+            var ctrl=document.getElementById('hcCartCtrl');if(!ctrl)return;
+            var card=allCards.find(function(c){return c.id===cardId;});if(!card)return;
+            var isOshi=card.category==='推しホロメン';
+            var imgSrc=card.img||'';
+            ctrl.className=isOshi?'oshi':'main';
+            ctrl.innerHTML='';
+            var lbl=document.createElement('span');
+            lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isOshi?'#10b981':'#64748b')+';';
+            lbl.textContent=isOshi?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
             ctrl.appendChild(lbl);
-            if (isOshi) {
-                const isSel = HC.oshi&&HC.oshi.id===cardId;
-                const btn = document.createElement('button');
-                btn.textContent = isSel ? '解除' : '推しにセット';
-                btn.style.cssText = 'background:'+(isSel?'#ef4444':'#10b981')+';color:white;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:bold;cursor:pointer;';
-                btn.onclick = e => { e.stopPropagation(); if(HC.oshi&&HC.oshi.id===cardId)HC.removeOshi(); else HC.add(cardId,card.name,imgSrc); hcRefreshModal(cardId); };
+            if(isOshi){
+                var isSel=HC.oshi&&HC.oshi.id===cardId;
+                var btn=document.createElement('button');
+                btn.textContent=isSel?'解除':'推しにセット';
+                btn.style.cssText='background:'+(isSel?'#ef4444':'#10b981')+';color:white;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:bold;cursor:pointer;';
+                btn.onclick=function(e){e.stopPropagation();if(HC.oshi&&HC.oshi.id===cardId)HC.removeOshi();else HC.add(cardId,card.name,imgSrc);hcRefreshModal(cardId);};
                 ctrl.appendChild(btn);
             } else {
-                const mi=document.createElement('button'); mi.textContent='－';
+                var mi=document.createElement('button');mi.textContent='－';
                 mi.style.cssText='background:#e2e8f0;border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:pointer;';
-                mi.onclick=e=>{e.stopPropagation();HC.dec(cardId);hcRefreshModal(cardId);};
-                const qty=document.createElement('span');
+                mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefreshModal(cardId);};
+                var qty=document.createElement('span');
                 qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
                 qty.textContent=HC.cart[cardId]?HC.cart[cardId].qty:0;
-                const atLim=(HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.getTotal()>=HC.MAX_TOTAL;
-                const pl=document.createElement('button'); pl.textContent='＋';
+                var atLim=(HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
+                var pl=document.createElement('button');pl.textContent='＋';
                 pl.style.cssText='background:'+(atLim?'#e2e8f0':'#5e5a9b')+';color:'+(atLim?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atLim?'not-allowed':'pointer')+';';
-                pl.onclick=e=>{e.stopPropagation();HC.add(cardId,card.name,imgSrc);hcRefreshModal(cardId);};
+                pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,imgSrc);hcRefreshModal(cardId);};
                 ctrl.appendChild(mi);ctrl.appendChild(qty);ctrl.appendChild(pl);
             }
         }
 
-        function openDeckModal(){
-            const list=document.getElementById('deckModalList'),total=HC.getTotal();
-            document.getElementById('deckModalBadge').textContent='メイン '+total+'/'+HC.MAX_TOTAL+'枚';
+        function hcOpenDeck(){
+            var list=document.getElementById('hcDL'),t=HC.total();
+            document.getElementById('hcDBadge').textContent='メイン '+t+'/'+HC.MAX_TOTAL+'枚';
             list.innerHTML='';
-            const os=document.createElement('div');os.className='ds-oshi';
-            os.innerHTML='<div class="ds-head">推しホロメン（1枚）</div>';
+            // 推し
+            var os=document.createElement('div');
+            os.innerHTML='<div style="font-size:11px;font-weight:bold;color:#10b981;border-bottom:2px solid #d1fae5;margin-bottom:6px;padding-bottom:4px;text-transform:uppercase;letter-spacing:1px;">推しホロメン（1枚）</div>';
             if(HC.oshi){
-                const row=document.createElement('div');row.className='dk-row';
-                row.innerHTML='<img src="'+HC.oshi.img+'" style="border:2px solid #10b981;"><div class="dk-info"><div class="dk-nm">'+HC.oshi.name+'</div><div class="dk-id">'+HC.oshi.id+'</div></div>';
-                const rb=document.createElement('button');rb.textContent='削除';
+                var or=document.createElement('div');or.style.cssText='display:flex;align-items:center;gap:10px;padding:6px 4px;';
+                or.innerHTML='<img src="'+HC.oshi.img+'" style="width:36px;height:50px;object-fit:cover;border-radius:4px;border:2px solid #10b981;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+HC.oshi.name+'</div><div style="color:#94a3b8;font-size:11px">'+HC.oshi.id+'</div></div>';
+                var rb=document.createElement('button');rb.textContent='削除';
                 rb.style.cssText='background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;';
-                rb.onclick=()=>{HC.removeOshi();openDeckModal();};row.appendChild(rb);os.appendChild(row);
+                rb.onclick=function(){HC.removeOshi();hcOpenDeck();};
+                or.appendChild(rb);os.appendChild(or);
             } else {
-                const em=document.createElement('div');em.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px;';em.textContent='未選択';os.appendChild(em);
+                var em=document.createElement('div');em.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px';em.textContent='未選択';os.appendChild(em);
             }
             list.appendChild(os);
-            const ms=document.createElement('div');ms.className='ds-main';
-            ms.innerHTML='<div class="ds-head">メインデッキ（'+total+'/'+HC.MAX_TOTAL+'枚）</div>';
-            const keys=Object.keys(HC.cart);
+            // メイン
+            var ms=document.createElement('div');ms.style.marginTop='12px';
+            ms.innerHTML='<div style="font-size:11px;font-weight:bold;color:#3b82f6;border-bottom:2px solid #dbeafe;margin-bottom:6px;padding-bottom:4px;text-transform:uppercase;letter-spacing:1px;">メインデッキ（'+t+'/'+HC.MAX_TOTAL+'枚）</div>';
+            var keys=Object.keys(HC.cart);
             if(!keys.length){
-                const em=document.createElement('div');em.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px;';em.textContent='カードが追加されていません';ms.appendChild(em);
+                var em2=document.createElement('div');em2.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px';em2.textContent='カードが追加されていません';ms.appendChild(em2);
             } else {
-                keys.forEach(id=>{
-                    const c=HC.cart[id],row=document.createElement('div');row.className='dk-row';
-                    row.innerHTML='<img src="'+c.img+'"><div class="dk-info"><div class="dk-nm">'+c.name+'</div><div class="dk-id">'+id+'</div></div>';
-                    const ct=document.createElement('div');ct.className='dk-ctrl';
-                    const mi=document.createElement('button');mi.textContent='-';mi.style.cssText='background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;';
-                    mi.onclick=()=>{HC.dec(id);openDeckModal();};
-                    const qs=document.createElement('span');qs.className='dk-qty';qs.style.color=c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b';qs.textContent=c.qty;
-                    const atLim=c.qty>=HC.MAX_PER||total>=HC.MAX_TOTAL;
-                    const pl=document.createElement('button');pl.textContent='+';
+                keys.forEach(function(id){
+                    var c=HC.cart[id];
+                    var row=document.createElement('div');row.style.cssText='display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #f1f5f9;';
+                    row.innerHTML='<img src="'+c.img+'" style="width:36px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+c.name+'</div><div style="color:#94a3b8;font-size:11px">'+id+'</div></div>';
+                    var ct=document.createElement('div');ct.style.cssText='display:flex;align-items:center;gap:6px;';
+                    var mi=document.createElement('button');mi.textContent='-';mi.style.cssText='background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;';
+                    mi.dataset.id=id;mi.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
+                    var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:'+(c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b');qs.textContent=c.qty;
+                    var atLim=c.qty>=HC.MAX_PER||t>=HC.MAX_TOTAL;
+                    var pl=document.createElement('button');pl.textContent='+';
                     pl.style.cssText='background:'+(atLim?'#e2e8f0':'#5e5a9b')+';color:'+(atLim?'#94a3b8':'white')+';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:'+(atLim?'not-allowed':'pointer')+';';
-                    pl.onclick=()=>{HC.inc(id);openDeckModal();};
+                    pl.dataset.id=id;pl.onclick=function(){HC.inc(this.dataset.id);hcOpenDeck();};
                     ct.appendChild(mi);ct.appendChild(qs);ct.appendChild(pl);row.appendChild(ct);ms.appendChild(row);
                 });
             }
             list.appendChild(ms);
-            document.getElementById('deckModal').classList.add('active');
+            document.getElementById('hcDeckModal').classList.add('on');
         }
-        function closeDeckModal(){document.getElementById('deckModal').classList.remove('active');}
-        function clearDeck(){if(!confirm('デッキをすべてクリアしますか？'))return;HC.cart={};HC.oshi=null;HC.updateBar();HC.updateBadges();openDeckModal();}
-        function openExportModal(){
+        function hcCloseDeck(){document.getElementById('hcDeckModal').classList.remove('on');}
+        function hcClear(){if(!confirm('デッキをすべてクリアしますか？'))return;HC.cart={};HC.oshi=null;HC.updateBar();HC.updateBadges();hcOpenDeck();}
+
+        function hcOpenExp(){
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
-            document.getElementById('exportTextarea').value=HC.buildExportCode();
-            document.getElementById('exportModal').classList.add('active');
-            setTimeout(()=>{const ta=document.getElementById('exportTextarea');ta.focus();ta.select();},50);
+            var oshi=HC.oshi;
+            var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
+            var ds=JSON.stringify({oshi:oshi?{id:oshi.id,count:1}:null,main:main});
+            var code='(function(){var data='+ds+';var oshi=data.oshi;var cards=data.main;var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};var selType=async function(label){var lbl=Array.from(document.querySelectorAll("label")).find(function(l){return l.textContent.trim().indexOf(label)>-1;});if(lbl){var inp=lbl.querySelector("input[type=radio]");if(!inp&&lbl.htmlFor)inp=document.getElementById(lbl.htmlFor);if(inp){inp.click();inp.dispatchEvent(new Event("change",{bubbles:true}));await delay(700);return true;}}return false;};var tryAdd=async function(cardNo,count){var tabs=Array.from(document.querySelectorAll("button,span,[role=tab]"));var t=tabs.find(function(t){var tx=t.textContent.trim();return tx==="カード番号"||tx==="No.";});if(t){t.click();await delay(400);}var input=document.querySelector('input[placeholder*="カード番号"],input[placeholder*="番号"],input[placeholder*="キーワード"]');if(!input){return false;}input.focus();Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"value").set.call(input,cardNo);["input","change","keyup"].forEach(function(ev){input.dispatchEvent(new Event(ev,{bubbles:true}));});await delay(1500);var cardEl=document.querySelector(".card-item");if(!cardEl){return false;}var incEl=cardEl.querySelector(".card-inc");if(!incEl){return false;}for(var i=0;i<count;i++){incEl.click();await delay(350);}return true;};(async function(){var ok=0,ng=[];if(oshi){await selType("\u63a8\u3057\u30db\u30ed\u30e1\u30f3");var s0=await tryAdd(oshi.id,1);if(s0)ok++;else ng.push(oshi.id+"(\u63a8\u3057)");await delay(400);}if(cards.length){await selType("\u30e1\u30a4\u30f3\u30c7\u30c3\u30ad");}for(var i=0;i<cards.length;i++){var c=cards[i];if(!c.id)continue;var s=await tryAdd(c.id,c.count);if(s)ok++;else ng.push(c.id);await delay(300);}alert("\u5b8c\u4e86: "+ok+"\u4ef6\u6210\u529f"+(ng.length?"\n\u5931\u6557: "+ng.join(", "):""));})();})()';
+            document.getElementById('hcExpTa').value=code;
+            document.getElementById('hcExpModal').classList.add('on');
+            setTimeout(function(){var ta=document.getElementById('hcExpTa');ta.focus();ta.select();},50);
         }
-        function closeExportModal(){document.getElementById('exportModal').classList.remove('active');}
+        function hcCloseExp(){document.getElementById('hcExpModal').classList.remove('on');}
 
     </script>
+
+    <div id="hcDeckModal" onclick="if(event.target===this)hcCloseDeck()">
+      <div id="hcDeckBox">
+        <div style="padding:14px 18px;background:#5e5a9b;color:white;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+          <span style="font-weight:bold;font-size:15px">デッキ確認</span>
+          <span id="hcDBadge" style="font-size:12px;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px"></span>
+          <div style="display:flex;gap:8px">
+            <button onclick="hcClear()" style="background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">クリア</button>
+            <button onclick="hcCloseDeck()" style="background:none;color:white;border:none;font-size:18px;cursor:pointer">✕</button>
+          </div>
+        </div>
+        <div id="hcDL" style="overflow-y:auto;flex:1;padding:12px"></div>
+      </div>
+    </div>
+    <div id="hcExpModal" onclick="if(event.target===this)hcCloseExp()">
+      <div id="hcExpBox">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span style="font-weight:bold;font-size:16px">DECKLOGへ送る</span>
+          <button onclick="hcCloseExp()" style="background:none;color:#94a3b8;border:none;font-size:20px;cursor:pointer">✕</button>
+        </div>
+        <div style="font-size:13px;color:#94a3b8;line-height:1.9">
+          ① DECKLOGのデッキ作成画面を別タブで開く<br>
+          ② 下のコードをクリック → Ctrl+A → Ctrl+C でコピー<br>
+          ③ DECKLOGの <b style="color:#a78bfa">F12 → コンソール</b> に貼り付けてEnter
+        </div>
+        <textarea id="hcExpTa" rows="5" readonly onclick="this.focus();this.select()" onfocus="this.select()"></textarea>
+        <div style="margin-top:10px;font-size:11px;color:#475569">※ スタンダード選択後のカード選択画面で実行してください</div>
+      </div>
+    </div>
 </body>
 </html>
