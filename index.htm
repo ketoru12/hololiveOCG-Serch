@@ -598,6 +598,7 @@
 
         // ==== HC カート機能 ====
         var hcCards = [];
+        function hcImg(img){ return (img||'').startsWith('/') ? img.slice(1) : img; }
         var HC = {
             cart: {}, oshi: null, MAX_PER: 4, MAX_TOTAL: 50,
             total: function() { return Object.values(this.cart).reduce(function(s,c){return s+c.qty;}, 0); },
@@ -606,7 +607,7 @@
                 if (this.isOshi(id)) {
                     if (this.oshi && this.oshi.id === id) { this.flash(name + 'はすでに選択中', '#f59e0b'); return; }
                     var prev = this.oshi ? this.oshi.name : null;
-                    this.oshi = {id:id, name:name, img:img};
+                    this.oshi = {id:id, name:name, img:hcImg(img)};
                     this.updateBar(); this.updateBadges();
                     this.flash('推しに' + name + 'をセット' + (prev ? ' (' + prev + 'から入替え)' : ''), '#10b981');
                     return;
@@ -614,7 +615,7 @@
                 if (this.total() >= this.MAX_TOTAL) { alert('デッキが満杯です（' + this.MAX_TOTAL + '枚）'); return; }
                 if (this.cart[id] && this.cart[id].qty >= this.MAX_PER) { alert(name + 'はすでに' + this.MAX_PER + '枚入っています'); return; }
                 if (this.cart[id]) this.cart[id].qty++;
-                else this.cart[id] = {name:name, img:img, qty:1};
+                else this.cart[id] = {name:name, img:hcImg(img), qty:1};
                 this.updateBar(); this.updateBadges();
                 this.flash('追加: ' + name + ' (' + this.total() + '/' + this.MAX_TOTAL + '枚)', '#22c55e');
             },
@@ -690,12 +691,12 @@
                 if (found.category === '推しホロメン') {
                     ab.style.cssText = 'background:#10b981;color:white;font-size:16px;';
                     ab.textContent = '⭐'; ab.title = '推しにセット';
-                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
+                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, hcImg(found.img)); hcRefModal(id); };
                     ov.appendChild(lo); ov.appendChild(ab);
                 } else {
                     ab.style.cssText = 'background:#5e5a9b;color:white;font-size:22px;font-weight:bold;';
                     ab.textContent = '+'; ab.title = 'カートに追加';
-                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
+                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, hcImg(found.img)); hcRefModal(id); };
                     var db = document.createElement('button');
                     db.style.cssText = 'background:#ef4444;color:white;font-size:22px;font-weight:bold;';
                     db.textContent = '-'; db.title = 'カートから削除';
