@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索 - 完全版</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -202,7 +201,6 @@
                     </div>
                 </div>
 
-                <!-- ▼ 色フィルター：画像ボタンに変更 -->
                 <div>
                     <label class="filter-label mb-2">色（ホロメン・推し対象）</label>
                     <div class="grid grid-cols-7 gap-1">
@@ -230,7 +228,6 @@
                     </div>
                 </div>
 
-                <!-- ▼ 特攻フィルター：画像ボタンに変更 -->
                 <div>
                     <label class="filter-label mb-2">特攻（対色）</label>
                     <div class="grid grid-cols-7 gap-1">
@@ -322,28 +319,8 @@
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
-        // ▼ 色→画像パスのマッピング（type用・arts用）
-        const typeImgMap = {
-            '白': 'image/Colors/type_white.png',
-            '緑': 'image/Colors/type_green.png',
-            '赤': 'image/Colors/type_red.png',
-            '青': 'image/Colors/type_blue.png',
-            '紫': 'image/Colors/type_purple.png',
-            '黄': 'image/Colors/type_yellow.png',
-            '無': 'image/Colors/type_null.png',
-            '◇': 'image/Colors/type_null.png',
-        };
-        const artsImgMap = {
-            '白': 'image/Colors/arts_white.png',
-            '緑': 'image/Colors/arts_green.png',
-            '赤': 'image/Colors/arts_red.png',
-            '青': 'image/Colors/arts_blue.png',
-            '紫': 'image/Colors/arts_purple.png',
-            '黄': 'image/Colors/arts_yellow.png',
-            '無': 'image/Colors/arts_null.png',
-            '◇': 'image/Colors/arts_null.png',
-        };
-        // バトンタッチアイコン（arts_null.png を流用）
+        const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png', '◇': 'image/Colors/type_null.png' };
+        const artsImgMap = { '白': 'image/Colors/arts_white.png', '緑': 'image/Colors/arts_green.png', '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '紫': 'image/Colors/arts_purple.png', '黄': 'image/Colors/arts_yellow.png', '無': 'image/Colors/arts_null.png', '◇': 'image/Colors/arts_null.png' };
         const BATON_ICON = 'image/Colors/arts_null.png';
 
         function toggleMobileFilter() {
@@ -394,18 +371,9 @@
             const includeText = document.getElementById('searchIncludeText').checked;
             
             if (activeFilters.text) {
-                let searchKeys = [
-                    { name: 'name', weight: 1.0 },
-                    { name: 'id', weight: 0.5 },
-                    { name: 'tags', weight: 0.7 }
-                ];
+                let searchKeys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
                 if (includeText) {
-                    searchKeys.push(
-                        { name: 'description', weight: 0.4 },
-                        { name: 'arts.name', weight: 0.4 },
-                        { name: 'arts.text', weight: 0.4 },
-                        { name: 'skills.text', weight: 0.4 }
-                    );
+                    searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
                 }
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
                 result = fuse.search(activeFilters.text).map(r => r.item);
@@ -431,8 +399,9 @@
 
             if (activeFilters.kind.length > 0) {
                 result = result.filter(c => {
-                    // Buzzが含まれる場合はcategory=Buzzホロメンも対象にする
-                    if (activeFilters.kind.includes('Buzz') && c.category === 'Buzzホロメン') return true;
+                    if (activeFilters.kind.includes('Buzz')) {
+                        return c.cardType === 'Buzzホロメン';
+                    }
                     return checkLogic(c.kind || '', activeFilters.kind, logiceState.kind);
                 });
             }
@@ -452,71 +421,40 @@
             const countText = `${cards.length} 枚`;
             document.getElementById('resultCount').innerText = countText;
             document.getElementById('mobileResultCount').innerText = countText;
-            grid.innerHTML = '';
-            
-            if (cards.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
-                return;
-            }
-
+            grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
             cards.forEach(card => {
                 const div = document.createElement('div');
                 div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
                 div.onclick = () => showDetail(card.id);
-                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${resolveImg(card)}" class="w-full h-full object-cover" loading="lazy"></div>`;
+                div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${(card.img || '').startsWith('/') ? card.img.slice(1) : card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
                 grid.appendChild(div);
             });
         }
 
-        // ▼ カード画像URLを解決するヘルパー（JSONのimgをそのまま相対パスで使用）
-        function resolveImg(card) {
-            const img = card.img || '';
-            // 先頭の / を除去して相対パスに
-            return img.startsWith('/') ? img.slice(1) : img;
-        }
+        function normalizeColor(c) { return (!c || c === 'nan' || c === '◇') ? '無' : c; }
 
-        // ▼ 色名を正規化するヘルパー
-        function normalizeColor(c) {
-            if (!c || c === 'nan' || c === '◇') return '無';
-            return c;
-        }
-
-        // ▼ アーツのコストアイコンを画像で生成
         function renderArtsIcons(icons) {
             if (!icons) return '';
-            return icons.split(',').map(c => {
-                const col = normalizeColor(c.trim());
-                const src = artsImgMap[col] || artsImgMap['無'];
-                return `<img src="${src}" class="arts-color-icon" alt="${col}" title="${col}">`;
-            }).join('');
+            return icons.split(',').map(c => `<img src="${artsImgMap[normalizeColor(c.trim())] || artsImgMap['無']}" class="arts-color-icon" title="${c.trim()}">`).join('');
         }
 
-        // ▼ バトンタッチアイコンをarts_null.pngで表示
         function renderBatonIcons(count) {
             const n = parseInt(count, 10);
             if (isNaN(n) || n <= 0) return '<span class="text-slate-400">0</span>';
-            return Array(n).fill(`<img src="${BATON_ICON}" class="baton-icon" alt="バトンタッチ">`).join('');
+            return Array(n).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('');
         }
 
         function showDetail(cardId) {
             const card = allCards.find(c => c.id === cardId);
             if (!card) return;
-            
-            if (window.innerWidth <= 768) {
-                const sidebar = document.getElementById('filterSidebar');
-                if (sidebar.classList.contains('mobile-open')) toggleMobileFilter();
-            }
-
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
             nameEl.className = card.category === "ホロメン" ? "text-xl md:text-2xl font-bold text-[#5e5a9b] clickable-name" : "text-xl md:text-2xl font-bold text-[#5e5a9b] non-clickable-name";
             nameEl.onclick = card.category === "ホロメン" ? () => setSearchNameOnly(card.name) : null;
-
-            document.getElementById('modalImg').src = resolveImg(card);
+            document.getElementById('modalImg').src = (card.img || '').startsWith('/') ? card.img.slice(1) : card.img;
             document.getElementById('modalId').innerText = card.id;
             
             let details = "";
-
             const createRow = (label, value, extraClass = "") => {
                 if (!value || value === "nan" || (label !== 'バトンタッチ' && value === "0")) return "";
                 if (label === 'タグ') {
@@ -526,23 +464,16 @@
                 return `<div class="flex items-start mb-1 gap-3"><span class="label-pill ${extraClass}">${label}</span><div class="value-box whitespace-pre-wrap">${value}</div></div>`;
             };
 
-            // ▼ 色行：type画像で表示
             const createColorRow = (label, colorVal) => {
                 const col = normalizeColor(colorVal);
-                const src = typeImgMap[col] || typeImgMap['無'];
-                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${src}" class="color-icon" alt="${col}"><span class="font-bold">${col}</span></div></div>`;
-            };
-
-            // ▼ バトンタッチ行：アイコン画像で表示
-            const createBatonRow = (label, count) => {
-                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-1">${renderBatonIcons(count)}</div></div>`;
+                return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[col]}" class="color-icon"><span class="font-bold">${col}</span></div></div>`;
             };
 
             if (card.category !== "サポート") details += createColorRow('色', card.color);
             if (card.category === "ホロメン") {
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
-                details += createBatonRow('バトンタッチ', card.baton_touch);
+                details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${renderBatonIcons(card.baton_touch)}</div></div>`;
                 if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
@@ -550,22 +481,11 @@
                 details += createRow('種別', card.kind, 'kind-pill');
             }
 
-            // ▼ アーツ：コストアイコンを画像で表示
             if (card.arts) {
                 card.arts.forEach(art => {
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2">
-                        <span class="label-pill arts-pill">アーツ</span>
-                        <div class="value-box">
-                            <div class="flex flex-wrap items-center gap-1">
-                                <div class="flex items-center gap-0.5">${renderArtsIcons(art.icons)}</div>
-                                <span class="font-black text-lg">${art.name} ${art.damage}</span>
-                            </div>
-                            <div class="text-slate-600 text-sm leading-relaxed">${art.text}</div>
-                        </div>
-                    </div>`;
+                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span></div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
                 });
             }
-
             if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'));
@@ -578,7 +498,6 @@
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
 
-        // イベントリスナー設定
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => {
             activeFilters.product = e.target.value;
@@ -588,8 +507,7 @@
         
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const group = btn.getAttribute('data-group');
-                const val = btn.getAttribute('data-val');
+                const group = btn.dataset.group, val = btn.dataset.val;
                 if (activeFilters[group].includes(val)) {
                     activeFilters[group] = activeFilters[group].filter(v => v !== val);
                     btn.classList.remove('filter-active');
@@ -601,11 +519,9 @@
             });
         });
 
-        // ▼ 色ドット：選択時に filter-active-img クラスでアウトラインを付与
         document.querySelectorAll('.color-dot').forEach(btn => {
             btn.addEventListener('click', () => {
-                const type = btn.getAttribute('data-type');
-                const val = btn.getAttribute('data-val');
+                const type = btn.dataset.type, val = btn.dataset.val;
                 const isSelected = btn.classList.contains('filter-active-img');
                 document.querySelectorAll(`.color-dot[data-type="${type}"]`).forEach(b => b.classList.remove('filter-active-img'));
                 if (!isSelected) {
