@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索2</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -791,13 +791,35 @@
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
             var oshi=HC.oshi;
             var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
-            var ds=JSON.stringify({oshi:oshi?{id:oshi.id,count:1}:null,main:main});
+            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main};
+
+            // Chrome拡張機能経由で自動実行
+            if(typeof chrome!=='undefined'&&chrome.runtime&&chrome.runtime.sendMessage){
+                try{
+                    chrome.runtime.sendMessage(
+                        'ofldkgdhpkpfacogcafbikfpigppocea',
+                        {type:'SEND_TO_DECKLOG',data:deckData},
+                        function(res){
+                            if(chrome.runtime.lastError){
+                                // 拡張機能IDが違う場合はフォールバック
+                                hcOpenExpFallback(deckData);
+                            }
+                        }
+                    );
+                    return;
+                }catch(e){}
+            }
+            hcOpenExpFallback(deckData);
+        }
+        function hcOpenExpFallback(deckData){
+            var ds=JSON.stringify(deckData);
             var code=HC_TPL.replace('__DATA__',ds);
             window.open('https://decklog.bushiroad.com/create?c=9','_blank');
             document.getElementById('hcTA').value=code;
             document.getElementById('hcEM').classList.add('on');
             setTimeout(function(){var ta=document.getElementById('hcTA');ta.focus();ta.select();},300);
         }
+
         function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
 
         (function(){
