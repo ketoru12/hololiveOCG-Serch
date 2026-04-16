@@ -706,8 +706,15 @@ function hcPatch(){
   });
   HC.updateBadges();
 }
-var hcGrid=document.getElementById('cardGrid');new MutationObserver(hcPatch).observe(hcGrid||document.body,{childList:true,subtree:true});
-hcPatch();
+var hcGrid=document.getElementById('cardGrid');
+new MutationObserver(function(){setTimeout(hcPatch,50);}).observe(hcGrid||document.body,{childList:true,subtree:true});
+// allCards読み込み完了後にhcPatchを確実に実行するためポーリング
+var hcInitTimer=setInterval(function(){
+  if((window.allCards||[]).length>0){
+    clearInterval(hcInitTimer);
+    setTimeout(hcPatch,100);
+  }
+},100);
 
 // showDetailを拡張（DOMContentLoaded後）
 window.addEventListener('load',function(){
