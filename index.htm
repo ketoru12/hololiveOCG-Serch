@@ -145,8 +145,8 @@
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
 
         /* ==== HC カート ==== */
-        #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 10px;display:flex;align-items:center;gap:6px;flex-shrink:0;font-size:11px;color:white;flex-wrap:nowrap;min-width:0;}
-        #hcBar button{border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+        #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 10px;display:flex;flex-direction:column;gap:6px;flex-shrink:0;font-size:11px;color:white;}
+        #hcBar button{border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;white-space:nowrap;}
         .hcW{position:relative!important;overflow:visible!important;}
         .hcOv{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity .15s;pointer-events:none;border-radius:6px;z-index:2;}
         .hcW:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
@@ -185,15 +185,18 @@
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6">
-            <div id="hcBar" style="flex-direction:column;gap:6px;padding:8px 10px;">
-                <div style="display:flex;align-items:center;gap:6px;width:100%;">
-                    <span style="color:#86efac;font-weight:bold;white-space:nowrap;">推し：</span><span id="hcON" style="color:#fde68a;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;">未選択</span>
-                    <span style="color:#334155;">｜</span>
-                    <span style="color:#93c5fd;font-weight:bold;white-space:nowrap;">メイン：</span><span id="hcMC" style="font-weight:900;font-size:13px;color:#86efac;white-space:nowrap;">0</span><span style="color:#94a3b8;white-space:nowrap;"> / 50枚</span>
+            <div id="hcBar">
+                <div style="display:flex;align-items:center;gap:6px;width:100%">
+                    <span style="color:#86efac;font-weight:bold;white-space:nowrap">推し：</span>
+                    <span id="hcON" style="color:#fde68a;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0">未選択</span>
+                    <span style="color:#334155">｜</span>
+                    <span style="color:#93c5fd;font-weight:bold;white-space:nowrap">メイン：</span>
+                    <span id="hcMC" style="font-weight:900;font-size:13px;color:#86efac;white-space:nowrap">0</span>
+                    <span style="color:#94a3b8;white-space:nowrap"> / 50枚</span>
                 </div>
-                <div style="display:flex;gap:6px;width:100%;">
-                    <button style="background:#5e5a9b;color:white;flex:1;" onclick="hcOpenDeck()">デッキ確認</button>
-                    <button style="background:#ea580c;color:white;flex:1;" onclick="hcOpenExp()">DECKLOGへ</button>
+                <div style="display:flex;gap:6px;width:100%">
+                    <button style="background:#5e5a9b;color:white;flex:1" onclick="hcOpenDeck()">デッキ確認</button>
+                    <button style="background:#ea580c;color:white;flex:1" onclick="hcOpenExp()">DECKLOGへ</button>
                 </div>
             </div>
                 <div>
@@ -592,6 +595,240 @@
             } catch (e) { console.error("データ読み込みエラー:", e); }
         }
         init();
+
+        // ==== HC カート機能 ====
+        var hcCards = [];
+        var HC = {
+            cart: {}, oshi: null, MAX_PER: 4, MAX_TOTAL: 50,
+            total: function() { return Object.values(this.cart).reduce(function(s,c){return s+c.qty;}, 0); },
+            isOshi: function(id) { var c = hcCards.find(function(x){return x.id===id;}); return c && c.category === '推しホロメン'; },
+            add: function(id, name, img) {
+                if (this.isOshi(id)) {
+                    if (this.oshi && this.oshi.id === id) { this.flash(name + 'はすでに選択中', '#f59e0b'); return; }
+                    var prev = this.oshi ? this.oshi.name : null;
+                    this.oshi = {id:id, name:name, img:img};
+                    this.updateBar(); this.updateBadges();
+                    this.flash('推しに' + name + 'をセット' + (prev ? ' (' + prev + 'から入替え)' : ''), '#10b981');
+                    return;
+                }
+                if (this.total() >= this.MAX_TOTAL) { alert('デッキが満杯です（' + this.MAX_TOTAL + '枚）'); return; }
+                if (this.cart[id] && this.cart[id].qty >= this.MAX_PER) { alert(name + 'はすでに' + this.MAX_PER + '枚入っています'); return; }
+                if (this.cart[id]) this.cart[id].qty++;
+                else this.cart[id] = {name:name, img:img, qty:1};
+                this.updateBar(); this.updateBadges();
+                this.flash('追加: ' + name + ' (' + this.total() + '/' + this.MAX_TOTAL + '枚)', '#22c55e');
+            },
+            dec: function(id) {
+                if (!this.cart[id]) return;
+                this.cart[id].qty--;
+                if (!this.cart[id].qty) delete this.cart[id];
+                this.updateBar(); this.updateBadges();
+            },
+            inc: function(id) {
+                if (!this.cart[id]) return;
+                if (this.cart[id].qty >= this.MAX_PER) { alert(this.cart[id].name + 'は最大' + this.MAX_PER + '枚まで'); return; }
+                if (this.total() >= this.MAX_TOTAL) { alert('デッキは最大' + this.MAX_TOTAL + '枚まで'); return; }
+                this.cart[id].qty++;
+                this.updateBar(); this.updateBadges();
+            },
+            removeOshi: function() { this.oshi = null; this.updateBar(); this.updateBadges(); },
+            updateBar: function() {
+                var t = this.total();
+                document.getElementById('hcON').textContent = this.oshi ? this.oshi.name : '未選択';
+                var mc = document.getElementById('hcMC');
+                mc.textContent = t;
+                mc.style.color = t >= this.MAX_TOTAL ? '#fbbf24' : '#86efac';
+            },
+            updateBadges: function() {
+                var self = this;
+                document.querySelectorAll('.hcW').forEach(function(w) {
+                    var id = w.dataset.hcId, b = w.querySelector('.hcBdg');
+                    if (!b || !id) return;
+                    if (self.isOshi(id)) {
+                        if (self.oshi && self.oshi.id === id) { b.textContent = '推し ⭐'; b.style.display = 'block'; b.style.background = 'rgba(16,185,129,.9)'; }
+                        else b.style.display = 'none';
+                    } else {
+                        var q = self.cart[id] ? self.cart[id].qty : 0;
+                        if (q > 0) { b.textContent = q + '/' + self.MAX_PER + '枚'; b.style.display = 'block'; b.style.background = q >= self.MAX_PER ? 'rgba(245,158,11,.9)' : 'rgba(94,90,155,.9)'; }
+                        else b.style.display = 'none';
+                    }
+                });
+            },
+            flash: function(msg, color) {
+                var f = document.createElement('div');
+                f.textContent = msg;
+                f.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;background:' + color + ';color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:bold;pointer-events:none;white-space:nowrap;';
+                document.body.appendChild(f);
+                setTimeout(function(){f.remove();}, 1500);
+            }
+        };
+
+        function hcPatch() {
+            var grid = document.getElementById('cardGrid');
+            if (!grid) return;
+            Array.from(grid.children).forEach(function(w) {
+                if (w.dataset.hcPatched) return;
+                var img = w.querySelector('img');
+                if (!img || hcCards.length === 0) return;
+                var found = hcCards.find(function(c) {
+                    var fn = (c.img || '').split('/').pop();
+                    return fn && img.src.indexOf(fn) > -1;
+                });
+                if (!found) return;
+                w.dataset.hcPatched = '1';
+                var id = found.id;
+                w.classList.add('hcW');
+                w.dataset.hcId = id;
+                var origClick = w.onclick;
+                w.onclick = null;
+                var ov = document.createElement('div'); ov.className = 'hcOv';
+                var lo = document.createElement('button');
+                lo.style.cssText = 'background:white;font-size:16px;';
+                lo.textContent = '🔍';
+                lo.onclick = function(e) { e.stopPropagation(); if (origClick) origClick.call(w); };
+                var ab = document.createElement('button');
+                if (found.category === '推しホロメン') {
+                    ab.style.cssText = 'background:#10b981;color:white;font-size:16px;';
+                    ab.textContent = '⭐'; ab.title = '推しにセット';
+                } else {
+                    ab.style.cssText = 'background:#5e5a9b;color:white;font-size:22px;font-weight:bold;';
+                    ab.textContent = '+'; ab.title = 'カートに追加';
+                }
+                ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
+                ov.appendChild(lo); ov.appendChild(ab); w.appendChild(ov);
+                var bdg = document.createElement('div'); bdg.className = 'hcBdg'; w.appendChild(bdg);
+            });
+            HC.updateBadges();
+        }
+
+        // showDetailを拡張
+        var _hcOrigShowDetail = showDetail;
+        showDetail = function(cardId) {
+            _hcOrigShowDetail(cardId);
+            var ex = document.getElementById('hcCC'); if (ex) ex.remove();
+            var ctrl = document.createElement('div'); ctrl.id = 'hcCC';
+            var det = document.getElementById('modalDetails');
+            if (det) det.parentNode.insertBefore(ctrl, det);
+            hcRefModal(cardId);
+        };
+
+        function hcRefModal(cardId) {
+            var ctrl = document.getElementById('hcCC'); if (!ctrl) return;
+            var card = hcCards.find(function(c){return c.id===cardId;}); if (!card) return;
+            var isO = card.category === '推しホロメン', img = card.img || '';
+            ctrl.className = isO ? 'oshi' : 'main'; ctrl.innerHTML = '';
+            var lbl = document.createElement('span');
+            lbl.style.cssText = 'font-size:12px;font-weight:bold;flex:1;color:' + (isO ? '#10b981' : '#64748b') + ';';
+            lbl.textContent = isO ? '推しホロメン: ' + (HC.oshi && HC.oshi.id === cardId ? '選択中' : '未選択') : 'カート: ' + (HC.cart[cardId] ? HC.cart[cardId].qty : 0) + '/' + HC.MAX_PER + '枚';
+            ctrl.appendChild(lbl);
+            if (isO) {
+                var isSel = HC.oshi && HC.oshi.id === cardId;
+                var btn = document.createElement('button');
+                btn.textContent = isSel ? '解除' : '推しにセット';
+                btn.style.cssText = 'background:' + (isSel ? '#ef4444' : '#10b981') + ';color:white;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:bold;cursor:pointer;';
+                btn.onclick = function(e) { e.stopPropagation(); if (HC.oshi && HC.oshi.id === cardId) HC.removeOshi(); else HC.add(cardId, card.name, img); hcRefModal(cardId); };
+                ctrl.appendChild(btn);
+            } else {
+                var mi = document.createElement('button'); mi.textContent = '－';
+                mi.style.cssText = 'background:#e2e8f0;border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:pointer;';
+                mi.onclick = function(e) { e.stopPropagation(); HC.dec(cardId); hcRefModal(cardId); };
+                var qty = document.createElement('span');
+                qty.style.cssText = 'font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
+                qty.textContent = HC.cart[cardId] ? HC.cart[cardId].qty : 0;
+                var atL = (HC.cart[cardId] && HC.cart[cardId].qty >= HC.MAX_PER) || HC.total() >= HC.MAX_TOTAL;
+                var pl = document.createElement('button'); pl.textContent = '＋';
+                pl.style.cssText = 'background:' + (atL ? '#e2e8f0' : '#5e5a9b') + ';color:' + (atL ? '#94a3b8' : 'white') + ';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:' + (atL ? 'not-allowed' : 'pointer') + ';';
+                pl.onclick = function(e) { e.stopPropagation(); HC.add(cardId, card.name, img); hcRefModal(cardId); };
+                ctrl.appendChild(mi); ctrl.appendChild(qty); ctrl.appendChild(pl);
+            }
+        }
+
+        function hcOpenDeck() {
+            var list = document.getElementById('hcDL'), t = HC.total();
+            document.getElementById('hcDBg').textContent = 'メイン ' + t + '/' + HC.MAX_TOTAL + '枚';
+            list.innerHTML = '';
+            var os = document.createElement('div');
+            os.innerHTML = '<div style="font-size:11px;font-weight:bold;color:#10b981;border-bottom:2px solid #d1fae5;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">推しホロメン（1枚）</div>';
+            if (HC.oshi) {
+                var or = document.createElement('div'); or.style.cssText = 'display:flex;align-items:center;gap:10px;padding:6px 4px;';
+                or.innerHTML = '<img src="' + HC.oshi.img + '" style="width:36px;height:50px;object-fit:cover;border-radius:4px;border:2px solid #10b981;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px">' + HC.oshi.name + '</div><div style="color:#94a3b8;font-size:11px">' + HC.oshi.id + '</div></div>';
+                var rb = document.createElement('button'); rb.textContent = '削除';
+                rb.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;';
+                rb.onclick = function() { HC.removeOshi(); hcOpenDeck(); };
+                or.appendChild(rb); os.appendChild(or);
+            } else {
+                var em = document.createElement('div'); em.style.cssText = 'color:#94a3b8;font-size:12px;padding:8px 4px'; em.textContent = '未選択'; os.appendChild(em);
+            }
+            list.appendChild(os);
+            var ms = document.createElement('div'); ms.style.marginTop = '12px';
+            ms.innerHTML = '<div style="font-size:11px;font-weight:bold;color:#3b82f6;border-bottom:2px solid #dbeafe;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">メインデッキ（' + t + '/' + HC.MAX_TOTAL + '枚）</div>';
+            var keys = Object.keys(HC.cart);
+            if (!keys.length) {
+                var em2 = document.createElement('div'); em2.style.cssText = 'color:#94a3b8;font-size:12px;padding:8px 4px'; em2.textContent = 'カードが追加されていません'; ms.appendChild(em2);
+            } else {
+                keys.forEach(function(id) {
+                    var c = HC.cart[id], row = document.createElement('div');
+                    row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #f1f5f9;';
+                    row.innerHTML = '<img src="' + c.img + '" style="width:36px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + c.name + '</div><div style="color:#94a3b8;font-size:11px">' + id + '</div></div>';
+                    var ct = document.createElement('div'); ct.style.cssText = 'display:flex;align-items:center;gap:6px;';
+                    var mi = document.createElement('button'); mi.textContent = '-'; mi.style.cssText = 'background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;'; mi.dataset.id = id;
+                    mi.onclick = function() { HC.dec(this.dataset.id); hcOpenDeck(); };
+                    var qs = document.createElement('span'); qs.style.cssText = 'font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:' + (c.qty >= HC.MAX_PER ? '#f59e0b' : '#1e293b'); qs.textContent = c.qty;
+                    var atL = c.qty >= HC.MAX_PER || t >= HC.MAX_TOTAL;
+                    var pl = document.createElement('button'); pl.textContent = '+'; pl.dataset.id = id;
+                    pl.style.cssText = 'background:' + (atL ? '#e2e8f0' : '#5e5a9b') + ';color:' + (atL ? '#94a3b8' : 'white') + ';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:' + (atL ? 'not-allowed' : 'pointer') + ';';
+                    pl.onclick = function() { HC.inc(this.dataset.id); hcOpenDeck(); };
+                    ct.appendChild(mi); ct.appendChild(qs); ct.appendChild(pl); row.appendChild(ct); ms.appendChild(row);
+                });
+            }
+            list.appendChild(ms);
+            document.getElementById('hcDM').classList.add('on');
+        }
+        function hcCloseDeck() { document.getElementById('hcDM').classList.remove('on'); }
+        function hcClear() {
+            if (!confirm('デッキをすべてクリアしますか？')) return;
+            HC.cart = {}; HC.oshi = null; HC.updateBar(); HC.updateBadges(); hcOpenDeck();
+        }
+        function hcOpenExp() {
+            if (!Object.keys(HC.cart).length && !HC.oshi) { alert('カートが空です'); return; }
+            var oshi = HC.oshi;
+            var main = Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
+            var ds = JSON.stringify({oshi: oshi ? {id:oshi.id,count:1} : null, main: main});
+            var lines = [
+                '(function(){',
+                'var data='+ds+';',
+                'var oshi=data.oshi;var cards=data.main;',
+                'var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};',
+                'var selType=async function(label){var lbl=Array.from(document.querySelectorAll("label")).find(function(l){return l.textContent.trim().indexOf(label)>-1;});if(lbl){var inp=lbl.querySelector("input[type=radio]");if(!inp&&lbl.htmlFor)inp=document.getElementById(lbl.htmlFor);if(inp){inp.click();inp.dispatchEvent(new Event("change",{bubbles:true}));await delay(700);return true;}}return false;};',
+                'var tryAdd=async function(cardNo,count){var tabs=Array.from(document.querySelectorAll("button,span,[role=tab]"));var t=tabs.find(function(t){var tx=t.textContent.trim();return tx==="\u30ab\u30fc\u30c9\u756a\u53f7"||tx==="No.";});if(t){t.click();await delay(400);}var sel="input[placeholder*=\\"\u30ab\u30fc\u30c9\u756a\u53f7\\"],input[placeholder*=\\"\u756a\u53f7\\"],input[placeholder*=\\"\u30ad\u30fc\u30ef\u30fc\u30c9\\"]";var input=document.querySelector(sel);if(!input){return false;}input.focus();Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"value").set.call(input,cardNo);["input","change","keyup"].forEach(function(ev){input.dispatchEvent(new Event(ev,{bubbles:true}));});await delay(1500);var cardEl=document.querySelector(".card-item");if(!cardEl){return false;}var incEl=cardEl.querySelector(".card-inc");if(!incEl){return false;}for(var i=0;i<count;i++){incEl.click();await delay(350);}return true;};',
+                '(async function(){var ok=0,ng=[];',
+                'if(oshi){await selType("\u63a8\u3057\u30db\u30ed\u30e1\u30f3");var s0=await tryAdd(oshi.id,1);if(s0)ok++;else ng.push(oshi.id+"(\u63a8\u3057)");await delay(400);}',
+                'if(cards.length){await selType("\u30e1\u30a4\u30f3\u30c7\u30c3\u30ad");}',
+                'for(var i=0;i<cards.length;i++){var c=cards[i];if(!c.id)continue;var s=await tryAdd(c.id,c.count);if(s)ok++;else ng.push(c.id);await delay(300);}',
+                'var res="\u5b8c\u4e86: "+ok+"\u4ef6\u6210\u529f";if(ng.length)res+="\\n\u5931\u6557: "+ng.join(", ");alert(res);',
+                '})();',
+                '})()'
+            ];
+            document.getElementById('hcTA').value = lines.join('');
+            document.getElementById('hcEM').classList.add('on');
+            setTimeout(function(){var ta=document.getElementById('hcTA');ta.focus();ta.select();}, 50);
+        }
+        function hcCloseExp() { document.getElementById('hcEM').classList.remove('on'); }
+
+        // hcCardsをfetchしてオーバーレイを付与
+        // renderCardsの後に呼ばれるようMutationObserverで監視
+        (function() {
+            fetch('./master_cards.json')
+                .then(function(r){return r.json();})
+                .then(function(d){
+                    hcCards = d;
+                    hcPatch();
+                    new MutationObserver(function(){
+                        setTimeout(hcPatch, 50);
+                    }).observe(document.getElementById('cardGrid'), {childList:true});
+                });
+        })();
+
     </script>
 
 <div id="hcDM" onclick="if(event.target===this)hcCloseDeck()">
@@ -622,189 +859,5 @@
     <textarea id="hcTA" rows="5" readonly onclick="this.focus();this.select()" onfocus="this.select()"></textarea>
   </div>
 </div>
-
-<script>
-// ==== HC カート機能 ====
-var HC={
-  cart:{},oshi:null,MAX_PER:4,MAX_TOTAL:50,
-  total:function(){var s=0;Object.values(this.cart).forEach(function(c){s+=c.qty;});return s;},
-  isOshi:function(id){var c=(window.allCards||[]).find(function(x){return x.id===id;});return c&&c.category==='推しホロメン';},
-  add:function(id,name,img){
-    if(this.isOshi(id)){
-      if(this.oshi&&this.oshi.id===id){this.flash(name+'はすでに選択中','#f59e0b');return;}
-      var prev=this.oshi?this.oshi.name:null;
-      this.oshi={id:id,name:name,img:img};this.updateBar();this.updateBadges();
-      this.flash('推しに'+name+'をセット'+(prev?' ('+prev+'から入替え)':''),'#10b981');return;
-    }
-    if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
-    if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
-    if(this.cart[id])this.cart[id].qty++;else this.cart[id]={name:name,img:img,qty:1};
-    this.updateBar();this.updateBadges();
-    this.flash('追加: '+name+' ('+this.total()+'/'+this.MAX_TOTAL+'枚)','#22c55e');
-  },
-  dec:function(id){if(!this.cart[id])return;this.cart[id].qty--;if(!this.cart[id].qty)delete this.cart[id];this.updateBar();this.updateBadges();},
-  inc:function(id){
-    if(!this.cart[id])return;
-    if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
-    if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
-    this.cart[id].qty++;this.updateBar();this.updateBadges();
-  },
-  removeOshi:function(){this.oshi=null;this.updateBar();this.updateBadges();},
-  updateBar:function(){
-    var bar=document.getElementById('hcBar');if(!bar)return;
-    
-    var t=this.total();
-    document.getElementById('hcON').textContent=this.oshi?this.oshi.name:'未選択';
-    var mc=document.getElementById('hcMC');mc.textContent=t;mc.style.color=t>=this.MAX_TOTAL?'#fbbf24':'#86efac';
-  },
-  updateBadges:function(){
-    var self=this;
-    document.querySelectorAll('.hcW').forEach(function(w){
-      var id=w.dataset.hcId,b=w.querySelector('.hcBdg');if(!b||!id)return;
-      if(self.isOshi(id)){
-        if(self.oshi&&self.oshi.id===id){b.textContent='推し ⭐';b.style.display='block';b.style.background='rgba(16,185,129,.9)';}
-        else b.style.display='none';
-      } else {
-        var q=self.cart[id]?self.cart[id].qty:0;
-        if(q>0){b.textContent=q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=q>=self.MAX_PER?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
-        else b.style.display='none';
-      }
-    });
-  },
-  flash:function(msg,color){
-    var f=document.createElement('div');f.textContent=msg;
-    f.style.cssText='position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;background:'+color+';color:white;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:bold;pointer-events:none;white-space:nowrap;';
-    document.body.appendChild(f);setTimeout(function(){f.remove();},1500);
-  }
-};
-
-// グリッド変化を監視してオーバーレイを付与
-function hcPatch(){
-  var grid=document.getElementById('cardGrid');if(!grid)return;
-  Array.from(grid.children).forEach(function(w){
-    if(w.dataset.hcPatched)return;
-    w.dataset.hcPatched='1';
-    var img=w.querySelector('img');if(!img)return;
-    // allCardsからsrcで特定
-    var found=(window.allCards||[]).find(function(c){
-      var fn=(c.img||'').split('/').pop();return fn&&img.src.indexOf(fn)>-1;
-    });
-    if(!found)return;
-    var id=found.id;
-    w.classList.add('hcW');w.dataset.hcId=id;
-    var origClick=w.onclick;w.onclick=null;
-    // オーバーレイ
-    var ov=document.createElement('div');ov.className='hcOv';
-    var lo=document.createElement('button');lo.style.cssText='background:white;font-size:16px;';lo.textContent='🔍';
-    lo.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(w);};
-    var ab=document.createElement('button');
-    if(found.category==='推しホロメン'){ab.style.cssText='background:#10b981;color:white;font-size:16px;';ab.textContent='⭐';ab.title='推しにセット';}
-    else{ab.style.cssText='background:#5e5a9b;color:white;font-size:22px;font-weight:bold;';ab.textContent='+';ab.title='カートに追加';}
-    ab.onclick=function(e){e.stopPropagation();HC.add(id,found.name,found.img||'');hcRefModal(id);};
-    ov.appendChild(lo);ov.appendChild(ab);w.appendChild(ov);
-    var bdg=document.createElement('div');bdg.className='hcBdg';w.appendChild(bdg);
-  });
-  HC.updateBadges();
-}
-var hcGrid=document.getElementById('cardGrid');
-new MutationObserver(function(){setTimeout(hcPatch,50);}).observe(hcGrid||document.body,{childList:true,subtree:true});
-// allCards読み込み完了後にhcPatchを確実に実行するためポーリング
-var hcInitTimer=setInterval(function(){
-  if((window.allCards||[]).length>0){
-    clearInterval(hcInitTimer);
-    setTimeout(hcPatch,100);
-  }
-},100);
-
-// showDetailを拡張（DOMContentLoaded後）
-window.addEventListener('load',function(){
-  if(typeof showDetail!=='function')return;
-  var orig=showDetail;
-  showDetail=function(cardId){
-    orig(cardId);
-    var ex=document.getElementById('hcCC');if(ex)ex.remove();
-    var ctrl=document.createElement('div');ctrl.id='hcCC';
-    var det=document.getElementById('modalDetails');
-    if(det)det.parentNode.insertBefore(ctrl,det);
-    hcRefModal(cardId);
-  };
-});
-
-function hcRefModal(cardId){
-  var ctrl=document.getElementById('hcCC');if(!ctrl)return;
-  var card=(window.allCards||[]).find(function(c){return c.id===cardId;});if(!card)return;
-  var isO=card.category==='推しホロメン',img=card.img||'';
-  ctrl.className=isO?'oshi':'main';ctrl.innerHTML='';
-  var lbl=document.createElement('span');
-  lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isO?'#10b981':'#64748b')+';';
-  lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
-  ctrl.appendChild(lbl);
-  if(isO){
-    var isSel=HC.oshi&&HC.oshi.id===cardId;
-    var btn=document.createElement('button');btn.textContent=isSel?'解除':'推しにセット';
-    btn.style.cssText='background:'+(isSel?'#ef4444':'#10b981')+';color:white;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:bold;cursor:pointer;';
-    btn.onclick=function(e){e.stopPropagation();if(HC.oshi&&HC.oshi.id===cardId)HC.removeOshi();else HC.add(cardId,card.name,img);hcRefModal(cardId);};
-    ctrl.appendChild(btn);
-  } else {
-    var mi=document.createElement('button');mi.textContent='－';mi.style.cssText='background:#e2e8f0;border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:pointer;';
-    mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
-    var qty=document.createElement('span');qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';qty.textContent=HC.cart[cardId]?HC.cart[cardId].qty:0;
-    var atL=(HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
-    var pl=document.createElement('button');pl.textContent='＋';pl.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
-    pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,img);hcRefModal(cardId);};
-    ctrl.appendChild(mi);ctrl.appendChild(qty);ctrl.appendChild(pl);
-  }
-}
-
-function hcOpenDeck(){
-  var list=document.getElementById('hcDL'),t=HC.total();
-  document.getElementById('hcDBg').textContent='メイン '+t+'/'+HC.MAX_TOTAL+'枚';
-  list.innerHTML='';
-  // 推し
-  var os=document.createElement('div');
-  os.innerHTML='<div style="font-size:11px;font-weight:bold;color:#10b981;border-bottom:2px solid #d1fae5;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">推しホロメン（1枚）</div>';
-  if(HC.oshi){
-    var or=document.createElement('div');or.style.cssText='display:flex;align-items:center;gap:10px;padding:6px 4px;';
-    or.innerHTML='<img src="'+HC.oshi.img+'" style="width:36px;height:50px;object-fit:cover;border-radius:4px;border:2px solid #10b981;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px">'+HC.oshi.name+'</div><div style="color:#94a3b8;font-size:11px">'+HC.oshi.id+'</div></div>';
-    var rb=document.createElement('button');rb.textContent='削除';rb.style.cssText='background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;';
-    rb.onclick=function(){HC.removeOshi();hcOpenDeck();};or.appendChild(rb);os.appendChild(or);
-  } else {
-    var em=document.createElement('div');em.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px';em.textContent='未選択';os.appendChild(em);
-  }
-  list.appendChild(os);
-  // メイン
-  var ms=document.createElement('div');ms.style.marginTop='12px';
-  ms.innerHTML='<div style="font-size:11px;font-weight:bold;color:#3b82f6;border-bottom:2px solid #dbeafe;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">メインデッキ（'+t+'/'+HC.MAX_TOTAL+'枚）</div>';
-  var keys=Object.keys(HC.cart);
-  if(!keys.length){var em2=document.createElement('div');em2.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px';em2.textContent='カードが追加されていません';ms.appendChild(em2);}
-  else keys.forEach(function(id){
-    var c=HC.cart[id],row=document.createElement('div');row.style.cssText='display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #f1f5f9;';
-    row.innerHTML='<img src="'+c.img+'" style="width:36px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+c.name+'</div><div style="color:#94a3b8;font-size:11px">'+id+'</div></div>';
-    var ct=document.createElement('div');ct.style.cssText='display:flex;align-items:center;gap:6px;';
-    var mi=document.createElement('button');mi.textContent='-';mi.style.cssText='background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;';mi.dataset.id=id;mi.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
-    var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:'+(c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b');qs.textContent=c.qty;
-    var atL=c.qty>=HC.MAX_PER||t>=HC.MAX_TOTAL;
-    var pl=document.createElement('button');pl.textContent='+';pl.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';pl.dataset.id=id;pl.onclick=function(){HC.inc(this.dataset.id);hcOpenDeck();};
-    ct.appendChild(mi);ct.appendChild(qs);ct.appendChild(pl);row.appendChild(ct);ms.appendChild(row);
-  });
-  list.appendChild(ms);
-  document.getElementById('hcDM').classList.add('on');
-}
-function hcCloseDeck(){document.getElementById('hcDM').classList.remove('on');}
-function hcClear(){if(!confirm('デッキをすべてクリアしますか？'))return;HC.cart={};HC.oshi=null;HC.updateBar();HC.updateBadges();hcOpenDeck();}
-
-function hcOpenExp(){
-  if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
-  var oshi=HC.oshi;
-  var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
-  var ds=JSON.stringify({oshi:oshi?{id:oshi.id,count:1}:null,main:main});
-  var code='(function(){var data='+ds+';var oshi=data.oshi;var cards=data.main;var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};var selType=async function(label){var lbl=Array.from(document.querySelectorAll("label")).find(function(l){return l.textContent.trim().indexOf(label)>-1;});if(lbl){var inp=lbl.querySelector("input[type=radio]");if(!inp&&lbl.htmlFor)inp=document.getElementById(lbl.htmlFor);if(inp){inp.click();inp.dispatchEvent(new Event("change",{bubbles:true}));await delay(700);return true;}}return false;};var tryAdd=async function(cardNo,count){var tabs=Array.from(document.querySelectorAll("button,span,[role=tab]"));var t=tabs.find(function(t){var tx=t.textContent.trim();return tx==="カード番号"||tx==="No.";});if(t){t.click();await delay(400);}var input=document.querySelector('input[placeholder*="カード番号"],input[placeholder*="番号"],input[placeholder*="キーワード"]');if(!input){return false;}input.focus();Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,"value").set.call(input,cardNo);["input","change","keyup"].forEach(function(ev){input.dispatchEvent(new Event(ev,{bubbles:true}));});await delay(1500);var cardEl=document.querySelector(".card-item");if(!cardEl){return false;}var incEl=cardEl.querySelector(".card-inc");if(!incEl){return false;}for(var i=0;i<count;i++){incEl.click();await delay(350);}return true;};(async function(){var ok=0,ng=[];if(oshi){await selType("推しホロメン");var s0=await tryAdd(oshi.id,1);if(s0)ok++;else ng.push(oshi.id+"(推し)");await delay(400);}if(cards.length){await selType("メインデッキ");}for(var i=0;i<cards.length;i++){var c=cards[i];if(!c.id)continue;var s=await tryAdd(c.id,c.count);if(s)ok++;else ng.push(c.id);await delay(300);}alert("完了: "+ok+"件成功"+(ng.length?"
-失敗: "+ng.join(", "):""));})();})()';
-  document.getElementById('hcTA').value=code;
-  document.getElementById('hcEM').classList.add('on');
-  setTimeout(function(){var ta=document.getElementById('hcTA');ta.focus();ta.select();},50);
-}
-function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
-</script>
 </body>
 </html>
