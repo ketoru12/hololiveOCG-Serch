@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索</title>
+    <title>ホロカ検索2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -690,12 +690,19 @@
                 if (found.category === '推しホロメン') {
                     ab.style.cssText = 'background:#10b981;color:white;font-size:16px;';
                     ab.textContent = '⭐'; ab.title = '推しにセット';
+                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
+                    ov.appendChild(lo); ov.appendChild(ab);
                 } else {
                     ab.style.cssText = 'background:#5e5a9b;color:white;font-size:22px;font-weight:bold;';
                     ab.textContent = '+'; ab.title = 'カートに追加';
+                    ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
+                    var db = document.createElement('button');
+                    db.style.cssText = 'background:#ef4444;color:white;font-size:22px;font-weight:bold;';
+                    db.textContent = '-'; db.title = 'カートから削除';
+                    db.onclick = function(e) { e.stopPropagation(); HC.dec(id); hcRefModal(id); };
+                    ov.appendChild(lo); ov.appendChild(ab); ov.appendChild(db);
                 }
-                ab.onclick = function(e) { e.stopPropagation(); HC.add(id, found.name, found.img || ''); hcRefModal(id); };
-                ov.appendChild(lo); ov.appendChild(ab); w.appendChild(ov);
+                w.appendChild(ov);
                 var bdg = document.createElement('div'); bdg.className = 'hcBdg'; w.appendChild(bdg);
             });
             HC.updateBadges();
