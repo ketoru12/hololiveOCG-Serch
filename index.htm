@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索2</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -145,8 +145,8 @@
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
 
         /* ==== HC カート ==== */
-        #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;font-size:12px;color:white;display:none;}
-        #hcBar button{border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:bold;cursor:pointer;}
+        #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 10px;display:flex;align-items:center;gap:6px;flex-shrink:0;font-size:11px;color:white;flex-wrap:nowrap;min-width:0;}
+        #hcBar button{border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;white-space:nowrap;flex-shrink:0;}
         .hcW{position:relative!important;overflow:visible!important;}
         .hcOv{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity .15s;pointer-events:none;border-radius:6px;z-index:2;}
         .hcW:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
@@ -185,13 +185,16 @@
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 space-y-6">
-            <div id="hcBar">
-                <span style="color:#86efac;font-weight:bold">推し：</span><span id="hcON" style="color:#fde68a;font-weight:bold;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">未選択</span>
-                <span style="color:#334155">｜</span>
-                <span style="color:#93c5fd;font-weight:bold">メイン：</span><span id="hcMC" style="font-weight:900;font-size:15px;color:#86efac">0</span><span style="color:#94a3b8"> / 50枚</span>
-                <div style="flex:1"></div>
-                <button style="background:#5e5a9b;color:white" onclick="hcOpenDeck()">デッキ確認</button>
-                <button style="background:#ea580c;color:white" onclick="hcOpenExp()">DECKLOGへ</button>
+            <div id="hcBar" style="flex-direction:column;gap:6px;padding:8px 10px;">
+                <div style="display:flex;align-items:center;gap:6px;width:100%;">
+                    <span style="color:#86efac;font-weight:bold;white-space:nowrap;">推し：</span><span id="hcON" style="color:#fde68a;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;">未選択</span>
+                    <span style="color:#334155;">｜</span>
+                    <span style="color:#93c5fd;font-weight:bold;white-space:nowrap;">メイン：</span><span id="hcMC" style="font-weight:900;font-size:13px;color:#86efac;white-space:nowrap;">0</span><span style="color:#94a3b8;white-space:nowrap;"> / 50枚</span>
+                </div>
+                <div style="display:flex;gap:6px;width:100%;">
+                    <button style="background:#5e5a9b;color:white;flex:1;" onclick="hcOpenDeck()">デッキ確認</button>
+                    <button style="background:#ea580c;color:white;flex:1;" onclick="hcOpenExp()">DECKLOGへ</button>
+                </div>
             </div>
                 <div>
                     <div class="flex justify-between items-center mb-2">
@@ -649,7 +652,7 @@ var HC={
   removeOshi:function(){this.oshi=null;this.updateBar();this.updateBadges();},
   updateBar:function(){
     var bar=document.getElementById('hcBar');if(!bar)return;
-    bar.style.display='flex';
+    
     var t=this.total();
     document.getElementById('hcON').textContent=this.oshi?this.oshi.name:'未選択';
     var mc=document.getElementById('hcMC');mc.textContent=t;mc.style.color=t>=this.MAX_TOTAL?'#fbbf24':'#86efac';
@@ -703,7 +706,8 @@ function hcPatch(){
   });
   HC.updateBadges();
 }
-new MutationObserver(hcPatch).observe(document.getElementById('cardGrid')||document.body,{childList:true,subtree:true});
+var hcGrid=document.getElementById('cardGrid');new MutationObserver(hcPatch).observe(hcGrid||document.body,{childList:true,subtree:true});
+hcPatch();
 
 // showDetailを拡張（DOMContentLoaded後）
 window.addEventListener('load',function(){
