@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索3</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -804,6 +804,17 @@
             var ds = JSON.stringify({oshi: oshi ? {id:oshi.id,count:1} : null, main: main});
             var lines = [
                 '(function(){',
+                // まずスタンダードボタンをクリック（構築ルール選択画面の場合）
+                'var stdBtn=Array.from(document.querySelectorAll("button")).find(function(b){return b.textContent.trim()==="スタンダード";});',
+                'if(stdBtn){stdBtn.click();}',
+                // カード選択画面が表示されるまで待機
+                'var waitReady=function(){return new Promise(function(resolve){',
+                '  var check=setInterval(function(){',
+                '    var lbl=Array.from(document.querySelectorAll("label")).find(function(l){return l.textContent.trim().indexOf("メインデッキ")>-1;});',
+                '    if(lbl){clearInterval(check);resolve();}',
+                '  },300);',
+                '  setTimeout(function(){clearInterval(check);resolve();},8000);',
+                '}); };',
                 'var data='+ds+';',
                 'var oshi=data.oshi;var cards=data.main;',
                 'var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};',
