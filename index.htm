@@ -146,10 +146,12 @@
         /* ==== HC カート ==== */
         #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 10px;display:flex;flex-direction:column;gap:6px;flex-shrink:0;font-size:11px;color:white;}
         #hcBar button{border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;white-space:nowrap;}
+        @media(max-width:768px){#hcBar button{padding:6px 10px;font-size:12px;min-height:36px;}}
         .hcW{position:relative!important;overflow:visible!important;}
         .hcOv{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity .15s;pointer-events:none;border-radius:6px;z-index:2;}
         .hcW:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
         .hcOv button{border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0006;}
+        @media(max-width:768px){.hcOv button{width:30px;height:30px;font-size:14px!important;}.hcOv{gap:5px;}}
         .hcBdg{display:none;position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
         #hcDM,#hcEM{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
         #hcDM.on,#hcEM.on{display:flex;}
@@ -734,6 +736,12 @@
                 w.classList.add('hcW');w.dataset.hcId=id;
                 var origClick=w.onclick;w.onclick=null;
                 var ov=document.createElement('div');ov.className='hcOv';
+                // タップ対応
+                w.addEventListener('touchstart',function(e){
+                    document.querySelectorAll('.hcOv').forEach(function(o){o.style.opacity='0';o.style.pointerEvents='none';o.style.background='rgba(0,0,0,0)';});
+                    ov.style.opacity='1';ov.style.pointerEvents='auto';ov.style.background='rgba(0,0,0,.45)';
+                    e.stopPropagation();
+                },{passive:true});
                 var lo=document.createElement('button');
                 lo.style.cssText='background:white;font-size:16px;';lo.textContent='🔍';
                 lo.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(w);};
@@ -906,6 +914,13 @@
             hcOpenExpFallback(deckData);
         }
         function hcOpenExpFallback(deckData){
+            var isMobile=/Android|iPhone|iPad/i.test(navigator.userAgent);
+            if(isMobile){
+                // スマホ：DECKLOGを開くだけ（拡張機能非対応）
+                window.open('https://decklog.bushiroad.com/create?c=9','_blank');
+                alert('スマホでは自動入力できません。\nPCのChrome拡張機能をご利用ください。');
+                return;
+            }
             var ds=JSON.stringify(deckData);
             var code=HC_TPL.replace('__DATA__',ds);
             window.open('https://decklog.bushiroad.com/create?c=9','_blank');
@@ -917,6 +932,15 @@
         function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
 
         (function(){
+            // タップで他の場所をタップしたらオーバーレイを閉じる
+            document.addEventListener('touchstart', function(e){
+                if(!e.target.closest('.hcW')){
+                    document.querySelectorAll('.hcOv').forEach(function(o){
+                        o.style.opacity='0';o.style.pointerEvents='none';o.style.background='rgba(0,0,0,0)';
+                    });
+                }
+            },{passive:true});
+
             fetch('./master_cards.json')
                 .then(function(r){return r.json();})
                 .then(function(d){
