@@ -911,7 +911,7 @@
         function hcCloseDeck(){document.getElementById('hcDM').classList.remove('on');}
         function hcClear(){
             if(!confirm('デッキをすべてクリアしますか？'))return;
-            HC.cart={};HC.oshi=null;HC.updateBar();HC.updateBadges();hcOpenDeck();
+            HC.cart={};HC.yell={};HC.oshi=null;HC.updateBar();HC.updateBadges();hcOpenDeck();
         }
         function hcOpenExp(){
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
