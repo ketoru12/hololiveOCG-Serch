@@ -416,20 +416,8 @@
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
             
-            // エールフィルターが選択された場合はYELL_CARDSを追加
             if (activeFilters.category.length > 0) {
-                if (activeFilters.category.includes('エール')) {
-                    var yellCards = YELL_CARDS;
-                    var otherCats = activeFilters.category.filter(function(c){return c!=='エール';});
-                    if(otherCats.length > 0){
-                        var otherResult = result.filter(function(c){ return otherCats.includes(c.category); });
-                        result = otherResult.concat(yellCards);
-                    } else {
-                        result = yellCards;
-                    }
-                } else {
-                    result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
-                }
+                result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
             }
 
             if (activeFilters.color) {
@@ -608,6 +596,8 @@
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
+                // YELL_CARDSをallCardsに追加
+                allCards = allCards.concat(YELL_CARDS);
                 renderCards(allCards);
             } catch (e) { console.error("データ読み込みエラー:", e); }
         }
@@ -921,7 +911,7 @@
             fetch('./master_cards.json')
                 .then(function(r){return r.json();})
                 .then(function(d){
-                    hcCards=d;
+                    hcCards=d.concat(YELL_CARDS);
                     hcPatch();
                     new MutationObserver(function(){setTimeout(hcPatch,50);})
                         .observe(document.getElementById('cardGrid'),{childList:true});
