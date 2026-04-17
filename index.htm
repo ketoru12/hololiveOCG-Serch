@@ -212,7 +212,7 @@
                 </div>
                 <div style="display:flex;gap:6px;width:100%">
                     <button style="background:#5e5a9b;color:white;flex:1" onclick="hcOpenDeck()">デッキ確認</button>
-                    <button style="background:#ea580c;color:white;flex:1" onclick="hcOpenExp()">DECKLOGへ</button>
+                    <button id="hcDecklogBtn" style="background:#ea580c;color:white;flex:1" onclick="hcOpenExp()">DECKLOGへ</button>
                 </div>
                 <div style="display:flex;gap:6px;width:100%">
                     <button style="background:#0369a1;color:white;flex:1" onclick="hcOpenCloudSave()">💾 保存</button>
@@ -965,6 +965,11 @@
             var nameEl = document.getElementById('hcUserName');
             var btnEl = document.getElementById('hcAuthBtn');
             if (!nameEl || !btnEl) return;
+            // スマホではDECKLOGボタンを非表示
+            var dlBtn = document.getElementById('hcDecklogBtn');
+            if (dlBtn && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                dlBtn.style.display = 'none';
+            }
             if (_hcUser) {
                 var name = (_hcUser.user_metadata && _hcUser.user_metadata.name) || _hcUser.email || 'ログイン中';
                 nameEl.textContent = '👤 ' + name;
@@ -1156,6 +1161,12 @@
                     });
                 }
             },{passive:true});
+
+            // スマホではDECKLOGボタンを非表示
+            if(/Android|iPhone|iPad/i.test(navigator.userAgent)){
+                var dlBtn=document.getElementById('hcDecklogBtn');
+                if(dlBtn)dlBtn.style.display='none';
+            }
 
             // URLパラメータからデッキを復元
             (function(){
