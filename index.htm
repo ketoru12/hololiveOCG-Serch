@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
         /* 基本スタイル */
@@ -204,6 +205,10 @@
                     <span style="color:#93c5fd;font-weight:bold;white-space:nowrap">メイン：</span>
                     <span id="hcMC" style="font-weight:900;font-size:13px;color:#86efac;white-space:nowrap">0</span>
                     <span style="color:#94a3b8;white-space:nowrap"> / 50枚</span>
+                </div>
+                <div style="display:flex;gap:6px;width:100%;align-items:center">
+                    <span id="hcUserName" style="font-size:10px;color:#94a3b8;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+                    <button id="hcAuthBtn" onclick="hcToggleAuth()" style="background:#334155;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:10px;cursor:pointer;white-space:nowrap">Googleでログイン</button>
                 </div>
                 <div style="display:flex;gap:6px;width:100%">
                     <button style="background:#5e5a9b;color:white;flex:1" onclick="hcOpenDeck()">デッキ確認</button>
@@ -940,181 +945,188 @@
 
         function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
 
-        // ===== Supabase クラウド保存 =====
-        var HC_SB_URL = 'https://ecazpfwkqdxdshonsopx.supabase.co';
-        var HC_SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjYXpwZndrcWR4ZHNob25zb3B4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjQxNzYsImV4cCI6MjA5MjAwMDE3Nn0.4PHBfuxRwf5ccsJxC3sTpoSRJfFStEGl-cmEMIHoALk';
+        // ===== Supabase 認証 + クラウド保存 =====
+        const _sb = supabase.createClient('https://ecazpfwkqdxdshonsopx.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjYXpwZndrcWR4ZHNob25zb3B4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjQxNzYsImV4cCI6MjA5MjAwMDE3Nn0.4PHBfuxRwf5ccsJxC3sTpoSRJfFStEGl-cmEMIHoALk');
+        var _hcUser = null;
 
-        // ユーザーID（localStorage）
-        function hcGetUserId(){
-            var id = localStorage.getItem('hc_user_id');
-            if(!id){
-                id = 'hc_' + Math.random().toString(36).slice(2,10) + Date.now().toString(36);
-                localStorage.setItem('hc_user_id', id);
+        // 認証状態の監視
+        _sb.auth.onAuthStateChange(function(event, session) {
+            _hcUser = session ? session.user : null;
+            hcUpdateAuthUI();
+        });
+
+        // 初期セッション確認
+        _sb.auth.getSession().then(function(res) {
+            _hcUser = res.data.session ? res.data.session.user : null;
+            hcUpdateAuthUI();
+        });
+
+        function hcUpdateAuthUI() {
+            var nameEl = document.getElementById('hcUserName');
+            var btnEl = document.getElementById('hcAuthBtn');
+            if (!nameEl || !btnEl) return;
+            if (_hcUser) {
+                var name = (_hcUser.user_metadata && _hcUser.user_metadata.name) || _hcUser.email || 'ログイン中';
+                nameEl.textContent = '👤 ' + name;
+                nameEl.style.color = '#86efac';
+                btnEl.textContent = 'ログアウト';
+                btnEl.style.background = '#475569';
+            } else {
+                nameEl.textContent = '未ログイン';
+                nameEl.style.color = '#94a3b8';
+                btnEl.textContent = 'Googleでログイン';
+                btnEl.style.background = '#334155';
             }
-            return id;
         }
 
-        function hcSbFetch(path, method, body){
-            return fetch(HC_SB_URL + '/rest/v1/' + path, {
-                method: method||'GET',
-                headers: {
-                    'apikey': HC_SB_KEY,
-                    'Authorization': 'Bearer ' + HC_SB_KEY,
-                    'Content-Type': 'application/json',
-                    'Prefer': method==='POST' ? 'return=representation' : ''
-                },
-                body: body ? JSON.stringify(body) : undefined
-            }).then(function(r){ return r.json(); });
+        function hcToggleAuth() {
+            if (_hcUser) {
+                if (confirm('ログアウトしますか？')) {
+                    _sb.auth.signOut();
+                }
+            } else {
+                _sb.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: { redirectTo: location.href }
+                });
+            }
         }
 
         // 保存モーダルを開く
-        function hcOpenCloudSave(){
-            if(!Object.keys(HC.cart).length&&!HC.oshi&&!Object.keys(HC.yell).length){
+        function hcOpenCloudSave() {
+            if (!Object.keys(HC.cart).length && !HC.oshi && !Object.keys(HC.yell).length) {
                 alert('カートが空です'); return;
+            }
+            if (!_hcUser) {
+                if (confirm('保存にはGoogleログインが必要です。\nログインしますか？')) hcToggleAuth();
+                return;
             }
             document.getElementById('hcCloudSaveName').value = '';
             document.getElementById('hcCloudSaveResult').textContent = '';
-            document.getElementById('hcMyUserId').textContent = hcGetUserId();
+            document.getElementById('hcMyUserId').textContent = _hcUser.email;
             document.getElementById('hcCloudSaveModal').style.display = 'flex';
         }
-        function hcCloseCloudSave(){ document.getElementById('hcCloudSaveModal').style.display = 'none'; }
+        function hcCloseCloudSave() { document.getElementById('hcCloudSaveModal').style.display = 'none'; }
 
         // クラウドに保存
-        function hcCloudSave(){
+        async function hcCloudSave() {
             var name = document.getElementById('hcCloudSaveName').value.trim();
-            if(!name){ alert('デッキ名を入力してください'); return; }
+            if (!name) { alert('デッキ名を入力してください'); return; }
             var result = document.getElementById('hcCloudSaveResult');
             result.textContent = '保存中...';
-            var userId = hcGetUserId();
             var data = { oshi: HC.oshi, cart: HC.cart, yell: HC.yell };
-            hcSbFetch('decks?select=id&user_id=eq.'+encodeURIComponent(userId)+'&name=eq.'+encodeURIComponent(name))
-            .then(function(existing){
-                if(existing && existing.length > 0){
-                    // 同名デッキを上書き
-                    return hcSbFetch('decks?id=eq.'+existing[0].id, 'PATCH', {
-                        data: data,
-                        updated_at: new Date().toISOString()
-                    });
-                } else {
-                    // 新規保存
-                    return hcSbFetch('decks', 'POST', {
-                        user_id: userId,
-                        name: name,
-                        data: data
-                    });
-                }
-            })
-            .then(function(res){
-                if(res && !res.error){
-                    result.innerHTML = '<span style="color:#059669">✅ 「'+name+'」を保存しました</span>';
-                    setTimeout(hcCloseCloudSave, 1200);
-                } else {
-                    result.innerHTML = '<span style="color:#ef4444">エラー: '+(res&&res.message||'不明')+'</span>';
-                }
-            })
-            .catch(function(e){ result.innerHTML = '<span style="color:#ef4444">通信エラー</span>'; });
+            // 同名デッキがあれば上書き
+            var existing = await _sb.from('decks').select('id').eq('user_id', _hcUser.id).eq('name', name);
+            var res;
+            if (existing.data && existing.data.length > 0) {
+                res = await _sb.from('decks').update({ data: data, updated_at: new Date().toISOString() }).eq('id', existing.data[0].id);
+            } else {
+                res = await _sb.from('decks').insert({ user_id: _hcUser.id, name: name, data: data });
+            }
+            if (res.error) {
+                result.innerHTML = '<span style="color:#ef4444">エラー: ' + res.error.message + '</span>';
+            } else {
+                result.innerHTML = '<span style="color:#059669">✅ 「' + name + '」を保存しました</span>';
+                setTimeout(hcCloseCloudSave, 1200);
+            }
         }
 
         // 一覧モーダルを開く
-        function hcOpenCloudList(){
+        function hcOpenCloudList() {
+            if (!_hcUser) {
+                if (confirm('デッキ一覧にはGoogleログインが必要です。\nログインしますか？')) hcToggleAuth();
+                return;
+            }
             document.getElementById('hcCloudOtherId').value = '';
             document.getElementById('hcCloudListModal').style.display = 'flex';
             hcCloudLoadList(null);
         }
-        function hcCloseCloudList(){ document.getElementById('hcCloudListModal').style.display = 'none'; }
+        function hcCloseCloudList() { document.getElementById('hcCloudListModal').style.display = 'none'; }
 
-        // デッキ一覧を取得して表示
-        function hcCloudLoadList(targetUserId){
-            var userId = targetUserId || hcGetUserId();
+        // デッキ一覧を取得
+        async function hcCloudLoadList(targetEmail) {
             var list = document.getElementById('hcCloudList');
             list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">読込中...</div>';
-            hcSbFetch('decks?user_id=eq.'+encodeURIComponent(userId)+'&order=updated_at.desc&select=id,name,updated_at')
-            .then(function(decks){
-                list.innerHTML = '';
-                if(!decks || !decks.length){
-                    list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">保存済みデッキがありません</div>';
-                    return;
+            var query;
+            if (targetEmail) {
+                // メールアドレスでユーザーを検索（自分のデッキのみ参照可能なので自分のみ）
+                list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">※ セキュリティのため自分のデッキのみ表示できます</div>';
+                query = _sb.from('decks').select('id,name,updated_at').eq('user_id', _hcUser.id).order('updated_at', {ascending: false});
+            } else {
+                query = _sb.from('decks').select('id,name,updated_at').eq('user_id', _hcUser.id).order('updated_at', {ascending: false});
+            }
+            var res = await query;
+            list.innerHTML = '';
+            if (!res.data || !res.data.length) {
+                list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">保存済みデッキがありません</div>';
+                return;
+            }
+            res.data.forEach(function(deck) {
+                var item = document.createElement('div');
+                item.style.cssText = 'display:flex;align-items:center;gap:6px;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;';
+                var info = document.createElement('div');
+                info.style.cssText = 'flex:1;min-width:0;';
+                var nm = document.createElement('div');
+                nm.style.cssText = 'font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+                nm.textContent = deck.name;
+                var dt = document.createElement('div');
+                dt.style.cssText = 'font-size:11px;color:#94a3b8;margin-top:2px;';
+                dt.textContent = new Date(deck.updated_at).toLocaleString('ja-JP');
+                info.appendChild(nm); info.appendChild(dt);
+                item.appendChild(info);
+                var btns = document.createElement('div');
+                btns.style.cssText = 'display:flex;gap:4px;flex-shrink:0;';
+                var loadBtn = document.createElement('button');
+                loadBtn.textContent = '読込';
+                loadBtn.style.cssText = 'background:#5e5a9b;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                loadBtn.onclick = (function(id, name) { return function() { hcCloudLoadDeck(id, name); }; })(deck.id, deck.name);
+                btns.appendChild(loadBtn);
+                var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+                if (!isMobile) {
+                    var dlBtn = document.createElement('button');
+                    dlBtn.textContent = 'DECKLOG';
+                    dlBtn.style.cssText = 'background:#ea580c;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    dlBtn.onclick = (function(id) { return function() { hcCloudLoadAndSend(id); }; })(deck.id);
+                    btns.appendChild(dlBtn);
                 }
-                decks.forEach(function(deck){
-                    var item = document.createElement('div');
-                    item.style.cssText = 'display:flex;align-items:center;gap:6px;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;';
-                    var info = document.createElement('div');
-                    info.style.cssText = 'flex:1;min-width:0;';
-                    var nm = document.createElement('div');
-                    nm.style.cssText = 'font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
-                    nm.textContent = deck.name;
-                    var dt = document.createElement('div');
-                    dt.style.cssText = 'font-size:11px;color:#94a3b8;margin-top:2px;';
-                    dt.textContent = new Date(deck.updated_at).toLocaleString('ja-JP');
-                    info.appendChild(nm); info.appendChild(dt);
-                    item.appendChild(info);
-                    var btns = document.createElement('div');
-                    btns.style.cssText = 'display:flex;gap:4px;flex-shrink:0;';
-                    var loadBtn = document.createElement('button');
-                    loadBtn.textContent = '読込';
-                    loadBtn.style.cssText = 'background:#5e5a9b;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
-                    loadBtn.onclick = (function(id,name){ return function(){ hcCloudLoadDeck(id,name); }; })(deck.id, deck.name);
-                    // PCのみDECKLOGボタン表示
-                    var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-                    btns.appendChild(loadBtn);
-                    if(!isMobile){
-                        var dlBtn = document.createElement('button');
-                        dlBtn.textContent = 'DECKLOG';
-                        dlBtn.style.cssText = 'background:#ea580c;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
-                        dlBtn.onclick = (function(id){ return function(){ hcCloudLoadAndSend(id); }; })(deck.id);
-                        btns.appendChild(dlBtn);
-                    }
-                    var delBtn = document.createElement('button');
-                    delBtn.textContent = '削除';
-                    delBtn.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
-                    delBtn.onclick = (function(id,name){ return function(){ hcCloudDelete(id,name); }; })(deck.id, deck.name);
-                    btns.appendChild(delBtn);
-                    item.appendChild(btns);
-                    list.appendChild(item);
-                });
-            })
-            .catch(function(){ list.innerHTML = '<div style="color:#ef4444;font-size:13px;padding:16px">通信エラー</div>'; });
-        }
-
-        // デッキを読み込む
-        function hcCloudLoadDeck(deckId, name){
-            if(!confirm('"'+name+'" を読み込みますか？\n現在のカートは上書きされます。'))return;
-            hcSbFetch('decks?id=eq.'+deckId+'&select=data')
-            .then(function(res){
-                if(!res||!res.length){ alert('読込エラー'); return; }
-                var data = res[0].data;
-                HC.cart = data.cart||{};
-                HC.yell = data.yell||{};
-                HC.oshi = data.oshi||null;
-                HC.updateBar(); HC.updateBadges();
-                hcCloseCloudList();
-                alert('"'+name+'" を読み込みました！');
+                var delBtn = document.createElement('button');
+                delBtn.textContent = '削除';
+                delBtn.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                delBtn.onclick = (function(id, name) { return function() { hcCloudDelete(id, name); }; })(deck.id, deck.name);
+                btns.appendChild(delBtn);
+                item.appendChild(btns);
+                list.appendChild(item);
             });
         }
 
-        // 読み込んでDECKLOGへ送信
-        function hcCloudLoadAndSend(deckId){
-            hcSbFetch('decks?id=eq.'+deckId+'&select=data,name')
-            .then(function(res){
-                if(!res||!res.length){ alert('読込エラー'); return; }
-                var data = res[0].data;
-                var name = res[0].name;
-                HC.cart = data.cart||{};
-                HC.yell = data.yell||{};
-                HC.oshi = data.oshi||null;
-                HC.updateBar(); HC.updateBadges();
-                hcCloseCloudList();
-                setTimeout(function(){ hcOpenExp(); }, 300);
-            });
+        async function hcCloudLoadDeck(deckId, name) {
+            if (!confirm('"' + name + '" を読み込みますか？\n現在のカートは上書きされます。')) return;
+            var res = await _sb.from('decks').select('data').eq('id', deckId).single();
+            if (res.error) { alert('読込エラー'); return; }
+            var data = res.data.data;
+            HC.cart = data.cart || {};
+            HC.yell = data.yell || {};
+            HC.oshi = data.oshi || null;
+            HC.updateBar(); HC.updateBadges();
+            hcCloseCloudList();
+            alert('"' + name + '" を読み込みました！');
         }
 
-        // デッキを削除
-        function hcCloudDelete(deckId, name){
-            if(!confirm('"'+name+'" を削除しますか？'))return;
-            hcSbFetch('decks?id=eq.'+deckId, 'DELETE')
-            .then(function(){
-                hcCloudLoadList(null);
-            });
+        async function hcCloudLoadAndSend(deckId) {
+            var res = await _sb.from('decks').select('data,name').eq('id', deckId).single();
+            if (res.error) { alert('読込エラー'); return; }
+            HC.cart = res.data.data.cart || {};
+            HC.yell = res.data.data.yell || {};
+            HC.oshi = res.data.data.oshi || null;
+            HC.updateBar(); HC.updateBadges();
+            hcCloseCloudList();
+            setTimeout(function() { hcOpenExp(); }, 300);
+        }
+
+        async function hcCloudDelete(deckId, name) {
+            if (!confirm('"' + name + '" を削除しますか？')) return;
+            await _sb.from('decks').delete().eq('id', deckId);
+            hcCloudLoadList(null);
         }
 
         function hcSendDeckToDecklog(deck){
