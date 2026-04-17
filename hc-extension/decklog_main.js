@@ -55,11 +55,19 @@ async function execDecklog(deckData) {
   };
 
   let ok = 0, ng = [];
-  const { oshi, main } = deckData;
+  const { oshi, main, yell } = deckData;
   if (oshi) {
     await selType('推しホロメン');
     if (await tryAdd(oshi.id, 1)) ok++; else ng.push(oshi.id + '(推し)');
     await delay(400);
+  }
+  if (yell && yell.length) {
+    await selType('エールデッキ');
+    for (const c of yell) {
+      if (!c.id) continue;
+      if (await tryAdd(c.id, c.count)) ok++; else ng.push(c.id);
+      await delay(300);
+    }
   }
   if (main && main.length) {
     await selType('メインデッキ');

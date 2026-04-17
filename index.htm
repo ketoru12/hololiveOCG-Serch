@@ -159,6 +159,7 @@
         #hcCC{display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px;border-radius:10px;}
         #hcCC.oshi{border:2px solid #10b981;background:#f0fdf4;}
         #hcCC.main{border:2px solid #e2e8f0;background:#f8fafc;}
+        #hcCC.yell{border:2px solid #f59e0b;background:#fffbeb;}
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -188,6 +189,10 @@
                 <div style="display:flex;align-items:center;gap:6px;width:100%">
                     <span style="color:#86efac;font-weight:bold;white-space:nowrap">推し：</span>
                     <span id="hcON" style="color:#fde68a;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0">未選択</span>
+                    <span style="color:#334155">｜</span>
+                    <span style="color:#fbbf24;font-weight:bold;white-space:nowrap">エール：</span>
+                    <span id="hcYC" style="font-weight:900;font-size:13px;color:#fbbf24;white-space:nowrap">0</span>
+                    <span style="color:#94a3b8;white-space:nowrap"> / 20枚</span>
                     <span style="color:#334155">｜</span>
                     <span style="color:#93c5fd;font-weight:bold;white-space:nowrap">メイン：</span>
                     <span id="hcMC" style="font-weight:900;font-size:13px;color:#86efac;white-space:nowrap">0</span>
@@ -229,6 +234,7 @@
                         <button class="filter-btn px-3 py-2 text-xs border rounded bg-white min-h-[40px] md:min-h-0" data-group="category" data-val="ホロメン">ホロメン</button>
                         <button class="filter-btn px-3 py-2 text-xs border rounded bg-white min-h-[40px] md:min-h-0" data-group="category" data-val="推しホロメン">推し</button>
                         <button class="filter-btn px-3 py-2 text-xs border rounded bg-white min-h-[40px] md:min-h-0" data-group="category" data-val="サポート">サポート</button>
+                        <button class="filter-btn px-3 py-2 text-xs border rounded bg-white min-h-[40px] md:min-h-0" data-group="category" data-val="エール">エール</button>
                     </div>
                 </div>
 
@@ -410,8 +416,20 @@
                 result = fuse.search(activeFilters.text).map(r => r.item);
             }
             
+            // エールフィルターが選択された場合はYELL_CARDSを追加
             if (activeFilters.category.length > 0) {
-                result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
+                if (activeFilters.category.includes('エール')) {
+                    var yellCards = YELL_CARDS;
+                    var otherCats = activeFilters.category.filter(function(c){return c!=='エール';});
+                    if(otherCats.length > 0){
+                        var otherResult = result.filter(function(c){ return otherCats.includes(c.category); });
+                        result = otherResult.concat(yellCards);
+                    } else {
+                        result = yellCards;
+                    }
+                } else {
+                    result = result.filter(c => logiceState.category === 'OR' ? activeFilters.category.includes(c.category) : activeFilters.category.every(f => c.category === f));
+                }
             }
 
             if (activeFilters.color) {
@@ -607,10 +625,20 @@
         var HC_TPL = "(function(){var _d=__DATA__;var oshi=_d.oshi,cards=_d.main;var delay=function(ms){return new Promise(function(r){setTimeout(r,ms);});};var selType=async function(label){var lbl=Array.from(document.querySelectorAll(\"label\")).find(function(l){return l.textContent.trim().indexOf(label)>-1;});if(lbl){var inp=lbl.querySelector(\"input[type=radio]\");if(!inp&&lbl.htmlFor)inp=document.getElementById(lbl.htmlFor);if(inp){inp.click();inp.dispatchEvent(new Event(\"change\",{bubbles:true}));await delay(700);return true;}}return false;};var tryAdd=async function(no,cnt){var t=Array.from(document.querySelectorAll(\"button,span\")).find(function(b){var tx=b.textContent.trim();return tx===\"\\u30ab\\u30fc\\u30c9\\u756a\\u53f7\"||tx===\"No.\";});if(t){t.click();await delay(400);}var inp=Array.from(document.querySelectorAll(\"input\")).find(function(i){var p=i.placeholder||\"\";return p.indexOf(\"\\u756a\\u53f7\")>-1||p.indexOf(\"\\u30ad\\u30fc\\u30ef\\u30fc\\u30c9\")>-1;});if(!inp){return false;}inp.focus();Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,\"value\").set.call(inp,no);[\"input\",\"change\",\"keyup\"].forEach(function(ev){inp.dispatchEvent(new Event(ev,{bubbles:true}));});await delay(1500);var el=document.querySelector(\".card-item\");if(!el)return false;var inc=el.querySelector(\".card-inc\");if(!inc)return false;for(var i=0;i<cnt;i++){inc.click();await delay(350);}return true;};(async function(){var stdBtn=Array.from(document.querySelectorAll(\"button\")).find(function(b){return b.textContent.trim()===\"\\u30b9\\u30bf\\u30f3\\u30c0\\u30fc\\u30c9\";});if(stdBtn){stdBtn.click();await delay(1500);}for(var w=0;w<20;w++){var lbl=Array.from(document.querySelectorAll(\"label\")).find(function(l){return l.textContent.trim().indexOf(\"\\u30e1\\u30a4\\u30f3\\u30c7\\u30c3\\u30ad\")>-1;});if(lbl)break;await delay(500);}var ok=0,ng=[];if(oshi){await selType(\"\\u63a8\\u3057\\u30db\\u30ed\\u30e1\\u30f3\");var s0=await tryAdd(oshi.id,1);if(s0)ok++;else ng.push(oshi.id+\"(\\u63a8\\u3057)\");await delay(400);}if(cards.length){await selType(\"\\u30e1\\u30a4\\u30f3\\u30c7\\u30c3\\u30ad\");}for(var i=0;i<cards.length;i++){var c=cards[i];if(!c.id)continue;var s=await tryAdd(c.id,c.count);if(s)ok++;else ng.push(c.id);await delay(300);}var res=\"\\u5b8c\\u4e86: \"+ok+\"\\u4ef6\\u6210\\u529f\";if(ng.length)res+=\"\\n\\u5931\\u6557: \"+ng.join(\", \");alert(res);})();})()";
         function hcImg(img){ return (img||'').startsWith('/') ? img.slice(1) : img; }
         var HC = {
-            cart:{}, oshi:null, MAX_PER:4, MAX_TOTAL:50,
+            cart:{}, yell:{}, oshi:null, MAX_PER:4, MAX_TOTAL:50, MAX_YELL:20,
             total:function(){ return Object.values(this.cart).reduce(function(s,c){return s+c.qty;},0); },
             isOshi:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
+            isYell:function(id){ return YELL_CARDS.some(function(y){return y.id===id;}); },
+            yellTotal:function(){ return Object.values(this.yell).reduce(function(s,c){return s+c.qty;},0); },
             add:function(id,name,img){
+                if(this.isYell(id)){
+                    if(this.yellTotal()>=this.MAX_YELL){alert('エールデッキは最大'+this.MAX_YELL+'枚まで');return;}
+                    if(this.yell[id]){this.yell[id].qty++;}
+                    else this.yell[id]={name:name,img:hcImg(img),qty:1};
+                    this.updateBar();this.updateBadges();
+                    this.flash('追加: '+name+' (エール '+this.yellTotal()+'/'+this.MAX_YELL+'枚)','#f59e0b');
+                    return;
+                }
                 if(this.isOshi(id)){
                     if(this.oshi&&this.oshi.id===id){this.flash(name+'はすでに選択中','#f59e0b');return;}
                     var prev=this.oshi?this.oshi.name:null;
@@ -627,12 +655,23 @@
                 this.flash('追加: '+name+' ('+this.total()+'/'+this.MAX_TOTAL+'枚)','#22c55e');
             },
             dec:function(id){
+                if(this.isYell(id)){
+                    if(!this.yell[id])return;
+                    this.yell[id].qty--;
+                    if(!this.yell[id].qty)delete this.yell[id];
+                    this.updateBar();this.updateBadges();return;
+                }
                 if(!this.cart[id])return;
                 this.cart[id].qty--;
                 if(!this.cart[id].qty)delete this.cart[id];
                 this.updateBar();this.updateBadges();
             },
             inc:function(id){
+                if(this.isYell(id)){
+                    if(!this.yell[id])return;
+                    if(this.yellTotal()>=this.MAX_YELL){alert('エールデッキは最大'+this.MAX_YELL+'枚まで');return;}
+                    this.yell[id].qty++;this.updateBar();this.updateBadges();return;
+                }
                 if(!this.cart[id])return;
                 if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
                 if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
@@ -641,16 +680,23 @@
             removeOshi:function(){this.oshi=null;this.updateBar();this.updateBadges();},
             updateBar:function(){
                 var t=this.total();
+                var yt=this.yellTotal();
                 document.getElementById('hcON').textContent=this.oshi?this.oshi.name:'未選択';
                 var mc=document.getElementById('hcMC');
                 mc.textContent=t;mc.style.color=t>=this.MAX_TOTAL?'#fbbf24':'#86efac';
+                var yc=document.getElementById('hcYC');
+                if(yc){yc.textContent=yt;yc.style.color=yt>=this.MAX_YELL?'#fbbf24':'#fbbf24';}
             },
             updateBadges:function(){
                 var self=this;
                 document.querySelectorAll('.hcW').forEach(function(w){
                     var id=w.dataset.hcId,b=w.querySelector('.hcBdg');
                     if(!b||!id)return;
-                    if(self.isOshi(id)){
+                    if(self.isYell(id)){
+                        var q=self.yell[id]?self.yell[id].qty:0;
+                        if(q>0){b.textContent=q+'/'+self.MAX_YELL+'枚';b.style.display='block';b.style.background='rgba(245,158,11,.9)';}
+                        else b.style.display='none';
+                    } else if(self.isOshi(id)){
                         if(self.oshi&&self.oshi.id===id){b.textContent='推し ⭐';b.style.display='block';b.style.background='rgba(16,185,129,.9)';}
                         else b.style.display='none';
                     } else {
@@ -677,6 +723,12 @@
                     var fn=(c.img||'').split('/').pop();
                     return fn&&img.src.indexOf(fn)>-1;
                 });
+                if(!found){
+                    found=YELL_CARDS.find(function(c){
+                        var fn=(c.img||'').split('/').pop();
+                        return fn&&img.src.indexOf(fn)>-1;
+                    });
+                }
                 if(!found)return;
                 w.dataset.hcPatched='1';
                 var id=found.id;
@@ -687,7 +739,16 @@
                 lo.style.cssText='background:white;font-size:16px;';lo.textContent='🔍';
                 lo.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(w);};
                 var ab=document.createElement('button');
-                if(found.category==='推しホロメン'){
+                if(found.category==='エール'){
+                    ab.style.cssText='background:#f59e0b;color:white;font-size:22px;font-weight:bold;';
+                    ab.textContent='+';ab.title='エールデッキに追加';
+                    ab.onclick=function(e){e.stopPropagation();HC.add(id,found.name,found.img||'');hcRefModal(id);};
+                    var db=document.createElement('button');
+                    db.style.cssText='background:#ef4444;color:white;font-size:22px;font-weight:bold;';
+                    db.textContent='-';db.title='エールデッキから削除';
+                    db.onclick=function(e){e.stopPropagation();HC.dec(id);hcRefModal(id);};
+                    ov.appendChild(lo);ov.appendChild(ab);ov.appendChild(db);
+                } else if(found.category==='推しホロメン'){
                     ab.style.cssText='background:#10b981;color:white;font-size:16px;';
                     ab.textContent='⭐';ab.title='推しにセット';
                     ab.onclick=function(e){e.stopPropagation();HC.add(id,found.name,found.img||'');hcRefModal(id);};
@@ -721,19 +782,34 @@
         function hcRefModal(cardId){
             var ctrl=document.getElementById('hcCC');if(!ctrl)return;
             var card=hcCards.find(function(c){return c.id===cardId;});if(!card)return;
-            var isO=card.category==='推しホロメン',img=card.img||'';
-            ctrl.className=isO?'oshi':'main';ctrl.innerHTML='';
+            var isO=card.category==='推しホロメン';
+            var isY=HC.isYell(card.id);
+            var img=card.img||'';
+            ctrl.className=isO?'oshi':(isY?'yell':'main');ctrl.innerHTML='';
             var lbl=document.createElement('span');
             lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isO?'#10b981':'#64748b')+';';
-            lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
+            lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):
+                isY?'エール: '+(HC.yell[cardId]?HC.yell[cardId].qty:0)+'/'+HC.MAX_YELL+'枚':
+                'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
             ctrl.appendChild(lbl);
-            if(isO){
+            if(isY){
+                var mi=document.createElement('button');mi.textContent='－';
+                mi.style.cssText='background:#e2e8f0;border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:pointer;';
+                mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
+                var qty=document.createElement('span');qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
+                qty.textContent=HC.yell[cardId]?HC.yell[cardId].qty:0;
+                var atL=HC.yellTotal()>=HC.MAX_YELL;
+                var pl=document.createElement('button');pl.textContent='＋';
+                pl.style.cssText='background:'+(atL?'#e2e8f0':'#f59e0b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
+                pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,img);hcRefModal(cardId);};
+                ctrl.appendChild(mi);ctrl.appendChild(qty);ctrl.appendChild(pl);
+            } else if(isO){
                 var isSel=HC.oshi&&HC.oshi.id===cardId;
                 var btn=document.createElement('button');btn.textContent=isSel?'解除':'推しにセット';
                 btn.style.cssText='background:'+(isSel?'#ef4444':'#10b981')+';color:white;border:none;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:bold;cursor:pointer;';
                 btn.onclick=function(e){e.stopPropagation();if(HC.oshi&&HC.oshi.id===cardId)HC.removeOshi();else HC.add(cardId,card.name,img);hcRefModal(cardId);};
                 ctrl.appendChild(btn);
-            } else {
+            } else if(!isO&&!isY) {
                 var mi=document.createElement('button');mi.textContent='－';
                 mi.style.cssText='background:#e2e8f0;border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:pointer;';
                 mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
@@ -748,8 +824,8 @@
         }
 
         function hcOpenDeck(){
-            var list=document.getElementById('hcDL'),t=HC.total();
-            document.getElementById('hcDBg').textContent='メイン '+t+'/'+HC.MAX_TOTAL+'枚';
+            var list=document.getElementById('hcDL'),t=HC.total(),yt=HC.yellTotal();
+            document.getElementById('hcDBg').textContent='メイン '+t+'/'+HC.MAX_TOTAL+'枚 / エール '+yt+'/'+HC.MAX_YELL+'枚';
             list.innerHTML='';
             var os=document.createElement('div');
             os.innerHTML='<div style="font-size:11px;font-weight:bold;color:#10b981;border-bottom:2px solid #d1fae5;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">推しホロメン（1枚）</div>';
@@ -786,6 +862,29 @@
                 });
             }
             list.appendChild(ms);
+            // エールセクション
+            var ys=document.createElement('div');ys.style.marginTop='12px';
+            ys.innerHTML='<div style="font-size:11px;font-weight:bold;color:#f59e0b;border-bottom:2px solid #fef3c7;margin-bottom:6px;padding-bottom:4px;letter-spacing:1px">エールデッキ（'+yt+'/'+HC.MAX_YELL+'枚）</div>';
+            var ykeys=Object.keys(HC.yell);
+            if(!ykeys.length){
+                var emy=document.createElement('div');emy.style.cssText='color:#94a3b8;font-size:12px;padding:8px 4px';emy.textContent='エールカードが追加されていません';ys.appendChild(emy);
+            } else {
+                ykeys.forEach(function(id){
+                    var c=HC.yell[id],row=document.createElement('div');
+                    row.style.cssText='display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #f1f5f9;';
+                    row.innerHTML='<img src="'+c.img+'" style="width:36px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+c.name+'</div><div style="color:#94a3b8;font-size:11px">'+id+'</div></div>';
+                    var ct=document.createElement('div');ct.style.cssText='display:flex;align-items:center;gap:6px;';
+                    var mi2=document.createElement('button');mi2.textContent='-';mi2.style.cssText='background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;';mi2.dataset.id=id;
+                    mi2.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
+                    var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:#f59e0b';qs.textContent=c.qty;
+                    var atL=yt>=HC.MAX_YELL;
+                    var pl2=document.createElement('button');pl2.textContent='+';pl2.dataset.id=id;
+                    pl2.style.cssText='background:'+(atL?'#e2e8f0':'#f59e0b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
+                    pl2.onclick=function(){HC.inc(this.dataset.id);hcOpenDeck();};
+                    ct.appendChild(mi2);ct.appendChild(qs);ct.appendChild(pl2);row.appendChild(ct);ys.appendChild(row);
+                });
+            }
+            list.appendChild(ys);
             document.getElementById('hcDM').classList.add('on');
         }
         function hcCloseDeck(){document.getElementById('hcDM').classList.remove('on');}
@@ -797,7 +896,8 @@
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
             var oshi=HC.oshi;
             var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
-            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main};
+            var yell=Object.keys(HC.yell).map(function(id){return{id:id,count:HC.yell[id].qty};});
+            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main,yell:yell};
 
             // 拡張機能経由: hcviewer.jsにpostMessageで送信
             if(window._hcExtReady){
