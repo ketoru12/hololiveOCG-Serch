@@ -162,6 +162,22 @@
         #hcCC.oshi{border:2px solid #10b981;background:#f0fdf4;}
         #hcCC.main{border:2px solid #e2e8f0;background:#f8fafc;}
         #hcCC.yell{border:2px solid #f59e0b;background:#fffbeb;}
+        #hcGistModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
+        #hcGistModal.on{display:flex;}
+        #hcGistBox{background:white;border-radius:16px;width:100%;max-width:480px;padding:24px;}
+        #hcGistBox h3{font-size:15px;font-weight:bold;margin:0 0 12px;}
+        #hcGistBox input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;font-size:13px;box-sizing:border-box;margin-bottom:8px;outline:none;font-family:monospace;}
+        #hcGistBox .note{font-size:11px;color:#94a3b8;line-height:1.7;margin-bottom:12px;}
+        #hcGistBox .btns{display:flex;gap:8px;}
+        #hcGistBox .btns button{flex:1;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer;}
+        #hcSaveModal,#hcLoadModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
+        #hcSaveModal.on,#hcLoadModal.on{display:flex;}
+        #hcSaveBox,#hcLoadBox{background:white;border-radius:16px;width:100%;max-width:480px;padding:24px;max-height:80vh;overflow-y:auto;}
+        #hcSaveBox h3,#hcLoadBox h3{font-size:16px;font-weight:bold;margin:0 0 16px;color:#1e293b;}
+        .hcSaveItem{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;}
+        .hcSaveItem .name{flex:1;font-size:13px;font-weight:bold;}
+        .hcSaveItem .date{font-size:11px;color:#94a3b8;}
+        .hcSaveItem button{border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:bold;cursor:pointer;}
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -203,6 +219,11 @@
                 <div style="display:flex;gap:6px;width:100%">
                     <button style="background:#5e5a9b;color:white;flex:1" onclick="hcOpenDeck()">デッキ確認</button>
                     <button style="background:#ea580c;color:white;flex:1" onclick="hcOpenExp()">DECKLOGへ</button>
+                </div>
+                <div style="display:flex;gap:6px;width:100%">
+                    <button style="background:#0369a1;color:white;flex:1" onclick="hcOpenSave()">💾 保存</button>
+                    <button style="background:#059669;color:white;flex:1" onclick="hcOpenLoad()">📂 読込</button>
+                    <button style="background:#7c3aed;color:white;flex:1" onclick="hcOpenGist()">☁️</button>
                 </div>
             </div>
                 <div>
@@ -931,6 +952,199 @@
 
         function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
 
+        // ===== デッキ保存・読込 =====
+        function hcOpenSave(){
+            if(!Object.keys(HC.cart).length&&!HC.oshi&&!Object.keys(HC.yell).length){alert('カートが空です');return;}
+            document.getElementById('hcSaveName').value='';
+            document.getElementById('hcSaveModal').classList.add('on');
+            setTimeout(function(){document.getElementById('hcSaveName').focus();},100);
+        }
+        function hcCloseSave(){document.getElementById('hcSaveModal').classList.remove('on');}
+
+        function hcSaveDeck(){
+            var name=document.getElementById('hcSaveName').value.trim();
+            if(!name){alert('デッキ名を入力してください');return;}
+            var saves=JSON.parse(localStorage.getItem('hc_saved_decks')||'[]');
+            var oshi=HC.oshi;
+            var deck={
+                id: Date.now(),
+                name: name,
+                date: new Date().toLocaleDateString('ja-JP'),
+                oshi: oshi?{id:oshi.id,name:oshi.name,img:oshi.img}:null,
+                cart: JSON.parse(JSON.stringify(HC.cart)),
+                yell: JSON.parse(JSON.stringify(HC.yell))
+            };
+            saves.unshift(deck);
+            if(saves.length>20)saves=saves.slice(0,20); // 最大20件
+            localStorage.setItem('hc_saved_decks',JSON.stringify(saves));
+            hcCloseSave();
+            alert('"'+name+'" を保存しました');
+        }
+
+        function hcOpenLoad(){
+            var saves=JSON.parse(localStorage.getItem('hc_saved_decks')||'[]');
+            var list=document.getElementById('hcLoadList');
+            if(!saves.length){
+                list.innerHTML='<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">保存済みデッキがありません</div>';
+            } else {
+                list.innerHTML='';
+                saves.forEach(function(deck){
+                    var item=document.createElement('div');
+                    item.className='hcSaveItem';
+                    var mainCount=Object.values(deck.cart||{}).reduce(function(s,c){return s+c.qty;},0);
+                    var yellCount=Object.values(deck.yell||{}).reduce(function(s,c){return s+c.qty;},0);
+                    item.innerHTML=
+                        '<div style="flex:1;min-width:0">'+
+                        '<div class="name">'+deck.name+'</div>'+
+                        '<div class="date">'+deck.date+' ／ '+(deck.oshi?'推し:'+deck.oshi.name+' ':'')+'メイン:'+mainCount+'枚 エール:'+yellCount+'枚</div>'+
+                        '</div>';
+                    var loadBtn=document.createElement('button');
+                    loadBtn.textContent='読込';loadBtn.style.cssText='background:#5e5a9b;color:white;';
+                    loadBtn.onclick=function(){hcLoadDeck(deck);};
+                    var dlBtn=document.createElement('button');
+                    dlBtn.textContent='DECKLOG';dlBtn.style.cssText='background:#ea580c;color:white;';
+                    dlBtn.onclick=function(){hcSendDeckToDecklog(deck);};
+                    var shareBtn=document.createElement('button');
+                    shareBtn.textContent='🔗';shareBtn.title='URLをコピー';shareBtn.style.cssText='background:#0369a1;color:white;';
+                    shareBtn.onclick=function(){hcShareDeck(deck);};
+                    var delBtn=document.createElement('button');
+                    delBtn.textContent='削除';delBtn.style.cssText='background:#ef4444;color:white;';
+                    delBtn.onclick=function(){hcDeleteDeck(deck.id);};
+                    item.appendChild(loadBtn);item.appendChild(dlBtn);item.appendChild(shareBtn);item.appendChild(delBtn);
+                    list.appendChild(item);
+                });
+            }
+            document.getElementById('hcLoadModal').classList.add('on');
+        }
+        function hcCloseLoad(){document.getElementById('hcLoadModal').classList.remove('on');}
+
+        function hcLoadDeck(deck){
+            if(!confirm('"'+deck.name+'" を読み込みますか？\n現在のカートは上書きされます。'))return;
+            HC.cart=JSON.parse(JSON.stringify(deck.cart||{}));
+            HC.yell=JSON.parse(JSON.stringify(deck.yell||{}));
+            HC.oshi=deck.oshi?{id:deck.oshi.id,name:deck.oshi.name,img:deck.oshi.img}:null;
+            HC.updateBar();HC.updateBadges();
+            hcCloseLoad();
+            alert('"'+deck.name+'" を読み込みました');
+        }
+
+        function hcDeleteDeck(id){
+            if(!confirm('このデッキを削除しますか？'))return;
+            var saves=JSON.parse(localStorage.getItem('hc_saved_decks')||'[]');
+            saves=saves.filter(function(d){return d.id!==id;});
+            localStorage.setItem('hc_saved_decks',JSON.stringify(saves));
+            hcOpenLoad();
+        }
+
+        // ===== GitHub Gist オンライン保存 =====
+        function hcOpenGist(){
+            document.getElementById('hcGistResult').innerHTML='';
+            document.getElementById('hcGistName').value='';
+            document.getElementById('hcGistId').value='';
+            // 保存済みTokenを復元
+            var savedToken=localStorage.getItem('hc_gist_token')||'';
+            document.getElementById('hcGistToken').value=savedToken;
+            document.getElementById('hcGistModal').classList.add('on');
+        }
+        function hcCloseGist(){document.getElementById('hcGistModal').classList.remove('on');}
+
+        function hcGistSave(){
+            var token=document.getElementById('hcGistToken').value.trim();
+            var name=document.getElementById('hcGistName').value.trim()||'ホロカデッキ';
+            if(!token){alert('GitHub Tokenを入力してください');return;}
+            if(!Object.keys(HC.cart).length&&!HC.oshi&&!Object.keys(HC.yell).length){alert('カートが空です');return;}
+            localStorage.setItem('hc_gist_token',token);
+            var data={name:name,oshi:HC.oshi,cart:HC.cart,yell:HC.yell,saved:new Date().toLocaleString('ja-JP')};
+            var result=document.getElementById('hcGistResult');
+            result.innerHTML='<span style="color:#64748b">保存中...</span>';
+            fetch('https://api.github.com/gists',{
+                method:'POST',
+                headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    description:'ホロカ デッキ: '+name,
+                    public:false,
+                    files:{'hc_deck.json':{content:JSON.stringify(data,null,2)}}
+                })
+            })
+            .then(function(r){return r.json();})
+            .then(function(gist){
+                if(gist.id){
+                    var shortId=gist.id;
+                    var _gistId=shortId;
+                    result.innerHTML='<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;margin-top:4px">'+
+                        '<div style="font-weight:bold;color:#059669;margin-bottom:6px">✅ 保存完了！</div>'+
+                        '<div style="font-size:12px;margin-bottom:6px">デッキID（コピーしてPCで使用）：</div>'+
+                        '<div style="font-family:monospace;font-size:14px;font-weight:bold;letter-spacing:1px;color:#1e293b;background:white;border:1px solid #e2e8f0;border-radius:6px;padding:6px 10px;margin-bottom:8px">'+shortId+'</div>'+
+                        '<button id="hcGistCopyBtn" style="background:#5e5a9b;color:white;border:none;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:bold;cursor:pointer">📋 IDをコピー</button>'+
+                        '</div>';
+                    var copyBtn=document.getElementById('hcGistCopyBtn');
+                    if(copyBtn){copyBtn.onclick=function(){
+                        if(navigator.clipboard){navigator.clipboard.writeText(_gistId).then(function(){alert('IDをコピーしました！');});}
+                        else{prompt('IDをコピーしてください:',_gistId);}
+                    };}
+                } else {
+                    result.innerHTML='<span style="color:#ef4444">エラー: '+(gist.message||'不明なエラー')+'</span>';
+                }
+            })
+            .catch(function(e){result.innerHTML='<span style="color:#ef4444">通信エラー: '+e.message+'</span>';});
+        }
+
+        function hcGistLoad(){
+            var token=document.getElementById('hcGistToken').value.trim();
+            var gistId=document.getElementById('hcGistId').value.trim();
+            if(!token){alert('GitHub Tokenを入力してください');return;}
+            if(!gistId){alert('デッキIDを入力してください');return;}
+            localStorage.setItem('hc_gist_token',token);
+            var result=document.getElementById('hcGistResult');
+            result.innerHTML='<span style="color:#64748b">読込中...</span>';
+            fetch('https://api.github.com/gists/'+gistId,{
+                headers:{'Authorization':'token '+token}
+            })
+            .then(function(r){return r.json();})
+            .then(function(gist){
+                if(!gist.files||!gist.files['hc_deck.json']){
+                    result.innerHTML='<span style="color:#ef4444">デッキデータが見つかりません</span>';return;
+                }
+                var data=JSON.parse(gist.files['hc_deck.json'].content);
+                if(!confirm('"'+(data.name||'デッキ')+'" を読み込みますか？\n現在のカートは上書きされます。'))return;
+                HC.cart=data.cart||{};
+                HC.yell=data.yell||{};
+                HC.oshi=data.oshi||null;
+                HC.updateBar();HC.updateBadges();
+                hcCloseGist();
+                alert('"'+(data.name||'デッキ')+'" を読み込みました！');
+            })
+            .catch(function(e){result.innerHTML='<span style="color:#ef4444">通信エラー: '+e.message+'</span>';});
+        }
+
+        function hcShareDeck(deck){
+            var data={name:deck.name,oshi:deck.oshi,cart:deck.cart,yell:deck.yell};
+            var encoded=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+            var url=location.origin+location.pathname+'?deck='+encoded;
+            if(navigator.clipboard&&navigator.clipboard.writeText){
+                navigator.clipboard.writeText(url).then(function(){
+                    alert('URLをコピーしました！\nPCのブラウザで開くとデッキが読み込まれます。');
+                });
+            } else {
+                // フォールバック: promptで表示
+                prompt('このURLをコピーしてPCで開いてください:', url);
+            }
+        }
+
+        function hcSendDeckToDecklog(deck){
+            var oshi=deck.oshi;
+            var main=Object.keys(deck.cart||{}).map(function(id){return{id:id,count:deck.cart[id].qty};});
+            var yell=Object.keys(deck.yell||{}).map(function(id){return{id:id,count:deck.yell[id].qty};});
+            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main,yell:yell};
+            if(window._hcExtReady){
+                window.postMessage({type:'HC_SEND_TO_DECKLOG',data:deckData},'*');
+                hcCloseLoad();
+                return;
+            }
+            hcOpenExpFallback(deckData);
+            hcCloseLoad();
+        }
+
         (function(){
             // タップで他の場所をタップしたらオーバーレイを閉じる
             document.addEventListener('touchstart', function(e){
@@ -940,6 +1154,26 @@
                     });
                 }
             },{passive:true});
+
+            // URLパラメータからデッキを復元
+            (function(){
+                var params=new URLSearchParams(location.search);
+                var deckParam=params.get('deck');
+                if(deckParam){
+                    try{
+                        var data=JSON.parse(decodeURIComponent(escape(atob(deckParam))));
+                        HC.cart=data.cart||{};
+                        HC.yell=data.yell||{};
+                        HC.oshi=data.oshi||null;
+                        HC.updateBar();
+                        // URLパラメータをきれいにする
+                        history.replaceState({},'',location.pathname);
+                        setTimeout(function(){
+                            alert('"'+(data.name||'デッキ')+'" を読み込みました！');
+                        },500);
+                    }catch(e){console.warn('デッキURL読込エラー:',e);}
+                }
+            })();
 
             fetch('./master_cards.json')
                 .then(function(r){return r.json();})
@@ -964,6 +1198,47 @@
       </div>
     </div>
     <div id="hcDL" style="overflow-y:auto;flex:1;padding:12px"></div>
+  </div>
+</div>
+<!-- Gistモーダル -->
+<div id="hcGistModal" onclick="if(event.target===this)hcCloseGist()">
+  <div id="hcGistBox">
+    <h3>☁️ オンライン保存（GitHub Gist）</h3>
+    <div class="note">
+      ① <a href="https://github.com/settings/tokens/new?scopes=gist&description=hc-deck" target="_blank" style="color:#5e5a9b">GitHub Token を取得</a>（Gistにチェックして生成）<br>
+      ② Tokenを入力して保存・読込できます<br>
+      ③ 発行されたデッキIDをスマホ↔PCで共有
+    </div>
+    <input id="hcGistToken" type="password" placeholder="GitHub Token (ghp_...)" autocomplete="off">
+    <input id="hcGistName" type="text" placeholder="デッキ名（保存時）">
+    <input id="hcGistId" type="text" placeholder="デッキID（読込時・例: ab12cd34ef）">
+    <div class="btns">
+      <button onclick="hcGistSave()" style="background:#5e5a9b;color:white">💾 保存</button>
+      <button onclick="hcGistLoad()" style="background:#059669;color:white">📂 読込</button>
+      <button onclick="hcCloseGist()" style="background:#e2e8f0;color:#1e293b">✕</button>
+    </div>
+    <div id="hcGistResult" style="margin-top:12px;font-size:12px;"></div>
+  </div>
+</div>
+<!-- 保存モーダル -->
+<div id="hcSaveModal" onclick="if(event.target===this)hcCloseSave()">
+  <div id="hcSaveBox">
+    <h3>💾 デッキを保存</h3>
+    <div style="margin-bottom:12px">
+      <input id="hcSaveName" type="text" placeholder="デッキ名を入力..." style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;font-size:14px;box-sizing:border-box;outline:none;">
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="hcSaveDeck()" style="flex:1;background:#5e5a9b;color:white;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer;">保存</button>
+      <button onclick="hcCloseSave()" style="background:#e2e8f0;border:none;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer;">キャンセル</button>
+    </div>
+  </div>
+</div>
+<!-- 読込モーダル -->
+<div id="hcLoadModal" onclick="if(event.target===this)hcCloseLoad()">
+  <div id="hcLoadBox">
+    <h3>📂 保存済みデッキ</h3>
+    <div id="hcLoadList"></div>
+    <button onclick="hcCloseLoad()" style="width:100%;margin-top:12px;background:#e2e8f0;border:none;border-radius:8px;padding:10px;font-size:13px;cursor:pointer;">閉じる</button>
   </div>
 </div>
 <div id="hcEM" onclick="if(event.target===this)hcCloseExp()">
