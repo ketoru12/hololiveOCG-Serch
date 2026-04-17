@@ -352,6 +352,15 @@
     </div>
 
     <script>
+        // エールカード定義
+        const YELL_CARDS = [
+            {id:'hY01-001', name:'エール（白）', img:'image/cheer/hY01-001_C.png', color:'白', category:'エール'},
+            {id:'hY02-001', name:'エール（緑）', img:'image/cheer/hY02-001_C.png', color:'緑', category:'エール'},
+            {id:'hY03-001', name:'エール（赤）', img:'image/cheer/hY03-001_C.png', color:'赤', category:'エール'},
+            {id:'hY04-001', name:'エール（青）', img:'image/cheer/hY04-001_C.png', color:'青', category:'エール'},
+            {id:'hY05-001', name:'エール（紫）', img:'image/cheer/hY05-001_C.png', color:'紫', category:'エール'},
+            {id:'hY06-001', name:'エール（黄）', img:'image/cheer/hY06-001_C.png', color:'黄', category:'エール'}
+        ];
         let allCards = [];
         let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
