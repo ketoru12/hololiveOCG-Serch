@@ -794,14 +794,13 @@
             var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main};
 
             // Chrome拡張機能経由で自動実行
+            // window.postMessageでindex.htmから拡張機能のcontent_scriptへ送信
             if(typeof chrome!=='undefined'&&chrome.runtime&&chrome.runtime.sendMessage){
                 try{
                     chrome.runtime.sendMessage(
-                        'ofldkgdhpkpfacogcafbikfpigppocea',
                         {type:'SEND_TO_DECKLOG',data:deckData},
                         function(res){
                             if(chrome.runtime.lastError){
-                                // 拡張機能IDが違う場合はフォールバック
                                 hcOpenExpFallback(deckData);
                             }
                         }
@@ -838,7 +837,7 @@
 <div id="hcDM" onclick="if(event.target===this)hcCloseDeck()">
   <div id="hcDB">
     <div style="padding:14px 18px;background:#5e5a9b;color:white;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
-      <span style="font-weight:bold;font-size:15px">デッキ確認</span>
+      <span style="font-weight:bold;font-size:15px">デッキ確認2</span>
       <span id="hcDBg" style="font-size:12px;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px"></span>
       <div style="display:flex;gap:8px">
         <button onclick="hcClear()" style="background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">クリア</button>
