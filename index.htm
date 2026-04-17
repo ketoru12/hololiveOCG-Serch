@@ -985,9 +985,13 @@
                     _sb.auth.signOut();
                 }
             } else {
+                var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
                 _sb.auth.signInWithOAuth({
                     provider: 'google',
-                    options: { redirectTo: location.href }
+                    options: {
+                        redirectTo: 'https://ketoru12.github.io/holocg-viewer/',
+                        skipBrowserRedirect: false
+                    }
                 });
             }
         }
