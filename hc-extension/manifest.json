@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "ホロカ → DECKLOG",
+  "version": "2.1",
+  "description": "holocg-viewerで選んだカードをDECKLOGに自動登録",
+  "permissions": ["scripting", "tabs", "storage"],
+  "host_permissions": [
+    "https://decklog.bushiroad.com/*",
+    "https://ketoru12.github.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ketoru12.github.io/*"],
+      "js": ["hcviewer.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://decklog.bushiroad.com/*"],
+      "js": ["decklog.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://decklog.bushiroad.com/*"],
+      "js": ["decklog_main.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ホロカ → DECKLOG"
+  },
+  "icons": {
+    "48": "icon.png"
+  }
+}

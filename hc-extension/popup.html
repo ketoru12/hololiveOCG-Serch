@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { width: 220px; padding: 16px; font-family: sans-serif; background: #1e1b4b; color: white; margin: 0; }
+  h2 { font-size: 13px; margin: 0 0 10px; color: #a78bfa; }
+  p { font-size: 11px; color: #94a3b8; line-height: 1.6; margin: 0 0 10px; }
+  button { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #5e5a9b; color: white; font-size: 12px; font-weight: bold; cursor: pointer; }
+</style>
+</head>
+<body>
+  <h2>🎴 ホロカ → DECKLOG</h2>
+  <p>holocg-viewer でカードを選んで<br>「DECKLOGへ」を押すと自動登録されます。</p>
+  <button onclick="
+    chrome.runtime.sendMessage({type:'PING'}, function(){});
+    window.close();
+  ">Service Worker を起動</button>
+</body>
+</html>
