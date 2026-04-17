@@ -210,8 +210,8 @@
                     <button style="background:#ea580c;color:white;flex:1" onclick="hcOpenExp()">DECKLOGへ</button>
                 </div>
                 <div style="display:flex;gap:6px;width:100%">
-                    <button style="background:#0369a1;color:white;flex:1" onclick="hcOpenShare()">🔗 共有</button>
-                    <button style="background:#059669;color:white;flex:1" onclick="hcOpenImport()">📥 読込</button>
+                    <button style="background:#0369a1;color:white;flex:1" onclick="hcOpenCloudSave()">💾 保存</button>
+                    <button style="background:#059669;color:white;flex:1" onclick="hcOpenCloudList()">📂 デッキ一覧</button>
                 </div>
             </div>
                 <div>
@@ -940,71 +940,181 @@
 
         function hcCloseExp(){document.getElementById('hcEM').classList.remove('on');}
 
-        // ===== 共有・読込（URLシェア方式）=====
-        function hcBuildShareUrl(){
-            var oshi=HC.oshi;
-            var data={
-                oshi:oshi?{id:oshi.id,name:oshi.name,img:oshi.img}:null,
-                cart:HC.cart,
-                yell:HC.yell
-            };
-            var encoded=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-            return location.origin+location.pathname+'?deck='+encoded;
+        // ===== Supabase クラウド保存 =====
+        var HC_SB_URL = 'https://ecazpfwkqdxdshonsopx.supabase.co';
+        var HC_SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjYXpwZndrcWR4ZHNob25zb3B4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjQxNzYsImV4cCI6MjA5MjAwMDE3Nn0.4PHBfuxRwf5ccsJxC3sTpoSRJfFStEGl-cmEMIHoALk';
+
+        // ユーザーID（localStorage）
+        function hcGetUserId(){
+            var id = localStorage.getItem('hc_user_id');
+            if(!id){
+                id = 'hc_' + Math.random().toString(36).slice(2,10) + Date.now().toString(36);
+                localStorage.setItem('hc_user_id', id);
+            }
+            return id;
         }
 
-        function hcOpenShare(){
+        function hcSbFetch(path, method, body){
+            return fetch(HC_SB_URL + '/rest/v1/' + path, {
+                method: method||'GET',
+                headers: {
+                    'apikey': HC_SB_KEY,
+                    'Authorization': 'Bearer ' + HC_SB_KEY,
+                    'Content-Type': 'application/json',
+                    'Prefer': method==='POST' ? 'return=representation' : ''
+                },
+                body: body ? JSON.stringify(body) : undefined
+            }).then(function(r){ return r.json(); });
+        }
+
+        // 保存モーダルを開く
+        function hcOpenCloudSave(){
             if(!Object.keys(HC.cart).length&&!HC.oshi&&!Object.keys(HC.yell).length){
-                alert('カートが空です');return;
+                alert('カートが空です'); return;
             }
-            var url=hcBuildShareUrl();
-            document.getElementById('hcShareUrl').value=url;
-            document.getElementById('hcShareModal').classList.add('on');
+            document.getElementById('hcCloudSaveName').value = '';
+            document.getElementById('hcCloudSaveResult').textContent = '';
+            document.getElementById('hcMyUserId').textContent = hcGetUserId();
+            document.getElementById('hcCloudSaveModal').style.display = 'flex';
         }
-        function hcCloseShare(){document.getElementById('hcShareModal').classList.remove('on');}
+        function hcCloseCloudSave(){ document.getElementById('hcCloudSaveModal').style.display = 'none'; }
 
-        function hcCopyShareUrl(){
-            var url=document.getElementById('hcShareUrl').value;
-            if(navigator.clipboard&&navigator.clipboard.writeText){
-                navigator.clipboard.writeText(url).then(function(){
-                    alert('URLをコピーしました！\nLINEやメモでPCに送ってください。');
+        // クラウドに保存
+        function hcCloudSave(){
+            var name = document.getElementById('hcCloudSaveName').value.trim();
+            if(!name){ alert('デッキ名を入力してください'); return; }
+            var result = document.getElementById('hcCloudSaveResult');
+            result.textContent = '保存中...';
+            var userId = hcGetUserId();
+            var data = { oshi: HC.oshi, cart: HC.cart, yell: HC.yell };
+            hcSbFetch('decks?select=id&user_id=eq.'+encodeURIComponent(userId)+'&name=eq.'+encodeURIComponent(name))
+            .then(function(existing){
+                if(existing && existing.length > 0){
+                    // 同名デッキを上書き
+                    return hcSbFetch('decks?id=eq.'+existing[0].id, 'PATCH', {
+                        data: data,
+                        updated_at: new Date().toISOString()
+                    });
+                } else {
+                    // 新規保存
+                    return hcSbFetch('decks', 'POST', {
+                        user_id: userId,
+                        name: name,
+                        data: data
+                    });
+                }
+            })
+            .then(function(res){
+                if(res && !res.error){
+                    result.innerHTML = '<span style="color:#059669">✅ 「'+name+'」を保存しました</span>';
+                    setTimeout(hcCloseCloudSave, 1200);
+                } else {
+                    result.innerHTML = '<span style="color:#ef4444">エラー: '+(res&&res.message||'不明')+'</span>';
+                }
+            })
+            .catch(function(e){ result.innerHTML = '<span style="color:#ef4444">通信エラー</span>'; });
+        }
+
+        // 一覧モーダルを開く
+        function hcOpenCloudList(){
+            document.getElementById('hcCloudOtherId').value = '';
+            document.getElementById('hcCloudListModal').style.display = 'flex';
+            hcCloudLoadList(null);
+        }
+        function hcCloseCloudList(){ document.getElementById('hcCloudListModal').style.display = 'none'; }
+
+        // デッキ一覧を取得して表示
+        function hcCloudLoadList(targetUserId){
+            var userId = targetUserId || hcGetUserId();
+            var list = document.getElementById('hcCloudList');
+            list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">読込中...</div>';
+            hcSbFetch('decks?user_id=eq.'+encodeURIComponent(userId)+'&order=updated_at.desc&select=id,name,updated_at')
+            .then(function(decks){
+                list.innerHTML = '';
+                if(!decks || !decks.length){
+                    list.innerHTML = '<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">保存済みデッキがありません</div>';
+                    return;
+                }
+                decks.forEach(function(deck){
+                    var item = document.createElement('div');
+                    item.style.cssText = 'display:flex;align-items:center;gap:6px;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;';
+                    var info = document.createElement('div');
+                    info.style.cssText = 'flex:1;min-width:0;';
+                    var nm = document.createElement('div');
+                    nm.style.cssText = 'font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+                    nm.textContent = deck.name;
+                    var dt = document.createElement('div');
+                    dt.style.cssText = 'font-size:11px;color:#94a3b8;margin-top:2px;';
+                    dt.textContent = new Date(deck.updated_at).toLocaleString('ja-JP');
+                    info.appendChild(nm); info.appendChild(dt);
+                    item.appendChild(info);
+                    var btns = document.createElement('div');
+                    btns.style.cssText = 'display:flex;gap:4px;flex-shrink:0;';
+                    var loadBtn = document.createElement('button');
+                    loadBtn.textContent = '読込';
+                    loadBtn.style.cssText = 'background:#5e5a9b;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    loadBtn.onclick = (function(id,name){ return function(){ hcCloudLoadDeck(id,name); }; })(deck.id, deck.name);
+                    // PCのみDECKLOGボタン表示
+                    var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+                    btns.appendChild(loadBtn);
+                    if(!isMobile){
+                        var dlBtn = document.createElement('button');
+                        dlBtn.textContent = 'DECKLOG';
+                        dlBtn.style.cssText = 'background:#ea580c;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                        dlBtn.onclick = (function(id){ return function(){ hcCloudLoadAndSend(id); }; })(deck.id);
+                        btns.appendChild(dlBtn);
+                    }
+                    var delBtn = document.createElement('button');
+                    delBtn.textContent = '削除';
+                    delBtn.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    delBtn.onclick = (function(id,name){ return function(){ hcCloudDelete(id,name); }; })(deck.id, deck.name);
+                    btns.appendChild(delBtn);
+                    item.appendChild(btns);
+                    list.appendChild(item);
                 });
-            } else {
-                document.getElementById('hcShareUrl').select();
-                document.execCommand('copy');
-                alert('URLをコピーしました！');
-            }
+            })
+            .catch(function(){ list.innerHTML = '<div style="color:#ef4444;font-size:13px;padding:16px">通信エラー</div>'; });
         }
 
-        function hcOpenImport(){
-            document.getElementById('hcImportUrl').value='';
-            document.getElementById('hcImportModal').classList.add('on');
+        // デッキを読み込む
+        function hcCloudLoadDeck(deckId, name){
+            if(!confirm('"'+name+'" を読み込みますか？\n現在のカートは上書きされます。'))return;
+            hcSbFetch('decks?id=eq.'+deckId+'&select=data')
+            .then(function(res){
+                if(!res||!res.length){ alert('読込エラー'); return; }
+                var data = res[0].data;
+                HC.cart = data.cart||{};
+                HC.yell = data.yell||{};
+                HC.oshi = data.oshi||null;
+                HC.updateBar(); HC.updateBadges();
+                hcCloseCloudList();
+                alert('"'+name+'" を読み込みました！');
+            });
         }
-        function hcCloseImport(){document.getElementById('hcImportModal').classList.remove('on');}
 
-        function hcImportFromUrl(){
-            var input=document.getElementById('hcImportUrl').value.trim();
-            // URLそのままでもdeck=以降だけでも受け付ける
-            var encoded='';
-            if(input.indexOf('?deck=')>-1){
-                encoded=input.split('?deck=')[1].split('&')[0];
-            } else if(input.indexOf('deck=')>-1){
-                encoded=input.split('deck=')[1].split('&')[0];
-            } else {
-                encoded=input; // Base64文字列を直接貼った場合
-            }
-            if(!encoded){alert('URLが正しくありません');return;}
-            try{
-                var data=JSON.parse(decodeURIComponent(escape(atob(encoded))));
-                if(!confirm('デッキを読み込みますか？\n現在のカートは上書きされます。'))return;
-                HC.cart=data.cart||{};
-                HC.yell=data.yell||{};
-                HC.oshi=data.oshi||null;
-                HC.updateBar();HC.updateBadges();
-                hcCloseImport();
-                alert('デッキを読み込みました！');
-            }catch(e){
-                alert('読込エラー：URLが正しくありません');
-            }
+        // 読み込んでDECKLOGへ送信
+        function hcCloudLoadAndSend(deckId){
+            hcSbFetch('decks?id=eq.'+deckId+'&select=data,name')
+            .then(function(res){
+                if(!res||!res.length){ alert('読込エラー'); return; }
+                var data = res[0].data;
+                var name = res[0].name;
+                HC.cart = data.cart||{};
+                HC.yell = data.yell||{};
+                HC.oshi = data.oshi||null;
+                HC.updateBar(); HC.updateBadges();
+                hcCloseCloudList();
+                setTimeout(function(){ hcOpenExp(); }, 300);
+            });
+        }
+
+        // デッキを削除
+        function hcCloudDelete(deckId, name){
+            if(!confirm('"'+name+'" を削除しますか？'))return;
+            hcSbFetch('decks?id=eq.'+deckId, 'DELETE')
+            .then(function(){
+                hcCloudLoadList(null);
+            });
         }
 
         function hcSendDeckToDecklog(deck){
@@ -1109,41 +1219,41 @@
     <div id="hcCloudLoadResult" style="margin-top:12px;font-size:12px;color:#ef4444;"></div>
   </div>
 </div>
-<!-- 共有モーダル -->
-<div id="hcShareModal" onclick="if(event.target===this)hcCloseShare()">
-  <div style="background:white;border-radius:16px;width:100%;max-width:480px;padding:24px;">
+<!-- 保存モーダル -->
+<div id="hcCloudSaveModal" onclick="if(event.target===this)hcCloseCloudSave()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;">
+  <div style="background:white;border-radius:16px;width:100%;max-width:440px;padding:24px;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-      <span style="font-size:16px;font-weight:bold">🔗 デッキを共有</span>
-      <button onclick="hcCloseShare()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">✕</button>
+      <span style="font-size:16px;font-weight:bold">💾 デッキを保存</span>
+      <button onclick="hcCloseCloudSave()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">✕</button>
     </div>
-    <div style="font-size:12px;color:#64748b;line-height:1.8;margin-bottom:14px;background:#f8fafc;border-radius:8px;padding:10px">
-      ① 下のURLをコピー<br>
-      ② LINEやメモでPCに送る<br>
-      ③ PCでURLを開くとデッキが自動で読み込まれる
+    <input id="hcCloudSaveName" type="text" placeholder="デッキ名を入力..."
+      style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;font-size:14px;box-sizing:border-box;margin-bottom:12px;outline:none;">
+    <div style="font-size:11px;color:#94a3b8;margin-bottom:12px;line-height:1.7">
+      あなたのデッキID: <span id="hcMyUserId" style="font-family:monospace;color:#5e5a9b;font-weight:bold"></span><br>
+      このIDでスマホ/PCからデッキを共有できます
     </div>
-    <textarea id="hcShareUrl" readonly rows="4"
-      style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:11px;font-family:monospace;resize:none;box-sizing:border-box;color:#334155;background:#f8fafc;word-break:break-all"
-      onclick="this.select()"></textarea>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button onclick="hcCopyShareUrl()" style="flex:1;background:#5e5a9b;color:white;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer">📋 URLをコピー</button>
-      <button onclick="hcCloseShare()" style="background:#e2e8f0;border:none;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer">閉じる</button>
+    <div style="display:flex;gap:8px;">
+      <button onclick="hcCloudSave()" style="flex:1;background:#5e5a9b;color:white;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer">保存する</button>
+      <button onclick="hcCloseCloudSave()" style="background:#e2e8f0;border:none;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer">キャンセル</button>
     </div>
+    <div id="hcCloudSaveResult" style="margin-top:10px;font-size:12px;"></div>
   </div>
 </div>
-<!-- 読込モーダル -->
-<div id="hcImportModal" onclick="if(event.target===this)hcCloseImport()">
-  <div style="background:white;border-radius:16px;width:100%;max-width:480px;padding:24px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-      <span style="font-size:16px;font-weight:bold">📥 デッキを読込</span>
-      <button onclick="hcCloseImport()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">✕</button>
+<!-- デッキ一覧モーダル -->
+<div id="hcCloudListModal" onclick="if(event.target===this)hcCloseCloudList()" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;">
+  <div style="background:white;border-radius:16px;width:100%;max-width:500px;padding:24px;max-height:85vh;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-shrink:0">
+      <span style="font-size:16px;font-weight:bold">📂 保存済みデッキ</span>
+      <button onclick="hcCloseCloudList()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">✕</button>
     </div>
-    <div style="font-size:12px;color:#64748b;margin-bottom:10px">共有URLを貼り付けてください</div>
-    <textarea id="hcImportUrl" rows="4" placeholder="https://ketoru12.github.io/holocg-viewer/?deck=..."
-      style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:11px;font-family:monospace;resize:none;box-sizing:border-box;word-break:break-all"></textarea>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button onclick="hcImportFromUrl()" style="flex:1;background:#059669;color:white;border:none;border-radius:8px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer">📥 読み込む</button>
-      <button onclick="hcCloseImport()" style="background:#e2e8f0;border:none;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer">閉じる</button>
+    <div style="display:flex;gap:6px;margin-bottom:12px;flex-shrink:0">
+      <input id="hcCloudOtherId" placeholder="他のユーザーIDを入力..." type="text"
+        style="flex:1;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:12px;font-family:monospace;outline:none;">
+      <button onclick="hcCloudLoadList(document.getElementById('hcCloudOtherId').value.trim()||null)"
+        style="background:#0369a1;color:white;border:none;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:bold;cursor:pointer;white-space:nowrap">検索</button>
     </div>
+    <div id="hcCloudList" style="overflow-y:auto;flex:1;"></div>
+    <button onclick="hcCloudLoadList(null)" style="margin-top:10px;width:100%;background:#f1f5f9;border:none;border-radius:8px;padding:8px;font-size:12px;cursor:pointer;flex-shrink:0">自分のデッキを表示</button>
   </div>
 </div>
 <div id="hcEM" onclick="if(event.target===this)hcCloseExp()">
