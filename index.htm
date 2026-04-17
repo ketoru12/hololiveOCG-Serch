@@ -984,33 +984,55 @@
         function hcOpenLoad(){
             var saves=JSON.parse(localStorage.getItem('hc_saved_decks')||'[]');
             var list=document.getElementById('hcLoadList');
+            list.innerHTML='';
             if(!saves.length){
                 list.innerHTML='<div style="color:#94a3b8;font-size:13px;padding:16px;text-align:center">保存済みデッキがありません</div>';
             } else {
-                list.innerHTML='';
                 saves.forEach(function(deck){
                     var item=document.createElement('div');
                     item.className='hcSaveItem';
+                    item.style.cssText='display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;';
+
+                    // 情報部分
+                    var info=document.createElement('div');
+                    info.style.cssText='flex:1;min-width:0;';
                     var mainCount=Object.values(deck.cart||{}).reduce(function(s,c){return s+c.qty;},0);
                     var yellCount=Object.values(deck.yell||{}).reduce(function(s,c){return s+c.qty;},0);
-                    item.innerHTML=
-                        '<div style="flex:1;min-width:0">'+
-                        '<div class="name">'+deck.name+'</div>'+
-                        '<div class="date">'+deck.date+' ／ '+(deck.oshi?'推し:'+deck.oshi.name+' ':'')+'メイン:'+mainCount+'枚 エール:'+yellCount+'枚</div>'+
-                        '</div>';
+                    var nm=document.createElement('div');
+                    nm.style.cssText='font-weight:bold;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+                    nm.textContent=deck.name;
+                    var dt=document.createElement('div');
+                    dt.style.cssText='font-size:11px;color:#94a3b8;margin-top:2px;';
+                    dt.textContent=deck.date+' ／ '+(deck.oshi?'推し:'+deck.oshi.name+' ':'')+' メイン:'+mainCount+'枚 エール:'+yellCount+'枚';
+                    info.appendChild(nm);info.appendChild(dt);
+                    item.appendChild(info);
+
+                    // ボタン群
+                    var btns=document.createElement('div');
+                    btns.style.cssText='display:flex;gap:4px;flex-shrink:0;';
+
                     var loadBtn=document.createElement('button');
-                    loadBtn.textContent='読込';loadBtn.style.cssText='background:#5e5a9b;color:white;';
-                    loadBtn.onclick=function(){hcLoadDeck(deck);};
+                    loadBtn.textContent='読込';
+                    loadBtn.style.cssText='background:#5e5a9b;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    loadBtn.onclick=(function(d){return function(){hcLoadDeck(d);};})(deck);
+
                     var dlBtn=document.createElement('button');
-                    dlBtn.textContent='DECKLOG';dlBtn.style.cssText='background:#ea580c;color:white;';
-                    dlBtn.onclick=function(){hcSendDeckToDecklog(deck);};
+                    dlBtn.textContent='DECKLOG';
+                    dlBtn.style.cssText='background:#ea580c;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    dlBtn.onclick=(function(d){return function(){hcSendDeckToDecklog(d);};})(deck);
+
                     var shareBtn=document.createElement('button');
-                    shareBtn.textContent='🔗';shareBtn.title='URLをコピー';shareBtn.style.cssText='background:#0369a1;color:white;';
-                    shareBtn.onclick=function(){hcShareDeck(deck);};
+                    shareBtn.textContent='🔗';shareBtn.title='URLをコピー';
+                    shareBtn.style.cssText='background:#0369a1;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    shareBtn.onclick=(function(d){return function(){hcShareDeck(d);};})(deck);
+
                     var delBtn=document.createElement('button');
-                    delBtn.textContent='削除';delBtn.style.cssText='background:#ef4444;color:white;';
-                    delBtn.onclick=function(){hcDeleteDeck(deck.id);};
-                    item.appendChild(loadBtn);item.appendChild(dlBtn);item.appendChild(shareBtn);item.appendChild(delBtn);
+                    delBtn.textContent='削除';
+                    delBtn.style.cssText='background:#ef4444;color:white;border:none;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:bold;cursor:pointer;';
+                    delBtn.onclick=(function(id){return function(){hcDeleteDeck(id);};})(deck.id);
+
+                    btns.appendChild(loadBtn);btns.appendChild(dlBtn);btns.appendChild(shareBtn);btns.appendChild(delBtn);
+                    item.appendChild(btns);
                     list.appendChild(item);
                 });
             }
