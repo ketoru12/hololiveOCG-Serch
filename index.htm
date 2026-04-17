@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホロカ検索3</title>
+    <title>ホロカ検索</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <style>
@@ -598,9 +598,8 @@
 
         // ==== 拡張機能ID受信 ====
         window.addEventListener('message', function(e) {
-            if(e.data && e.data.type === 'HC_EXTENSION_ID') {
-                window._hcExtensionId = e.data.id;
-                console.log('HC拡張機能ID受信:', e.data.id);
+            if(e.data && e.data.type === 'HC_READY') {
+                window._hcExtReady = true;
             }
         });
 
@@ -801,21 +800,10 @@
             var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
             var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main};
 
-            // Chrome拡張機能経由で自動実行（IDはcontent_scriptから受け取る）
-            var extId = window._hcExtensionId;
-            if(extId && typeof chrome!=='undefined' && chrome.runtime){
-                try{
-                    chrome.runtime.sendMessage(
-                        extId,
-                        {type:'SEND_TO_DECKLOG', data:deckData},
-                        function(res){
-                            if(chrome.runtime.lastError){
-                                hcOpenExpFallback(deckData);
-                            }
-                        }
-                    );
-                    return;
-                }catch(e){}
+            // 拡張機能経由: hcviewer.jsにpostMessageで送信
+            if(window._hcExtReady){
+                window.postMessage({type:'HC_SEND_TO_DECKLOG', data:deckData}, '*');
+                return;
             }
             hcOpenExpFallback(deckData);
         }
