@@ -133,9 +133,7 @@
       bottom: 0.8rem;
       z-index: 30;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-content: flex-start;
+      flex-direction: column;
       gap: 0.4rem;
       opacity: 0;
       animation: affiliateFadeIn 0.8s 1s ease forwards;
@@ -144,19 +142,6 @@
 
     .affiliate-left  { left: 0.8rem; }
     .affiliate-right { right: 0.8rem; }
-
-    /* 1列のとき */
-    .affiliate-left.single,
-    .affiliate-right.single {
-      flex-direction: column;
-      width: 130px;
-    }
-
-    /* 2列のとき */
-    .affiliate-left.double,
-    .affiliate-right.double {
-      width: 268px; /* 130px * 2 + gap 8px */
-    }
 
     @keyframes affiliateFadeIn {
       from { opacity: 0; }
@@ -168,11 +153,10 @@
       color: rgba(255,255,255,0.5);
       letter-spacing: 0.08em;
       text-align: center;
+      flex-shrink: 0;
     }
 
-    /* ダミーウィジェット（実際のコードに差し替えてください） */
     .widget-dummy {
-      width: 130px;
       flex-shrink: 0;
       background: rgba(255,255,255,0.12);
       backdrop-filter: blur(8px);
@@ -182,6 +166,7 @@
       text-decoration: none;
       transition: transform 0.2s, background 0.2s;
       cursor: pointer;
+      /* 幅・高さはJSで設定 */
     }
 
     .widget-dummy:hover {
@@ -191,12 +176,12 @@
 
     .widget-img {
       width: 100%;
-      height: 70px;
       background: rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      /* 高さはJSで設定 */
     }
 
     .widget-img img {
@@ -206,15 +191,15 @@
     }
 
     .widget-body {
-      padding: 0.5rem 0.6rem 0.6rem;
+      padding: 0.3rem 0.5rem 0.4rem;
     }
 
     .widget-name {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: bold;
       color: #fff;
-      line-height: 1.4;
-      margin-bottom: 0.3rem;
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -222,9 +207,9 @@
     }
 
     .widget-price {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: rgba(255,255,255,0.6);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.25rem;
     }
 
     .widget-btn {
@@ -232,9 +217,9 @@
       text-align: center;
       background: #5e5a9b;
       color: #fff;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: bold;
-      padding: 0.3rem;
+      padding: 0.25rem;
       border-radius: 4px;
       letter-spacing: 0.05em;
     }
@@ -416,28 +401,41 @@
 
     init();
 
-    // ── ウィジェット列数の自動判定 ──
-    function adjustWidgetLayout() {
-      const WIDGET_H = 160; // ウィジェット1枚の高さの目安(px)
+    // ── ウィジェットサイズの自動計算 ──
+    // 左4枚・右3枚を画面高さに収め、全て同じサイズにする
+    function adjustWidgetSize() {
       const GAP = 6;
-      const availH = window.innerHeight - 16; // top+bottom余白
-      ['affiliate-left', 'affiliate-right'].forEach(cls => {
-        const el = document.querySelector('.' + cls);
+      const LABEL_H = 24;
+      const WIDGET_W = 130;
+      const availH = window.innerHeight - 16;
+
+      // ウィジェット1枚のbody部分の実際の高さを測定
+      const sampleWidget = document.querySelector('.widget-dummy');
+      const sampleBody = sampleWidget ? sampleWidget.querySelector('.widget-body') : null;
+      const BODY_H = sampleBody ? sampleBody.offsetHeight : 80;
+
+      function maxImgH(count) {
+        return Math.floor(
+          (availH - LABEL_H - GAP - (count - 1) * GAP - count * BODY_H) / count
+        );
+      }
+
+      const imgHL = maxImgH(4);
+      const imgHR = maxImgH(3);
+      const imgH = Math.max(30, Math.min(imgHL, imgHR));
+
+      ['.affiliate-left', '.affiliate-right'].forEach(sel => {
+        const el = document.querySelector(sel);
         if (!el) return;
-        const count = el.querySelectorAll('.widget-dummy').length;
-        const totalH = count * WIDGET_H + (count - 1) * GAP;
-        if (totalH > availH) {
-          el.classList.remove('single');
-          el.classList.add('double');
-        } else {
-          el.classList.remove('double');
-          el.classList.add('single');
-        }
+        el.querySelectorAll('.widget-dummy').forEach(w => {
+          w.style.width = WIDGET_W + 'px';
+          w.querySelector('.widget-img').style.height = imgH + 'px';
+        });
       });
     }
 
-    window.addEventListener('load', adjustWidgetLayout);
-    window.addEventListener('resize', adjustWidgetLayout);
+    window.addEventListener('load', adjustWidgetSize);
+    window.addEventListener('resize', adjustWidgetSize);
   </script>
 </body>
 </html>
