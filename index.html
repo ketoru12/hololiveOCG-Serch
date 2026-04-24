@@ -126,30 +126,27 @@
     }
 
     /* ── アフィリエイトウィジェット ── */
-    .affiliate-area {
+    .affiliate-left,
+    .affiliate-right {
       position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 30;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.5rem;
       opacity: 0;
       animation: fadeUp 0.8s 1s ease forwards;
     }
 
-    .affiliate-label {
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.1em;
-      text-align: right;
-    }
+    .affiliate-left  { left: 0.8rem; }
+    .affiliate-right { right: 0.8rem; }
 
-    .affiliate-widgets {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    .affiliate-label {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-align: center;
     }
 
     /* ダミーウィジェット（実際のコードに差し替えてください） */
@@ -214,18 +211,9 @@
       letter-spacing: 0.05em;
     }
 
-    @media (max-width: 600px) {
-      .affiliate-area {
-        bottom: 1rem;
-        right: 0.8rem;
-        left: 0.8rem;
-      }
-      .affiliate-widgets {
-        justify-content: center;
-      }
-      .widget-dummy {
-        width: 140px;
-      }
+    @media (max-width: 900px) {
+      .affiliate-left,
+      .affiliate-right { display: none; }
     }
   </style>
 </head>
@@ -248,75 +236,79 @@
 
   <div class="indicators" id="indicators"></div>
 
-  <!-- ▼▼▼ アフィリエイトウィジェット ▼▼▼ -->
-  <aside class="affiliate-area">
-    <p class="affiliate-label">PR・おすすめグッズ</p>
-    <div class="affiliate-widgets">
+  <!-- ▼▼▼ アフィリエイトウィジェット（左：4商品） ▼▼▼ -->
+  <aside class="affiliate-left">
+    <p class="affiliate-label">PR</p>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0DX7HTTXN?smid=AN1VRQENFRJN5&th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=048059e28ed53a69c7f557ece2920655&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🟡</div>
-        <div class="widget-body">
-          <p class="widget-name">やのまん カードプロテクターハードX ライトニングイエロー</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0DX7HTTXN?smid=AN1VRQENFRJN5&th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=048059e28ed53a69c7f557ece2920655&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🟡</div>
+      <div class="widget-body">
+        <p class="widget-name">やのまん カードプロテクターハードX ライトニングイエロー</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0CMWQQT7Z?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=307e5ca8c98a88605b644f7c1dbba8d9&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🃏</div>
-        <div class="widget-body">
-          <p class="widget-name">JINSELF サムライスリーブ</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0CMWQQT7Z?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=307e5ca8c98a88605b644f7c1dbba8d9&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🃏</div>
+      <div class="widget-body">
+        <p class="widget-name">JINSELF サムライスリーブ</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B09SG56WQM?linkCode=ll2&tag=hololiveocgse-22&linkId=0b9927a88097c4aa375427f6e3407c36&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🃏</div>
-        <div class="widget-body">
-          <p class="widget-name">カドまるスリーブ インナー 横入れ(2セット)</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B09SG56WQM?linkCode=ll2&tag=hololiveocgse-22&linkId=0b9927a88097c4aa375427f6e3407c36&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🃏</div>
+      <div class="widget-body">
+        <p class="widget-name">カドまるスリーブ インナー 横入れ(2セット)</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B09NNY7FCD?smid=A135WKFBUTKMPF&psc=1&linkCode=ll2&tag=hololiveocgse-22&linkId=09a954a6c44bde383e25d97e55326cd5&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🗂️</div>
-        <div class="widget-body">
-          <p class="widget-name">EXCITEHOBBYデッキケース 3つセット</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B09NNY7FCD?smid=A135WKFBUTKMPF&psc=1&linkCode=ll2&tag=hololiveocgse-22&linkId=09a954a6c44bde383e25d97e55326cd5&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🗂️</div>
+      <div class="widget-body">
+        <p class="widget-name">EXCITEHOBBYデッキケース 3つセット</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0DCZ64MKM?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=55ace425b459743fed74cb908789dbee&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🗂️</div>
-        <div class="widget-body">
-          <p class="widget-name">推し窓デッキケース</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+  </aside>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B001RNNFAQ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=297754dce071bb70245a10052db27877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">📋</div>
-        <div class="widget-body">
-          <p class="widget-name">エポック社 両面ポケットシート 18ポケット</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+  <!-- ▼▼▼ アフィリエイトウィジェット（右：3商品） ▼▼▼ -->
+  <aside class="affiliate-right">
+    <p class="affiliate-label">PR</p>
 
-      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0BM773TFJ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=e117bcf42251ef92273575d9fe5f7877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
-        <div class="widget-img">🛡️</div>
-        <div class="widget-body">
-          <p class="widget-name">sunista カードの鎧 マグネットローダー</p>
-          <p class="widget-price">Amazonで確認</p>
-          <span class="widget-btn">Amazonで見る</span>
-        </div>
-      </a>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0DCZ64MKM?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=55ace425b459743fed74cb908789dbee&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🗂️</div>
+      <div class="widget-body">
+        <p class="widget-name">推し窓デッキケース</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
 
-    </div>
+    <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B001RNNFAQ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=297754dce071bb70245a10052db27877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">📋</div>
+      <div class="widget-body">
+        <p class="widget-name">エポック社 両面ポケットシート 18ポケット</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
+
+    <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0BM773TFJ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=e117bcf42251ef92273575d9fe5f7877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+      <div class="widget-img">🛡️</div>
+      <div class="widget-body">
+        <p class="widget-name">sunista カードの鎧 マグネットローダー</p>
+        <p class="widget-price">Amazonで確認</p>
+        <span class="widget-btn">Amazonで見る</span>
+      </div>
+    </a>
+
   </aside>
   <!-- ▲▲▲ アフィリエイトウィジェット ▲▲▲ -->
 
