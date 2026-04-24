@@ -134,6 +134,8 @@
       z-index: 30;
       display: flex;
       flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
       gap: 0.4rem;
       opacity: 0;
       animation: affiliateFadeIn 0.8s 1s ease forwards;
@@ -142,6 +144,14 @@
 
     .affiliate-left  { left: 0.8rem; }
     .affiliate-right { right: 0.8rem; }
+
+    /* 1列 */
+    .affiliate-left.col1  { width: 130px; }
+    .affiliate-right.col1 { width: 130px; }
+
+    /* 2列 */
+    .affiliate-left.col2  { width: 268px; } /* 130*2 + gap8px */
+    .affiliate-right.col2 { width: 268px; }
 
     @keyframes affiliateFadeIn {
       from { opacity: 0; }
@@ -401,41 +411,43 @@
 
     init();
 
-    // ── ウィジェットサイズの自動計算 ──
-    // 左4枚・右3枚を画面高さに収め、全て同じサイズにする
-    function adjustWidgetSize() {
-      const GAP = 6;
-      const LABEL_H = 24;
-      const WIDGET_W = 130;
-      const availH = window.innerHeight - 16;
+    // ── ウィジェット：固定サイズ＋はみ出したら2列 ──
+    const WIDGET_W  = 130;  // 幅（固定）
+    const WIDGET_IMG_H = 70; // 画像高さ（固定）
 
-      // ウィジェット1枚のbody部分の実際の高さを測定
-      const sampleWidget = document.querySelector('.widget-dummy');
-      const sampleBody = sampleWidget ? sampleWidget.querySelector('.widget-body') : null;
-      const BODY_H = sampleBody ? sampleBody.offsetHeight : 80;
+    function applyWidgetSize() {
+      document.querySelectorAll('.widget-dummy').forEach(w => {
+        w.style.width = WIDGET_W + 'px';
+        w.querySelector('.widget-img').style.height = WIDGET_IMG_H + 'px';
+      });
+    }
 
-      function maxImgH(count) {
-        return Math.floor(
-          (availH - LABEL_H - GAP - (count - 1) * GAP - count * BODY_H) / count
-        );
-      }
-
-      const imgHL = maxImgH(4);
-      const imgHR = maxImgH(3);
-      const imgH = Math.max(30, Math.min(imgHL, imgHR));
+    function adjustColumns() {
+      applyWidgetSize();
+      const availH = window.innerHeight - 16; // top+bottom余白
 
       ['.affiliate-left', '.affiliate-right'].forEach(sel => {
         const el = document.querySelector(sel);
         if (!el) return;
-        el.querySelectorAll('.widget-dummy').forEach(w => {
-          w.style.width = WIDGET_W + 'px';
-          w.querySelector('.widget-img').style.height = imgH + 'px';
-        });
+        const count = el.querySelectorAll('.widget-dummy').length;
+        // 全ウィジェットの合計高さを測定
+        const widgets = [...el.querySelectorAll('.widget-dummy')];
+        const gap = 6;
+        const labelH = el.querySelector('.affiliate-label')?.offsetHeight || 20;
+        const totalH = labelH + gap + widgets.reduce((sum, w) => sum + w.offsetHeight, 0) + (count - 1) * gap;
+
+        if (totalH > availH) {
+          el.classList.remove('col1');
+          el.classList.add('col2');
+        } else {
+          el.classList.remove('col2');
+          el.classList.add('col1');
+        }
       });
     }
 
-    window.addEventListener('load', adjustWidgetSize);
-    window.addEventListener('resize', adjustWidgetSize);
+    window.addEventListener('load', adjustColumns);
+    window.addEventListener('resize', adjustColumns);
   </script>
 </body>
 </html>
