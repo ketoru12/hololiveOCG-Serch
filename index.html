@@ -124,6 +124,109 @@
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* ── アフィリエイトウィジェット ── */
+    .affiliate-area {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s ease forwards;
+    }
+
+    .affiliate-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    .affiliate-widgets {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* ダミーウィジェット（実際のコードに差し替えてください） */
+    .widget-dummy {
+      width: 160px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .widget-dummy:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .widget-img {
+      width: 100%;
+      height: 90px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .widget-body {
+      padding: 0.5rem 0.6rem 0.6rem;
+    }
+
+    .widget-name {
+      font-size: 0.72rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 0.3rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .widget-price {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+    }
+
+    .widget-btn {
+      display: block;
+      text-align: center;
+      background: #5e5a9b;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: bold;
+      padding: 0.3rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 600px) {
+      .affiliate-area {
+        bottom: 1rem;
+        right: 0.8rem;
+        left: 0.8rem;
+      }
+      .affiliate-widgets {
+        justify-content: center;
+      }
+      .widget-dummy {
+        width: 140px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -132,7 +235,7 @@
 
   <main class="hero">
     <div class="logo-wrap">
-      <img src="image/wallpaper/title_button.png" alt="hololive OFFICIAL CARD GAME">
+      <img src="image/wallpaper/title_button.png" alt="hololive OFFICIAL CARD GAME" onerror="this.style.display='none'">
     </div>
     <p class="tagline">カードを検索・デッキを組もう</p>
     <a class="enter-btn" href="./search.htm" onclick="sessionStorage.setItem('from_top','1')">
@@ -144,6 +247,78 @@
   </main>
 
   <div class="indicators" id="indicators"></div>
+
+  <!-- ▼▼▼ アフィリエイトウィジェット ▼▼▼ -->
+  <aside class="affiliate-area">
+    <p class="affiliate-label">PR・おすすめグッズ</p>
+    <div class="affiliate-widgets">
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0DX7HTTXN?smid=AN1VRQENFRJN5&th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=048059e28ed53a69c7f557ece2920655&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🟡</div>
+        <div class="widget-body">
+          <p class="widget-name">やのまん カードプロテクターハードX ライトニングイエロー</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B0CMWQQT7Z?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=307e5ca8c98a88605b644f7c1dbba8d9&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🃏</div>
+        <div class="widget-body">
+          <p class="widget-name">JINSELF サムライスリーブ</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B09SG56WQM?linkCode=ll2&tag=hololiveocgse-22&linkId=0b9927a88097c4aa375427f6e3407c36&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🃏</div>
+        <div class="widget-body">
+          <p class="widget-name">カドまるスリーブ インナー 横入れ(2セット)</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/gp/product/B09NNY7FCD?smid=A135WKFBUTKMPF&psc=1&linkCode=ll2&tag=hololiveocgse-22&linkId=09a954a6c44bde383e25d97e55326cd5&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🗂️</div>
+        <div class="widget-body">
+          <p class="widget-name">EXCITEHOBBYデッキケース 3つセット</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0DCZ64MKM?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=55ace425b459743fed74cb908789dbee&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🗂️</div>
+        <div class="widget-body">
+          <p class="widget-name">推し窓デッキケース</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B001RNNFAQ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=297754dce071bb70245a10052db27877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">📋</div>
+        <div class="widget-body">
+          <p class="widget-name">エポック社 両面ポケットシート 18ポケット</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+      <a class="widget-dummy" href="https://www.amazon.co.jp/dp/B0BM773TFJ?th=1&linkCode=ll2&tag=hololiveocgse-22&linkId=e117bcf42251ef92273575d9fe5f7877&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer">
+        <div class="widget-img">🛡️</div>
+        <div class="widget-body">
+          <p class="widget-name">sunista カードの鎧 マグネットローダー</p>
+          <p class="widget-price">Amazonで確認</p>
+          <span class="widget-btn">Amazonで見る</span>
+        </div>
+      </a>
+
+    </div>
+  </aside>
+  <!-- ▲▲▲ アフィリエイトウィジェット ▲▲▲ -->
 
   <script>
     // 背景壁紙リスト（image/wallpaper/ 以下）
