@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ホロカ検索</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { width: 100%; height: 100%; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #111;
+      overflow: hidden;
+    }
+
+    /* ── 背景レイヤー ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 1s ease-in-out;
+      opacity: 0;
+      will-change: opacity;
+    }
+    .bg-layer.active { opacity: 1; }
+
+    /* ── オーバーレイ ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 10;
+    }
+
+    /* ── メインコンテンツ ── */
+    .hero {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .logo-wrap {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .logo-wrap img {
+      width: min(320px, 72vw);
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+    }
+
+    .tagline {
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.8s 0.5s ease forwards;
+    }
+
+    /* ── 検索ボタン ── */
+    .enter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.4rem;
+      background: #5e5a9b;
+      color: #fff;
+      text-decoration: none;
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      box-shadow: 0 4px 24px rgba(94,90,155,0.55);
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.75s ease forwards;
+    }
+
+    .enter-btn:hover {
+      background: #4a4682;
+      transform: scale(1.05);
+      box-shadow: 0 6px 32px rgba(94,90,155,0.7);
+    }
+
+    .enter-btn svg { transition: transform 0.2s; }
+    .enter-btn:hover svg { transform: translateX(4px); }
+
+    /* ── ドットインジケーター ── */
+    .indicators {
+      position: fixed;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      padding: 0;
+    }
+
+    .dot.active {
+      background: #fff;
+      transform: scale(1.35);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <main class="hero">
+    <div class="logo-wrap">
+      <img src="image/wallpaper/logo_white.png" alt="hololive OFFICIAL CARD GAME">
+    </div>
+    <p class="tagline">カードを検索・デッキを組もう</p>
+    <a class="enter-btn" href="./search.htm">
+      カード検索へ
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </main>
+
+  <div class="indicators" id="indicators"></div>
+
+  <script>
+    // 背景壁紙リスト（image/wallpaper/ 以下）
+    const WALLPAPERS = [
+      'image/wallpaper/logo_blue.png',
+      'image/wallpaper/logo_blue_white.png',
+      'image/wallpaper/logo_green.png',
+      'image/wallpaper/logo_green_white.png',
+      'image/wallpaper/logo_purple.png',
+      'image/wallpaper/logo_purple_white.png',
+      'image/wallpaper/logo_red.png',
+      'image/wallpaper/logo_red_white.png',
+      'image/wallpaper/logo_yellow.png',
+      'image/wallpaper/logo_yellow_white.png',
+      'image/wallpaper/logo_white.png',
+      'image/wallpaper/logo_white_white.png',
+      'image/wallpaper/cheer_white.png',
+    ];
+
+    // 自動切替間隔（ms）。0 にすると自動切替しない
+    const AUTO_INTERVAL = 5000;
+
+    // Fisher-Yatesシャッフル
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    const images = shuffle(WALLPAPERS);
+    let current = 0;
+    const layers = [];
+    let timer = null;
+
+    function init() {
+      const indicators = document.getElementById('indicators');
+
+      images.forEach((src, i) => {
+        const layer = document.createElement('div');
+        layer.className = 'bg-layer';
+        layer.style.backgroundImage = `url('${src}')`;
+        document.body.insertBefore(layer, document.body.firstChild);
+        layers.push(layer);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `背景 ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        indicators.appendChild(dot);
+      });
+
+      show(0);
+      if (AUTO_INTERVAL > 0) startTimer();
+    }
+
+    function show(index) {
+      layers.forEach((l, i) => l.classList.toggle('active', i === index));
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+      current = index;
+    }
+
+    function goTo(index) {
+      if (index === current) return;
+      clearTimeout(timer);
+      show(index);
+      if (AUTO_INTERVAL > 0) startTimer();
+    }
+
+    function startTimer() {
+      timer = setTimeout(() => goTo((current + 1) % images.length), AUTO_INTERVAL);
+    }
+
+    init();
+  </script>
+</body>
+</html>
