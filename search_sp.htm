@@ -535,9 +535,9 @@
                 // ⭐ 推しボタン
                 const oshiBtn = document.createElement('button');
                 const isSel = HC.oshi && HC.oshi.id === card.id;
-                oshiBtn.textContent = '⭐';
+                oshiBtn.textContent = isSel ? '⭐' : '☆';
                 oshiBtn.title = isSel ? '推し解除' : '推しにセット';
-                oshiBtn.style.cssText = 'background:' + (isSel?'#10b981':'rgba(16,185,129,0.7)') + ';border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                oshiBtn.style.cssText = 'background:' + (isSel?'#10b981':'#64748b') + ';color:white;border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
                 oshiBtn.onclick = function(){
                     if(HC.oshi&&HC.oshi.id===card.id) HC.removeOshi();
                     else HC.add(card.id, card.name, card.img||'');
@@ -571,18 +571,19 @@
             grid.appendChild(btnBar);
 
             // 左右矢印
-            const arrowL = document.createElement('div');
-            arrowL.style.cssText = 'position:absolute;left:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:0 10px 10px 0;color:white;font-size:22px;cursor:pointer;' + (idx===0?'opacity:0.15;':'');
-            arrowL.textContent = '‹';
-            arrowL.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx>0) hcRenderSingle(hcSingleIdx-1); };
+            // 上下矢印
+            const arrowUp = document.createElement('div');
+            arrowUp.style.cssText = 'position:absolute;top:60px;left:50%;transform:translateX(-50%);width:60px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:10px;color:white;font-size:20px;cursor:pointer;' + (idx===0?'opacity:0.15;':'');
+            arrowUp.textContent = '↑';
+            arrowUp.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx>0) hcRenderSingle(hcSingleIdx-1); };
 
-            const arrowR = document.createElement('div');
-            arrowR.style.cssText = 'position:absolute;right:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:10px 0 0 10px;color:white;font-size:22px;cursor:pointer;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
-            arrowR.textContent = '›';
-            arrowR.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx<hcFilteredCards.length-1) hcRenderSingle(hcSingleIdx+1); };
+            const arrowDown = document.createElement('div');
+            arrowDown.style.cssText = 'position:absolute;bottom:76px;left:50%;transform:translateX(-50%);width:60px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:10px;color:white;font-size:20px;cursor:pointer;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
+            arrowDown.textContent = '↓';
+            arrowDown.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx<hcFilteredCards.length-1) hcRenderSingle(hcSingleIdx+1); };
 
-            grid.appendChild(arrowL);
-            grid.appendChild(arrowR);
+            grid.appendChild(arrowUp);
+            grid.appendChild(arrowDown);
         }
 
         // カードグリッドのスワイプ対応（左右）
@@ -768,7 +769,7 @@
 
             // アーツは非表示
             // 推しスキル・SP推しスキル・ステージスキル非表示
-            if (card.description) details += createRow('能力テキスト', card.description);
+            if (card.description) if (card.category !== 'サポート') details += createRow('能力テキスト', card.description);
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'));
             if (card.products) details += createRow('収録', card.products.join('　'), 'product-pill');
 
