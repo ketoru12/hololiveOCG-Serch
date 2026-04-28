@@ -422,19 +422,26 @@
         function toggleMobileFilter() {
             const sidebar = document.getElementById('filterSidebar');
             const overlay = document.getElementById('filterOverlay');
+            const isOpening = !overlay.classList.contains('active');
             sidebar.classList.toggle('mobile-open');
             overlay.classList.toggle('active');
             document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
-            // 開く・閉じる両方で常に一番上にスクロールをリセット
-            sidebar.scrollTop = 0;
+            if (isOpening) {
+                // 開く時は即座にリセット（表示前）
+                sidebar.scrollTop = 0;
+            } else {
+                // 閉じる時はtransition後にリセット
+                setTimeout(function(){ sidebar.scrollTop = 0; }, 400);
+            }
         }
 
         function closeMobileFilter() {
             const sidebar = document.getElementById('filterSidebar');
             sidebar.classList.remove('mobile-open');
-            sidebar.scrollTop = 0;
             document.getElementById('filterOverlay').classList.remove('active');
             document.body.style.overflow = '';
+            // transition完了後にスクロール位置をリセット
+            setTimeout(function(){ sidebar.scrollTop = 0; }, 400);
         }
 
         // フィルターサイドバーのスワイプで閉じる
