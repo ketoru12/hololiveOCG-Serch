@@ -447,16 +447,17 @@
                 grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
                 document.querySelectorAll('.hcOv').forEach(function(o){ o.style.display = ''; });
             } else {
-                // hcFilteredCardsが空ならallCardsで初期化
-                if (!hcFilteredCards.length && typeof allCards !== 'undefined' && allCards.length) {
-                    hcFilteredCards = allCards;
-                }
                 // hcOvを完全に削除（DOMから除去）
                 document.querySelectorAll('.hcOv').forEach(function(o){ o.remove(); });
-                // hcWのdata-hc-patchedをリセットして再付与を防ぐ
-                document.querySelectorAll('.hcW').forEach(function(w){
-                    w.dataset.hcPatched = '';
-                });
+                document.querySelectorAll('.hcW').forEach(function(w){ w.dataset.hcPatched = ''; });
+
+                // hcFilteredCardsが空ならapplyFiltersで設定してから1枚表示
+                if (!hcFilteredCards.length) {
+                    if (typeof applyFilters === 'function') {
+                        applyFilters(); // これがhcFilteredCardsを設定してhcRenderSingleも呼ぶ
+                        return;
+                    }
+                }
             }
             hcRenderView();
         }
@@ -491,6 +492,7 @@
             idx = Math.max(0, Math.min(idx, hcFilteredCards.length - 1));
             hcSingleIdx = idx;
             const card = hcFilteredCards[idx];
+            if (!card) return;
             const isOshi = card.category === '推しホロメン';
             const isYell = HC.isYell(card.id);
 
@@ -508,7 +510,7 @@
             const wrap = document.createElement('div');
             wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;overflow:hidden;';
             const img = document.createElement('img');
-            img.src = card.img || '';
+            img.src = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
             img.style.cssText = 'max-width:92%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
             img.loading = 'lazy';
             wrap.appendChild(img);
