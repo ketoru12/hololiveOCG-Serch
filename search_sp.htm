@@ -835,6 +835,27 @@
             window.showDetail = function(cardId) {
                 currentModalCardId = cardId;
                 if (_origShowDetail) _origShowDetail(cardId);
+                // 画像要素にスワイプリスナーを付与
+                setTimeout(function() {
+                    var imgEl = document.getElementById('modalImg');
+                    if (!imgEl || imgEl._hcSwipe) return;
+                    imgEl._hcSwipe = true;
+                    var sy = 0, sx = 0;
+                    imgEl.addEventListener('touchstart', function(e) {
+                        sy = e.touches[0].clientY;
+                        sx = e.touches[0].clientX;
+                    }, {passive:true});
+                    imgEl.addEventListener('touchend', function(e) {
+                        var dy = e.changedTouches[0].clientY - sy;
+                        var dx = e.changedTouches[0].clientX - sx;
+                        if (Math.abs(dy) < 40 || Math.abs(dx) > Math.abs(dy)) return;
+                        if (!currentModalCardId || !hcFilteredCards.length) return;
+                        var i = hcFilteredCards.findIndex(function(c){ return c.id === currentModalCardId; });
+                        if (i === -1) return;
+                        if (dy < 0 && i < hcFilteredCards.length - 1) window.showDetail(hcFilteredCards[i+1].id);
+                        if (dy > 0 && i > 0) window.showDetail(hcFilteredCards[i-1].id);
+                    }, {passive:true});
+                }, 100);
             };
         })();
 
