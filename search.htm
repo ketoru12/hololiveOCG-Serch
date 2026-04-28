@@ -971,8 +971,9 @@
                 w.classList.add('hcW');w.dataset.hcId=id;
                 var origClick=w.onclick;w.onclick=null;
                 var ov=document.createElement('div');ov.className='hcOv';
-                // タップ対応
+                // タップ対応（一覧表示時のみ）
                 w.addEventListener('touchstart',function(e){
+                    if(hcViewMode === 'single') return;
                     document.querySelectorAll('.hcOv').forEach(function(o){o.style.opacity='0';o.style.pointerEvents='none';o.style.background='rgba(0,0,0,0)';});
                     ov.style.opacity='1';ov.style.pointerEvents='auto';ov.style.background='rgba(0,0,0,.45)';
                     e.stopPropagation();
