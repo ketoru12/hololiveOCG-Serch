@@ -165,7 +165,7 @@
         .hcW:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
         .hcOv button{border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0006;}
         @media(max-width:768px){.hcOv button{width:30px;height:30px;font-size:14px!important;}.hcOv{gap:5px;}}
-        .hcBdg{display:none;position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
+        .hcBdg{display:none;position:absolute;bottom:-8px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
         #hcDM,#hcEM{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
         #hcDM.on,#hcEM.on{display:flex;}
         #hcDB{background:white;border-radius:16px;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;}
@@ -473,6 +473,8 @@
             idx = Math.max(0, Math.min(idx, hcFilteredCards.length - 1));
             hcSingleIdx = idx;
             const card = hcFilteredCards[idx];
+            const isOshi = card.category === '推しホロメン';
+            const isYell = HC.isYell(card.id);
 
             // グリッドを全画面表示に
             grid.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;position:fixed;inset:0;top:56px;background:#0f0e1a;z-index:90;padding:0;gap:0;';
@@ -486,23 +488,73 @@
 
             // カード画像（画面いっぱい）
             const wrap = document.createElement('div');
-            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;cursor:pointer;';
+            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;';
             const img = document.createElement('img');
             img.src = card.img || '';
-            img.style.cssText = 'max-width:100%;max-height:calc(100vh - 56px - 80px);object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
+            img.style.cssText = 'max-width:100%;max-height:calc(100vh - 56px - 140px);object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
             img.loading = 'lazy';
             wrap.appendChild(img);
-            wrap.onclick = function() { showDetail(card.id); };
             grid.appendChild(wrap);
 
-            // 左右スワイプ矢印（半透明）
+            // ===== カード下のボタン =====
+            const btnBar = document.createElement('div');
+            btnBar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.05);width:100%;box-sizing:border-box;flex-shrink:0;';
+
+            // 🔍 詳細ボタン
+            const detailBtn = document.createElement('button');
+            detailBtn.textContent = '🔍';
+            detailBtn.title = '詳細';
+            detailBtn.style.cssText = 'background:white;border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+            detailBtn.onclick = function(){ showDetail(card.id); };
+            btnBar.appendChild(detailBtn);
+
+            if (isOshi) {
+                // ⭐ 推しボタン
+                const oshiBtn = document.createElement('button');
+                const isSel = HC.oshi && HC.oshi.id === card.id;
+                oshiBtn.textContent = '⭐';
+                oshiBtn.title = isSel ? '推し解除' : '推しにセット';
+                oshiBtn.style.cssText = 'background:' + (isSel?'#10b981':'rgba(16,185,129,0.7)') + ';border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                oshiBtn.onclick = function(){
+                    if(HC.oshi&&HC.oshi.id===card.id) HC.removeOshi();
+                    else HC.add(card.id, card.name, card.img||'');
+                    hcRenderSingle(hcSingleIdx);
+                };
+                btnBar.appendChild(oshiBtn);
+            } else {
+                // － ボタン
+                const decBtn = document.createElement('button');
+                decBtn.textContent = '－';
+                decBtn.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:50%;width:42px;height:42px;font-size:22px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                decBtn.onclick = function(){ HC.dec(card.id); hcRenderSingle(hcSingleIdx); };
+                btnBar.appendChild(decBtn);
+
+                // 枚数表示
+                const qtySpan = document.createElement('span');
+                const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0) : (HC.cart[card.id]?HC.cart[card.id].qty:0);
+                const max = isYell ? HC.MAX_YELL : HC.MAX_PER;
+                qtySpan.textContent = qty + '/' + max;
+                qtySpan.style.cssText = 'color:white;font-size:14px;font-weight:bold;min-width:36px;text-align:center;';
+                btnBar.appendChild(qtySpan);
+
+                // ＋ ボタン
+                const incBtn = document.createElement('button');
+                incBtn.textContent = '＋';
+                incBtn.style.cssText = 'background:#5e5a9b;color:white;border:none;border-radius:50%;width:42px;height:42px;font-size:22px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                incBtn.onclick = function(){ HC.add(card.id, card.name, card.img||''); hcRenderSingle(hcSingleIdx); };
+                btnBar.appendChild(incBtn);
+            }
+
+            grid.appendChild(btnBar);
+
+            // 左右矢印
             const arrowL = document.createElement('div');
-            arrowL.style.cssText = 'position:absolute;left:0;top:50%;transform:translateY(-50%);width:48px;height:80px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:0 12px 12px 0;color:white;font-size:22px;cursor:pointer;' + (idx===0?'opacity:0.2;':'');
+            arrowL.style.cssText = 'position:absolute;left:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:0 10px 10px 0;color:white;font-size:22px;cursor:pointer;' + (idx===0?'opacity:0.15;':'');
             arrowL.textContent = '‹';
             arrowL.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx>0) hcRenderSingle(hcSingleIdx-1); };
 
             const arrowR = document.createElement('div');
-            arrowR.style.cssText = 'position:absolute;right:0;top:50%;transform:translateY(-50%);width:48px;height:80px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:12px 0 0 12px;color:white;font-size:22px;cursor:pointer;' + (idx===hcFilteredCards.length-1?'opacity:0.2;':'');
+            arrowR.style.cssText = 'position:absolute;right:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:10px 0 0 10px;color:white;font-size:22px;cursor:pointer;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
             arrowR.textContent = '›';
             arrowR.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx<hcFilteredCards.length-1) hcRenderSingle(hcSingleIdx+1); };
 
