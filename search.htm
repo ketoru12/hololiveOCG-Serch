@@ -477,7 +477,7 @@
             const isYell = HC.isYell(card.id);
 
             // グリッドを全画面表示に
-            grid.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;position:fixed;inset:0;top:56px;background:#0f0e1a;z-index:90;padding:0;gap:0;';
+            grid.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:space-between;position:fixed;inset:0;top:56px;background:#0f0e1a;z-index:90;padding:0;gap:0;overflow:hidden;';
             grid.innerHTML = '';
 
             // カウンター + カード名
@@ -488,10 +488,10 @@
 
             // カード画像（画面いっぱい）
             const wrap = document.createElement('div');
-            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;';
+            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;overflow:hidden;';
             const img = document.createElement('img');
             img.src = card.img || '';
-            img.style.cssText = 'max-width:100%;max-height:calc(100vh - 56px - 140px);object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
+            img.style.cssText = 'max-width:92%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
             img.loading = 'lazy';
             wrap.appendChild(img);
             grid.appendChild(wrap);
