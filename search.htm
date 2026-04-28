@@ -442,10 +442,20 @@
             hcViewMode = hcViewMode === 'grid' ? 'single' : 'grid';
             document.getElementById('viewToggleBtn').textContent = hcViewMode === 'grid' ? '📋 一覧' : '🃏 1枚';
             if (hcViewMode === 'grid') {
-                // グリッドに戻す時はstyleをリセット
                 const grid = document.getElementById('cardGrid');
                 grid.style.cssText = '';
                 grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
+                document.querySelectorAll('.hcOv').forEach(function(o){ o.style.display = ''; });
+            } else {
+                // hcFilteredCardsが空ならallCardsで初期化
+                if (!hcFilteredCards.length && typeof allCards !== 'undefined' && allCards.length) {
+                    hcFilteredCards = allCards;
+                }
+                document.querySelectorAll('.hcOv').forEach(function(o){
+                    o.style.display = 'none';
+                    o.style.opacity = '0';
+                    o.style.pointerEvents = 'none';
+                });
             }
             hcRenderView();
         }
@@ -469,7 +479,14 @@
 
         function hcRenderSingle(idx) {
             const grid = document.getElementById('cardGrid');
-            if (!hcFilteredCards.length) return;
+            // hcFilteredCardsが空ならallCardsを使う
+            if (!hcFilteredCards.length) {
+                if (typeof allCards !== 'undefined' && allCards.length) {
+                    hcFilteredCards = allCards;
+                } else {
+                    return;
+                }
+            }
             idx = Math.max(0, Math.min(idx, hcFilteredCards.length - 1));
             hcSingleIdx = idx;
             const card = hcFilteredCards[idx];
