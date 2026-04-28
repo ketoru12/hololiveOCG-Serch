@@ -427,8 +427,13 @@
             overlay.classList.toggle('active');
             document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
             if (isOpening) {
-                // 開く時は即座にリセット（表示前）
-                sidebar.scrollTop = 0;
+                // 開く時はhcBarの位置にスクロール
+                const hcBar = sidebar.querySelector('#hcBar');
+                if (hcBar) {
+                    sidebar.scrollTop = hcBar.offsetTop;
+                } else {
+                    sidebar.scrollTop = 0;
+                }
             } else {
                 // 閉じる時はtransition後にリセット
                 setTimeout(function(){ sidebar.scrollTop = 0; }, 400);
