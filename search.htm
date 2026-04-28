@@ -675,12 +675,12 @@
                 return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[col]}" class="color-icon"><span class="font-bold">${col}</span></div></div>`;
             };
 
-            if (card.category !== "サポート") details += createColorRow('色', card.color);
+            // 色は非表示
             if (card.category === "ホロメン") {
-                details += createRow('HP', card.value);
-                details += createRow('Bloom', card.kind);
-                details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${renderBatonIcons(card.baton_touch)}</div></div>`;
-                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
+                // HP非表示
+                // Bloom非表示
+                // バトンタッチ非表示
+                // キーワード非表示
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {
