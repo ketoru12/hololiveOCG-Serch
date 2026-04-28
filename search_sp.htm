@@ -123,7 +123,14 @@
                 z-index: 200;
                 border-radius: 0;
                 border-right: none;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            #filterSidebar .flex-1.overflow-y-auto {
+                flex: 1;
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
             #filterSidebar.mobile-open { transform: translateY(0); }
             #filterOverlay {
