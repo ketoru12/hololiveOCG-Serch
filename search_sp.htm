@@ -201,7 +201,7 @@
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
         <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">ホロカ検索・デッキ作成ツール</h1><button class="md:hidden ml-auto text-white text-xl font-bold px-2" onclick="toggleMobileFilter()">✕</button>
+                <h1 class="font-bold tracking-wider italic">ホロカ検索・デッキ作成ツール</h1>
                 <div class="flex items-center gap-3">
                     <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
                     <button class="md:hidden text-xl p-1" onclick="toggleMobileFilter()">✕</button>
@@ -637,6 +637,10 @@
         }
 
         function applyFilters() {
+            // 検索時に詳細画面を閉じる
+            if (document.getElementById('modal').classList.contains('active')) {
+                closeModal();
+            }
             let result = allCards;
             const includeText = document.getElementById('searchIncludeText').checked;
             
@@ -752,13 +756,13 @@
                 // バトンタッチ非表示
                 // キーワード非表示
             } else if (card.category === "推しホロメン") {
-                details += createRow('LIFE', card.value, 'bg-green-600');
+                // LIFE非表示
             } else if (card.category === "サポート") {
                 details += createRow('種別', card.kind, 'kind-pill');
             }
 
             // アーツは非表示
-            if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
+            // 推しスキル・SP推しスキル・ステージスキル非表示
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'));
             if (card.products) details += createRow('収録', card.products.join('　'), 'product-pill');
