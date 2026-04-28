@@ -451,10 +451,11 @@
                 if (!hcFilteredCards.length && typeof allCards !== 'undefined' && allCards.length) {
                     hcFilteredCards = allCards;
                 }
-                document.querySelectorAll('.hcOv').forEach(function(o){
-                    o.style.display = 'none';
-                    o.style.opacity = '0';
-                    o.style.pointerEvents = 'none';
+                // hcOvを完全に削除（DOMから除去）
+                document.querySelectorAll('.hcOv').forEach(function(o){ o.remove(); });
+                // hcWのdata-hc-patchedをリセットして再付与を防ぐ
+                document.querySelectorAll('.hcW').forEach(function(w){
+                    w.dataset.hcPatched = '';
                 });
             }
             hcRenderView();
@@ -968,6 +969,8 @@
 
         function hcPatch(){
             var grid=document.getElementById('cardGrid');if(!grid)return;
+            // 1枚表示モードの場合はオーバーレイを付与しない
+            if(hcViewMode === 'single') return;
             Array.from(grid.children).forEach(function(w){
                 if(w.dataset.hcPatched)return;
                 var img=w.querySelector('img');
@@ -989,13 +992,7 @@
                 var origClick=w.onclick;w.onclick=null;
                 var ov=document.createElement('div');ov.className='hcOv';
                 // タップ対応（一覧表示時のみ）
-                w.addEventListener('touchstart',function(e){
-                    if(hcViewMode === 'single') return;
-                    document.querySelectorAll('.hcOv').forEach(function(o){o.style.opacity='0';o.style.pointerEvents='none';o.style.background='rgba(0,0,0,0)';});
-                    ov.style.opacity='1';ov.style.pointerEvents='auto';ov.style.background='rgba(0,0,0,.45)';
-                    e.stopPropagation();
-                },{passive:true});
-                var lo=document.createElement('button');
+                w.// タップでオーバーレイ表示なし                var lo=document.createElement('button');
                 lo.style.cssText='background:white;font-size:16px;';lo.textContent='🔍';
                 lo.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(w);};
                 var ab=document.createElement('button');
