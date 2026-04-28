@@ -312,7 +312,7 @@
       <img src="image/wallpaper/title_button.png" alt="hololive OFFICIAL CARD GAME" onerror="this.style.display='none'">
     </div>
     <p class="tagline">カードを検索・デッキを組もう</p>
-    <a class="enter-btn" href="./search.htm" onclick="sessionStorage.setItem('from_top','1')">
+    <a class="enter-btn" href="./search.htm" id="searchLink" onclick="sessionStorage.setItem('from_top','1')">
       カード検索へ
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -491,6 +491,15 @@
     }
 
     init();
+
+    // ── UA判定でリンク先を切り替え ──
+    (function() {
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        var link = document.getElementById('searchLink');
+        if (link && isMobile) {
+            link.href = './search_sp.htm';
+        }
+    })();
 
     // ── ウィジェットサイズの自動計算 ──
     function adjustWidgetSize() {

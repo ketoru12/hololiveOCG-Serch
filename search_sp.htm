@@ -114,15 +114,16 @@
         @media (max-width: 768px) {
             #filterSidebar {
                 position: fixed;
-                bottom: 0;
+                top: 0;
                 left: 0;
                 right: 0;
-                height: 85vh;
-                transform: translateY(100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                height: 90vh;
+                transform: translateY(-100%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 200;
-                border-radius: 20px 20px 0 0;
+                border-radius: 0 0 20px 20px;
                 border-right: none;
+                overflow-y: auto;
             }
             #filterSidebar.mobile-open { transform: translateY(0); }
             #filterOverlay {
@@ -144,6 +145,10 @@
             }
         }
 
+        @media (max-width: 768px) {
+            #mainContent { margin-top: 56px; }
+            body { overflow-x: hidden; }
+        }
         #modal { display: none; }
         #modal.active { display: flex; animation: fadeIn 0.2s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -160,13 +165,13 @@
         .hcW:hover .hcOv{opacity:1;pointer-events:auto;background:rgba(0,0,0,.45);}
         .hcOv button{border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0006;}
         @media(max-width:768px){.hcOv button{width:30px;height:30px;font-size:14px!important;}.hcOv{gap:5px;}}
-        .hcBdg{display:none;position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
+        .hcBdg{display:none;position:absolute;bottom:-8px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
         #hcDM,#hcEM{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
         #hcDM.on,#hcEM.on{display:flex;}
         #hcDB{background:white;border-radius:16px;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;overflow:hidden;}
         #hcEB{background:#1e1b4b;border-radius:16px;width:100%;max-width:560px;padding:24px;color:white;}
         #hcTA{width:100%;background:#0a0818;color:#a78bfa;border:2px solid #5e5a9b;border-radius:8px;padding:10px;font-family:monospace;font-size:11px;resize:none;box-sizing:border-box;word-break:break-all;line-height:1.5;margin-top:10px;}
-        #hcCC{display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px;border-radius:10px;}
+        #hcCC{display:flex;align-items:center;gap:8px;margin-top:2px;margin-bottom:10px;padding:10px;border-radius:10px;}
         #hcCC.oshi{border:2px solid #10b981;background:#f0fdf4;}
         #hcCC.main{border:2px solid #e2e8f0;background:#f8fafc;}
         #hcCC.yell{border:2px solid #f59e0b;background:#fffbeb;}
@@ -181,18 +186,22 @@
 
     <div id="filterOverlay" onclick="toggleMobileFilter()"></div>
 
-    <div class="mobile-nav md:hidden">
-        <button onclick="toggleMobileFilter()" class="bg-[#5e5a9b] text-white px-8 py-3 rounded-full shadow-2xl font-bold flex items-center gap-3 active:scale-95 transition-transform">
-            <span class="text-lg">🔍</span>
-            <span>フィルター</span>
-            <span id="mobileResultCount" class="text-xs bg-white/20 px-2 py-0.5 rounded">0 枚</span>
+    <!-- モバイル上部メニューバー -->
+    <div id="mobileTopBar" class="md:hidden" style="position:fixed;top:0;left:0;right:0;z-index:150;background:#5e5a9b;display:flex;align-items:center;gap:8px;padding:8px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+        <button onclick="toggleMobileFilter()" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);color:white;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:bold;cursor:pointer;flex-shrink:0;">
+            🔍 検索フィルター
+            <span id="mobileResultCount" style="font-size:11px;background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 6px;">0 枚</span>
+        </button>
+        <div style="flex:1"></div>
+        <button id="viewToggleBtn" onclick="hcToggleView()" style="background:rgba(255,255,255,0.15);color:white;border:none;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:bold;cursor:pointer;flex-shrink:0;">
+            📋 一覧
         </button>
     </div>
 
     <div class="flex flex-col md:flex-row h-screen overflow-hidden">
         <aside id="filterSidebar" class="w-full md:w-80 bg-white border-r flex flex-col shadow-lg z-50">
             <div class="p-4 border-b bg-[#5e5a9b] text-white flex justify-between items-center shrink-0">
-                <h1 class="font-bold tracking-wider italic">ホロカ検索・デッキ作成ツール</h1>
+                <h1 class="font-bold tracking-wider italic">ホロカ検索・デッキ作成ツール</h1><button class="md:hidden ml-auto text-white text-xl font-bold px-2" onclick="toggleMobileFilter()">✕</button>
                 <div class="flex items-center gap-3">
                     <span id="resultCount" class="text-[10px] font-mono bg-white/20 px-2 py-1 rounded">0 枚</span>
                     <button class="md:hidden text-xl p-1" onclick="toggleMobileFilter()">✕</button>
@@ -237,8 +246,15 @@
                             </label>
                         </div>
                     </div>
+                    <div style="display:flex;gap:6px;align-items:center">
                     <input type="text" id="searchInput" placeholder="名前、タグ、効果..." 
-                        class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
+                        class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all"
+                        style="flex:1">
+                    <button id="searchBtn" onclick="hcMobileSearch()" 
+                        class="md:hidden shrink-0 bg-[#5e5a9b] text-white font-bold rounded-lg px-4 py-3 text-sm active:scale-95 transition-transform">
+                        検索
+                    </button>
+                </div>
                 </div>
 
                 <div>
@@ -355,7 +371,7 @@
             </div>
         </aside>
 
-        <main class="flex-1 overflow-y-auto p-4 bg-slate-50 pb-32 md:pb-4">
+        <main class="flex-1 overflow-y-auto p-4 bg-slate-50 pb-32 md:pb-4" style="padding-top: 4px;" id="mainContent">
             <div id="cardGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4"></div>
         </main>
     </div>
@@ -393,10 +409,195 @@
         const BATON_ICON = 'image/Colors/arts_null.png';
 
         function toggleMobileFilter() {
-            document.getElementById('filterSidebar').classList.toggle('mobile-open');
-            document.getElementById('filterOverlay').classList.toggle('active');
-            document.body.style.overflow = document.getElementById('filterOverlay').classList.contains('active') ? 'hidden' : '';
+            const sidebar = document.getElementById('filterSidebar');
+            const overlay = document.getElementById('filterOverlay');
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
         }
+
+        function closeMobileFilter() {
+            document.getElementById('filterSidebar').classList.remove('mobile-open');
+            document.getElementById('filterOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // フィルターサイドバーのスワイプで閉じる
+        (function() {
+            let startY = 0;
+            const sidebar = document.getElementById('filterSidebar');
+            sidebar.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, {passive:true});
+            sidebar.addEventListener('touchend', e => {
+                const dy = e.changedTouches[0].clientY - startY;
+                if (dy < -60) closeMobileFilter(); // 上スワイプで閉じる
+            }, {passive:true});
+        })();
+
+        // ===== モバイル表示切替（一覧 / 1枚表示）=====
+        var hcViewMode = 'grid'; // 'grid' or 'single'
+        var hcSingleIdx = 0;
+        var hcFilteredCards = [];
+
+        function hcToggleView() {
+            hcViewMode = hcViewMode === 'grid' ? 'single' : 'grid';
+            document.getElementById('viewToggleBtn').textContent = hcViewMode === 'grid' ? '📋 一覧' : '🃏 1枚';
+            if (hcViewMode === 'grid') {
+                const grid = document.getElementById('cardGrid');
+                grid.style.cssText = '';
+                grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
+                document.querySelectorAll('.hcOv').forEach(function(o){ o.style.display = ''; });
+            } else {
+                // hcFilteredCardsが空ならallCardsで初期化
+                if (!hcFilteredCards.length && typeof allCards !== 'undefined' && allCards.length) {
+                    hcFilteredCards = allCards;
+                }
+                // hcOvを完全に削除（DOMから除去）
+                document.querySelectorAll('.hcOv').forEach(function(o){ o.remove(); });
+                // hcWのdata-hc-patchedをリセットして再付与を防ぐ
+                document.querySelectorAll('.hcW').forEach(function(w){
+                    w.dataset.hcPatched = '';
+                });
+            }
+            hcRenderView();
+        }
+
+        function hcMobileSearch() {
+            // 検索ボタン押下でフィルターを閉じて結果を表示
+            closeMobileFilter();
+            // applyFiltersを再実行
+            if (typeof applyFilters === 'function') applyFilters();
+        }
+
+        function hcRenderView() {
+            const grid = document.getElementById('cardGrid');
+            if (hcViewMode === 'single') {
+                hcRenderSingle(hcSingleIdx);
+            } else {
+                // 通常グリッド表示に戻す
+                if (typeof applyFilters === 'function') applyFilters();
+            }
+        }
+
+        function hcRenderSingle(idx) {
+            const grid = document.getElementById('cardGrid');
+            // hcFilteredCardsが空ならallCardsを使う
+            if (!hcFilteredCards.length) {
+                if (typeof allCards !== 'undefined' && allCards.length) {
+                    hcFilteredCards = allCards;
+                } else {
+                    return;
+                }
+            }
+            idx = Math.max(0, Math.min(idx, hcFilteredCards.length - 1));
+            hcSingleIdx = idx;
+            const card = hcFilteredCards[idx];
+            const isOshi = card.category === '推しホロメン';
+            const isYell = HC.isYell(card.id);
+
+            // グリッドを全画面表示に
+            grid.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:space-between;position:fixed;inset:0;top:56px;background:#0f0e1a;z-index:90;padding:0;gap:0;overflow:hidden;';
+            grid.innerHTML = '';
+
+            // カウンター + カード名
+            const counter = document.createElement('div');
+            counter.style.cssText = 'position:absolute;top:12px;left:0;right:0;text-align:center;font-size:12px;color:rgba(255,255,255,0.5);font-weight:bold;z-index:1;';
+            counter.textContent = (idx+1) + ' / ' + hcFilteredCards.length + '　' + (card.name||'');
+            grid.appendChild(counter);
+
+            // カード画像（画面いっぱい）
+            const wrap = document.createElement('div');
+            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;overflow:hidden;';
+            const img = document.createElement('img');
+            img.src = card.img || '';
+            img.style.cssText = 'max-width:92%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
+            img.loading = 'lazy';
+            wrap.appendChild(img);
+            grid.appendChild(wrap);
+
+            // ===== カード下のボタン =====
+            const btnBar = document.createElement('div');
+            btnBar.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.05);width:100%;box-sizing:border-box;flex-shrink:0;';
+
+            // 🔍 詳細ボタン
+            const detailBtn = document.createElement('button');
+            detailBtn.textContent = '🔍';
+            detailBtn.title = '詳細';
+            detailBtn.style.cssText = 'background:white;border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+            detailBtn.onclick = function(){ showDetail(card.id); };
+            btnBar.appendChild(detailBtn);
+
+            if (isOshi) {
+                // ⭐ 推しボタン
+                const oshiBtn = document.createElement('button');
+                const isSel = HC.oshi && HC.oshi.id === card.id;
+                oshiBtn.textContent = '⭐';
+                oshiBtn.title = isSel ? '推し解除' : '推しにセット';
+                oshiBtn.style.cssText = 'background:' + (isSel?'#10b981':'rgba(16,185,129,0.7)') + ';border:none;border-radius:50%;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                oshiBtn.onclick = function(){
+                    if(HC.oshi&&HC.oshi.id===card.id) HC.removeOshi();
+                    else HC.add(card.id, card.name, card.img||'');
+                    hcRenderSingle(hcSingleIdx);
+                };
+                btnBar.appendChild(oshiBtn);
+            } else {
+                // － ボタン
+                const decBtn = document.createElement('button');
+                decBtn.textContent = '－';
+                decBtn.style.cssText = 'background:#ef4444;color:white;border:none;border-radius:50%;width:42px;height:42px;font-size:22px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                decBtn.onclick = function(){ HC.dec(card.id); hcRenderSingle(hcSingleIdx); };
+                btnBar.appendChild(decBtn);
+
+                // 枚数表示
+                const qtySpan = document.createElement('span');
+                const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0) : (HC.cart[card.id]?HC.cart[card.id].qty:0);
+                const max = isYell ? HC.MAX_YELL : HC.MAX_PER;
+                qtySpan.textContent = qty + '/' + max;
+                qtySpan.style.cssText = 'color:white;font-size:14px;font-weight:bold;min-width:36px;text-align:center;';
+                btnBar.appendChild(qtySpan);
+
+                // ＋ ボタン
+                const incBtn = document.createElement('button');
+                incBtn.textContent = '＋';
+                incBtn.style.cssText = 'background:#5e5a9b;color:white;border:none;border-radius:50%;width:42px;height:42px;font-size:22px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);';
+                incBtn.onclick = function(){ HC.add(card.id, card.name, card.img||''); hcRenderSingle(hcSingleIdx); };
+                btnBar.appendChild(incBtn);
+            }
+
+            grid.appendChild(btnBar);
+
+            // 左右矢印
+            const arrowL = document.createElement('div');
+            arrowL.style.cssText = 'position:absolute;left:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:0 10px 10px 0;color:white;font-size:22px;cursor:pointer;' + (idx===0?'opacity:0.15;':'');
+            arrowL.textContent = '‹';
+            arrowL.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx>0) hcRenderSingle(hcSingleIdx-1); };
+
+            const arrowR = document.createElement('div');
+            arrowR.style.cssText = 'position:absolute;right:0;top:50%;transform:translateY(-50%);width:40px;height:72px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border-radius:10px 0 0 10px;color:white;font-size:22px;cursor:pointer;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
+            arrowR.textContent = '›';
+            arrowR.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx<hcFilteredCards.length-1) hcRenderSingle(hcSingleIdx+1); };
+
+            grid.appendChild(arrowL);
+            grid.appendChild(arrowR);
+        }
+
+        // カードグリッドのスワイプ対応（左右）
+        (function() {
+            const grid = document.getElementById('cardGrid');
+            let startY = 0, startX = 0;
+            grid.addEventListener('touchstart', e => {
+                startY = e.touches[0].clientY;
+                startX = e.touches[0].clientX;
+            }, {passive:true});
+            grid.addEventListener('touchend', e => {
+                if (hcViewMode !== 'single') return;
+                const dy = e.changedTouches[0].clientY - startY;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 50) {
+                    if (dy < 0 && hcSingleIdx < hcFilteredCards.length - 1) hcRenderSingle(hcSingleIdx + 1); // 上スワイプ→次
+                    if (dy > 0 && hcSingleIdx > 0) hcRenderSingle(hcSingleIdx - 1); // 下スワイプ→前
+                }
+            }, {passive:true});
+        })();
 
         function toggleLogic(group) {
             const el = document.getElementById(`logic-${group}`);
@@ -482,7 +683,13 @@
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
             
-            renderCards(result);
+            hcFilteredCards = result;
+            if (hcViewMode === 'single' && window.innerWidth < 768) {
+                hcSingleIdx = 0;
+                hcRenderSingle(0);
+            } else {
+                renderCards(result);
+            }
         }
 
         function renderCards(cards) {
@@ -538,23 +745,19 @@
                 return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[col]}" class="color-icon"><span class="font-bold">${col}</span></div></div>`;
             };
 
-            if (card.category !== "サポート") details += createColorRow('色', card.color);
+            // 色は非表示
             if (card.category === "ホロメン") {
-                details += createRow('HP', card.value);
-                details += createRow('Bloom', card.kind);
-                details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${renderBatonIcons(card.baton_touch)}</div></div>`;
-                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
+                // HP非表示
+                // Bloom非表示
+                // バトンタッチ非表示
+                // キーワード非表示
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {
                 details += createRow('種別', card.kind, 'kind-pill');
             }
 
-            if (card.arts) {
-                card.arts.forEach(art => {
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span></div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
-                });
-            }
+            // アーツは非表示
             if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
             if (card.description) details += createRow('能力テキスト', card.description);
             if (card.tags && card.tags.length > 0) details += createRow('タグ', card.tags.join('　'));
@@ -566,6 +769,35 @@
         }
 
         function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; }
+
+        // モーダルのスワイプで前後のカードに切り替え
+        (function() {
+            const modal = document.getElementById('modal');
+            let startY = 0, startX = 0;
+            var currentModalCardId = null;
+
+            modal.addEventListener('touchstart', e => {
+                startY = e.touches[0].clientY;
+                startX = e.touches[0].clientX;
+            }, {passive:true});
+
+            modal.addEventListener('touchend', e => {
+                const dy = e.changedTouches[0].clientY - startY;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dy) < 50 || Math.abs(dy) < Math.abs(dx)) return;
+                if (!currentModalCardId || !hcFilteredCards.length) return;
+                const idx = hcFilteredCards.findIndex(c => c.id === currentModalCardId);
+                if (idx === -1) return;
+                if (dy < 0 && idx < hcFilteredCards.length - 1) showDetail(hcFilteredCards[idx+1].id);
+                if (dy > 0 && idx > 0) showDetail(hcFilteredCards[idx-1].id);
+            }, {passive:true});
+
+            var _origShowDetail = window.showDetail;
+            window.showDetail = function(cardId) {
+                currentModalCardId = cardId;
+                if (_origShowDetail) _origShowDetail(cardId);
+            };
+        })();
 
         document.getElementById('searchInput').addEventListener('input', e => { activeFilters.text = e.target.value; applyFilters(); });
         document.getElementById('filterProduct').addEventListener('change', e => {
@@ -737,6 +969,8 @@
 
         function hcPatch(){
             var grid=document.getElementById('cardGrid');if(!grid)return;
+            // 1枚表示モードの場合はオーバーレイを付与しない
+            if(hcViewMode === 'single') return;
             Array.from(grid.children).forEach(function(w){
                 if(w.dataset.hcPatched)return;
                 var img=w.querySelector('img');
@@ -757,13 +991,8 @@
                 w.classList.add('hcW');w.dataset.hcId=id;
                 var origClick=w.onclick;w.onclick=null;
                 var ov=document.createElement('div');ov.className='hcOv';
-                // タップ対応
-                w.addEventListener('touchstart',function(e){
-                    document.querySelectorAll('.hcOv').forEach(function(o){o.style.opacity='0';o.style.pointerEvents='none';o.style.background='rgba(0,0,0,0)';});
-                    ov.style.opacity='1';ov.style.pointerEvents='auto';ov.style.background='rgba(0,0,0,.45)';
-                    e.stopPropagation();
-                },{passive:true});
-                var lo=document.createElement('button');
+                // タップ対応（一覧表示時のみ）
+                w.// タップでオーバーレイ表示なし                var lo=document.createElement('button');
                 lo.style.cssText='background:white;font-size:16px;';lo.textContent='🔍';
                 lo.onclick=function(e){e.stopPropagation();if(origClick)origClick.call(w);};
                 var ab=document.createElement('button');
