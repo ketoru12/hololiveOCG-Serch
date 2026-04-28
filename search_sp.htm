@@ -425,14 +425,14 @@
             sidebar.classList.toggle('mobile-open');
             overlay.classList.toggle('active');
             document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
-            // 開いた時は常に一番上にスクロール
-            if (overlay.classList.contains('active')) {
-                sidebar.scrollTop = 0;
-            }
+            // 開く・閉じる両方で常に一番上にスクロールをリセット
+            sidebar.scrollTop = 0;
         }
 
         function closeMobileFilter() {
-            document.getElementById('filterSidebar').classList.remove('mobile-open');
+            const sidebar = document.getElementById('filterSidebar');
+            sidebar.classList.remove('mobile-open');
+            sidebar.scrollTop = 0;
             document.getElementById('filterOverlay').classList.remove('active');
             document.body.style.overflow = '';
         }
