@@ -515,10 +515,10 @@
 
             // カード画像（画面いっぱい）
             const wrap = document.createElement('div');
-            wrap.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;overflow:hidden;';
+            wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;overflow:hidden;';
             const img = document.createElement('img');
             img.src = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
-            img.style.cssText = 'max-width:92%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
+            img.style.cssText = 'max-width:92%;max-height:calc(100% - 80px);object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,0.5);';
             img.loading = 'lazy';
             wrap.appendChild(img);
             grid.appendChild(wrap);
@@ -577,18 +577,18 @@
             // 左右矢印
             // 上下矢印
             const arrowUp = document.createElement('div');
-            arrowUp.style.cssText = 'position:relative;width:60px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:10px;color:white;font-size:20px;cursor:pointer;flex-shrink:0;margin:4px auto;' + (idx===0?'opacity:0.15;':'');
+            arrowUp.style.cssText = 'width:60px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.12);border-radius:8px;color:white;font-size:18px;cursor:pointer;flex-shrink:0;margin-bottom:4px;' + (idx===0?'opacity:0.15;':'');
             arrowUp.textContent = '↑';
             arrowUp.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx>0) hcRenderSingle(hcSingleIdx-1); };
 
             const arrowDown = document.createElement('div');
-            arrowDown.style.cssText = 'position:relative;width:60px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:10px;color:white;font-size:20px;cursor:pointer;flex-shrink:0;margin:4px auto;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
+            arrowDown.style.cssText = 'width:60px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.12);border-radius:8px;color:white;font-size:18px;cursor:pointer;flex-shrink:0;margin-top:4px;' + (idx===hcFilteredCards.length-1?'opacity:0.15;':'');
             arrowDown.textContent = '↓';
             arrowDown.onclick = function(e){ e.stopPropagation(); if(hcSingleIdx<hcFilteredCards.length-1) hcRenderSingle(hcSingleIdx+1); };
 
-            // 上矢印はwrapの前に、下矢印はwrapの後（btnBarの前）に挿入
-            grid.insertBefore(arrowUp, wrap);
-            grid.insertBefore(arrowDown, btnBar);
+            // 矢印をwrap内に配置（上→画像→下）
+            wrap.insertBefore(arrowUp, img);
+            wrap.appendChild(arrowDown);
         }
 
         // カードグリッドのスワイプ対応（左右）
