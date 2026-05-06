@@ -1,12 +1,14 @@
 """
 hololive OFFICIAL CARD GAME カードデータ取得ツール
-使い方: python fetch_cards.py [--type holomen|oshi|support|yell|all] [--force]
-  --type : 取得対象（省略時は all）
-  --force: 既存エントリも上書き更新する
+使い方: python fetch_cards.py [--type holomen|oshi|support|yell|all] [--force] [--no-json]
+  --type   : 取得対象（省略時は all）
+  --force  : 既存エントリも上書き更新する
+  --no-json: master_cards.json の生成をスキップ
 """
 import urllib.request
 import urllib.parse
 import csv
+import json
 import os
 import re
 import sys
@@ -596,6 +598,122 @@ def process_target(key, force=False):
 
     print(f'  結果: 新規/更新={new_count}件 スキップ={skip_count}件 画像DL={img_count}件 エラー={err_count}件')
 
+# ── arts_text パーサー ────────────────────────────────────────────────────────
+def _parse_arts_text(text):
+    """'アーツ名　ダメージ\n効果テキスト' を (name, damage, effect) に分解"""
+    if not text:
+        return '', '', ''
+    lines = text.split('\n', 1)
+    header = lines[0]
+    body   = lines[1].strip() if len(lines) > 1 else ''
+    if '　' in header:
+        name, maybe_dmg = header.rsplit('　', 1)
+        maybe_dmg = maybe_dmg.strip()
+        if maybe_dmg.isdigit():
+            return name.strip(), maybe_dmg, body
+        # 数字でなければダメージではなく名前の一部
+        return header.strip(), '', body
+    return header.strip(), '', body
+
+
+# ── master_cards.json 生成 ────────────────────────────────────────────────────
+def build_master_json():
+    all_cards = []
+
+    def products_list(r):
+        return [r.get(f'product{i}', '').strip() for i in range(1, 6)
+                if r.get(f'product{i}', '').strip()]
+
+    def local_img(img_url, sub_dir):
+        """ローカル画像があればローカルパス、なければ元 URL を返す"""
+        fname = os.path.basename(img_url)
+        if fname and os.path.exists(os.path.join(BASE_DIR, sub_dir, fname)):
+            return f'/{sub_dir}/{fname}'
+        return img_url
+
+    # ── ホロメン ──────────────────────────────────────────────────────────────
+    existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_cards.csv'))
+    for number, r in sorted(existing.items()):
+        arts = []
+        for i in range(1, 4):
+            text = r.get(f'arts{i}_text', '').strip()
+            if not text:
+                continue
+            name, damage, effect = _parse_arts_text(text)
+            arts.append({
+                'name'  : name,
+                'damage': damage,
+                'text'  : effect,
+                'icons' : r.get(f'arts{i}_icons',  '').strip(),
+                'tokkou': r.get(f'arts{i}_tokkou', '').strip(),
+            })
+        card_type = r.get('cardType', '').strip()
+        tags = [r.get(f'tag{i}', '').strip() for i in range(1, 7)
+                if r.get(f'tag{i}', '').strip()]
+        all_cards.append({
+            'id'          : number,
+            'name'        : r.get('name', '').strip(),
+            'category'    : 'Buzzホロメン' if 'Buzz' in card_type else 'ホロメン',
+            'color'       : r.get('color', '').strip() or None,
+            'kind'        : r.get('bloom', '').strip(),
+            'value'       : r.get('hp', '').strip(),
+            'cardType'    : card_type,
+            'baton_touch' : r.get('baton', '').strip(),
+            'arts'        : arts,
+            'keywordName' : r.get('keyword1', '').strip(),
+            'keywordEffect': r.get('keywordEffect', '').strip(),
+            'extra'       : r.get('extra', '').strip(),
+            'products'    : products_list(r),
+            'img'         : local_img(r.get('img', ''), 'image/holomen'),
+            'tags'        : tags,
+        })
+
+    # ── 推しホロメン ──────────────────────────────────────────────────────────
+    existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_oshi.csv'))
+    for number, r in sorted(existing.items()):
+        skills = []
+        for label, key in [('推しスキル', 'oshiSkill'),
+                            ('SP推しスキル', 'spOshiSkill'),
+                            ('ステージスキル', 'stageSkill')]:
+            v = r.get(key, '').strip()
+            if v:
+                skills.append({'label': label, 'text': v})
+        all_cards.append({
+            'id'      : number,
+            'name'    : r.get('name', '').strip(),
+            'category': '推しホロメン',
+            'color'   : r.get('color', '').strip() or None,
+            'kind'    : '推し',
+            'value'   : r.get('life', '').strip(),
+            'skills'  : skills,
+            'products': products_list(r),
+            'img'     : local_img(r.get('img', ''), 'image/OSR'),
+            'tags'    : [],
+        })
+
+    # ── サポート ──────────────────────────────────────────────────────────────
+    existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_support.csv'))
+    for number, r in sorted(existing.items()):
+        all_cards.append({
+            'id'         : number,
+            'name'       : r.get('name', '').strip(),
+            'category'   : 'サポート',
+            'color'      : None,
+            'kind'       : r.get('cardType2', '').strip(),
+            'value'      : '0',
+            'description': r.get('arts', '').strip(),
+            'products'   : products_list(r),
+            'img'        : local_img(r.get('img', ''), 'image/support'),
+            'tags'       : [],
+        })
+
+    all_cards.sort(key=lambda c: c['id'])
+    out_path = os.path.join(BASE_DIR, 'master_cards.json')
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(all_cards, f, ensure_ascii=False, indent=2)
+    print(f'\n  master_cards.json 生成: {len(all_cards)} 件 → {out_path}')
+
+
 # ── エントリポイント ──────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(description='ホロカ公式サイトからカードデータを取得')
@@ -603,11 +721,16 @@ def main():
                         default='all', help='取得対象 (default: all)')
     parser.add_argument('--force', action='store_true',
                         help='既存エントリも上書き更新する')
+    parser.add_argument('--no-json', action='store_true',
+                        help='master_cards.json の生成をスキップ')
     args = parser.parse_args()
 
     targets = list(TARGETS.keys()) if args.type == 'all' else [args.type]
     for key in targets:
         process_target(key, force=args.force)
+
+    if not args.no_json:
+        build_master_json()
 
     print('\n完了！')
 
