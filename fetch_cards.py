@@ -82,7 +82,10 @@ def after_tag(html, pattern):
 
 # ── ページ全IDを収集 ───────────────────────────────────────────────────────────
 def get_all_ids(kind):
-    """cardsearch / cardsearch_ex からカードIDを全ページ取得する"""
+    """cardsearch_ex から {page_id: img_fname} の辞書を全ページ取得する。
+    cardsearch_ex のサムネイル img src からファイル名を抽出するため、
+    詳細ページを開かずに「この画像は取得済みか」を判定できる。
+    """
     kind_enc = urllib.parse.quote(kind, safe='')
     search_url = (
         f'{BASE_URL}/cardlist/cardsearch/'
@@ -91,40 +94,49 @@ def get_all_ids(kind):
         f'&rare%5B%5D=all&bloom_level%5B%5D=all&parallel%5B%5D=all&view=image'
     )
 
-    # 最初のページで max_page を取得
     html = fetch(search_url)
     max_page_m = re.search(r'var max_page\s*=\s*(\d+)', html)
     max_page = int(max_page_m.group(1)) if max_page_m else 1
     print(f'  [{kind}] max_page={max_page}')
 
-    # 最初のページのIDも含める
-    all_ids = set(re.findall(r'/cardlist/\?id=(\d+)', html))
+    # page_id → img_fname のペアを抽出するパターン
+    # cardsearch_ex の HTML: <a href="/cardlist/?id=XXX"...><img src="/wp-content/...fname.png"...>
+    PAIR_PAT = re.compile(
+        r'/cardlist/\?id=(\d+)[^"]*"[^>]*>.*?'
+        r'<img[^>]+src="(/wp-content/images/cardlist/[^"]+)"',
+        re.DOTALL
+    )
 
-    # cardsearch_ex でページ 1..max_page を取得
+    def extract(text):
+        return {pid: os.path.basename(src) for pid, src in PAIR_PAT.findall(text)}
+
+    all_pairs = extract(html)
+
     ex_base = search_url.replace('/cardsearch/', '/cardsearch_ex').replace(
         'attribute%5B%5D=', 'attribute%5B0%5D='
     ).replace(
         'card_kind%5B%5D=', 'card_kind%5B0%5D='
     ).replace(
-        'rare%5B%5D=', 'rare%5B0%5D='
+        'rare%5B%5D=',       'rare%5B0%5D='
     ).replace(
         'bloom_level%5B%5D=', 'bloom_level%5B0%5D='
     ).replace(
-        'parallel%5B%5D=', 'parallel%5B0%5D='
+        'parallel%5B%5D=',   'parallel%5B0%5D='
     )
 
     for page in range(1, max_page + 1):
         url = f'{ex_base}&page={page}'
         try:
             page_html = fetch(url)
-            ids = set(re.findall(r'/cardlist/\?id=(\d+)', page_html))
-            all_ids |= ids
-            print(f'  page {page}/{max_page}: +{len(ids)} IDs (total {len(all_ids)})')
+            new = extract(page_html)
+            all_pairs.update(new)
+            print(f'  page {page}/{max_page}: +{len(new)} (total {len(all_pairs)})')
         except Exception as e:
             print(f'  page {page}: ERROR {e}')
         time.sleep(DELAY)
 
-    return sorted(all_ids, key=int, reverse=True)
+    # page_id 降順（新しい順）でソートして返す
+    return sorted(all_pairs.items(), key=lambda x: int(x[0]), reverse=True)
 
 # ── カード詳細ページのパース ───────────────────────────────────────────────────
 def parse_detail_section(html):
@@ -527,9 +539,9 @@ def process_target(key, force=False):
                           SUPPORT_FIELDS)
         print(f'  既存: {len(existing)} 件')
 
-    # 全 ID 取得
-    page_ids = get_all_ids(kind)
-    print(f'  サイト上の総件数: {len(page_ids)}')
+    # 全 ID + img_fname ペアを取得
+    pairs = get_all_ids(kind)
+    print(f'  サイト上の総件数: {len(pairs)}')
 
     # 画像の既存ファイル一覧
     existing_imgs = set(os.listdir(img_dir))
@@ -539,12 +551,14 @@ def process_target(key, force=False):
     img_count  = 0
     err_count  = 0
 
-    for page_id in page_ids:
+    for page_id, img_hint in pairs:
         try:
-            # 詳細取得（ force でなければ number が既存 CSV にあればスキップ）
-            # ただし画像は常にチェック
-            build_row = None
+            # img_hint（cardsearch_ex のサムネイル fname）が取得済みならページ丸ごとスキップ
+            if not force and img_hint and img_hint in existing_imgs:
+                skip_count += 1
+                continue
 
+            # 詳細ページ取得
             if key == 'holomen':
                 row, img_url, img_fname, number = build_holomen_row(page_id, kind)
             elif key == 'oshi':
@@ -552,7 +566,6 @@ def process_target(key, force=False):
             elif key == 'support':
                 row, img_url, img_fname, number = build_support_row(page_id, kind)
             elif key == 'yell':
-                # エールは詳細ページを取得して画像 URL だけ抜く
                 url = f'{BASE_URL}/cardlist/?id={page_id}'
                 html = fetch(url)
                 detail = parse_detail_section(html)
@@ -568,17 +581,15 @@ def process_target(key, force=False):
                 time.sleep(DELAY)
                 continue
 
-            # CSV 更新
+            # CSV 更新（新規 or --force のみ）
             if csv_path and row:
-                if number in existing and not force:
-                    skip_count += 1
-                else:
+                if number not in existing or force:
                     existing[number] = row
-                    if number not in existing or force:
-                        new_count += 1
-                    print(f'  {"UPDATE" if force and number in existing else "NEW":6s} {number} {row.get("name","")}')
+                    new_count += 1
+                    print(f'  {"UPDATE" if force else "NEW":6s} {number} {row.get("name","")}')
+                # else: カード番号は既存 → CSV はスキップ、画像のみ取得
 
-            # 画像ダウンロード
+            # 画像ダウンロード（番号が既存でも img_fname が未取得なら DL）
             if img_fname and img_fname not in existing_imgs:
                 if download_image(img_url, target['img_dir'], img_fname):
                     existing_imgs.add(img_fname)
