@@ -650,6 +650,7 @@
             cart:{}, yell:{}, oshi:null, MAX_PER:4, MAX_TOTAL:50, MAX_YELL:20,
             total:function(){ return Object.values(this.cart).reduce(function(s,c){return s+c.qty;},0); },
             isOshi:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
+            isUnlimited:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return !!(c&&c.unlimited); },
             isYell:function(id){ return YELL_CARDS.some(function(y){return y.id===id;}); },
             yellTotal:function(){ return Object.values(this.yell).reduce(function(s,c){return s+c.qty;},0); },
             add:function(id,name,img){
@@ -670,7 +671,7 @@
                     return;
                 }
                 if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
-                if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
+                if(!this.isUnlimited(id)&&this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
                 if(this.cart[id])this.cart[id].qty++;
                 else this.cart[id]={name:name,img:hcImg(img),qty:1};
                 this.updateBar();this.updateBadges();
@@ -695,7 +696,7 @@
                     this.yell[id].qty++;this.updateBar();this.updateBadges();return;
                 }
                 if(!this.cart[id])return;
-                if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
+                if(!this.isUnlimited(id)&&this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
                 if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
                 this.cart[id].qty++;this.updateBar();this.updateBadges();
             },
@@ -723,7 +724,8 @@
                         else b.style.display='none';
                     } else {
                         var q=self.cart[id]?self.cart[id].qty:0;
-                        if(q>0){b.textContent=q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=q>=self.MAX_PER?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
+                        var unl=self.isUnlimited(id);
+                        if(q>0){b.textContent=unl?q+'枚':q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=(!unl&&q>=self.MAX_PER)?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
                         else b.style.display='none';
                     }
                 });
@@ -819,6 +821,7 @@
             lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isO?'#10b981':'#64748b')+';';
             lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):
                 isY?'エール: '+(HC.yell[cardId]?HC.yell[cardId].qty:0)+'/'+HC.MAX_YELL+'枚':
+                HC.isUnlimited(cardId)?'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'枚（無制限）':
                 'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
             ctrl.appendChild(lbl);
             if(isY){

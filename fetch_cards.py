@@ -233,11 +233,12 @@ def parse_arts(detail):
         for p in paragraphs:
             if strip_tags(p).strip() in ('アーツ', ''):
                 continue
-            # span 内のアイコンとテキスト
-            span_m = re.search(r'<span>(.*?)</span>', p, re.DOTALL)
-            if not span_m:
+            # 外側 <span> の内容を rfind で正確に取得（ネストした tokkou span があっても崩れない）
+            outer_start = p.find('<span>')
+            outer_end   = p.rfind('</span>')
+            if outer_start == -1 or outer_end == -1:
                 continue
-            span_content = span_m.group(1)
+            span_content = p[outer_start + len('<span>'):outer_end]
             # tokkou
             tokkou_m = re.search(r'<span class="tokkou">(.*?)</span>', span_content, re.DOTALL)
             tokkou = clean_text(strip_tags(tokkou_m.group(1))) if tokkou_m else ''
@@ -248,8 +249,8 @@ def parse_arts(detail):
             span_no_img = re.sub(r'<img[^>]+/?>', '', span_content)
             span_no_tok = re.sub(r'<span class="tokkou">.*?</span>', '', span_no_img, flags=re.DOTALL)
             art_main = clean_text(strip_tags(span_no_tok))
-            # p 内の span 外テキスト（追加効果）
-            p_after_span = p[p.find('</span>') + len('</span>'):] if '</span>' in p else ''
+            # p 内の outer span 外テキスト（追加効果）
+            p_after_span = p[outer_end + len('</span>'):]
             extra_text = clean_text(strip_tags(p_after_span))
             art_text = (art_main + '\n' + extra_text).strip() if extra_text else art_main
             results.append((art_text, icons_str, tokkou))
@@ -693,6 +694,7 @@ def build_master_json():
         card_type = r.get('cardType', '').strip()
         tags = [r.get(f'tag{i}', '').strip() for i in range(1, 7)
                 if r.get(f'tag{i}', '').strip()]
+        extra = r.get('extra', '').strip()
         all_cards.append({
             'id'          : r.get('number', '').strip(),
             'page_id'     : r.get('page_id', '').strip(),
@@ -706,7 +708,8 @@ def build_master_json():
             'arts'        : arts,
             'keywordName' : r.get('keyword1', '').strip(),
             'keywordEffect': r.get('keywordEffect', '').strip(),
-            'extra'       : r.get('extra', '').strip(),
+            'extra'       : extra,
+            'unlimited'   : '何枚でも入れられる' in extra,
             'products'    : products_list(r),
             'img'         : local_img(r.get('img', ''), 'image/holomen'),
             'tags'        : tags,
