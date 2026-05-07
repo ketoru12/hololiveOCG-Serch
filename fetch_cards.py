@@ -177,11 +177,26 @@ def parse_tags(detail):
     return [clean_text(t) for t in re.findall(r'>(#[^<]+)<', m.group(1))]
 
 def parse_products(products_html):
-    """収録商品名リストを返す"""
+    """収録商品名リストを返す（名称を整形して返す）"""
     names = []
     for m in re.finditer(r'<div class="products-ttl">.*?<p>(.*?)</p>', products_html, re.DOTALL):
-        names.append(clean_text(strip_tags(m.group(1))))
+        names.append(_clean_product(clean_text(strip_tags(m.group(1)))))
     return names
+
+def _clean_product(name):
+    """商品名を整形する
+    ・ブースターパック「〇〇」 → 〇〇
+    ・【イベント物販／...】〇〇 → 〇〇
+    """
+    if not name:
+        return name
+    # ブースターパック「〇〇」→ 〇〇
+    m = re.match(r'ブースターパック「(.+)」', name)
+    if m:
+        return m.group(1)
+    # 【...】〇〇 → 〇〇
+    name = re.sub(r'^【[^】]+】', '', name).strip()
+    return name
 
 def parse_color(detail):
     """色 dt に続く img の alt を返す"""
@@ -295,23 +310,19 @@ def parse_stage_skill(detail):
     texts = [clean_text(strip_tags(p)) for p in paragraphs if strip_tags(p) not in ('ステージスキル', '')]
     return '\n'.join(texts)
 
-def parse_support_arts(detail):
-    """サポートのアーツ（sp arts または通常のアーツ）"""
-    m = re.search(r'<div class="sp arts">(.*?)</div>', detail, re.DOTALL)
+def parse_support_cardtype_parts(detail):
+    """サポートの「カードタイプ」フィールドを分解して (cardType, cardType2, cardType3) を返す。
+    HTML: <dt>カードタイプ</dt><dd>サポート・アイテム・LIMITED</dd>
+    → ('サポート', 'アイテム', 'LIMITED')
+    """
+    m = re.search(r'<dt>カードタイプ</dt>\s*<dd>([^<]+)</dd>', detail)
     if not m:
-        return ''
-    paragraphs = re.findall(r'<p>(.*?)</p>', m.group(1), re.DOTALL)
-    texts = [clean_text(strip_tags(p)) for p in paragraphs if strip_tags(p) not in ('アーツ', '')]
-    return '\n'.join(texts)
-
-def parse_support_type2(detail):
-    """サポートのカードタイプ2（イベント/アイテム/マスコット等）"""
-    m = re.search(r'<dt>種類</dt>\s*<dd>([^<]+)</dd>', detail)
-    if m:
-        return clean_text(m.group(1))
-    # class="cat" の span からも取得試みる
-    m2 = re.search(r'<span class="cat[^"]*">([^<]+)</span>', detail)
-    return clean_text(m2.group(1)) if m2 else ''
+        return 'サポート', '', ''
+    parts = [p.strip() for p in clean_text(m.group(1)).split('・')]
+    ct  = parts[0] if len(parts) > 0 else 'サポート'
+    ct2 = parts[1] if len(parts) > 1 else ''
+    ct3 = parts[2] if len(parts) > 2 else ''
+    return ct, ct2, ct3
 
 # ── カードデータをビルド ─────────────────────────────────────────────────────
 def build_page_url(page_id, kind):
@@ -436,16 +447,14 @@ def build_oshi_row(page_id, kind):
 def build_support_row(page_id, kind):
     url = build_page_url(page_id, kind)
     html = fetch(url)
-    detail   = parse_detail_section(html)
+    detail        = parse_detail_section(html)
     products_html = parse_products_section(html)
 
-    img_url, img_fname = parse_image(detail)
-    name       = parse_name(detail)
-    number     = parse_number(detail)
-    card_type  = parse_card_type(detail)
-    card_type2 = parse_support_type2(detail)
-    arts       = parse_support_arts(detail)
-    products   = parse_products(products_html)
+    img_url, img_fname          = parse_image(detail)
+    name                        = parse_name(detail)
+    number                      = parse_number(detail)
+    card_type, card_type2, card_type3 = parse_support_cardtype_parts(detail)
+    products                    = parse_products(products_html)
 
     row = {
         'page_id'  : page_id,
@@ -454,7 +463,7 @@ def build_support_row(page_id, kind):
         'name'     : name,
         'cardType' : card_type,
         'cardType2': card_type2,
-        'arts'     : arts,
+        'cardType3': card_type3,
         'product1' : products[0] if len(products) > 0 else '',
         'product2' : products[1] if len(products) > 1 else '',
         'product3' : products[2] if len(products) > 2 else '',
@@ -486,10 +495,11 @@ def download_image(img_url, img_dir, img_fname):
 def load_csv(csv_path):
     """既存 CSV を { page_id: row_dict } で返す。
     旧形式（page_id 列なし）は { number: row_dict } にフォールバック。
+    utf-8-sig (BOM付き) / utf-8 どちらも正しく読み込む。
     """
     if not os.path.exists(csv_path):
         return {}, []
-    with open(csv_path, encoding='utf-8', newline='') as f:
+    with open(csv_path, encoding='utf-8-sig', newline='') as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames or []
         use_page_id = 'page_id' in fieldnames
@@ -501,12 +511,14 @@ def load_csv(csv_path):
     return rows, fieldnames
 
 def save_csv(csv_path, rows_dict, fieldnames):
-    """rows_dict { page_id: row } を CSV に書き出す（number → page_id 昇順）"""
+    """rows_dict { page_id: row } を CSV に書き出す（number → page_id 昇順）。
+    BOM付き UTF-8 で書き出すことで Excel でも文字化けしない。
+    """
     sorted_rows = sorted(
         rows_dict.values(),
         key=lambda r: (r.get('number', ''), int(r.get('page_id', 0) or 0))
     )
-    with open(csv_path, 'w', encoding='utf-8', newline='') as f:
+    with open(csv_path, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         writer.writeheader()
         writer.writerows(sorted_rows)
@@ -530,7 +542,7 @@ OSHI_FIELDS = [
 ]
 SUPPORT_FIELDS = [
     'page_id',
-    'url','img','name','cardType','cardType2','arts',
+    'url','img','name','cardType','cardType2','cardType3',
     'product1','product2','product3','product4','product5','number',
 ]
 
@@ -750,16 +762,16 @@ def build_master_json():
     for number, rows in sorted(by_number.items()):
         r = pick_canonical(rows)
         all_cards.append({
-            'id'         : number,
-            'name'       : r.get('name', '').strip(),
-            'category'   : 'サポート',
-            'color'      : None,
-            'kind'       : r.get('cardType2', '').strip(),
-            'value'      : '0',
-            'description': r.get('arts', '').strip(),
-            'products'   : products_list(r),
-            'img'        : local_img(r.get('img', ''), 'image/support'),
-            'tags'       : [],
+            'id'        : number,
+            'name'      : r.get('name', '').strip(),
+            'category'  : 'サポート',
+            'color'     : None,
+            'kind'      : r.get('cardType2', '').strip(),
+            'limited'   : r.get('cardType3', '').strip(),
+            'value'     : '0',
+            'products'  : products_list(r),
+            'img'       : local_img(r.get('img', ''), 'image/support'),
+            'tags'      : [],
         })
 
     all_cards.sort(key=lambda c: c['id'])

@@ -4727,11 +4727,11 @@
     "name": "アイドルマイク",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-102_U.png",
     "tags": []
@@ -4741,11 +4741,11 @@
     "name": "ゲーミングパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-103_U.png",
     "tags": []
@@ -4755,11 +4755,11 @@
     "name": "ふつうのパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ 赤 百鬼あやめ",
       "スタートデッキ 紫 癒月ちょこ",
       "スタートデッキ 白 轟はじめ",
@@ -4773,11 +4773,11 @@
     "name": "ペンライト",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ 青 猫又おかゆ"
     ],
     "img": "/image/support/hBP01-105_U.png",
@@ -4788,11 +4788,11 @@
     "name": "あとは任せた！",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ 紫 癒月ちょこ"
     ],
     "img": "/image/support/hBP01-106_U.png",
@@ -4803,11 +4803,11 @@
     "name": "アンコール",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-107_C.png",
     "tags": []
@@ -4817,11 +4817,11 @@
     "name": "じゃあ敵だね",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ 赤 百鬼あやめ",
       "スタートデッキ 青 猫又おかゆ",
       "スタートデッキ 白 轟はじめ",
@@ -4835,11 +4835,11 @@
     "name": "月と兎の物語",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-109_U.png",
     "tags": []
@@ -4849,11 +4849,11 @@
     "name": "鈍器でぶっ叩くわよ！",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-110_U.png",
     "tags": []
@@ -4863,11 +4863,11 @@
     "name": "ホロライブインドネシア3期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-111_U.png",
     "tags": []
@@ -4877,11 +4877,11 @@
     "name": "わくわくいたずらタイム",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-112_U.png",
     "tags": []
@@ -4891,11 +4891,11 @@
     "name": "Promise",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-113_U.png",
     "tags": []
@@ -4905,9 +4905,9 @@
     "name": "石の斧",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "PRカード"
     ],
@@ -4919,11 +4919,11 @@
     "name": "星街すいせいのマイク",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-115_U.png",
     "tags": []
@@ -4933,11 +4933,11 @@
     "name": "うぱお",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ 白 天音かなた"
     ],
     "img": "/image/support/hBP01-116_C.png",
@@ -4948,11 +4948,11 @@
     "name": "フレンド",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-117_C.png",
     "tags": []
@@ -4962,11 +4962,11 @@
     "name": "あん肝",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-118_C.png",
     "tags": []
@@ -4976,11 +4976,11 @@
     "name": "ジョブズ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-119_C.png",
     "tags": []
@@ -4990,11 +4990,11 @@
     "name": "がんも",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-120_C.png",
     "tags": []
@@ -5004,11 +5004,11 @@
     "name": "Kotori",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-121_C.png",
     "tags": []
@@ -5018,11 +5018,11 @@
     "name": "ロゼ隊",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-122_C.png",
     "tags": []
@@ -5032,11 +5032,11 @@
     "name": "野うさぎ同盟",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-123_C_02.png",
     "tags": []
@@ -5046,12 +5046,12 @@
     "name": "開拓者",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
-      "ブースターパック「ディーヴァフィーバー」"
+      "ブルーミングレディアンス",
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP01-124_C.png",
     "tags": []
@@ -5061,11 +5061,11 @@
     "name": "KFP",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」"
+      "ブルーミングレディアンス"
     ],
     "img": "/image/support/hBP01-125_C.png",
     "tags": []
@@ -5075,12 +5075,12 @@
     "name": "座員",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
-      "ブースターパック「エンチャントレガリア」"
+      "ブルーミングレディアンス",
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP01-126_C.png",
     "tags": []
@@ -7426,11 +7426,11 @@
     "name": "アイドルサインペン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-075_U.png",
     "tags": []
@@ -7440,11 +7440,11 @@
     "name": "カスタムパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "スタートデッキ 緑 風真いろは"
     ],
     "img": "/image/support/hBP02-076_C.png",
@@ -7455,11 +7455,11 @@
     "name": "レトロパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ 推し Advent",
       "ライブスタートデッキ 白上フブキ",
@@ -7473,11 +7473,11 @@
     "name": "かなた建設",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-078_U.png",
     "tags": []
@@ -7487,11 +7487,11 @@
     "name": "爆発の魔法",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-079_U.png",
     "tags": []
@@ -7501,11 +7501,11 @@
     "name": "秘密結社holoX",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "スタートデッキ 緑 風真いろは"
     ],
     "img": "/image/support/hBP02-080_U.png",
@@ -7516,11 +7516,11 @@
     "name": "ホロライブ インドネシア2期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-081_U.png",
     "tags": []
@@ -7530,11 +7530,11 @@
     "name": "ホロライブゲーマーズ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-082_U.png",
     "tags": []
@@ -7544,11 +7544,11 @@
     "name": "魔法のタンス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-083_U.png",
     "tags": []
@@ -7558,11 +7558,11 @@
     "name": "みっころね24",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "スタートデッキ 白 天音かなた",
       "スタートデッキ 赤 宝鐘マリン",
       "ライブスタートデッキ 白上フブキ",
@@ -7576,11 +7576,11 @@
     "name": "HOLOLIVE FANTASY",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-085_U.png",
     "tags": []
@@ -7590,11 +7590,11 @@
     "name": "ホロスパークリング",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-086_C.png",
     "tags": []
@@ -7604,11 +7604,11 @@
     "name": "紫咲シオンの魔法のステッキ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-087_C.png",
     "tags": []
@@ -7618,11 +7618,11 @@
     "name": "森カリオペの鎌",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "ライブスタートデッキ 森カリオペ"
     ],
     "img": "/image/support/hBP02-088_U.png",
@@ -7633,11 +7633,11 @@
     "name": "おるやんけ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-089_C.png",
     "tags": []
@@ -7647,11 +7647,11 @@
     "name": "ネジマキツネ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-090_C.png",
     "tags": []
@@ -7661,11 +7661,11 @@
     "name": "フブチュン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-091_C.png",
     "tags": []
@@ -7675,11 +7675,11 @@
     "name": "フブラ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-092_U.png",
     "tags": []
@@ -7689,11 +7689,11 @@
     "name": "ミテイル",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-093_C.png",
     "tags": []
@@ -7703,11 +7703,11 @@
     "name": "Tatang",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-094_C.png",
     "tags": []
@@ -7717,11 +7717,11 @@
     "name": "ドクロくん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
+      "クインテットスペクトラム",
       "スタートデッキ 赤 宝鐘マリン"
     ],
     "img": "/image/support/hBP02-095_C.png",
@@ -7732,11 +7732,11 @@
     "name": "イヌ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-096_C.png",
     "tags": []
@@ -7746,11 +7746,11 @@
     "name": "UDIN",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-097_C.png",
     "tags": []
@@ -7760,11 +7760,11 @@
     "name": "Death-sensei",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-098_C.png",
     "tags": []
@@ -7774,11 +7774,11 @@
     "name": "すこん部",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-099_C.png",
     "tags": []
@@ -7788,11 +7788,11 @@
     "name": "白銀聖騎士団",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-100_C.png",
     "tags": []
@@ -7802,12 +7802,12 @@
     "name": "ミオファ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」",
-      "ブースターパック「ディーヴァフィーバー」"
+      "クインテットスペクトラム",
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP02-101_C.png",
     "tags": []
@@ -7817,11 +7817,11 @@
     "name": "塩っ子",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「クインテットスペクトラム」"
+      "クインテットスペクトラム"
     ],
     "img": "/image/support/hBP02-102_C.png",
     "tags": []
@@ -10497,11 +10497,11 @@
     "name": "ゴージャスパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-084_U.png",
     "tags": []
@@ -10511,11 +10511,11 @@
     "name": "スーパーパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-085_U.png",
     "tags": []
@@ -10525,11 +10525,11 @@
     "name": "デュアルモニターパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-086_C.png",
     "tags": []
@@ -10539,11 +10539,11 @@
     "name": "コールアンドレスポンス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-087_C.png",
     "tags": []
@@ -10553,11 +10553,11 @@
     "name": "凸待ち",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」",
+      "エリートスパーク",
       "スタートデッキ 推し Justice"
     ],
     "img": "/image/support/hBP03-088_U.png",
@@ -10568,11 +10568,11 @@
     "name": "ファンミーティング",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-089_U.png",
     "tags": []
@@ -10582,11 +10582,11 @@
     "name": "ホロライブ言えるかな？",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-090_U.png",
     "tags": []
@@ -10596,11 +10596,11 @@
     "name": "ホロライブインドネシア1期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-091_U.png",
     "tags": []
@@ -10610,11 +10610,11 @@
     "name": "ホロライブ0期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-092_U.png",
     "tags": []
@@ -10624,11 +10624,11 @@
     "name": "ホロライブ4期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-093_U.png",
     "tags": []
@@ -10638,11 +10638,11 @@
     "name": "FPS配信",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-094_U.png",
     "tags": []
@@ -10652,11 +10652,11 @@
     "name": "ホロキャップ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-095_C.png",
     "tags": []
@@ -10666,11 +10666,11 @@
     "name": "ライフル",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-096_U.png",
     "tags": []
@@ -10680,11 +10680,11 @@
     "name": "リコーダー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-097_C.png",
     "tags": []
@@ -10694,11 +10694,11 @@
     "name": "金時",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-098_U.png",
     "tags": []
@@ -10708,11 +10708,11 @@
     "name": "マグチ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-099_C.png",
     "tags": []
@@ -10722,11 +10722,11 @@
     "name": "ペロ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-100_C.png",
     "tags": []
@@ -10736,11 +10736,11 @@
     "name": "ビビ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-101_C.png",
     "tags": []
@@ -10750,11 +10750,11 @@
     "name": "フトイヌ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-102_U.png",
     "tags": []
@@ -10764,11 +10764,11 @@
     "name": "ホソイヌ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-103_C.png",
     "tags": []
@@ -10778,11 +10778,11 @@
     "name": "Riscot",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-104_C.png",
     "tags": []
@@ -10792,12 +10792,12 @@
     "name": "ルーナイト",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」",
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "エリートスパーク",
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP03-105_U.png",
     "tags": []
@@ -10807,11 +10807,11 @@
     "name": "SSRB",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-106_C.png",
     "tags": []
@@ -10821,11 +10821,11 @@
     "name": "35P",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」",
+      "エリートスパーク",
       "ライブスタートデッキ さくらみこ"
     ],
     "img": "/image/support/hBP03-107_U.png",
@@ -10836,11 +10836,11 @@
     "name": "はあとん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-108_C.png",
     "tags": []
@@ -10850,11 +10850,11 @@
     "name": "Ruffians",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-109_C.png",
     "tags": []
@@ -10864,12 +10864,12 @@
     "name": "ろぼさー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」",
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "エリートスパーク",
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP03-110_U.png",
     "tags": []
@@ -10879,11 +10879,11 @@
     "name": "ころねすきー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-111_C.png",
     "tags": []
@@ -10893,12 +10893,12 @@
     "name": "わためいと",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」",
-      "ブースターパック「ディーヴァフィーバー」"
+      "エリートスパーク",
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP03-112_U.png",
     "tags": []
@@ -10908,11 +10908,11 @@
     "name": "Risuners",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エリートスパーク」"
+      "エリートスパーク"
     ],
     "img": "/image/support/hBP03-113_C.png",
     "tags": []
@@ -13736,11 +13736,11 @@
     "name": "ツートンカラーパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-089_U.png",
     "tags": []
@@ -13750,11 +13750,11 @@
     "name": "作業用パソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-090_U.png",
     "tags": []
@@ -13764,11 +13764,11 @@
     "name": "限界飯",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-091_U.png",
     "tags": []
@@ -13778,11 +13778,11 @@
     "name": "ねぽらぼ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-092_U.png",
     "tags": []
@@ -13792,11 +13792,11 @@
     "name": "ホロライブ2期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-093_U.png",
     "tags": []
@@ -13806,11 +13806,11 @@
     "name": "まいたけダンス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-094_U.png",
     "tags": []
@@ -13820,11 +13820,11 @@
     "name": "マスコットキャッチャー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-095_U.png",
     "tags": []
@@ -13834,11 +13834,11 @@
     "name": "Advent",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」",
+      "キュリアスユニバース",
       "スタートデッキ 推し Advent"
     ],
     "img": "/image/support/hBP04-096_U.png",
@@ -13849,11 +13849,11 @@
     "name": "緑の試験管",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-097_U.png",
     "tags": []
@@ -13863,11 +13863,11 @@
     "name": "鍛冶ハンマー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-098_U.png",
     "tags": []
@@ -13877,11 +13877,11 @@
     "name": "古代武器",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-099_U.png",
     "tags": []
@@ -13891,11 +13891,11 @@
     "name": "ココロ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-100_C.png",
     "tags": []
@@ -13905,11 +13905,11 @@
     "name": "だいふく",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-101_C.png",
     "tags": []
@@ -13919,11 +13919,11 @@
     "name": "やめなー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-102_C.png",
     "tags": []
@@ -13933,11 +13933,11 @@
     "name": "カラス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-103_C.png",
     "tags": []
@@ -13947,11 +13947,11 @@
     "name": "スバルドダック",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-104_C.png",
     "tags": []
@@ -13961,11 +13961,11 @@
     "name": "こよりの助手くん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-105_U.png",
     "tags": []
@@ -13975,11 +13975,11 @@
     "name": "雪民",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「キュリアスユニバース」"
+      "キュリアスユニバース"
     ],
     "img": "/image/support/hBP04-106_U.png",
     "tags": []
@@ -16312,11 +16312,11 @@
     "name": "フレンドリーパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-074_C.png",
     "tags": []
@@ -16326,11 +16326,11 @@
     "name": "牛丼",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-075_C.png",
     "tags": []
@@ -16340,11 +16340,11 @@
     "name": "ちょこのビーフストロガノフ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-076_U.png",
     "tags": []
@@ -16354,11 +16354,11 @@
     "name": "バカタレサーカス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-077_U.png",
     "tags": []
@@ -16368,11 +16368,11 @@
     "name": "晩酌配信",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-078_U.png",
     "tags": []
@@ -16382,11 +16382,11 @@
     "name": "み俺恥",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-079_U.png",
     "tags": []
@@ -16396,11 +16396,11 @@
     "name": "SorAZセレブレーション",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-080_U.png",
     "tags": []
@@ -16410,11 +16410,11 @@
     "name": "白銀ノエルのメイス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-081_U.png",
     "tags": []
@@ -16424,11 +16424,11 @@
     "name": "アキ・ローゼンタールの斧",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-082_U.png",
     "tags": []
@@ -16438,11 +16438,11 @@
     "name": "ネリッサ・レイヴンクロフトの杖",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-083_U.png",
     "tags": []
@@ -16452,11 +16452,11 @@
     "name": "角巻わためのハープ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-084_U.png",
     "tags": []
@@ -16466,11 +16466,11 @@
     "name": "みこだにぇー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-085_C.png",
     "tags": []
@@ -16480,11 +16480,11 @@
     "name": "Cilus",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-086_C.png",
     "tags": []
@@ -16494,11 +16494,11 @@
     "name": "Jailbird",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「エンチャントレガリア」"
+      "エンチャントレガリア"
     ],
     "img": "/image/support/hBP05-087_U.png",
     "tags": []
@@ -19118,11 +19118,11 @@
     "name": "フェイバリットパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-085_U.png",
     "tags": []
@@ -19132,11 +19132,11 @@
     "name": "愛情いっぱい召し上がれ♪",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-086_C.png",
     "tags": []
@@ -19146,11 +19146,11 @@
     "name": "しめじダンス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-087_U.png",
     "tags": []
@@ -19160,11 +19160,11 @@
     "name": "ドッキリうさぎ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-088_C.png",
     "tags": []
@@ -19174,11 +19174,11 @@
     "name": "ドローイングストリーム",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-089_C.png",
     "tags": []
@@ -19188,11 +19188,11 @@
     "name": "ブルームステージ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-090_U.png",
     "tags": []
@@ -19202,11 +19202,11 @@
     "name": "ホロライブ1期生",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-091_U.png",
     "tags": []
@@ -19216,11 +19216,11 @@
     "name": "マヨネーズちゅっちゅっ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-092_C.png",
     "tags": []
@@ -19230,11 +19230,11 @@
     "name": "山田ルイ54世",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-093_U.png",
     "tags": []
@@ -19244,11 +19244,11 @@
     "name": "ワークアウト",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-094_C.png",
     "tags": []
@@ -19258,11 +19258,11 @@
     "name": "IDENTIFY -AREA 15-",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-095_U.png",
     "tags": []
@@ -19272,11 +19272,11 @@
     "name": "2人あわせてラムダック！",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-096_U.png",
     "tags": []
@@ -19286,11 +19286,11 @@
     "name": "カワイイスタジャン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-097_C.png",
     "tags": []
@@ -19300,11 +19300,11 @@
     "name": "鬼神刀「阿修羅」",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-098_U.png",
     "tags": []
@@ -19314,11 +19314,11 @@
     "name": "ゆび",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-099_U.png",
     "tags": []
@@ -19328,11 +19328,11 @@
     "name": "Chattino",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-100_C.png",
     "tags": []
@@ -19342,11 +19342,11 @@
     "name": "ムーナびと",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-101_C.png",
     "tags": []
@@ -19356,11 +19356,11 @@
     "name": "えびふらいおん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-102_C.png",
     "tags": []
@@ -19370,11 +19370,11 @@
     "name": "まつりす",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-103_C.png",
     "tags": []
@@ -19384,11 +19384,11 @@
     "name": "スバ友",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」"
+      "アヤカシヴァーミリオン"
     ],
     "img": "/image/support/hBP06-104_C.png",
     "tags": []
@@ -22155,11 +22155,11 @@
     "name": "ライブスタッフ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "スタッフ",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-091_C.png",
     "tags": []
@@ -22169,11 +22169,11 @@
     "name": "アーカイブパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-092_U.png",
     "tags": []
@@ -22183,11 +22183,11 @@
     "name": "うまみー！",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-093_C.png",
     "tags": []
@@ -22197,11 +22197,11 @@
     "name": "ギリわるロボ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-094_U.png",
     "tags": []
@@ -22211,11 +22211,11 @@
     "name": "クロスインパクト",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-095_C.png",
     "tags": []
@@ -22225,11 +22225,11 @@
     "name": "ちゃま旅",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-096_U.png",
     "tags": []
@@ -22239,11 +22239,11 @@
     "name": "時の支配者 -Promise-",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-097_U.png",
     "tags": []
@@ -22253,11 +22253,11 @@
     "name": "ビッグゴッドミオーンの占い",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-098_U.png",
     "tags": []
@@ -22267,11 +22267,11 @@
     "name": "ブヒー！",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-099_C.png",
     "tags": []
@@ -22281,11 +22281,11 @@
     "name": "フロンティアスピリット",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-100_U.png",
     "tags": []
@@ -22295,11 +22295,11 @@
     "name": "ASMRマイク",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-101_C.png",
     "tags": []
@@ -22309,11 +22309,11 @@
     "name": "角巻わためのハンマー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-102_U.png",
     "tags": []
@@ -22323,11 +22323,11 @@
     "name": "ギラファノコギリクワガタ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-103_U.png",
     "tags": []
@@ -22337,11 +22337,11 @@
     "name": "Thorn",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-104_U.png",
     "tags": []
@@ -22351,11 +22351,11 @@
     "name": "BAZO",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-105_C.png",
     "tags": []
@@ -22365,11 +22365,11 @@
     "name": "ハトタウロス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-106_U.png",
     "tags": []
@@ -22379,11 +22379,11 @@
     "name": "Boros",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-107_U.png",
     "tags": []
@@ -22393,11 +22393,11 @@
     "name": "Zecretary",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-108_C.png",
     "tags": []
@@ -22407,11 +22407,11 @@
     "name": "Kronies",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-109_C.png",
     "tags": []
@@ -22421,11 +22421,11 @@
     "name": "ねっ子",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」"
+      "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-110_C.png",
     "tags": []
@@ -22466,9 +22466,9 @@
     "name": "ReGLOSS",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "PRカード"
     ],
@@ -22950,11 +22950,11 @@
     "name": "春先のどか",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "スタッフ",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 赤 百鬼あやめ",
       "スタートデッキ 青 猫又おかゆ",
@@ -22968,9 +22968,9 @@
     "name": "マネちゃん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "スタッフ",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 赤 百鬼あやめ",
@@ -22986,9 +22986,9 @@
     "name": "サブパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 赤 百鬼あやめ",
@@ -23002,11 +23002,11 @@
     "name": "スゴイパソコン",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "アイテム",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 青 猫又おかゆ",
       "スタートデッキ 紫 癒月ちょこ",
@@ -23020,11 +23020,11 @@
     "name": "ホロリスの輪",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ブルーミングレディアンス」",
+      "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」"
     ],
     "img": "/image/support/hSD01-020_C.png",
@@ -23035,9 +23035,9 @@
     "name": "First Gravity",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」"
     ],
@@ -23406,9 +23406,9 @@
     "name": "いろはにほへっと あやふぶみ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 赤 百鬼あやめ"
     ],
@@ -23420,9 +23420,9 @@
     "name": "阿修羅＆羅刹",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 赤 百鬼あやめ"
     ],
@@ -23434,11 +23434,11 @@
     "name": "ぽよ余",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「アヤカシヴァーミリオン」",
+      "アヤカシヴァーミリオン",
       "スタートデッキ 赤 百鬼あやめ"
     ],
     "img": "/image/support/hSD02-014_C.png",
@@ -23811,9 +23811,9 @@
     "name": "泥棒建設",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -23825,9 +23825,9 @@
     "name": "おかにゃん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -23839,9 +23839,9 @@
     "name": "おにぎりゃー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -24205,9 +24205,9 @@
     "name": "スバちょこルーナ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -24219,9 +24219,9 @@
     "name": "ちょこのオムライス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -24233,9 +24233,9 @@
     "name": "しょこら",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -24656,9 +24656,9 @@
     "name": "ばんぺん",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 白 轟はじめ"
     ],
@@ -24967,9 +24967,9 @@
     "name": "ﾁｬｷ丸",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 緑 風真いろは"
     ],
@@ -24981,9 +24981,9 @@
     "name": "ぽこべぇ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 緑 風真いろは"
     ],
@@ -25404,9 +25404,9 @@
     "name": "不知火建設",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 黄 不知火フレア"
     ],
@@ -25418,9 +25418,9 @@
     "name": "エルフレンド",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ファン",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 黄 不知火フレア"
     ],
@@ -26178,9 +26178,9 @@
     "name": "WHAT'S UP!!!!! KEEEEEP GROWING!!!!!",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
@@ -26193,9 +26193,9 @@
     "name": "FLOW GLOW",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
@@ -26208,11 +26208,11 @@
     "name": "ふぐ太郎",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "ツール",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
-      "ブースターパック「ディーヴァフィーバー」",
+      "ディーヴァフィーバー",
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
     ],
@@ -26922,9 +26922,9 @@
     "name": "脱獄を果たした共犯者たち",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 推し Advent"
     ],
@@ -26936,9 +26936,9 @@
     "name": "GEOW",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 推し Advent"
     ],
@@ -27408,9 +27408,9 @@
     "name": "Justice",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -27422,9 +27422,9 @@
     "name": "JUSTICE, JUST LIKE THAT!!!!",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -27436,9 +27436,9 @@
     "name": "Popo",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -27744,9 +27744,9 @@
     "name": "holoAN",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "スタッフ",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "ライブスタートデッキ 白上フブキ",
       "ライブスタートデッキ 儒烏風亭らでん",
@@ -27762,9 +27762,9 @@
     "name": "ありよりのアリゲーター",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "マスコット",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "ライブスタートデッキ 白上フブキ"
     ],
@@ -28054,9 +28054,9 @@
     "name": "まつたけダンス",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "ライブスタートデッキ 儒烏風亭らでん"
     ],
@@ -28624,9 +28624,9 @@
     "name": "ステラ",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "ライブスタートデッキ 星街すいせい"
     ],
@@ -29194,9 +29194,9 @@
     "name": "ごきげんカレー",
     "category": "サポート",
     "color": null,
-    "kind": "",
+    "kind": "イベント",
+    "limited": "",
     "value": "0",
-    "description": "",
     "products": [
       "ライブスタートデッキ 大空スバル"
     ],
