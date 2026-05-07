@@ -359,6 +359,7 @@ def build_holomen_row(page_id, kind):
     kw2_name, _ = kw_fields(1)
 
     row = {
+        'page_id'      : page_id,
         'url'          : url,
         'img'          : img_url,
         'name'         : name,
@@ -413,6 +414,7 @@ def build_oshi_row(page_id, kind):
     products   = parse_products(products_html)
 
     row = {
+        'page_id'     : page_id,
         'url'         : url,
         'img'         : img_url,
         'name'        : name,
@@ -446,6 +448,7 @@ def build_support_row(page_id, kind):
     products   = parse_products(products_html)
 
     row = {
+        'page_id'  : page_id,
         'url'      : url,
         'img'      : img_url,
         'name'     : name,
@@ -481,19 +484,28 @@ def download_image(img_url, img_dir, img_fname):
 
 # ── CSV 読み書き ───────────────────────────────────────────────────────────────
 def load_csv(csv_path):
-    """既存 CSV を { number: row_dict } で返す"""
+    """既存 CSV を { page_id: row_dict } で返す。
+    旧形式（page_id 列なし）は { number: row_dict } にフォールバック。
+    """
     if not os.path.exists(csv_path):
         return {}, []
     with open(csv_path, encoding='utf-8', newline='') as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames or []
-        rows = {r['number']: r for r in reader if r.get('number')}
+        use_page_id = 'page_id' in fieldnames
+        rows = {}
+        for r in reader:
+            key = r.get('page_id') if use_page_id else r.get('number')
+            if key:
+                rows[key] = r
     return rows, fieldnames
 
 def save_csv(csv_path, rows_dict, fieldnames):
-    """rows_dict { number: row } を CSV に書き出す"""
-    # 既存の順序を保ちつつ、最新IDが上にくるよう id 昇順でソート
-    sorted_rows = sorted(rows_dict.values(), key=lambda r: r.get('number', ''))
+    """rows_dict { page_id: row } を CSV に書き出す（number → page_id 昇順）"""
+    sorted_rows = sorted(
+        rows_dict.values(),
+        key=lambda r: (r.get('number', ''), int(r.get('page_id', 0) or 0))
+    )
     with open(csv_path, 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
         writer.writeheader()
@@ -501,6 +513,7 @@ def save_csv(csv_path, rows_dict, fieldnames):
 
 # ── 各タイプの処理 ─────────────────────────────────────────────────────────────
 HOLOMEN_FIELDS = [
+    'page_id',
     'url','img','name','cardType','color','hp','bloom',
     'arts1_text','arts1_icons','arts1_tokkou',
     'arts2_text','arts2_icons','arts2_tokkou',
@@ -510,11 +523,13 @@ HOLOMEN_FIELDS = [
     'tag1','tag2','tag3','tag4','tag5','tag6',
 ]
 OSHI_FIELDS = [
+    'page_id',
     'url','img','name','cardType','color','life',
     'oshiSkill','spOshiSkill','stageSkill',
     'product1','product2','product3','product4','product5','number',
 ]
 SUPPORT_FIELDS = [
+    'page_id',
     'url','img','name','cardType','cardType2','arts',
     'product1','product2','product3','product4','product5','number',
 ]
@@ -553,8 +568,8 @@ def process_target(key, force=False):
 
     for page_id, img_hint in pairs:
         try:
-            # img_hint（cardsearch_ex のサムネイル fname）が取得済みならページ丸ごとスキップ
-            if not force and img_hint and img_hint in existing_imgs:
+            # page_id が既に CSV に存在 → CSV・画像ともに処理済み → 全スキップ
+            if not force and page_id in existing:
                 skip_count += 1
                 continue
 
@@ -581,15 +596,13 @@ def process_target(key, force=False):
                 time.sleep(DELAY)
                 continue
 
-            # CSV 更新（新規 or --force のみ）
+            # CSV 更新（page_id ベース：同一カード番号の別バージョンも別行で保存）
             if csv_path and row:
-                if number not in existing or force:
-                    existing[number] = row
-                    new_count += 1
-                    print(f'  {"UPDATE" if force else "NEW":6s} {number} {row.get("name","")}')
-                # else: カード番号は既存 → CSV はスキップ、画像のみ取得
+                existing[page_id] = row
+                new_count += 1
+                print(f'  {"UPDATE" if force else "NEW":6s} {number}  [{img_fname}]')
 
-            # 画像ダウンロード（番号が既存でも img_fname が未取得なら DL）
+            # 画像ダウンロード（カード番号が既存でも img_fname が未取得なら DL）
             if img_fname and img_fname not in existing_imgs:
                 if download_image(img_url, target['img_dir'], img_fname):
                     existing_imgs.add(img_fname)
@@ -642,9 +655,28 @@ def build_master_json():
             return f'/{sub_dir}/{fname}'
         return img_url
 
+    def pick_canonical(rows_by_pageid):
+        """同一 number の複数バージョンから代表行を選ぶ。
+        優先順: ① img_fname に数字サフィックスなし (_C.png 等)
+                ② なければ page_id が最小（最初に登録されたもの）
+        """
+        def score(r):
+            fname = os.path.basename(r.get('img', ''))
+            has_num = bool(re.search(r'_\d+_', fname))  # e.g. _07_C.png
+            pid = int(r.get('page_id', 0) or 0)
+            return (1 if has_num else 0, pid)
+        return min(rows_by_pageid, key=score)
+
     # ── ホロメン ──────────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_cards.csv'))
-    for number, r in sorted(existing.items()):
+    # number でグループ化して代表行を選択
+    by_number = {}
+    for r in existing.values():
+        num = r.get('number', '')
+        if num:
+            by_number.setdefault(num, []).append(r)
+    for number, rows in sorted(by_number.items()):
+        r = pick_canonical(rows)
         arts = []
         for i in range(1, 4):
             text = r.get(f'arts{i}_text', '').strip()
@@ -681,7 +713,13 @@ def build_master_json():
 
     # ── 推しホロメン ──────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_oshi.csv'))
-    for number, r in sorted(existing.items()):
+    by_number = {}
+    for r in existing.values():
+        num = r.get('number', '')
+        if num:
+            by_number.setdefault(num, []).append(r)
+    for number, rows in sorted(by_number.items()):
+        r = pick_canonical(rows)
         skills = []
         for label, key in [('推しスキル', 'oshiSkill'),
                             ('SP推しスキル', 'spOshiSkill'),
@@ -704,7 +742,13 @@ def build_master_json():
 
     # ── サポート ──────────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_support.csv'))
-    for number, r in sorted(existing.items()):
+    by_number = {}
+    for r in existing.values():
+        num = r.get('number', '')
+        if num:
+            by_number.setdefault(num, []).append(r)
+    for number, rows in sorted(by_number.items()):
+        r = pick_canonical(rows)
         all_cards.append({
             'id'         : number,
             'name'       : r.get('name', '').strip(),
