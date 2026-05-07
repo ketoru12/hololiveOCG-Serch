@@ -8354,6 +8354,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8369,6 +8370,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8384,6 +8386,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8399,6 +8402,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ 赤 百鬼あやめ",
@@ -8418,6 +8422,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8433,6 +8438,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-PCセット-"
     ],
@@ -8448,6 +8454,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 白上フブキ"
     ],
@@ -8463,6 +8470,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 儒烏風亭らでん"
     ],
@@ -8478,6 +8486,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ さくらみこ"
     ],
@@ -8493,6 +8502,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 星街すいせい"
     ],
@@ -8508,6 +8518,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 森カリオペ"
     ],
@@ -8523,6 +8534,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 大空スバル"
     ],
@@ -8538,6 +8550,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ 青 猫又おかゆ"
@@ -8554,6 +8567,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ 紫 癒月ちょこ"
@@ -8570,6 +8584,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8585,6 +8600,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ 赤 百鬼あやめ",
@@ -8604,6 +8620,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8619,6 +8636,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8634,6 +8652,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8649,6 +8668,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8664,6 +8684,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8679,6 +8700,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8694,6 +8716,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8709,6 +8732,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8724,6 +8748,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "エンチャントレガリア"
@@ -8740,6 +8765,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8755,6 +8781,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -8770,6 +8797,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ 白 天音かなた"
@@ -8786,6 +8814,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8801,6 +8830,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8816,6 +8846,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8831,6 +8862,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8846,6 +8878,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8861,6 +8894,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8876,6 +8910,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8891,6 +8926,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "ディーヴァフィーバー"
@@ -8907,6 +8943,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス"
     ],
@@ -8922,6 +8959,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "エンチャントレガリア"
@@ -8938,6 +8976,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -15104,6 +15143,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15119,6 +15159,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15134,6 +15175,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "スタートデッキ 緑 風真いろは"
@@ -15150,6 +15192,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15165,6 +15208,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-PCセット-"
     ],
@@ -15180,6 +15224,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
@@ -15199,6 +15244,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15214,6 +15260,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-PCセット-"
     ],
@@ -15229,6 +15276,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15244,6 +15292,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15259,6 +15308,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15274,6 +15324,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15289,6 +15340,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -15304,6 +15356,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "スタートデッキ 緑 風真いろは"
@@ -15320,6 +15373,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15335,6 +15389,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -15350,6 +15405,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15365,6 +15421,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15380,6 +15437,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15395,6 +15453,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15410,6 +15469,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15425,6 +15485,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15440,6 +15501,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "スタートデッキ 白 天音かなた",
@@ -15459,6 +15521,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15474,6 +15537,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15489,6 +15553,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -15504,6 +15569,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -15519,6 +15585,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15534,6 +15601,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15549,6 +15617,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 赤 宝鐘マリン"
     ],
@@ -15564,6 +15633,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -15579,6 +15649,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15594,6 +15665,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15609,6 +15681,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15624,6 +15697,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15639,6 +15713,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "ライブスタートデッキ 森カリオペ"
@@ -15655,6 +15730,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15670,6 +15746,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15685,6 +15762,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15700,6 +15778,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15715,6 +15794,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15730,6 +15810,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15745,6 +15826,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15760,6 +15842,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15775,6 +15858,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15790,6 +15874,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15805,6 +15890,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15820,6 +15906,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15835,6 +15922,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15850,6 +15938,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "スタートデッキ 赤 宝鐘マリン"
@@ -15866,6 +15955,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15881,6 +15971,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15896,6 +15987,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15911,6 +16003,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15926,6 +16019,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15941,6 +16035,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15956,6 +16051,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15971,6 +16067,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -15986,6 +16083,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -16001,6 +16099,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -16016,6 +16115,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -16031,6 +16131,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム",
       "ディーヴァフィーバー"
@@ -16047,6 +16148,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -16062,6 +16164,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -16077,6 +16180,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "クインテットスペクトラム"
     ],
@@ -22921,6 +23025,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -22936,6 +23041,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -22951,6 +23057,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -22966,6 +23073,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -22981,6 +23089,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -22996,6 +23105,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23011,6 +23121,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23026,6 +23137,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23041,6 +23153,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク",
       "スタートデッキ 推し Justice"
@@ -23057,6 +23170,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23072,6 +23186,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23087,6 +23202,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23102,6 +23218,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23117,6 +23234,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23132,6 +23250,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23147,6 +23266,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23162,6 +23282,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23177,6 +23298,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23192,6 +23314,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23207,6 +23330,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23222,6 +23346,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23237,6 +23362,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23252,6 +23378,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23267,6 +23394,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23282,6 +23410,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 白 天音かなた"
     ],
@@ -23297,6 +23426,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23312,6 +23442,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23327,6 +23458,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23342,6 +23474,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23357,6 +23490,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23372,6 +23506,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23387,6 +23522,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23402,6 +23538,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23417,6 +23554,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23432,6 +23570,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23447,6 +23586,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23462,6 +23602,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23477,6 +23618,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23492,6 +23634,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23507,6 +23650,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23522,6 +23666,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23537,6 +23682,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23552,6 +23698,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23567,6 +23714,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23582,6 +23730,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23597,6 +23746,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23612,6 +23762,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23627,6 +23778,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23642,6 +23794,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク",
       "アヤカシヴァーミリオン"
@@ -23658,6 +23811,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23673,6 +23827,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23688,6 +23843,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23703,6 +23859,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23718,6 +23875,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク",
       "ライブスタートデッキ さくらみこ"
@@ -23734,6 +23892,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23749,6 +23908,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23764,6 +23924,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23779,6 +23940,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23794,6 +23956,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23809,6 +23972,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23824,6 +23988,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク",
       "アヤカシヴァーミリオン"
@@ -23840,6 +24005,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23855,6 +24021,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23870,6 +24037,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23885,6 +24053,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク",
       "ディーヴァフィーバー"
@@ -23901,6 +24070,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23916,6 +24086,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -23931,6 +24102,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -23946,6 +24118,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エリートスパーク"
     ],
@@ -31327,6 +31500,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31342,6 +31516,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31357,6 +31532,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31372,6 +31548,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31387,6 +31564,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31402,6 +31580,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31417,6 +31596,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31432,6 +31612,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31447,6 +31628,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31462,6 +31644,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31477,6 +31660,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31492,6 +31676,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31507,6 +31692,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31522,6 +31708,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31537,6 +31724,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース",
       "スタートデッキ 推し Advent"
@@ -31553,6 +31741,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31568,6 +31757,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31583,6 +31773,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31598,6 +31789,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31613,6 +31805,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31628,6 +31821,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31643,6 +31837,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31658,6 +31853,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31673,6 +31869,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31688,6 +31885,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31703,6 +31901,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31718,6 +31917,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31733,6 +31933,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31748,6 +31949,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31763,6 +31965,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31778,6 +31981,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31793,6 +31997,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31808,6 +32013,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31823,6 +32029,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31838,6 +32045,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -31853,6 +32061,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -37737,6 +37946,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37752,6 +37962,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37767,6 +37978,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -37782,6 +37994,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Advent",
       "スタートデッキ 推し Justice"
@@ -37798,6 +38011,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37813,6 +38027,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37828,6 +38043,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -37843,6 +38059,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37858,6 +38075,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37873,6 +38091,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37888,6 +38107,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37903,6 +38123,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37918,6 +38139,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37933,6 +38155,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37948,6 +38171,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -37963,6 +38187,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -37978,6 +38203,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -37993,6 +38219,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38008,6 +38235,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38023,6 +38251,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38038,6 +38267,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -38053,6 +38283,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38068,6 +38299,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38083,6 +38315,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38098,6 +38331,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38113,6 +38347,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38128,6 +38363,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38143,6 +38379,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38158,6 +38395,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38173,6 +38411,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38188,6 +38427,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38203,6 +38443,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38218,6 +38459,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38233,6 +38475,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -38248,6 +38491,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "エンチャントレガリア"
     ],
@@ -44569,6 +44813,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44584,6 +44829,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44599,6 +44845,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44614,6 +44861,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44629,6 +44877,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44644,6 +44893,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44659,6 +44909,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44674,6 +44925,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44689,6 +44941,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44704,6 +44957,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44719,6 +44973,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44734,6 +44989,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44749,6 +45005,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -44764,6 +45021,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-2025ライブセット-"
     ],
@@ -44779,6 +45037,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44794,6 +45053,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44809,6 +45069,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44824,6 +45085,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44839,6 +45101,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44854,6 +45117,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -44869,6 +45133,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44884,6 +45149,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44899,6 +45165,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44914,6 +45181,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44929,6 +45197,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -44944,6 +45213,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44959,6 +45229,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44974,6 +45245,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -44989,6 +45261,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45004,6 +45277,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45019,6 +45293,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45034,6 +45309,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45049,6 +45325,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45064,6 +45341,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45079,6 +45357,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45094,6 +45373,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45109,6 +45389,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45124,6 +45405,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45139,6 +45421,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45154,6 +45437,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -45169,6 +45453,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン"
     ],
@@ -51575,6 +51860,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51590,6 +51876,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51605,6 +51892,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51620,6 +51908,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51635,6 +51924,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51650,6 +51940,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51665,6 +51956,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51680,6 +51972,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51695,6 +51988,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51710,6 +52004,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51725,6 +52020,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51740,6 +52036,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51755,6 +52052,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51770,6 +52068,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51785,6 +52084,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51800,6 +52100,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51815,6 +52116,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51830,6 +52132,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -51845,6 +52148,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51860,6 +52164,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51875,6 +52180,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51890,6 +52196,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51905,6 +52212,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51920,6 +52228,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51935,6 +52244,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51950,6 +52260,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51965,6 +52276,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51980,6 +52292,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -51995,6 +52308,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52010,6 +52324,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52025,6 +52340,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52040,6 +52356,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52055,6 +52372,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52070,6 +52388,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52085,6 +52404,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52100,6 +52420,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52115,6 +52436,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52130,6 +52452,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー"
     ],
@@ -52178,6 +52501,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -52193,6 +52517,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -52208,6 +52533,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 白 轟はじめ"
     ],
@@ -52966,6 +53292,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」",
@@ -52985,6 +53312,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -53000,6 +53328,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -53015,6 +53344,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 白 天音かなた",
       "スタートデッキ 赤 宝鐘マリン"
@@ -53031,6 +53361,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 赤 百鬼あやめ",
@@ -53050,6 +53381,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -53065,6 +53397,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -53080,6 +53413,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "キュリアスユニバース"
     ],
@@ -53095,6 +53429,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」",
       "スタートデッキ 赤 百鬼あやめ",
@@ -53112,6 +53447,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -53127,6 +53463,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-PCセット-"
     ],
@@ -53142,6 +53479,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」",
@@ -53161,6 +53499,7 @@
     "kind": "アイテム",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "オフィシャルホロカコレクション-PCセット-"
     ],
@@ -53176,6 +53515,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ブルーミングレディアンス",
       "スタートデッキ「ときのそら＆AZKi」"
@@ -53192,6 +53532,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ「ときのそら＆AZKi」"
     ],
@@ -53790,6 +54131,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 赤 百鬼あやめ"
     ],
@@ -53805,6 +54147,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -53820,6 +54163,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 赤 百鬼あやめ"
     ],
@@ -53835,6 +54179,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "アヤカシヴァーミリオン",
       "スタートデッキ 赤 百鬼あやめ"
@@ -53851,6 +54196,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -54454,6 +54800,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -54469,6 +54816,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -54484,6 +54832,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -54499,6 +54848,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 青 猫又おかゆ"
     ],
@@ -55026,6 +55376,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -55041,6 +55392,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -55056,6 +55408,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 紫 癒月ちょこ"
     ],
@@ -55604,6 +55957,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 白 轟はじめ"
     ],
@@ -56064,6 +56418,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 緑 風真いろは"
     ],
@@ -56079,6 +56434,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -56094,6 +56450,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 緑 風真いろは"
     ],
@@ -56729,6 +57086,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 黄 不知火フレア"
     ],
@@ -56744,6 +57102,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -56759,6 +57118,7 @@
     "kind": "ファン",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 黄 不知火フレア"
     ],
@@ -58113,6 +58473,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
@@ -58129,6 +58490,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
       "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
@@ -58145,6 +58507,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "PRカード"
     ],
@@ -58160,6 +58523,7 @@
     "kind": "ツール",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ディーヴァフィーバー",
       "スタートデッキ FLOW GLOW 推し 輪堂千速",
@@ -59240,6 +59604,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Advent"
     ],
@@ -59255,6 +59620,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Advent"
     ],
@@ -59886,6 +60252,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -59901,6 +60268,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -59916,6 +60284,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "スタートデッキ 推し Justice"
     ],
@@ -60242,6 +60611,7 @@
     "kind": "スタッフ",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 白上フブキ",
       "ライブスタートデッキ 儒烏風亭らでん",
@@ -60261,6 +60631,7 @@
     "kind": "マスコット",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 白上フブキ"
     ],
@@ -60571,6 +60942,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 儒烏風亭らでん"
     ],
@@ -61176,6 +61548,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 星街すいせい"
     ],
@@ -61781,6 +62154,7 @@
     "kind": "イベント",
     "limited": "",
     "value": "0",
+    "effect": "",
     "products": [
       "ライブスタートデッキ 大空スバル"
     ],

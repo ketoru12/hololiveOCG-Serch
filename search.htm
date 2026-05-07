@@ -548,6 +548,7 @@
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {
                 details += createRow('種別', card.kind, 'kind-pill');
+                if (card.effect) details += createRow('能力テキスト', card.effect.replace(/\n/g, '<br>'));
             }
 
             if (card.arts) {

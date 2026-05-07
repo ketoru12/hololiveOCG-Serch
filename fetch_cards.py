@@ -330,6 +330,17 @@ def parse_support_cardtype_parts(detail):
     ct3 = parts[2] if len(parts) > 2 else ''
     return ct, ct2, ct3
 
+def parse_support_effect(detail):
+    """サポートカードの能力テキストを取得する。
+    HTML: <dt>能力テキスト</dt><dd>...</dd>
+    """
+    m = re.search(r'<dt>能力テキスト</dt>\s*<dd>(.*?)</dd>', detail, re.DOTALL)
+    if not m:
+        return ''
+    # <br> を改行に変換してタグを除去
+    text = re.sub(r'<br\s*/?>', '\n', m.group(1))
+    return clean_text(strip_tags(text)).strip()
+
 # ── カードデータをビルド ─────────────────────────────────────────────────────
 def build_page_url(page_id, kind):
     kind_enc = urllib.parse.quote(kind, safe='')
@@ -460,6 +471,7 @@ def build_support_row(page_id, kind):
     name                        = parse_name(detail)
     number                      = parse_number(detail)
     card_type, card_type2, card_type3 = parse_support_cardtype_parts(detail)
+    effect                      = parse_support_effect(detail)
     products                    = parse_products(products_html)
 
     row = {
@@ -470,6 +482,7 @@ def build_support_row(page_id, kind):
         'cardType' : card_type,
         'cardType2': card_type2,
         'cardType3': card_type3,
+        'effect'   : effect,
         'product1' : products[0] if len(products) > 0 else '',
         'product2' : products[1] if len(products) > 1 else '',
         'product3' : products[2] if len(products) > 2 else '',
@@ -548,7 +561,7 @@ OSHI_FIELDS = [
 ]
 SUPPORT_FIELDS = [
     'page_id',
-    'url','img','name','cardType','cardType2','cardType3',
+    'url','img','name','cardType','cardType2','cardType3','effect',
     'product1','product2','product3','product4','product5','number',
 ]
 
@@ -756,6 +769,7 @@ def build_master_json():
             'kind'      : r.get('cardType2', '').strip(),
             'limited'   : r.get('cardType3', '').strip(),
             'value'     : '0',
+            'effect'    : r.get('effect', '').strip(),
             'products'  : products_list(r),
             'img'       : local_img(r.get('img', ''), 'image/support'),
             'tags'      : [],
