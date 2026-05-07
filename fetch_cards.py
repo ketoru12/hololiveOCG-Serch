@@ -697,7 +697,7 @@ def build_master_json():
             'id'          : r.get('number', '').strip(),
             'page_id'     : r.get('page_id', '').strip(),
             'name'        : r.get('name', '').strip(),
-            'category'    : 'Buzzホロメン' if 'Buzz' in card_type else 'ホロメン',
+            'category'    : 'ホロメン',
             'color'       : r.get('color', '').strip() or None,
             'kind'        : r.get('bloom', '').strip(),
             'value'       : r.get('hp', '').strip(),
