@@ -667,28 +667,16 @@ def build_master_json():
             return f'/{sub_dir}/{fname}'
         return img_url
 
-    def pick_canonical(rows_by_pageid):
-        """同一 number の複数バージョンから代表行を選ぶ。
-        優先順: ① img_fname に数字サフィックスなし (_C.png 等)
-                ② なければ page_id が最小（最初に登録されたもの）
-        """
-        def score(r):
-            fname = os.path.basename(r.get('img', ''))
-            has_num = bool(re.search(r'_\d+_', fname))  # e.g. _07_C.png
-            pid = int(r.get('page_id', 0) or 0)
-            return (1 if has_num else 0, pid)
-        return min(rows_by_pageid, key=score)
+    def rows_sorted(existing):
+        """全行を (number, page_id) 順で返す（全バージョン含む）"""
+        return sorted(
+            (r for r in existing.values() if r.get('number')),
+            key=lambda r: (r.get('number', ''), int(r.get('page_id', 0) or 0))
+        )
 
     # ── ホロメン ──────────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_cards.csv'))
-    # number でグループ化して代表行を選択
-    by_number = {}
-    for r in existing.values():
-        num = r.get('number', '')
-        if num:
-            by_number.setdefault(num, []).append(r)
-    for number, rows in sorted(by_number.items()):
-        r = pick_canonical(rows)
+    for r in rows_sorted(existing):
         arts = []
         for i in range(1, 4):
             text = r.get(f'arts{i}_text', '').strip()
@@ -706,7 +694,8 @@ def build_master_json():
         tags = [r.get(f'tag{i}', '').strip() for i in range(1, 7)
                 if r.get(f'tag{i}', '').strip()]
         all_cards.append({
-            'id'          : number,
+            'id'          : r.get('number', '').strip(),
+            'page_id'     : r.get('page_id', '').strip(),
             'name'        : r.get('name', '').strip(),
             'category'    : 'Buzzホロメン' if 'Buzz' in card_type else 'ホロメン',
             'color'       : r.get('color', '').strip() or None,
@@ -725,13 +714,7 @@ def build_master_json():
 
     # ── 推しホロメン ──────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_oshi.csv'))
-    by_number = {}
-    for r in existing.values():
-        num = r.get('number', '')
-        if num:
-            by_number.setdefault(num, []).append(r)
-    for number, rows in sorted(by_number.items()):
-        r = pick_canonical(rows)
+    for r in rows_sorted(existing):
         skills = []
         for label, key in [('推しスキル', 'oshiSkill'),
                             ('SP推しスキル', 'spOshiSkill'),
@@ -740,7 +723,8 @@ def build_master_json():
             if v:
                 skills.append({'label': label, 'text': v})
         all_cards.append({
-            'id'      : number,
+            'id'      : r.get('number', '').strip(),
+            'page_id' : r.get('page_id', '').strip(),
             'name'    : r.get('name', '').strip(),
             'category': '推しホロメン',
             'color'   : r.get('color', '').strip() or None,
@@ -754,15 +738,10 @@ def build_master_json():
 
     # ── サポート ──────────────────────────────────────────────────────────────
     existing, _ = load_csv(os.path.join(BASE_DIR, 'hololive_support.csv'))
-    by_number = {}
-    for r in existing.values():
-        num = r.get('number', '')
-        if num:
-            by_number.setdefault(num, []).append(r)
-    for number, rows in sorted(by_number.items()):
-        r = pick_canonical(rows)
+    for r in rows_sorted(existing):
         all_cards.append({
-            'id'        : number,
+            'id'        : r.get('number', '').strip(),
+            'page_id'   : r.get('page_id', '').strip(),
             'name'      : r.get('name', '').strip(),
             'category'  : 'サポート',
             'color'     : None,
@@ -774,7 +753,7 @@ def build_master_json():
             'tags'      : [],
         })
 
-    all_cards.sort(key=lambda c: c['id'])
+    all_cards.sort(key=lambda c: (c['id'], int(c.get('page_id', 0) or 0)))
     out_path = os.path.join(BASE_DIR, 'master_cards.json')
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(all_cards, f, ensure_ascii=False, indent=2)
