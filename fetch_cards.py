@@ -239,11 +239,16 @@ def parse_arts(detail):
             if outer_start == -1 or outer_end == -1:
                 continue
             span_content = p[outer_start + len('<span>'):outer_end]
-            # tokkou
+            # tokkou（中身は <img alt="緑+50"> 形式）
             tokkou_m = re.search(r'<span class="tokkou">(.*?)</span>', span_content, re.DOTALL)
-            tokkou = clean_text(strip_tags(tokkou_m.group(1))) if tokkou_m else ''
-            # icons（span 内の img alt）
-            icons = img_alts(span_content)
+            if tokkou_m:
+                tok_alts = img_alts(tokkou_m.group(1))  # e.g. ['緑+50']
+                tokkou = tok_alts[0] if tok_alts else ''
+            else:
+                tokkou = ''
+            # icons（span 内の img alt、tokkou span の中は除く）
+            span_for_icons = re.sub(r'<span class="tokkou">.*?</span>', '', span_content, flags=re.DOTALL)
+            icons = img_alts(span_for_icons)
             icons_str = ','.join(icons)
             # art text: span内テキスト（imgとtokkou spanを除く）
             span_no_img = re.sub(r'<img[^>]+/?>', '', span_content)
