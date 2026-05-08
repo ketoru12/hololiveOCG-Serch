@@ -492,6 +492,14 @@
 
     init();
 
+    // ── Supabase OAuth コールバック処理 ──
+    // ログイン後に index.html へリダイレクトされた場合、search.htm へ転送する
+    (function() {
+        if (window.location.hash && window.location.hash.includes('access_token=')) {
+            window.location.replace('./search.htm' + window.location.hash);
+        }
+    })();
+
     // ── UA判定でリンク先を切り替え ──
     (function() {
         var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);

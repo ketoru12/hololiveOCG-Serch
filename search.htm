@@ -1021,7 +1021,7 @@
                 _sb.auth.signInWithOAuth({
                     provider: 'google',
                     options: {
-                        redirectTo: 'https://ketoru12.github.io/holocg-viewer/',
+                        redirectTo: window.location.href.split('#')[0].split('?')[0],
                         skipBrowserRedirect: false
                     }
                 });
