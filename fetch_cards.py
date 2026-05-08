@@ -339,7 +339,9 @@ def parse_support_effect(detail):
         return ''
     # <br> を改行に変換してタグを除去
     text = re.sub(r'<br\s*/?>', '\n', m.group(1))
-    return clean_text(strip_tags(text)).strip()
+    text = clean_text(strip_tags(text))
+    text = re.sub(r'\n{3,}', '\n\n', text)  # 3つ以上の連続改行を2つに圧縮
+    return text.strip()
 
 # ── カードデータをビルド ─────────────────────────────────────────────────────
 def build_page_url(page_id, kind):
