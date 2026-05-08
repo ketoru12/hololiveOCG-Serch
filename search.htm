@@ -239,7 +239,7 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." 
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果…（スペースでAND検索）"
                         class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
                 </div>
 
@@ -447,7 +447,14 @@
                     searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
                 }
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
-                result = fuse.search(activeFilters.text).map(r => r.item);
+                const terms = activeFilters.text.trim().split(/[\s　]+/).filter(Boolean);
+                if (terms.length <= 1) {
+                    result = fuse.search(activeFilters.text).map(r => r.item);
+                } else {
+                    // スペース区切りはAND検索：各ワードにマッチするカードの積集合
+                    const sets = terms.map(term => new Set(fuse.search(term).map(r => r.item.page_id)));
+                    result = result.filter(c => sets.every(s => s.has(c.page_id)));
+                }
             }
             
             if (activeFilters.category.length > 0) {
