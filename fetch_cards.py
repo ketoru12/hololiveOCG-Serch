@@ -338,9 +338,12 @@ def parse_support_effect(detail):
     if not m:
         return ''
     # <br> を改行に変換してタグを除去
-    text = re.sub(r'<br\s*/?>', '\n', m.group(1))
+    text = m.group(1)
+    # 連続する <br>（後続空白含む）は段落区切り（1空行）
+    text = re.sub(r'(<br\s*/?>\s*){2,}', '\n\n', text)
+    # 単独の <br>（後続空白含む）は改行のみ（後続の \n も一緒に消費して二重改行を防ぐ）
+    text = re.sub(r'<br\s*/?>\s*', '\n', text)
     text = clean_text(strip_tags(text))
-    text = re.sub(r'\n{3,}', '\n\n', text)  # 3つ以上の連続改行を2つに圧縮
     return text.strip()
 
 # ── カードデータをビルド ─────────────────────────────────────────────────────
