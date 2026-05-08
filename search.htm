@@ -18,6 +18,8 @@
         /* 基本スタイル */
         .label-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0; }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
+        .tokkou-badge { display:inline-flex; align-items:center; gap:2px; margin-left:6px; background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:1px 5px; }
+        .tokkou-bonus { font-size:0.85em; font-weight:bold; color:#b45309; }
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
@@ -237,7 +239,7 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果..." 
+                    <input type="text" id="searchInput" placeholder="名前、タグ、効果…（スペースでAND検索）"
                         class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
                 </div>
 
@@ -445,7 +447,14 @@
                     searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
                 }
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
-                result = fuse.search(activeFilters.text).map(r => r.item);
+                const terms = activeFilters.text.trim().split(/[\s　]+/).filter(Boolean);
+                if (terms.length <= 1) {
+                    result = fuse.search(activeFilters.text).map(r => r.item);
+                } else {
+                    // スペース区切りはAND検索：各ワードにマッチするカードの積集合
+                    const sets = terms.map(term => new Set(fuse.search(term).map(r => r.item.page_id)));
+                    result = result.filter(c => sets.every(s => s.has(c.page_id)));
+                }
             }
             
             if (activeFilters.category.length > 0) {
@@ -474,7 +483,7 @@
                     return checkLogic(c.kind || '', activeFilters.kind, logiceState.kind);
                 });
             }
-            if (activeFilters.subKind.length > 0) result = result.filter(c => checkLogic(c.kind || '', activeFilters.subKind, logiceState.subKind));
+            if (activeFilters.subKind.length > 0) result = result.filter(c => checkLogic([c.kind || '', c.limited || ''].join(' '), activeFilters.subKind, logiceState.subKind));
             
             if (activeFilters.tokkou) {
                 result = result.filter(c => c.arts && Array.isArray(c.arts) && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
@@ -494,7 +503,7 @@
             cards.forEach(card => {
                 const div = document.createElement('div');
                 div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
-                div.onclick = () => showDetail(card.id);
+                div.onclick = () => showDetail(card.id, card.page_id);
                 div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${(card.img || '').startsWith('/') ? card.img.slice(1) : card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
                 grid.appendChild(div);
             });
@@ -506,6 +515,13 @@
             if (!icons) return '';
             return icons.split(',').map(c => `<img src="${artsImgMap[normalizeColor(c.trim())] || artsImgMap['無']}" class="arts-color-icon" title="${c.trim()}">`).join('');
         }
+        function renderTokkou(tokkou) {
+            if (!tokkou) return '';
+            const m = tokkou.match(/^(.+?)(\+\d+)$/);
+            if (!m) return '';
+            const icon = artsImgMap[normalizeColor(m[1].trim())] || artsImgMap['無'];
+            return `<span class="tokkou-badge"><img src="${icon}" class="arts-color-icon"><span class="tokkou-bonus">${m[2]}</span></span>`;
+        }
 
         function renderBatonIcons(count) {
             const n = parseInt(count, 10);
@@ -513,8 +529,10 @@
             return Array(n).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('');
         }
 
-        function showDetail(cardId) {
-            const card = allCards.find(c => c.id === cardId);
+        function showDetail(cardId, pageId) {
+            const card = pageId
+                ? (allCards.find(c => c.page_id === pageId) || allCards.find(c => c.id === cardId))
+                : allCards.find(c => c.id === cardId);
             if (!card) return;
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
@@ -538,6 +556,7 @@
                 return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[col]}" class="color-icon"><span class="font-bold">${col}</span></div></div>`;
             };
 
+            if (card.rarity) details += createRow('レアリティ', card.rarity);
             if (card.category !== "サポート") details += createColorRow('色', card.color);
             if (card.category === "ホロメン") {
                 details += createRow('HP', card.value);
@@ -548,11 +567,12 @@
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {
                 details += createRow('種別', card.kind, 'kind-pill');
+                if (card.effect) details += createRow('能力テキスト', card.effect);
             }
 
             if (card.arts) {
                 card.arts.forEach(art => {
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span></div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
+                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span>${renderTokkou(art.tokkou)}</div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
                 });
             }
             if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
@@ -650,6 +670,7 @@
             cart:{}, yell:{}, oshi:null, MAX_PER:4, MAX_TOTAL:50, MAX_YELL:20,
             total:function(){ return Object.values(this.cart).reduce(function(s,c){return s+c.qty;},0); },
             isOshi:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
+            isUnlimited:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return !!(c&&c.unlimited); },
             isYell:function(id){ return YELL_CARDS.some(function(y){return y.id===id;}); },
             yellTotal:function(){ return Object.values(this.yell).reduce(function(s,c){return s+c.qty;},0); },
             add:function(id,name,img){
@@ -670,7 +691,7 @@
                     return;
                 }
                 if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
-                if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
+                if(!this.isUnlimited(id)&&this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
                 if(this.cart[id])this.cart[id].qty++;
                 else this.cart[id]={name:name,img:hcImg(img),qty:1};
                 this.updateBar();this.updateBadges();
@@ -695,7 +716,7 @@
                     this.yell[id].qty++;this.updateBar();this.updateBadges();return;
                 }
                 if(!this.cart[id])return;
-                if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
+                if(!this.isUnlimited(id)&&this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
                 if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
                 this.cart[id].qty++;this.updateBar();this.updateBadges();
             },
@@ -723,7 +744,8 @@
                         else b.style.display='none';
                     } else {
                         var q=self.cart[id]?self.cart[id].qty:0;
-                        if(q>0){b.textContent=q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=q>=self.MAX_PER?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
+                        var unl=self.isUnlimited(id);
+                        if(q>0){b.textContent=unl?q+'枚':q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=(!unl&&q>=self.MAX_PER)?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
                         else b.style.display='none';
                     }
                 });
@@ -799,18 +821,21 @@
         }
 
         var _hcOrigShowDetail=showDetail;
-        showDetail=function(cardId){
-            _hcOrigShowDetail(cardId);
+        showDetail=function(cardId,pageId){
+            _hcOrigShowDetail(cardId,pageId);
             var ex=document.getElementById('hcCC');if(ex)ex.remove();
             var ctrl=document.createElement('div');ctrl.id='hcCC';
             var det=document.getElementById('modalDetails');
             if(det)det.parentNode.insertBefore(ctrl,det);
-            hcRefModal(cardId);
+            hcRefModal(cardId,pageId);
         };
 
-        function hcRefModal(cardId){
+        function hcRefModal(cardId,pageId){
             var ctrl=document.getElementById('hcCC');if(!ctrl)return;
-            var card=hcCards.find(function(c){return c.id===cardId;});if(!card)return;
+            var card=pageId
+                ?(hcCards.find(function(c){return c.page_id===pageId;})||hcCards.find(function(c){return c.id===cardId;}))
+                :hcCards.find(function(c){return c.id===cardId;});
+            if(!card)return;
             var isO=card.category==='推しホロメン';
             var isY=HC.isYell(card.id);
             var img=card.img||'';
@@ -819,6 +844,7 @@
             lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isO?'#10b981':'#64748b')+';';
             lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):
                 isY?'エール: '+(HC.yell[cardId]?HC.yell[cardId].qty:0)+'/'+HC.MAX_YELL+'枚':
+                HC.isUnlimited(cardId)?'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'枚（無制限）':
                 'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
             ctrl.appendChild(lbl);
             if(isY){
@@ -1002,7 +1028,7 @@
                 _sb.auth.signInWithOAuth({
                     provider: 'google',
                     options: {
-                        redirectTo: 'https://ketoru12.github.io/holocg-viewer/',
+                        redirectTo: window.location.href.split('#')[0].split('?')[0],
                         skipBrowserRedirect: false
                     }
                 });
