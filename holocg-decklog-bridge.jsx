@@ -112,12 +112,12 @@ function CopyBtn({ text, label, color }) {
 const STEPS = [
   {
     n: "01", emoji: "🛒", color: "#5e5a9b",
-    title: "holocg-viewer にカート機能を追加",
-    site: "ketoru12.github.io/holocg-viewer/",
+    title: "hololiveOCG-Serch にカート機能を追加",
+    site: "ketoru12.github.io/hololiveOCG-Serch/",
     code: BOOKMARKLET_STEP1,
     steps: [
       "コードをコピーしてブラウザのブックマークに登録（URL欄に貼り付ける）",
-      "holocg-viewer を開いてブックマークをクリック → 画面右下にカートが出現",
+      "hololiveOCG-Serch を開いてブックマークをクリック → 画面右下にカートが出現",
       "カードをクリックしてモーダルを開く",
       "カード番号（紫バッジ）をクリック → カートに追加される",
       "枚数は ＋/− ボタンで調整",
@@ -159,7 +159,7 @@ export default function App() {
           fontSize: "clamp(20px,5vw,36px)", fontWeight: 900, margin: "0 0 8px",
           background: "linear-gradient(90deg,#a78bfa,#fff 50%,#fb923c)",
           WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.3,
-        }}>holocg-viewer → DECKLOG<br />デッキ登録ブリッジ</h1>
+        }}>hololiveOCG-Serch → DECKLOG<br />デッキ登録ブリッジ</h1>
         <p style={{ color: "#94a3b8", fontSize: 13, margin: 0 }}>
           2つのブックマークレットでカード選択からデッキ登録を自動化
         </p>

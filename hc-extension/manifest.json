@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ホロカ → DECKLOG",
   "version": "2.1",
-  "description": "holocg-viewerで選んだカードをDECKLOGに自動登録",
+  "description": "hololiveOCG-Serchで選んだカードをDECKLOGに自動登録",
   "permissions": ["scripting", "tabs", "storage"],
   "host_permissions": [
     "https://decklog.bushiroad.com/*",
