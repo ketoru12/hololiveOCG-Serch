@@ -575,15 +575,15 @@ def process_target(key, force=False):
 
     print(f'\n=== {kind} ===')
 
-    # 既存 CSV ロード
-    existing, fieldnames = {}, []
+    # 既存 CSV ロード（フィールドは常にキャノニカル定義を使用）
+    canonical_fields = (HOLOMEN_FIELDS if key == 'holomen' else
+                        OSHI_FIELDS    if key == 'oshi'    else
+                        SUPPORT_FIELDS)
+    existing, _ = {}, []
     if csv_path:
-        existing, fieldnames = load_csv(csv_path)
-        if not fieldnames:
-            fieldnames = (HOLOMEN_FIELDS if key == 'holomen' else
-                          OSHI_FIELDS    if key == 'oshi'    else
-                          SUPPORT_FIELDS)
+        existing, _ = load_csv(csv_path)
         print(f'  既存: {len(existing)} 件')
+    fieldnames = canonical_fields
 
     # 全 ID + img_fname ペアを取得
     pairs = get_all_ids(kind)
