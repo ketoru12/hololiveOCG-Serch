@@ -316,6 +316,11 @@ def parse_stage_skill(detail):
     texts = [clean_text(strip_tags(p)) for p in paragraphs if strip_tags(p) not in ('ステージスキル', '')]
     return '\n'.join(texts)
 
+def parse_rarity(detail):
+    """レアリティを取得する。HTML: <dt>レアリティ</dt><dd>U</dd>"""
+    m = re.search(r'<dt>レアリティ</dt>\s*<dd>([^<]+)</dd>', detail)
+    return m.group(1).strip() if m else ''
+
 def parse_support_cardtype_parts(detail):
     """サポートの「カードタイプ」フィールドを分解して (cardType, cardType2, cardType3) を返す。
     HTML: <dt>カードタイプ</dt><dd>サポート・アイテム・LIMITED</dd>
@@ -371,6 +376,7 @@ def build_holomen_row(page_id, kind):
     bloom     = parse_bloom(detail)
     baton     = parse_baton(detail)
     extra     = parse_extra(detail)
+    rarity    = parse_rarity(detail)
     tags      = parse_tags(detail)
     products  = parse_products(products_html)
     arts      = parse_arts(detail)
@@ -414,6 +420,7 @@ def build_holomen_row(page_id, kind):
         'keywordEffect': kw1_effect,
         'baton'        : baton,
         'extra'        : extra,
+        'rarity'       : rarity,
         'number'       : number,
         'product1'     : products[0] if len(products) > 0 else '',
         'product2'     : products[1] if len(products) > 1 else '',
@@ -441,6 +448,7 @@ def build_oshi_row(page_id, kind):
     card_type  = parse_card_type(detail)
     color      = parse_color(detail)
     life       = parse_life(detail)
+    rarity     = parse_rarity(detail)
     oshi_skill = parse_oshi_skill(detail)
     sp_skill   = parse_sp_oshi_skill(detail)
     stage_skill= parse_stage_skill(detail)
@@ -454,6 +462,7 @@ def build_oshi_row(page_id, kind):
         'cardType'    : card_type,
         'color'       : color,
         'life'        : life,
+        'rarity'      : rarity,
         'oshiSkill'   : oshi_skill,
         'spOshiSkill' : sp_skill,
         'stageSkill'  : stage_skill,
@@ -477,6 +486,7 @@ def build_support_row(page_id, kind):
     number                      = parse_number(detail)
     card_type, card_type2, card_type3 = parse_support_cardtype_parts(detail)
     effect                      = parse_support_effect(detail)
+    rarity                      = parse_rarity(detail)
     products                    = parse_products(products_html)
 
     row = {
@@ -488,6 +498,7 @@ def build_support_row(page_id, kind):
         'cardType2': card_type2,
         'cardType3': card_type3,
         'effect'   : effect,
+        'rarity'   : rarity,
         'product1' : products[0] if len(products) > 0 else '',
         'product2' : products[1] if len(products) > 1 else '',
         'product3' : products[2] if len(products) > 2 else '',
@@ -554,19 +565,19 @@ HOLOMEN_FIELDS = [
     'arts1_text','arts1_icons','arts1_tokkou',
     'arts2_text','arts2_icons','arts2_tokkou',
     'arts3_text','arts3_icons','arts3_tokkou',
-    'keyword1','keyword2','keywordEffect','baton','extra','number',
+    'keyword1','keyword2','keywordEffect','baton','extra','rarity','number',
     'product1','product2','product3','product4','product5',
     'tag1','tag2','tag3','tag4','tag5','tag6',
 ]
 OSHI_FIELDS = [
     'page_id',
-    'url','img','name','cardType','color','life',
+    'url','img','name','cardType','color','life','rarity',
     'oshiSkill','spOshiSkill','stageSkill',
     'product1','product2','product3','product4','product5','number',
 ]
 SUPPORT_FIELDS = [
     'page_id',
-    'url','img','name','cardType','cardType2','cardType3','effect',
+    'url','img','name','cardType','cardType2','cardType3','effect','rarity',
     'product1','product2','product3','product4','product5','number',
 ]
 
@@ -732,6 +743,7 @@ def build_master_json():
             'keywordName' : r.get('keyword1', '').strip(),
             'keywordEffect': r.get('keywordEffect', '').strip(),
             'extra'       : extra,
+            'rarity'      : r.get('rarity', '').strip(),
             'unlimited'   : '何枚でも入れられる' in extra,
             'products'    : products_list(r),
             'img'         : local_img(r.get('img', ''), 'image/holomen'),
@@ -756,6 +768,7 @@ def build_master_json():
             'color'   : r.get('color', '').strip() or None,
             'kind'    : '推し',
             'value'   : r.get('life', '').strip(),
+            'rarity'  : r.get('rarity', '').strip(),
             'skills'  : skills,
             'products': products_list(r),
             'img'     : local_img(r.get('img', ''), 'image/OSR'),
@@ -775,6 +788,7 @@ def build_master_json():
             'limited'   : r.get('cardType3', '').strip(),
             'value'     : '0',
             'effect'    : r.get('effect', '').strip(),
+            'rarity'    : r.get('rarity', '').strip(),
             'products'  : products_list(r),
             'img'       : local_img(r.get('img', ''), 'image/support'),
             'tags'      : [],

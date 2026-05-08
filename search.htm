@@ -547,6 +547,7 @@
                 return `<div class="flex items-center mb-1 gap-3"><span class="label-pill">${label}</span><div class="value-box flex items-center gap-2"><img src="${typeImgMap[col]}" class="color-icon"><span class="font-bold">${col}</span></div></div>`;
             };
 
+            if (card.rarity) details += createRow('レアリティ', card.rarity);
             if (card.category !== "サポート") details += createColorRow('色', card.color);
             if (card.category === "ホロメン") {
                 details += createRow('HP', card.value);
