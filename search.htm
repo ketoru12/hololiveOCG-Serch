@@ -18,6 +18,8 @@
         /* 基本スタイル */
         .label-pill { background-color: #5e5a9b; color: white; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: bold; min-width: 110px; text-align: center; flex-shrink: 0; }
         .arts-pill { background: linear-gradient(90deg, #5f76e0, #e6659c); }
+        .tokkou-badge { display:inline-flex; align-items:center; gap:2px; margin-left:6px; background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:1px 5px; }
+        .tokkou-bonus { font-size:0.85em; font-weight:bold; color:#b45309; }
         .keyword-pill { background-color: #10b981; }
         .oshi-pill { background-color: #ef4444; }
         .stage-pill { background-color: #3b82f6; }
@@ -506,6 +508,13 @@
             if (!icons) return '';
             return icons.split(',').map(c => `<img src="${artsImgMap[normalizeColor(c.trim())] || artsImgMap['無']}" class="arts-color-icon" title="${c.trim()}">`).join('');
         }
+        function renderTokkou(tokkou) {
+            if (!tokkou) return '';
+            const m = tokkou.match(/^(.+?)(\+\d+)$/);
+            if (!m) return '';
+            const icon = artsImgMap[normalizeColor(m[1].trim())] || artsImgMap['無'];
+            return `<span class="tokkou-badge"><img src="${icon}" class="arts-color-icon"><span class="tokkou-bonus">${m[2]}</span></span>`;
+        }
 
         function renderBatonIcons(count) {
             const n = parseInt(count, 10);
@@ -553,7 +562,7 @@
 
             if (card.arts) {
                 card.arts.forEach(art => {
-                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span></div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
+                    details += `<div class="flex items-start mb-1 gap-3 border-t border-slate-50 pt-2"><span class="label-pill arts-pill">アーツ</span><div class="value-box"><div class="flex items-center gap-1">${renderArtsIcons(art.icons)}<span class="font-black text-lg">${art.name} ${art.damage}</span>${renderTokkou(art.tokkou)}</div><div class="text-slate-600 text-sm">${art.text}</div></div></div>`;
                 });
             }
             if (card.skills) card.skills.forEach(s => details += createRow(s.label, s.text, s.label === 'ステージスキル' ? 'stage-pill' : 'oshi-pill'));
