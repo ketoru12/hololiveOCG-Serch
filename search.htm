@@ -496,7 +496,7 @@
             cards.forEach(card => {
                 const div = document.createElement('div');
                 div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
-                div.onclick = () => showDetail(card.id);
+                div.onclick = () => showDetail(card.id, card.page_id);
                 div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${(card.img || '').startsWith('/') ? card.img.slice(1) : card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
                 grid.appendChild(div);
             });
@@ -522,8 +522,10 @@
             return Array(n).fill(`<img src="${BATON_ICON}" class="baton-icon">`).join('');
         }
 
-        function showDetail(cardId) {
-            const card = allCards.find(c => c.id === cardId);
+        function showDetail(cardId, pageId) {
+            const card = pageId
+                ? (allCards.find(c => c.page_id === pageId) || allCards.find(c => c.id === cardId))
+                : allCards.find(c => c.id === cardId);
             if (!card) return;
             const nameEl = document.getElementById('modalName');
             nameEl.innerText = card.name;
@@ -812,18 +814,21 @@
         }
 
         var _hcOrigShowDetail=showDetail;
-        showDetail=function(cardId){
-            _hcOrigShowDetail(cardId);
+        showDetail=function(cardId,pageId){
+            _hcOrigShowDetail(cardId,pageId);
             var ex=document.getElementById('hcCC');if(ex)ex.remove();
             var ctrl=document.createElement('div');ctrl.id='hcCC';
             var det=document.getElementById('modalDetails');
             if(det)det.parentNode.insertBefore(ctrl,det);
-            hcRefModal(cardId);
+            hcRefModal(cardId,pageId);
         };
 
-        function hcRefModal(cardId){
+        function hcRefModal(cardId,pageId){
             var ctrl=document.getElementById('hcCC');if(!ctrl)return;
-            var card=hcCards.find(function(c){return c.id===cardId;});if(!card)return;
+            var card=pageId
+                ?(hcCards.find(function(c){return c.page_id===pageId;})||hcCards.find(function(c){return c.id===cardId;}))
+                :hcCards.find(function(c){return c.id===cardId;});
+            if(!card)return;
             var isO=card.category==='推しホロメン';
             var isY=HC.isYell(card.id);
             var img=card.img||'';
