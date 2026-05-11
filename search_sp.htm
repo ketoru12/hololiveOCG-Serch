@@ -412,14 +412,6 @@
 
     <script>
         // エールカード定義
-        const YELL_CARDS = [
-            {id:'hY01-001', name:'エール（白）', img:'image/cheer/hY01-001_C.png', color:'白', category:'エール'},
-            {id:'hY02-001', name:'エール（緑）', img:'image/cheer/hY02-001_C.png', color:'緑', category:'エール'},
-            {id:'hY03-001', name:'エール（赤）', img:'image/cheer/hY03-001_C.png', color:'赤', category:'エール'},
-            {id:'hY04-001', name:'エール（青）', img:'image/cheer/hY04-001_C.png', color:'青', category:'エール'},
-            {id:'hY05-001', name:'エール（紫）', img:'image/cheer/hY05-001_C.png', color:'紫', category:'エール'},
-            {id:'hY06-001', name:'エール（黄）', img:'image/cheer/hY06-001_C.png', color:'黄', category:'エール'}
-        ];
         let allCards = [];
         const NORMAL_RARITIES = new Set(['C','U','R','RR','OSR']);
         let activeFilters = { text: '', category: [], kind: [], subKind: [], parallel: '', color: '', product: '', baton: [], tokkou: '' };
@@ -689,16 +681,24 @@
             const includeText = document.getElementById('searchIncludeText').checked;
             
             if (activeFilters.text) {
+                const isCardId = term => /^h[A-Za-z0-9]+-\d/i.test(term);
+                const matchById = (term, cards) => {
+                    const t = term.toLowerCase();
+                    return cards.filter(c => (c.id || '').toLowerCase().startsWith(t));
+                };
                 let searchKeys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
                 if (includeText) {
                     searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
                 }
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
+                const searchOne = (term, base) => isCardId(term)
+                    ? matchById(term, base)
+                    : fuse.search(term).map(r => r.item);
                 const terms = activeFilters.text.trim().split(/[\s　]+/).filter(Boolean);
                 if (terms.length <= 1) {
-                    result = fuse.search(activeFilters.text).map(r => r.item);
+                    result = searchOne(activeFilters.text.trim(), result);
                 } else {
-                    const sets = terms.map(term => new Set(fuse.search(term).map(r => r.item.page_id)));
+                    const sets = terms.map(term => new Set(searchOne(term, allCards).map(c => c.page_id)));
                     result = result.filter(c => sets.every(s => s.has(c.page_id)));
                 }
             }
@@ -709,7 +709,7 @@
 
             if (activeFilters.color) {
                 result = result.filter(c => {
-                    if (c.category !== "ホロメン" && c.category !== "推しホロメン") return false;
+                    if (c.category !== "ホロメン" && c.category !== "推しホロメン" && c.category !== "エール") return false;
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
                     return cColor === activeFilters.color;
                 });
@@ -902,16 +902,24 @@
             const includeText = document.getElementById('searchIncludeText').checked;
             
             if (activeFilters.text) {
+                const isCardId = term => /^h[A-Za-z0-9]+-\d/i.test(term);
+                const matchById = (term, cards) => {
+                    const t = term.toLowerCase();
+                    return cards.filter(c => (c.id || '').toLowerCase().startsWith(t));
+                };
                 let searchKeys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
                 if (includeText) {
                     searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
                 }
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
+                const searchOne = (term, base) => isCardId(term)
+                    ? matchById(term, base)
+                    : fuse.search(term).map(r => r.item);
                 const terms = activeFilters.text.trim().split(/[\s　]+/).filter(Boolean);
                 if (terms.length <= 1) {
-                    result = fuse.search(activeFilters.text).map(r => r.item);
+                    result = searchOne(activeFilters.text.trim(), result);
                 } else {
-                    const sets = terms.map(term => new Set(fuse.search(term).map(r => r.item.page_id)));
+                    const sets = terms.map(term => new Set(searchOne(term, allCards).map(c => c.page_id)));
                     result = result.filter(c => sets.every(s => s.has(c.page_id)));
                 }
             }
@@ -922,7 +930,7 @@
 
             if (activeFilters.color) {
                 result = result.filter(c => {
-                    if (c.category !== "ホロメン" && c.category !== "推しホロメン") return false;
+                    if (c.category !== "ホロメン" && c.category !== "推しホロメン" && c.category !== "エール") return false;
                     const cColor = (c.color === '◇' || !c.color || c.color === 'nan') ? '無' : c.color;
                     return cColor === activeFilters.color;
                 });
@@ -1168,8 +1176,6 @@
                     opt.value = opt.textContent = p;
                     productSelect.appendChild(opt);
                 });
-                // YELL_CARDSをallCardsに追加
-                allCards = allCards.concat(YELL_CARDS);
                 renderCards(allCards);
             } catch (e) { console.error("データ読み込みエラー:", e); }
         }
@@ -1190,7 +1196,7 @@
             cart:{}, yell:{}, oshi:null, MAX_PER:4, MAX_TOTAL:50, MAX_YELL:20,
             total:function(){ return Object.values(this.cart).reduce(function(s,c){return s+c.qty;},0); },
             isOshi:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
-            isYell:function(id){ return YELL_CARDS.some(function(y){return y.id===id;}); },
+            isYell:function(id){ var c=allCards.find(function(x){return x.id===id;}); return !!(c&&c.category==='エール'); },
             yellTotal:function(){ return Object.values(this.yell).reduce(function(s,c){return s+c.qty;},0); },
             add:function(id,name,img){
                 if(this.isYell(id)){
@@ -1288,7 +1294,7 @@
                     return fn&&img.src.indexOf(fn)>-1;
                 });
                 if(!found){
-                    found=YELL_CARDS.find(function(c){
+                    found=allCards.filter(function(c){return c.category==='エール';}).find(function(c){
                         var fn=(c.img||'').split('/').pop();
                         return fn&&img.src.indexOf(fn)>-1;
                     });
@@ -1735,7 +1741,7 @@
             fetch('./master_cards.json')
                 .then(function(r){return r.json();})
                 .then(function(d){
-                    hcCards=d.concat(YELL_CARDS);
+                    hcCards=d;
                     hcPatch();
                     new MutationObserver(function(){setTimeout(hcPatch,50);})
                         .observe(document.getElementById('cardGrid'),{childList:true});

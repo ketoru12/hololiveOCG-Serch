@@ -44,7 +44,7 @@ TARGETS = {
     },
     'yell': {
         'kind'   : 'エール',
-        'csv'    : None,          # CSV なし（画像のみ）
+        'csv'    : 'hololive_yell.csv',
         'img_dir': 'image/cheer',
     },
 }
@@ -508,6 +508,35 @@ def build_support_row(page_id, kind):
     }
     return row, img_url, img_fname, number
 
+def build_yell_row(page_id, kind):
+    url = build_page_url(page_id, kind)
+    html = fetch(url)
+    detail        = parse_detail_section(html)
+    products_html = parse_products_section(html)
+
+    img_url, img_fname = parse_image(detail)
+    name     = parse_name(detail)
+    number   = parse_number(detail)
+    color    = parse_color(detail)
+    rarity   = parse_rarity(detail)
+    products = parse_products(products_html)
+
+    row = {
+        'page_id'  : page_id,
+        'url'      : url,
+        'img'      : img_url,
+        'name'     : name,
+        'color'    : color,
+        'rarity'   : rarity,
+        'product1' : products[0] if len(products) > 0 else '',
+        'product2' : products[1] if len(products) > 1 else '',
+        'product3' : products[2] if len(products) > 2 else '',
+        'product4' : products[3] if len(products) > 3 else '',
+        'product5' : products[4] if len(products) > 4 else '',
+        'number'   : number,
+    }
+    return row, img_url, img_fname, number
+
 # ── 画像ダウンロード ──────────────────────────────────────────────────────────
 def download_image(img_url, img_dir, img_fname):
     if not img_url or not img_fname:
@@ -580,6 +609,11 @@ SUPPORT_FIELDS = [
     'url','img','name','cardType','cardType2','cardType3','effect','rarity',
     'product1','product2','product3','product4','product5','number',
 ]
+YELL_FIELDS = [
+    'page_id',
+    'url','img','name','color','rarity',
+    'product1','product2','product3','product4','product5','number',
+]
 
 def process_target(key, force=False):
     target   = TARGETS[key]
@@ -594,6 +628,7 @@ def process_target(key, force=False):
     # 既存 CSV ロード（フィールドは常にキャノニカル定義を使用）
     canonical_fields = (HOLOMEN_FIELDS if key == 'holomen' else
                         OSHI_FIELDS    if key == 'oshi'    else
+                        YELL_FIELDS    if key == 'yell'    else
                         SUPPORT_FIELDS)
     existing, _ = {}, []
     if csv_path:
@@ -628,12 +663,7 @@ def process_target(key, force=False):
             elif key == 'support':
                 row, img_url, img_fname, number = build_support_row(page_id, kind)
             elif key == 'yell':
-                url = f'{BASE_URL}/cardlist/?id={page_id}'
-                html = fetch(url)
-                detail = parse_detail_section(html)
-                img_url, img_fname = parse_image(detail)
-                number = parse_number(detail)
-                row = None
+                row, img_url, img_fname, number = build_yell_row(page_id, kind)
             else:
                 continue
 
@@ -793,6 +823,25 @@ def build_master_json():
             'img'       : local_img(r.get('img', ''), 'image/support'),
             'tags'      : [],
         })
+
+    # ── エール ────────────────────────────────────────────────────────────────
+    yell_csv = os.path.join(BASE_DIR, 'hololive_yell.csv')
+    if os.path.exists(yell_csv):
+        existing, _ = load_csv(yell_csv)
+        for r in rows_sorted(existing):
+            all_cards.append({
+                'id'       : r.get('number', '').strip(),
+                'page_id'  : r.get('page_id', '').strip(),
+                'name'     : r.get('name', '').strip(),
+                'category' : 'エール',
+                'color'    : r.get('color', '').strip() or None,
+                'kind'     : '',
+                'value'    : '',
+                'rarity'   : r.get('rarity', '').strip(),
+                'products' : products_list(r),
+                'img'      : local_img(r.get('img', ''), 'image/cheer'),
+                'tags'     : [],
+            })
 
     all_cards.sort(key=lambda c: (c['id'], int(c.get('page_id', 0) or 0)))
     out_path = os.path.join(BASE_DIR, 'master_cards.json')
