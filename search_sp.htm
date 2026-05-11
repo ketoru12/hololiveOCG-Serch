@@ -163,18 +163,12 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #5e5a9b; border-radius: 10px; }
 
-        /* ==== 一列リストモード ==== */
-        .hc-list-row { display:flex; align-items:center; gap:10px; padding:8px 12px; background:white; border-bottom:1px solid #f1f5f9; }
-        .hc-list-row:active { background:#f8f7ff; }
-        .hc-list-img { width:58px; height:81px; object-fit:cover; border-radius:4px; flex-shrink:0; box-shadow:0 1px 4px rgba(0,0,0,.15); cursor:pointer; }
-        .hc-list-info { flex:1; min-width:0; cursor:pointer; }
-        .hc-list-name { font-size:13px; font-weight:700; color:#1e293b; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hc-list-id { font-size:10px; color:#94a3b8; font-family:monospace; margin-top:1px; }
-        .hc-list-badges { display:flex; flex-wrap:wrap; gap:3px; margin-top:4px; align-items:center; }
-        .hc-list-badge { font-size:9px; font-weight:700; padding:1px 5px; border-radius:999px; color:white; white-space:nowrap; }
-        .hc-list-btns { display:flex; flex-direction:column; align-items:center; gap:2px; flex-shrink:0; }
-        .hc-list-btns button { border:none; border-radius:50%; width:30px; height:30px; font-size:16px; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.2); }
-        .hc-list-qty { font-size:11px; font-weight:bold; color:#5e5a9b; min-width:20px; text-align:center; height:14px; }
+        /* ==== 一列モード ==== */
+        .hc-col1-card { background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+        .hc-col1-img { width:100%; aspect-ratio:3/4.2; object-fit:cover; display:block; cursor:pointer; }
+        .hc-col1-bar { display:flex; align-items:center; justify-content:center; gap:12px; padding:8px 12px; background:#f8f7ff; }
+        .hc-col1-bar button { border:none; border-radius:50%; width:38px; height:38px; font-size:20px; font-weight:bold; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+        .hc-col1-qty { font-size:15px; font-weight:bold; color:#5e5a9b; min-width:32px; text-align:center; }
 
         /* ==== HC カート ==== */
         #hcBar{background:#1e3a5f;border-left:4px solid #5e5a9b;padding:8px 10px;display:flex;flex-direction:column;gap:6px;flex-shrink:0;font-size:11px;color:white;}
@@ -490,19 +484,23 @@
             if (typeof applyFilters === 'function') applyFilters();
         }
 
-        function hcListUpdateRow(id) {
-            // 一列モード時に枚数バッジだけ更新
+        function hcCol1Update(id) {
+            // 一列モード：枚数表示だけ更新（再描画しない）
             const isYell = HC.isYell(id);
-            const isOshi = allCards.find(c => c.id === id)?.category === '推しホロメン';
+            const card = allCards.find(c => c.id === id);
+            const isOshi = card && card.category === '推しホロメン';
             const qty = isYell ? (HC.yell[id]?HC.yell[id].qty:0)
                        : isOshi ? (HC.oshi&&HC.oshi.id===id?1:0)
                        : (HC.cart[id]?HC.cart[id].qty:0);
-            document.querySelectorAll('[data-hcqty="' + id + '"]').forEach(el => {
-                el.textContent = qty > 0 ? qty : '';
-            });
-            document.querySelectorAll('[data-hcdec="' + id + '"]').forEach(btn => {
-                btn.style.opacity = qty === 0 ? '0.25' : '1';
-            });
+            document.querySelectorAll('[data-hcqty="'+id+'"]').forEach(el => { el.textContent = qty; });
+            document.querySelectorAll('[data-hcdec="'+id+'"]').forEach(btn => { btn.style.opacity = qty===0?'0.25':'1'; });
+            if (isOshi) {
+                document.querySelectorAll('[data-hcoshi="'+id+'"]').forEach(btn => {
+                    const sel = HC.oshi&&HC.oshi.id===id;
+                    btn.textContent = sel ? '⭐' : '☆';
+                    btn.style.background = sel ? '#10b981' : '#64748b';
+                });
+            }
         }
 
         function toggleLogic(group) {
@@ -620,46 +618,76 @@
             document.getElementById('mobileResultCount').innerText = countText;
 
             if (hcViewMode === 'list') {
+                // 一列モード：1カラム全幅、画像下に操作ボタン
                 grid.style.cssText = '';
-                grid.className = '';
-                grid.innerHTML = cards.length ? '' : `<div class="text-center py-20 text-slate-400">該当するカードがありません</div>`;
+                grid.className = 'grid grid-cols-1 gap-3 p-3';
+                grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
                 cards.forEach(card => {
                     const imgSrc = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
                     const isOshi = card.category === '推しホロメン';
                     const isYell = HC.isYell(card.id);
-                    const color = (!card.color||card.color==='nan'||card.color==='◇') ? '無' : card.color;
                     const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0)
                                : isOshi ? (HC.oshi&&HC.oshi.id===card.id?1:0)
                                : (HC.cart[card.id]?HC.cart[card.id].qty:0);
 
-                    // バッジ
-                    const catColor = {ホロメン:'#5e5a9b',推しホロメン:'#ef4444',サポート:'#10b981',エール:'#f59e0b'};
-                    let badges = `<span class="hc-list-badge" style="background:${catColor[card.category]||'#64748b'}">${card.category||''}</span>`;
-                    if (typeImgMap[color]) badges += `<img src="${typeImgMap[color]}" style="width:14px;height:14px;border-radius:50%;">`;
-                    if (card.kind) badges += `<span class="hc-list-badge" style="background:#3b82f6">${card.kind}</span>`;
-                    if (card.rarity) badges += `<span class="hc-list-badge" style="background:#f59e0b">${card.rarity}</span>`;
+                    const wrap = document.createElement('div');
+                    wrap.className = 'hc-col1-card';
 
-                    const row = document.createElement('div');
-                    row.className = 'hc-list-row';
-                    row.innerHTML = `
-                        <img class="hc-list-img" src="${imgSrc}" loading="lazy">
-                        <div class="hc-list-info">
-                            <div class="hc-list-name">${card.name||''}</div>
-                            <div class="hc-list-id">${card.id||''}</div>
-                            <div class="hc-list-badges">${badges}</div>
-                        </div>
-                        <div class="hc-list-btns">
-                            <button style="background:#5e5a9b;color:white;" data-hcadd="${card.id}">＋</button>
-                            <div class="hc-list-qty" data-hcqty="${card.id}">${qty>0?qty:''}</div>
-                            <button style="background:#ef4444;color:white;opacity:${qty===0?'0.25':'1'};" data-hcdec="${card.id}">－</button>
-                        </div>`;
-                    row.querySelector('.hc-list-img').onclick = () => showDetail(card.id, card.page_id);
-                    row.querySelector('.hc-list-info').onclick = () => showDetail(card.id, card.page_id);
-                    row.querySelector('[data-hcadd]').onclick = e => { e.stopPropagation(); HC.add(card.id, card.name, card.img||''); hcListUpdateRow(card.id); };
-                    row.querySelector('[data-hcdec]').onclick = e => { e.stopPropagation(); HC.dec(card.id); hcListUpdateRow(card.id); };
-                    grid.appendChild(row);
+                    const img = document.createElement('img');
+                    img.className = 'hc-col1-img';
+                    img.src = imgSrc;
+                    img.loading = 'lazy';
+                    img.onclick = () => showDetail(card.id, card.page_id);
+                    wrap.appendChild(img);
+
+                    const bar = document.createElement('div');
+                    bar.className = 'hc-col1-bar';
+
+                    if (isOshi) {
+                        const sel = HC.oshi && HC.oshi.id === card.id;
+                        const btn = document.createElement('button');
+                        btn.dataset.hcoshi = card.id;
+                        btn.textContent = sel ? '⭐' : '☆';
+                        btn.style.cssText = `background:${sel?'#10b981':'#64748b'};color:white;width:48px;height:48px;`;
+                        btn.onclick = () => {
+                            if (HC.oshi && HC.oshi.id === card.id) HC.removeOshi();
+                            else HC.add(card.id, card.name, card.img||'');
+                            hcCol1Update(card.id);
+                        };
+                        bar.appendChild(btn);
+                    } else {
+                        const decBtn = document.createElement('button');
+                        decBtn.textContent = '－';
+                        decBtn.dataset.hcdec = card.id;
+                        decBtn.style.cssText = `background:#ef4444;color:white;opacity:${qty===0?'0.25':'1'};`;
+                        decBtn.onclick = () => { HC.dec(card.id); hcCol1Update(card.id); };
+
+                        const qtyEl = document.createElement('div');
+                        qtyEl.className = 'hc-col1-qty';
+                        qtyEl.dataset.hcqty = card.id;
+                        qtyEl.textContent = qty;
+
+                        const incBtn = document.createElement('button');
+                        incBtn.textContent = '＋';
+                        incBtn.dataset.hcadd = card.id;
+                        incBtn.style.cssText = 'background:#5e5a9b;color:white;';
+                        incBtn.onclick = () => { HC.add(card.id, card.name, card.img||''); hcCol1Update(card.id); };
+
+                        const detailBtn = document.createElement('button');
+                        detailBtn.textContent = '🔍';
+                        detailBtn.style.cssText = 'background:white;color:#5e5a9b;border:1px solid #e2e8f0;font-size:16px;';
+                        detailBtn.onclick = () => showDetail(card.id, card.page_id);
+
+                        bar.appendChild(decBtn);
+                        bar.appendChild(qtyEl);
+                        bar.appendChild(incBtn);
+                        bar.appendChild(detailBtn);
+                    }
+                    wrap.appendChild(bar);
+                    grid.appendChild(wrap);
                 });
             } else {
+                // 一覧モード：2列グリッド
                 grid.style.cssText = '';
                 grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
                 grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
@@ -881,46 +909,76 @@
             document.getElementById('mobileResultCount').innerText = countText;
 
             if (hcViewMode === 'list') {
+                // 一列モード：1カラム全幅、画像下に操作ボタン
                 grid.style.cssText = '';
-                grid.className = '';
-                grid.innerHTML = cards.length ? '' : `<div class="text-center py-20 text-slate-400">該当するカードがありません</div>`;
+                grid.className = 'grid grid-cols-1 gap-3 p-3';
+                grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
                 cards.forEach(card => {
                     const imgSrc = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
                     const isOshi = card.category === '推しホロメン';
                     const isYell = HC.isYell(card.id);
-                    const color = (!card.color||card.color==='nan'||card.color==='◇') ? '無' : card.color;
                     const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0)
                                : isOshi ? (HC.oshi&&HC.oshi.id===card.id?1:0)
                                : (HC.cart[card.id]?HC.cart[card.id].qty:0);
 
-                    // バッジ
-                    const catColor = {ホロメン:'#5e5a9b',推しホロメン:'#ef4444',サポート:'#10b981',エール:'#f59e0b'};
-                    let badges = `<span class="hc-list-badge" style="background:${catColor[card.category]||'#64748b'}">${card.category||''}</span>`;
-                    if (typeImgMap[color]) badges += `<img src="${typeImgMap[color]}" style="width:14px;height:14px;border-radius:50%;">`;
-                    if (card.kind) badges += `<span class="hc-list-badge" style="background:#3b82f6">${card.kind}</span>`;
-                    if (card.rarity) badges += `<span class="hc-list-badge" style="background:#f59e0b">${card.rarity}</span>`;
+                    const wrap = document.createElement('div');
+                    wrap.className = 'hc-col1-card';
 
-                    const row = document.createElement('div');
-                    row.className = 'hc-list-row';
-                    row.innerHTML = `
-                        <img class="hc-list-img" src="${imgSrc}" loading="lazy">
-                        <div class="hc-list-info">
-                            <div class="hc-list-name">${card.name||''}</div>
-                            <div class="hc-list-id">${card.id||''}</div>
-                            <div class="hc-list-badges">${badges}</div>
-                        </div>
-                        <div class="hc-list-btns">
-                            <button style="background:#5e5a9b;color:white;" data-hcadd="${card.id}">＋</button>
-                            <div class="hc-list-qty" data-hcqty="${card.id}">${qty>0?qty:''}</div>
-                            <button style="background:#ef4444;color:white;opacity:${qty===0?'0.25':'1'};" data-hcdec="${card.id}">－</button>
-                        </div>`;
-                    row.querySelector('.hc-list-img').onclick = () => showDetail(card.id, card.page_id);
-                    row.querySelector('.hc-list-info').onclick = () => showDetail(card.id, card.page_id);
-                    row.querySelector('[data-hcadd]').onclick = e => { e.stopPropagation(); HC.add(card.id, card.name, card.img||''); hcListUpdateRow(card.id); };
-                    row.querySelector('[data-hcdec]').onclick = e => { e.stopPropagation(); HC.dec(card.id); hcListUpdateRow(card.id); };
-                    grid.appendChild(row);
+                    const img = document.createElement('img');
+                    img.className = 'hc-col1-img';
+                    img.src = imgSrc;
+                    img.loading = 'lazy';
+                    img.onclick = () => showDetail(card.id, card.page_id);
+                    wrap.appendChild(img);
+
+                    const bar = document.createElement('div');
+                    bar.className = 'hc-col1-bar';
+
+                    if (isOshi) {
+                        const sel = HC.oshi && HC.oshi.id === card.id;
+                        const btn = document.createElement('button');
+                        btn.dataset.hcoshi = card.id;
+                        btn.textContent = sel ? '⭐' : '☆';
+                        btn.style.cssText = `background:${sel?'#10b981':'#64748b'};color:white;width:48px;height:48px;`;
+                        btn.onclick = () => {
+                            if (HC.oshi && HC.oshi.id === card.id) HC.removeOshi();
+                            else HC.add(card.id, card.name, card.img||'');
+                            hcCol1Update(card.id);
+                        };
+                        bar.appendChild(btn);
+                    } else {
+                        const decBtn = document.createElement('button');
+                        decBtn.textContent = '－';
+                        decBtn.dataset.hcdec = card.id;
+                        decBtn.style.cssText = `background:#ef4444;color:white;opacity:${qty===0?'0.25':'1'};`;
+                        decBtn.onclick = () => { HC.dec(card.id); hcCol1Update(card.id); };
+
+                        const qtyEl = document.createElement('div');
+                        qtyEl.className = 'hc-col1-qty';
+                        qtyEl.dataset.hcqty = card.id;
+                        qtyEl.textContent = qty;
+
+                        const incBtn = document.createElement('button');
+                        incBtn.textContent = '＋';
+                        incBtn.dataset.hcadd = card.id;
+                        incBtn.style.cssText = 'background:#5e5a9b;color:white;';
+                        incBtn.onclick = () => { HC.add(card.id, card.name, card.img||''); hcCol1Update(card.id); };
+
+                        const detailBtn = document.createElement('button');
+                        detailBtn.textContent = '🔍';
+                        detailBtn.style.cssText = 'background:white;color:#5e5a9b;border:1px solid #e2e8f0;font-size:16px;';
+                        detailBtn.onclick = () => showDetail(card.id, card.page_id);
+
+                        bar.appendChild(decBtn);
+                        bar.appendChild(qtyEl);
+                        bar.appendChild(incBtn);
+                        bar.appendChild(detailBtn);
+                    }
+                    wrap.appendChild(bar);
+                    grid.appendChild(wrap);
                 });
             } else {
+                // 一覧モード：2列グリッド
                 grid.style.cssText = '';
                 grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
                 grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
