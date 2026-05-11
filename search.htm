@@ -345,6 +345,28 @@
                 </div>
 
                 <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="filter-label">レアリティ</label>
+                        <div class="logic-toggle logic-or" id="logic-rarity" onclick="toggleLogic('rarity')">OR検索</div>
+                    </div>
+                    <div class="flex flex-wrap gap-1">
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="C">C</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="U">U</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="R">R</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="RR">RR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="SR">SR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="HR">HR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="OC">OC</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="OUR">OUR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="OSR">OSR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="UR">UR</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="SEC">SEC</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="S">S</button>
+                        <button class="filter-btn px-2.5 py-2 text-xs border rounded bg-white" data-group="rarity" data-val="P">P</button>
+                    </div>
+                </div>
+
+                <div>
                     <label class="filter-label mb-2">バトンタッチ</label>
                     <div class="flex flex-wrap gap-1">
                         <button class="filter-btn px-4 py-2 text-xs border rounded bg-white" data-group="baton" data-val="0">0</button>
@@ -387,8 +409,8 @@
             {id:'hY06-001', name:'エール（黄）', img:'image/cheer/hY06-001_C.png', color:'黄', category:'エール'}
         ];
         let allCards = [];
-        let activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
-        let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
+        let activeFilters = { text: '', category: [], kind: [], subKind: [], rarity: [], color: '', product: '', baton: [], tokkou: '' };
+        let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR', rarity: 'OR' };
 
         const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png', '◇': 'image/Colors/type_null.png' };
         const artsImgMap = { '白': 'image/Colors/arts_white.png', '緑': 'image/Colors/arts_green.png', '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '紫': 'image/Colors/arts_purple.png', '黄': 'image/Colors/arts_yellow.png', '無': 'image/Colors/arts_null.png', '◇': 'image/Colors/arts_null.png' };
@@ -484,7 +506,8 @@
                 });
             }
             if (activeFilters.subKind.length > 0) result = result.filter(c => checkLogic([c.kind || '', c.limited || ''].join(' '), activeFilters.subKind, logiceState.subKind));
-            
+            if (activeFilters.rarity.length > 0) result = result.filter(c => logiceState.rarity === 'OR' ? activeFilters.rarity.includes(c.rarity || '') : activeFilters.rarity.every(r => (c.rarity || '') === r));
+
             if (activeFilters.tokkou) {
                 result = result.filter(c => c.arts && Array.isArray(c.arts) && c.arts.some(art => art.tokkou && art.tokkou.includes(activeFilters.tokkou)));
             }
@@ -626,13 +649,18 @@
         });
 
         document.getElementById('resetFilters').addEventListener('click', () => {
-            activeFilters = { text: '', category: [], kind: [], subKind: [], color: '', product: '', baton: [], tokkou: '' };
+            activeFilters = { text: '', category: [], kind: [], subKind: [], rarity: [], color: '', product: '', baton: [], tokkou: '' };
             document.getElementById('searchInput').value = '';
             const productSelect = document.getElementById('filterProduct');
             productSelect.value = '';
             productSelect.classList.remove('filter-select-active');
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
             document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('filter-active-img'));
+            logiceState = { category: 'OR', kind: 'OR', subKind: 'OR', rarity: 'OR' };
+            ['category','kind','subKind','rarity'].forEach(g => {
+                const el = document.getElementById('logic-'+g);
+                if (el) { el.innerText = 'OR検索'; el.classList.replace('logic-and','logic-or'); }
+            });
             applyFilters();
         });
 
