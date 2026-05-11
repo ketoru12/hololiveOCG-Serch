@@ -487,6 +487,7 @@ def build_support_row(page_id, kind):
     card_type, card_type2, card_type3 = parse_support_cardtype_parts(detail)
     effect                      = parse_support_effect(detail)
     rarity                      = parse_rarity(detail)
+    tags                        = parse_tags(detail)
     products                    = parse_products(products_html)
 
     row = {
@@ -499,6 +500,12 @@ def build_support_row(page_id, kind):
         'cardType3': card_type3,
         'effect'   : effect,
         'rarity'   : rarity,
+        'tag1'     : tags[0] if len(tags) > 0 else '',
+        'tag2'     : tags[1] if len(tags) > 1 else '',
+        'tag3'     : tags[2] if len(tags) > 2 else '',
+        'tag4'     : tags[3] if len(tags) > 3 else '',
+        'tag5'     : tags[4] if len(tags) > 4 else '',
+        'tag6'     : tags[5] if len(tags) > 5 else '',
         'product1' : products[0] if len(products) > 0 else '',
         'product2' : products[1] if len(products) > 1 else '',
         'product3' : products[2] if len(products) > 2 else '',
@@ -607,6 +614,7 @@ OSHI_FIELDS = [
 SUPPORT_FIELDS = [
     'page_id',
     'url','img','name','cardType','cardType2','cardType3','effect','rarity',
+    'tag1','tag2','tag3','tag4','tag5','tag6',
     'product1','product2','product3','product4','product5','number',
 ]
 YELL_FIELDS = [
@@ -821,7 +829,7 @@ def build_master_json():
             'rarity'    : r.get('rarity', '').strip(),
             'products'  : products_list(r),
             'img'       : local_img(r.get('img', ''), 'image/support'),
-            'tags'      : [],
+            'tags'      : [r.get(f'tag{i}', '').strip() for i in range(1, 7) if r.get(f'tag{i}', '').strip()],
         })
 
     # ── エール ────────────────────────────────────────────────────────────────
