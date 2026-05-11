@@ -64347,6 +64347,900 @@
     ]
   },
   {
+    "id": "hY01-001",
+    "page_id": "168",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "ブルーミングレディアンス",
+      "クインテットスペクトラム",
+      "エリートスパーク",
+      "スタートデッキ「ときのそら＆AZKi」",
+      "スタートデッキ 白 轟はじめ"
+    ],
+    "img": "/image/cheer/hY01-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-002",
+    "page_id": "196",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY01-002_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-003",
+    "page_id": "477",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "クインテットスペクトラム"
+    ],
+    "img": "/image/cheer/hY01-003_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-004",
+    "page_id": "797",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY01-004_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-005",
+    "page_id": "805",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY01-005_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-006",
+    "page_id": "1082",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY01-006_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-007",
+    "page_id": "1390",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY01-007_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-009",
+    "page_id": "1128",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY01-009_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-010",
+    "page_id": "1712",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY01-010_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY01-012",
+    "page_id": "2026",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY01-012_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-001",
+    "page_id": "169",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "ブルーミングレディアンス",
+      "クインテットスペクトラム",
+      "エリートスパーク",
+      "スタートデッキ「ときのそら＆AZKi」",
+      "スタートデッキ 緑 風真いろは"
+    ],
+    "img": "/image/cheer/hY02-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-002",
+    "page_id": "478",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "クインテットスペクトラム"
+    ],
+    "img": "/image/cheer/hY02-002_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-003",
+    "page_id": "798",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY02-003_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-004",
+    "page_id": "806",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY02-004_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-005",
+    "page_id": "1083",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY02-005_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-006",
+    "page_id": "1391",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY02-006_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-007",
+    "page_id": "1129",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY02-007_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-008",
+    "page_id": "1713",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY02-008_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-010",
+    "page_id": "2027",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY02-010_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-001",
+    "page_id": "170",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "ブルーミングレディアンス",
+      "クインテットスペクトラム",
+      "エリートスパーク",
+      "スタートデッキ 赤 百鬼あやめ",
+      "スタートデッキ 赤 宝鐘マリン"
+    ],
+    "img": "/image/cheer/hY03-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-002",
+    "page_id": "479",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "クインテットスペクトラム"
+    ],
+    "img": "/image/cheer/hY03-002_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-003",
+    "page_id": "799",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY03-003_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-004",
+    "page_id": "1084",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY03-004_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-005",
+    "page_id": "837",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-005_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-006",
+    "page_id": "838",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-006_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-007",
+    "page_id": "839",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-007_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-008",
+    "page_id": "840",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-008_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-009",
+    "page_id": "1392",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY03-009_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-011",
+    "page_id": "1130",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-011_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-012",
+    "page_id": "1131",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY03-012_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-013",
+    "page_id": "1714",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY03-013_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY03-014",
+    "page_id": "2028",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY03-014_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-001",
+    "page_id": "171",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "ブルーミングレディアンス",
+      "クインテットスペクトラム",
+      "エリートスパーク",
+      "スタートデッキ 青 猫又おかゆ",
+      "スタートデッキ FLOW GLOW 推し 虎金妃笑虎"
+    ],
+    "img": "/image/cheer/hY04-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-002",
+    "page_id": "480",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "クインテットスペクトラム"
+    ],
+    "img": "/image/cheer/hY04-002_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-003",
+    "page_id": "800",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY04-003_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-004",
+    "page_id": "807",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY04-004_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-005",
+    "page_id": "1085",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY04-005_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-006",
+    "page_id": "1393",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY04-006_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-007",
+    "page_id": "1165",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "S",
+    "products": [
+      "スタートデッキセット-2025 ホロナツパラダイスver."
+    ],
+    "img": "/image/cheer/hY04-007_S.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-009",
+    "page_id": "1132",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY04-009_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-010",
+    "page_id": "1715",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY04-010_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY04-011",
+    "page_id": "2029",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY04-011_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-001",
+    "page_id": "267",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "クインテットスペクトラム",
+      "エリートスパーク",
+      "スタートデッキ 紫 癒月ちょこ",
+      "スタートデッキ FLOW GLOW 推し 輪堂千速",
+      "スタートデッキ 推し Advent"
+    ],
+    "img": "/image/cheer/hY05-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-002",
+    "page_id": "481",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "クインテットスペクトラム"
+    ],
+    "img": "/image/cheer/hY05-002_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-003",
+    "page_id": "801",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY05-003_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-004",
+    "page_id": "1086",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY05-004_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-005",
+    "page_id": "1394",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY05-005_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-007",
+    "page_id": "1133",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY05-007_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-008",
+    "page_id": "1716",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY05-008_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY05-009",
+    "page_id": "2030",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY05-009_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-001",
+    "page_id": "561",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "C",
+    "products": [
+      "エリートスパーク",
+      "スタートデッキ 黄 不知火フレア",
+      "スタートデッキ FLOW GLOW 推し 虎金妃笑虎",
+      "スタートデッキ 推し Justice",
+      "ライブスタートデッキ 大空スバル"
+    ],
+    "img": "/image/cheer/hY06-001_C.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-002",
+    "page_id": "802",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エリートスパーク"
+    ],
+    "img": "/image/cheer/hY06-002_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-003",
+    "page_id": "808",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY06-003_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-004",
+    "page_id": "1087",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "キュリアスユニバース"
+    ],
+    "img": "/image/cheer/hY06-004_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-005",
+    "page_id": "1395",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "エンチャントレガリア"
+    ],
+    "img": "/image/cheer/hY06-005_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-006",
+    "page_id": "1134",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/cheer/hY06-006_P.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-007",
+    "page_id": "1717",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/cheer/hY06-007_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-009",
+    "page_id": "2031",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ディーヴァフィーバー"
+    ],
+    "img": "/image/cheer/hY06-009_SY.png",
+    "tags": []
+  },
+  {
     "id": "hYS01-001",
     "page_id": "172",
     "name": "七詩ムメイ",
