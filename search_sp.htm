@@ -1396,9 +1396,8 @@
         };
 
         function hcPatch(){
-            var grid=document.getElementById('cardGrid');if(!grid)return;
-            // 1枚表示モードの場合はオーバーレイを付与しない
-            if(hcViewMode === 'list') return;
+            // renderCardsが直接ボタンを持つため不要
+            return;
             Array.from(grid.children).forEach(function(w){
                 if(w.dataset.hcPatched)return;
                 var img=w.querySelector('img');
@@ -1453,6 +1452,35 @@
             });
             HC.updateBadges();
         }
+
+        // data-hcqty / data-hcdec / data-hcoshi を全件更新
+        function hcRefreshAllQty() {
+            document.querySelectorAll('[data-hcqty]').forEach(function(el) {
+                var id = el.dataset.hcqty;
+                var card = allCards.find(function(c){ return c.id === id; });
+                var isYell = HC.isYell(id);
+                var isOshi = card && card.category === '推しホロメン';
+                var qty = isYell ? (HC.yell[id]?HC.yell[id].qty:0)
+                         : isOshi ? (HC.oshi&&HC.oshi.id===id?1:0)
+                         : (HC.cart[id]?HC.cart[id].qty:0);
+                el.textContent = qty;
+            });
+            document.querySelectorAll('[data-hcdec]').forEach(function(btn) {
+                var id = btn.dataset.hcdec;
+                var isYell = HC.isYell(id);
+                var qty = isYell ? (HC.yell[id]?HC.yell[id].qty:0)
+                         : (HC.cart[id]?HC.cart[id].qty:0);
+                btn.style.opacity = qty === 0 ? '0.25' : '1';
+            });
+            document.querySelectorAll('[data-hcoshi]').forEach(function(btn) {
+                var id = btn.dataset.hcoshi;
+                var sel = HC.oshi && HC.oshi.id === id;
+                btn.textContent = sel ? '⭐' : '☆';
+                btn.style.background = sel ? '#10b981' : '#64748b';
+            });
+        }
+        var _hcOrigUpdateBadges = HC.updateBadges.bind(HC);
+        HC.updateBadges = function() { _hcOrigUpdateBadges(); hcRefreshAllQty(); };
 
         var _hcOrigShowDetail=showDetail;
         showDetail=function(cardId){
