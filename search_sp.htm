@@ -1311,6 +1311,7 @@
             total:function(){ return Object.values(this.cart).reduce(function(s,c){return s+c.qty;},0); },
             isOshi:function(id){ var c=hcCards.find(function(x){return x.id===id;}); return c&&c.category==='推しホロメン'; },
             isYell:function(id){ var c=allCards.find(function(x){return x.id===id;}); return !!(c&&c.category==='エール'); },
+            isUnlimited:function(id){ var c=allCards.find(function(x){return x.id===id;}); return !!(c&&c.unlimited); },
             yellTotal:function(){ return Object.values(this.yell).reduce(function(s,c){return s+c.qty;},0); },
             add:function(id,name,img){
                 if(this.isYell(id)){
@@ -1330,7 +1331,7 @@
                     return;
                 }
                 if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
-                if(this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
+                if(!this.isUnlimited(id)&&this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
                 if(this.cart[id])this.cart[id].qty++;
                 else this.cart[id]={name:name,img:hcImg(img),qty:1};
                 this.updateBar();this.updateBadges();
@@ -1355,7 +1356,7 @@
                     this.yell[id].qty++;this.updateBar();this.updateBadges();return;
                 }
                 if(!this.cart[id])return;
-                if(this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
+                if(!this.isUnlimited(id)&&this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
                 if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
                 this.cart[id].qty++;this.updateBar();this.updateBadges();
             },
@@ -1383,8 +1384,12 @@
                         else b.style.display='none';
                     } else {
                         var q=self.cart[id]?self.cart[id].qty:0;
-                        if(q>0){b.textContent=q+'/'+self.MAX_PER+'枚';b.style.display='block';b.style.background=q>=self.MAX_PER?'rgba(245,158,11,.9)':'rgba(94,90,155,.9)';}
-                        else b.style.display='none';
+                        if(q>0){
+                            var unl=self.isUnlimited(id);
+                            b.textContent=unl?q+'枚':q+'/'+self.MAX_PER+'枚';
+                            b.style.display='block';
+                            b.style.background=(unl||q<self.MAX_PER)?'rgba(94,90,155,.9)':'rgba(245,158,11,.9)';
+                        } else b.style.display='none';
                     }
                 });
             },
@@ -1503,7 +1508,7 @@
             lbl.style.cssText='font-size:12px;font-weight:bold;flex:1;color:'+(isO?'#10b981':'#64748b')+';';
             lbl.textContent=isO?'推しホロメン: '+(HC.oshi&&HC.oshi.id===cardId?'選択中':'未選択'):
                 isY?'エール: '+(HC.yell[cardId]?HC.yell[cardId].qty:0)+'/'+HC.MAX_YELL+'枚':
-                'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚';
+                (HC.isUnlimited(cardId)?'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'枚（無制限）':'カート: '+(HC.cart[cardId]?HC.cart[cardId].qty:0)+'/'+HC.MAX_PER+'枚');
             ctrl.appendChild(lbl);
             if(isY){
                 var mi=document.createElement('button');mi.textContent='－';
@@ -1528,7 +1533,7 @@
                 mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
                 var qty=document.createElement('span');qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
                 qty.textContent=HC.cart[cardId]?HC.cart[cardId].qty:0;
-                var atL=(HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
+                var atL=(!HC.isUnlimited(cardId)&&HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
                 var pl=document.createElement('button');pl.textContent='＋';
                 pl.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
                 pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,img);hcRefModal(cardId);};
@@ -1566,8 +1571,9 @@
                     var ct=document.createElement('div');ct.style.cssText='display:flex;align-items:center;gap:6px;';
                     var mi2=document.createElement('button');mi2.textContent='-';mi2.style.cssText='background:#e2e8f0;border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:pointer;';mi2.dataset.id=id;
                     mi2.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
-                    var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:'+(c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b');qs.textContent=c.qty;
-                    var atL=c.qty>=HC.MAX_PER||t>=HC.MAX_TOTAL;
+                    var unl2=HC.isUnlimited(id);
+                    var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:'+(!unl2&&c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b');qs.textContent=c.qty;
+                    var atL=(!unl2&&c.qty>=HC.MAX_PER)||t>=HC.MAX_TOTAL;
                     var pl2=document.createElement('button');pl2.textContent='+';pl2.dataset.id=id;
                     pl2.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
                     pl2.onclick=function(){HC.inc(this.dataset.id);hcOpenDeck();};
