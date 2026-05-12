@@ -687,16 +687,69 @@
                     grid.appendChild(wrap);
                 });
             } else {
-                // 一覧モード：2列グリッド
+                // 一覧モード：2列グリッド（画像下にボタン）
                 grid.style.cssText = '';
-                grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
+                grid.className = 'grid grid-cols-2 gap-2 p-2';
                 grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
                 cards.forEach(card => {
-                    const div = document.createElement('div');
-                    div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
-                    div.onclick = () => showDetail(card.id, card.page_id);
-                    div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${(card.img||'').startsWith('/')?card.img.slice(1):card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
-                    grid.appendChild(div);
+                    const imgSrc = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
+                    const isOshi = card.category === '推しホロメン';
+                    const isYell = HC.isYell(card.id);
+                    const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0)
+                               : isOshi ? (HC.oshi&&HC.oshi.id===card.id?1:0)
+                               : (HC.cart[card.id]?HC.cart[card.id].qty:0);
+
+                    const wrap = document.createElement('div');
+                    wrap.className = 'hc-col1-card';
+
+                    const img = document.createElement('img');
+                    img.className = 'hc-col1-img';
+                    img.src = imgSrc;
+                    img.loading = 'lazy';
+                    img.onclick = () => showDetail(card.id, card.page_id);
+                    wrap.appendChild(img);
+
+                    const bar = document.createElement('div');
+                    bar.className = 'hc-col1-bar';
+                    bar.style.cssText = 'padding:5px 6px;gap:6px;';
+
+                    if (isOshi) {
+                        const sel = HC.oshi && HC.oshi.id === card.id;
+                        const btn = document.createElement('button');
+                        btn.dataset.hcoshi = card.id;
+                        btn.textContent = sel ? '⭐' : '☆';
+                        btn.style.cssText = `background:${sel?'#10b981':'#64748b'};color:white;width:36px;height:36px;font-size:16px;`;
+                        btn.onclick = () => {
+                            if (HC.oshi && HC.oshi.id === card.id) HC.removeOshi();
+                            else HC.add(card.id, card.name, card.img||'');
+                            hcCol1Update(card.id);
+                        };
+                        bar.appendChild(btn);
+                    } else {
+                        const decBtn = document.createElement('button');
+                        decBtn.textContent = '－';
+                        decBtn.dataset.hcdec = card.id;
+                        decBtn.style.cssText = `background:#ef4444;color:white;width:30px;height:30px;font-size:15px;opacity:${qty===0?'0.25':'1'};`;
+                        decBtn.onclick = () => { HC.dec(card.id); hcCol1Update(card.id); };
+
+                        const qtyEl = document.createElement('div');
+                        qtyEl.className = 'hc-col1-qty';
+                        qtyEl.style.fontSize = '13px';
+                        qtyEl.dataset.hcqty = card.id;
+                        qtyEl.textContent = qty;
+
+                        const incBtn = document.createElement('button');
+                        incBtn.textContent = '＋';
+                        incBtn.dataset.hcadd = card.id;
+                        incBtn.style.cssText = 'background:#5e5a9b;color:white;width:30px;height:30px;font-size:15px;';
+                        incBtn.onclick = () => { HC.add(card.id, card.name, card.img||''); hcCol1Update(card.id); };
+
+                        bar.appendChild(decBtn);
+                        bar.appendChild(qtyEl);
+                        bar.appendChild(incBtn);
+                    }
+                    wrap.appendChild(bar);
+                    grid.appendChild(wrap);
                 });
             }
         }
@@ -978,16 +1031,69 @@
                     grid.appendChild(wrap);
                 });
             } else {
-                // 一覧モード：2列グリッド
+                // 一覧モード：2列グリッド（画像下にボタン）
                 grid.style.cssText = '';
-                grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 md:gap-4';
+                grid.className = 'grid grid-cols-2 gap-2 p-2';
                 grid.innerHTML = cards.length ? '' : `<div class="col-span-full text-center py-20 text-slate-400">該当するカードがありません</div>`;
                 cards.forEach(card => {
-                    const div = document.createElement('div');
-                    div.className = "group cursor-pointer hover:-translate-y-1 transition-all";
-                    div.onclick = () => showDetail(card.id, card.page_id);
-                    div.innerHTML = `<div class="aspect-[3/4.2] overflow-hidden rounded-md border bg-white shadow-sm group-hover:shadow-lg transition-all"><img src="${(card.img||'').startsWith('/')?card.img.slice(1):card.img}" class="w-full h-full object-cover" loading="lazy"></div>`;
-                    grid.appendChild(div);
+                    const imgSrc = (card.img||'').startsWith('/') ? card.img.slice(1) : (card.img||'');
+                    const isOshi = card.category === '推しホロメン';
+                    const isYell = HC.isYell(card.id);
+                    const qty = isYell ? (HC.yell[card.id]?HC.yell[card.id].qty:0)
+                               : isOshi ? (HC.oshi&&HC.oshi.id===card.id?1:0)
+                               : (HC.cart[card.id]?HC.cart[card.id].qty:0);
+
+                    const wrap = document.createElement('div');
+                    wrap.className = 'hc-col1-card';
+
+                    const img = document.createElement('img');
+                    img.className = 'hc-col1-img';
+                    img.src = imgSrc;
+                    img.loading = 'lazy';
+                    img.onclick = () => showDetail(card.id, card.page_id);
+                    wrap.appendChild(img);
+
+                    const bar = document.createElement('div');
+                    bar.className = 'hc-col1-bar';
+                    bar.style.cssText = 'padding:5px 6px;gap:6px;';
+
+                    if (isOshi) {
+                        const sel = HC.oshi && HC.oshi.id === card.id;
+                        const btn = document.createElement('button');
+                        btn.dataset.hcoshi = card.id;
+                        btn.textContent = sel ? '⭐' : '☆';
+                        btn.style.cssText = `background:${sel?'#10b981':'#64748b'};color:white;width:36px;height:36px;font-size:16px;`;
+                        btn.onclick = () => {
+                            if (HC.oshi && HC.oshi.id === card.id) HC.removeOshi();
+                            else HC.add(card.id, card.name, card.img||'');
+                            hcCol1Update(card.id);
+                        };
+                        bar.appendChild(btn);
+                    } else {
+                        const decBtn = document.createElement('button');
+                        decBtn.textContent = '－';
+                        decBtn.dataset.hcdec = card.id;
+                        decBtn.style.cssText = `background:#ef4444;color:white;width:30px;height:30px;font-size:15px;opacity:${qty===0?'0.25':'1'};`;
+                        decBtn.onclick = () => { HC.dec(card.id); hcCol1Update(card.id); };
+
+                        const qtyEl = document.createElement('div');
+                        qtyEl.className = 'hc-col1-qty';
+                        qtyEl.style.fontSize = '13px';
+                        qtyEl.dataset.hcqty = card.id;
+                        qtyEl.textContent = qty;
+
+                        const incBtn = document.createElement('button');
+                        incBtn.textContent = '＋';
+                        incBtn.dataset.hcadd = card.id;
+                        incBtn.style.cssText = 'background:#5e5a9b;color:white;width:30px;height:30px;font-size:15px;';
+                        incBtn.onclick = () => { HC.add(card.id, card.name, card.img||''); hcCol1Update(card.id); };
+
+                        bar.appendChild(decBtn);
+                        bar.appendChild(qtyEl);
+                        bar.appendChild(incBtn);
+                    }
+                    wrap.appendChild(bar);
+                    grid.appendChild(wrap);
                 });
             }
         }
