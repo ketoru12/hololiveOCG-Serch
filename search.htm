@@ -166,7 +166,7 @@
         .hcBdg{display:none;position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:11px;font-weight:bold;color:white;padding:2px 0;border-radius:0 0 6px 6px;z-index:3;pointer-events:none;}
         #hcDM,#hcEM{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center;padding:16px;}
         #hcDM.on,#hcEM.on{display:flex;}
-        #hcDB{background:white;border-radius:16px;width:100%;max-width:960px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;}
+        #hcDB{background:white;border-radius:16px;width:100%;max-width:1200px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;}
         .hcDeckGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;}
         .hcDeckCard{display:flex;flex-direction:column;align-items:center;}
         .hcDeckCard img{width:100%;aspect-ratio:3/4.2;object-fit:cover;border-radius:6px;display:block;}
@@ -952,28 +952,30 @@
                 return wrap;
             }
 
-            // 推しホロメン ＋ エールデッキ を横並び
-            var topRow=document.createElement('div');
-            topRow.style.cssText='display:flex;gap:16px;margin-bottom:16px;align-items:flex-start;';
-
-            // 推しホロメン（左）
-            var osSec=document.createElement('div');osSec.className='hcDeckSec';osSec.style.flexShrink='0';
-            var osH=document.createElement('h4');osH.style.color='#10b981';osH.style.borderColor='#d1fae5';osH.textContent='推しホロメン（1枚）';osSec.appendChild(osH);
-            var osGrid=document.createElement('div');osGrid.style.cssText='display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;min-width:110px;';osSec.appendChild(osGrid);
-            if(HC.oshi) osGrid.appendChild(makeCardTile(HC.oshi.img,HC.oshi.id,1,false,true));
-            else{var e1=document.createElement('div');e1.style.cssText='color:#94a3b8;font-size:12px;padding:4px';e1.textContent='未選択';osGrid.appendChild(e1);}
-            topRow.appendChild(osSec);
-
-            // エールデッキ（右）
-            var ysSec=document.createElement('div');ysSec.className='hcDeckSec';ysSec.style.flex='1';
-            var ysH=document.createElement('h4');ysH.style.color='#f59e0b';ysH.style.borderColor='#fef3c7';ysH.textContent='エールデッキ（'+yt+'/'+HC.MAX_YELL+'枚）';ysSec.appendChild(ysH);
-            var ysGrid=document.createElement('div');ysGrid.className='hcDeckGrid';ysSec.appendChild(ysGrid);
+            // 推しホロメン ＋ エールデッキ を同じグリッドに連続配置
+            var topSec=document.createElement('div');topSec.className='hcDeckSec';
+            // ラベル行
+            var topLabelRow=document.createElement('div');
+            topLabelRow.style.cssText='display:flex;align-items:center;gap:0;margin-bottom:8px;';
+            var osLbl=document.createElement('span');
+            osLbl.style.cssText='font-size:11px;font-weight:bold;color:#10b981;border-bottom:2px solid #d1fae5;padding-bottom:3px;letter-spacing:1px;white-space:nowrap;';
+            osLbl.textContent='推しホロメン（1枚）';
+            var sep=document.createElement('span');
+            sep.style.cssText='display:inline-block;width:1px;background:#e2e8f0;height:16px;margin:0 12px;flex-shrink:0;align-self:center;';
+            var ysLbl=document.createElement('span');
+            ysLbl.style.cssText='font-size:11px;font-weight:bold;color:#f59e0b;border-bottom:2px solid #fef3c7;padding-bottom:3px;letter-spacing:1px;';
+            ysLbl.textContent='エールデッキ（'+yt+'/'+HC.MAX_YELL+'枚）';
+            topLabelRow.appendChild(osLbl);topLabelRow.appendChild(sep);topLabelRow.appendChild(ysLbl);
+            topSec.appendChild(topLabelRow);
+            // カードグリッド（推し→エール連続）
+            var topGrid=document.createElement('div');
+            topGrid.className='hcDeckGrid';topSec.appendChild(topGrid);
+            if(HC.oshi) topGrid.appendChild(makeCardTile(HC.oshi.img,HC.oshi.id,1,false,true));
+            else{var e1=document.createElement('div');e1.style.cssText='color:#94a3b8;font-size:12px;padding:4px';e1.textContent='未選択';topGrid.appendChild(e1);}
             var ykeys=Object.keys(HC.yell);
-            if(!ykeys.length){var e3=document.createElement('div');e3.style.cssText='color:#94a3b8;font-size:12px;padding:4px';e3.textContent='エールカードが追加されていません';ysGrid.appendChild(e3);}
-            else ykeys.forEach(function(id){ysGrid.appendChild(makeCardTile(HC.yell[id].img,id,HC.yell[id].qty,true,false));});
-            topRow.appendChild(ysSec);
-
-            list.appendChild(topRow);
+            if(ykeys.length) ykeys.forEach(function(id){topGrid.appendChild(makeCardTile(HC.yell[id].img,id,HC.yell[id].qty,true,false));});
+            else if(!HC.oshi){var e3=document.createElement('div');e3.style.cssText='color:#94a3b8;font-size:12px;padding:4px';e3.textContent='エールカードが追加されていません';topGrid.appendChild(e3);}
+            list.appendChild(topSec);
 
             // メインデッキ
             var{sec:ms,grid:mg}=makeSection('メインデッキ（'+t+'/'+HC.MAX_TOTAL+'枚）','#3b82f6','#dbeafe');
