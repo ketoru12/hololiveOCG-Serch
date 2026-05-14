@@ -6,8 +6,8 @@ window.addEventListener('message', async function(e) {
   // chrome.storage にデータを保存
   await chrome.storage.local.set({ hc_pending: deckData });
 
-  // DECKLOGを新しいタブで開く（window.openはcontent_scriptから呼べる）
-  window.open('https://decklog.bushiroad.com/create?c=9', '_blank');
+  // background.js にタブ管理を委譲（ログインリダイレクト対応）
+  chrome.runtime.sendMessage({ type: 'HC_OPEN_DECKLOG' });
 });
 
 // 拡張機能が有効なことをページに通知
