@@ -6,6 +6,13 @@ window.addEventListener('message', function(e) {
 async function execDecklog(deckData) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
 
+  // ログインボタンが表示されている場合はクリックして認証へ誘導
+  const loginBtn = document.querySelector('a[href*="login"], button[class*="login"], a[class*="login"]');
+  if (loginBtn) {
+    loginBtn.click();
+    return; // ログイン後にページが再ロードされ、再度処理が走る
+  }
+
   let stdInp = null;
   for (let i = 0; i < 60; i++) {
     stdInp = document.querySelector('input[type="radio"][name="regulation"][value="S"]');
