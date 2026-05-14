@@ -279,8 +279,8 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="filter-label mb-2">色（ホロメン・推し対象）</label>
+                <div id="fs-color">
+                    <label class="filter-label mb-2">色</label>
                     <div class="grid grid-cols-7 gap-1">
                         <button class="color-dot p-0.5 rounded-full transition-all" data-type="color" data-val="赤">
                             <img src="image/Colors/type_red.png" class="color-icon rounded-full" alt="赤">
@@ -306,7 +306,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div id="fs-tokkou">
                     <label class="filter-label mb-2">特攻（対色）</label>
                     <div class="grid grid-cols-7 gap-1">
                         <button class="color-dot p-0.5 rounded-full transition-all" data-type="tokkou" data-val="赤">
@@ -330,7 +330,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div id="fs-bloom">
                     <div class="flex justify-between items-center mb-2">
                         <label class="filter-label" style="text-transform: none;">Bloomレベル</label>
                         <div class="logic-toggle logic-or" id="logic-kind" onclick="toggleLogic('kind')">OR検索</div>
@@ -344,7 +344,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div id="fs-subkind">
                     <div class="flex justify-between items-center mb-2">
                         <label class="filter-label">サポート種別</label>
                         <div class="logic-toggle logic-or" id="logic-subKind" onclick="toggleLogic('subKind')">OR検索</div>
@@ -369,7 +369,7 @@
                     </div>
                 </div>
 
-                <div>
+                <div id="fs-baton">
                     <label class="filter-label mb-2">バトンタッチ</label>
                     <div class="flex flex-wrap gap-1">
                         <button class="filter-btn px-4 py-2 text-xs border rounded bg-white" data-group="baton" data-val="0">0</button>
@@ -624,6 +624,30 @@
             applyFilters();
         });
         
+        // カードタイプに応じてフィルターセクションを表示切替
+        function updateFilterVisibility() {
+            const sel = activeFilters.category; // 選択中のカードタイプ配列
+            const none   = sel.length === 0;
+            const hasH   = none || sel.includes('ホロメン');
+            const hasO   = none || sel.includes('推しホロメン');
+            const hasS   = none || sel.includes('サポート');
+
+            const show = el => { if (el) el.style.display = ''; };
+            const hide = el => { if (el) el.style.display = 'none'; };
+
+            // 色：ホロメン・推しの時のみ
+            (hasH || hasO) ? show(document.getElementById('fs-color'))   : hide(document.getElementById('fs-color'));
+            // 特攻：ホロメンのみ
+            hasH           ? show(document.getElementById('fs-tokkou'))  : hide(document.getElementById('fs-tokkou'));
+            // Bloomレベル：ホロメンのみ
+            hasH           ? show(document.getElementById('fs-bloom'))   : hide(document.getElementById('fs-bloom'));
+            // サポート種別：サポートのみ
+            hasS           ? show(document.getElementById('fs-subkind')) : hide(document.getElementById('fs-subkind'));
+            // バトンタッチ：ホロメンのみ
+            hasH           ? show(document.getElementById('fs-baton'))   : hide(document.getElementById('fs-baton'));
+            // パラレルは常に表示
+        }
+
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const group = btn.dataset.group, val = btn.dataset.val;
@@ -641,6 +665,7 @@
                         btn.classList.add('filter-active');
                     }
                 }
+                if (group === 'category') updateFilterVisibility();
                 applyFilters();
             });
         });
@@ -676,6 +701,7 @@
                 const el = document.getElementById('logic-'+g);
                 if (el) { el.innerText = 'OR検索'; el.classList.replace('logic-and','logic-or'); }
             });
+            updateFilterVisibility();
             applyFilters();
         });
 
