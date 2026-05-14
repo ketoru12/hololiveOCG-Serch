@@ -6,11 +6,18 @@ window.addEventListener('message', function(e) {
 async function execDecklog(deckData) {
   const delay = ms => new Promise(r => setTimeout(r, ms));
 
-  // ログインボタンが表示されている場合はクリックして認証へ誘導
-  const loginBtn = document.querySelector('a[href*="login"], button[class*="login"], a[class*="login"]');
+  // ログインボタンが表示されている場合はクリックして認証へ（SPAの場合）
+  // ページ描画を少し待つ
+  await delay(1500);
+  const loginBtn = document.querySelector(
+    'a[href*="login"], button[class*="login"], a[class*="login"], ' +
+    '.login-btn, [class*="LoginBtn"], a[href*="p.bushiroad"]'
+  );
   if (loginBtn) {
+    // ログイン後に再度 create ページに戻ってくるまで待つ
+    // データは storage に残したまま → 戻ってきた時に decklog.js が再処理
     loginBtn.click();
-    return; // ログイン後にページが再ロードされ、再度処理が走る
+    return;
   }
 
   let stdInp = null;
@@ -84,5 +91,9 @@ async function execDecklog(deckData) {
       await delay(300);
     }
   }
+
   alert('完了: ' + ok + '件成功' + (ng.length ? '\n失敗: ' + ng.join(', ') : ''));
+
+  // 完了を decklog.js (ISOLATED world) に通知 → storage からデータ削除
+  window.postMessage({ type: 'HC_DONE' }, '*');
 }
