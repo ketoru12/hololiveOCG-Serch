@@ -4,60 +4,64 @@ chrome.runtime.onInstalled.addListener(() => {
 
 const DECKLOG_CREATE = 'https://decklog.bushiroad.com/create?c=9';
 
-// タブごとの状態管理
-// 'waiting'  : decklog トップを開いた直後（ユーザーがログイン操作中）
-// 'left'     : ログインのため外部ドメイン（bushi-navi等）に移動した
-const tabState = new Map();
+const pendingTabs = new Set();
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'HC_OPEN_DECKLOG') {
     chrome.tabs.create({ url: 'https://decklog.bushiroad.com/' }, (tab) => {
-      tabState.set(tab.id, 'waiting');
+      pendingTabs.add(tab.id);
     });
     return false;
   }
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-  if (!tabState.has(tabId)) return;
+  if (!pendingTabs.has(tabId)) return;
   if (changeInfo.status !== 'complete') return;
   if (!tab.url) return;
 
   const url = tab.url;
-  const state = tabState.get(tabId);
 
-  // ① /create に到達 → 監視終了
+  // /create に到達 → 監視終了
   if (url.startsWith('https://decklog.bushiroad.com/create')) {
-    tabState.delete(tabId);
+    pendingTabs.delete(tabId);
     return;
   }
 
-  // ② decklog ドメイン内（トップ・マイデッキ等）
+  // decklog ドメイン内（トップ・title 等）
   if (url.startsWith('https://decklog.bushiroad.com/')) {
-    if (state === 'left') {
-      // ログイン後に decklog に戻ってきた → /create へ
-      const res = await chrome.storage.local.get('hc_pending');
-      if (res.hc_pending) {
-        chrome.tabs.update(tabId, { url: DECKLOG_CREATE });
-      } else {
-        tabState.delete(tabId);
-      }
-    }
-    // state === 'waiting'（最初に開いた直後）は何もしない
-    // → ユーザーが自分でログインボタンを押すまで待つ
+    const res = await chrome.storage.local.get('hc_pending');
+    if (!res.hc_pending) { pendingTabs.delete(tabId); return; }
+
+    // 3秒待っても別ドメインに飛ばなければ「ログイン済み」→ /create へ
+    setTimeout(() => {
+      if (!pendingTabs.has(tabId)) return; // その間に別処理が完了した場合はスキップ
+      chrome.tabs.get(tabId, (t) => {
+        if (chrome.runtime.lastError || !t || !t.url) return;
+        if (t.url.startsWith('https://decklog.bushiroad.com/') &&
+            !t.url.startsWith('https://decklog.bushiroad.com/create')) {
+          chrome.storage.local.get('hc_pending', (r) => {
+            if (r.hc_pending) {
+              chrome.tabs.update(tabId, { url: DECKLOG_CREATE });
+            } else {
+              pendingTabs.delete(tabId);
+            }
+          });
+        }
+      });
+    }, 3000);
     return;
   }
 
-  // ③ decklog 外（bushi-navi.com、p.bushiroad.com、ログインページ等）
-  // → ログインのために離脱した
+  // decklog 外（bushi-navi.com 等）= ログイン後のリダイレクト → /create へ直接ジャンプ
   const res = await chrome.storage.local.get('hc_pending');
   if (res.hc_pending) {
-    tabState.set(tabId, 'left');  // ログイン後に decklog に戻ってきたら /create へ
+    chrome.tabs.update(tabId, { url: DECKLOG_CREATE });
   } else {
-    tabState.delete(tabId);
+    pendingTabs.delete(tabId);
   }
 });
 
 chrome.tabs.onRemoved.addListener((tabId) => {
-  tabState.delete(tabId);
+  pendingTabs.delete(tabId);
 });
