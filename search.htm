@@ -471,7 +471,12 @@
 
                 // カード本文テキスト全体を1つの文字列に結合して includes() で検索
                 const cardTextOf = c => {
-                    const parts = [c.description || ''];
+                    const parts = [
+                        c.description   || '',
+                        c.keywordName   || '',
+                        c.keywordEffect || '',
+                        c.effect        || '',
+                    ];
                     (c.skills || []).forEach(s => { parts.push(s.name || '', s.text || ''); });
                     (c.arts   || []).forEach(a => { parts.push(a.name || '', a.text || ''); });
                     return parts.join(' ');
