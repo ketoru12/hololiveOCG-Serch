@@ -466,14 +466,27 @@
                     return cards.filter(c => (c.id || '').toLowerCase().startsWith(t));
                 };
 
-                let searchKeys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
-                if (includeText) {
-                    searchKeys.push({ name: 'description', weight: 0.4 }, { name: 'arts.name', weight: 0.4 }, { name: 'arts.text', weight: 0.4 }, { name: 'skills.text', weight: 0.4 });
-                }
+                const searchKeys = [{ name: 'name', weight: 1.0 }, { name: 'id', weight: 0.5 }, { name: 'tags', weight: 0.7 }];
                 const fuse = new Fuse(allCards, { keys: searchKeys, threshold: 0.3, ignoreLocation: true });
-                const searchOne = (term, base) => isCardId(term)
-                    ? matchById(term, base)
-                    : fuse.search(term).map(r => r.item);
+
+                // カード本文テキスト全体を1つの文字列に結合して includes() で検索
+                const cardTextOf = c => {
+                    const parts = [c.description || ''];
+                    (c.skills || []).forEach(s => { parts.push(s.name || '', s.text || ''); });
+                    (c.arts   || []).forEach(a => { parts.push(a.name || '', a.text || ''); });
+                    return parts.join(' ');
+                };
+
+                const searchOne = (term, base) => {
+                    if (isCardId(term)) return matchById(term, base);
+                    const fuseHits = new Set(fuse.search(term).map(r => r.item.page_id));
+                    // includeText が ON の場合は本文を直接 includes() で検索し和集合にする
+                    if (includeText) {
+                        const t = term;
+                        base.forEach(c => { if (cardTextOf(c).includes(t)) fuseHits.add(c.page_id); });
+                    }
+                    return base.filter(c => fuseHits.has(c.page_id));
+                };
 
                 const terms = activeFilters.text.trim().split(/[\s　]+/).filter(Boolean);
                 if (terms.length <= 1) {
