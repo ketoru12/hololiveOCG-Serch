@@ -171,26 +171,6 @@
     }
     .ext-btn-firefox:hover { background: rgba(255,100,0,0.5); }
 
-    /* ── ドットインジケーター ── */
-    .indicators {
-      display: none;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.35);
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-      padding: 0;
-    }
-
-    .dot.active {
-      background: #fff;
-      transform: scale(1.35);
-    }
 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
@@ -338,7 +318,6 @@
     <p class="ext-note">PCのChrome／Edge／Firefoxで使用・DECKLOGへの自動登録に必要</p>
   </main>
 
-  <div class="indicators" id="indicators"></div>
 
   <!-- ▼▼▼ アフィリエイトウィジェット（左：4商品） ▼▼▼ -->
   <aside class="affiliate-left">
@@ -417,80 +396,20 @@
   <!-- ▲▲▲ アフィリエイトウィジェット ▲▲▲ -->
 
   <script>
-    // 背景壁紙リスト（image/wallpaper/ 以下）
+    // 背景壁紙リスト（アクセスごとにランダム1枚）
     const WALLPAPERS = [
-      'image/wallpaper/logo_blue.png',
-      'image/wallpaper/logo_blue_white.png',
-      'image/wallpaper/logo_green.png',
-      'image/wallpaper/logo_green_white.png',
-      'image/wallpaper/logo_purple.png',
-      'image/wallpaper/logo_purple_white.png',
-      'image/wallpaper/logo_red.png',
-      'image/wallpaper/logo_red_white.png',
-      'image/wallpaper/logo_yellow.png',
-      'image/wallpaper/logo_yellow_white.png',
-      'image/wallpaper/logo_white.png',
-      'image/wallpaper/logo_white_white.png',
-      'image/wallpaper/cheer_white.png',
+      'image/wallpaper/wallpaper_01.png',
+      'image/wallpaper/wallpaper_02.png',
+      'image/wallpaper/wallpaper_03.png',
     ];
 
-    // 自動切替間隔（ms）。0 にすると自動切替しない
-    const AUTO_INTERVAL = 5000;
-
-    // Fisher-Yatesシャッフル
-    function shuffle(arr) {
-      const a = [...arr];
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    const images = shuffle(WALLPAPERS);
-    let current = 0;
-    const layers = [];
-    let timer = null;
-
-    function init() {
-      const indicators = document.getElementById('indicators');
-
-      images.forEach((src, i) => {
-        const layer = document.createElement('div');
-        layer.className = 'bg-layer';
-        layer.style.backgroundImage = `url('${src}')`;
-        document.body.insertBefore(layer, document.body.firstChild);
-        layers.push(layer);
-
-        const dot = document.createElement('button');
-        dot.className = 'dot';
-        dot.setAttribute('aria-label', `背景 ${i + 1}`);
-        dot.addEventListener('click', () => goTo(i));
-        indicators.appendChild(dot);
-      });
-
-      show(0);
-      if (AUTO_INTERVAL > 0) startTimer();
-    }
-
-    function show(index) {
-      layers.forEach((l, i) => l.classList.toggle('active', i === index));
-      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
-      current = index;
-    }
-
-    function goTo(index) {
-      if (index === current) return;
-      clearTimeout(timer);
-      show(index);
-      if (AUTO_INTERVAL > 0) startTimer();
-    }
-
-    function startTimer() {
-      timer = setTimeout(() => goTo((current + 1) % images.length), AUTO_INTERVAL);
-    }
-
-    init();
+    (function () {
+      const src = WALLPAPERS[Math.floor(Math.random() * WALLPAPERS.length)];
+      const layer = document.createElement('div');
+      layer.className = 'bg-layer active';
+      layer.style.backgroundImage = `url('${src}')`;
+      document.body.insertBefore(layer, document.body.firstChild);
+    })();
 
     // ── Supabase OAuth コールバック処理 ──
     // ログイン後に index.html へリダイレクトされた場合、search.htm へ転送する
