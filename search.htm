@@ -482,14 +482,21 @@
                     return parts.join(' ');
                 };
 
-                // タグ検索（# 始まり）: tags配列の完全一致のみ（あいまい検索しない）
+                // タグ検索（# 始まり）: tags配列の完全一致 ＋ 本文テキスト includes（あいまい検索しない）
                 const isTagSearch = term => term.startsWith('#');
-                const matchByTag = (term, cards) =>
-                    cards.filter(c => Array.isArray(c.tags) && c.tags.includes(term));
 
                 const searchOne = (term, base) => {
-                    if (isCardId(term))   return matchById(term, base);
-                    if (isTagSearch(term)) return matchByTag(term, base);
+                    if (isCardId(term)) return matchById(term, base);
+
+                    if (isTagSearch(term)) {
+                        // tags配列の完全一致 OR（本文を含める ON の場合）テキスト内に含まれる
+                        return base.filter(c => {
+                            if (Array.isArray(c.tags) && c.tags.includes(term)) return true;
+                            if (includeText && cardTextOf(c).includes(term)) return true;
+                            return false;
+                        });
+                    }
+
                     const fuseHits = new Set(fuse.search(term).map(r => r.item.page_id));
                     // includeText が ON の場合は本文を直接 includes() で検索し和集合にする
                     if (includeText) {
