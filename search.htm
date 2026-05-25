@@ -788,7 +788,6 @@
                     this.flash('推しに'+name+'をセット'+(prev?' ('+prev+'から入替え)':''),'#10b981');
                     return;
                 }
-                if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
                 if(!this.isUnlimited(id)&&this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
                 if(this.cart[id])this.cart[id].qty++;
                 else this.cart[id]={name:name,img:hcImg(img),qty:1};
@@ -815,7 +814,6 @@
                 }
                 if(!this.cart[id])return;
                 if(!this.isUnlimited(id)&&this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
-                if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
                 this.cart[id].qty++;this.updateBar();this.updateBadges();
             },
             removeOshi:function(){this.oshi=null;this.updateBar();this.updateBadges();},
@@ -968,7 +966,7 @@
                 mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
                 var qty=document.createElement('span');qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
                 qty.textContent=HC.cart[cardId]?HC.cart[cardId].qty:0;
-                var atL=(HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
+                var atL=!HC.isUnlimited(cardId)&&HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER;
                 var pl=document.createElement('button');pl.textContent='＋';
                 pl.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
                 pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,img);hcRefModal(cardId);};
@@ -999,7 +997,7 @@
                     wrap.appendChild(rb);
                 } else {
                     var unl=HC.isUnlimited&&HC.isUnlimited(id);
-                    var atL=isYell?(yt>=HC.MAX_YELL):((!unl&&qty>=HC.MAX_PER)||t>=HC.MAX_TOTAL);
+                    var atL=isYell?(yt>=HC.MAX_YELL):(!unl&&qty>=HC.MAX_PER);
                     var bar=document.createElement('div');bar.className='hcDeckBar';
                     var mi=document.createElement('button');mi.textContent='－';mi.style.background='#e2e8f0';mi.dataset.id=id;
                     mi.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
@@ -1089,6 +1087,7 @@
         }
         function hcOpenExp(){
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
+            if(HC.total()>HC.MAX_TOTAL){hcAlert('メインデッキが '+HC.total()+' 枚です（上限 '+HC.MAX_TOTAL+' 枚）。\n枚数を調整してからDECKLOGに登録してください。');return;}
             var oshi=HC.oshi;
             var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
             var yell=Object.keys(HC.yell).map(function(id){return{id:id,count:HC.yell[id].qty};});
@@ -1179,6 +1178,10 @@
         function hcOpenCloudSave() {
             if (!Object.keys(HC.cart).length && !HC.oshi && !Object.keys(HC.yell).length) {
                 alert('カートが空です'); return;
+            }
+            if (HC.total() > HC.MAX_TOTAL) {
+                hcAlert('メインデッキが ' + HC.total() + ' 枚です（上限 ' + HC.MAX_TOTAL + ' 枚）。\n枚数を調整してから保存してください。');
+                return;
             }
             if (!_hcUser) {
                 if (confirm('保存にはGoogleログインが必要です。\nログインしますか？')) hcToggleAuth();
