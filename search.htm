@@ -256,8 +256,12 @@
                             </label>
                         </div>
                     </div>
-                    <input type="text" id="searchInput" placeholder="名前、タグ、効果…（スペースでAND検索）"
-                        class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
+                    <div style="display:flex;gap:6px;align-items:center;">
+                        <input type="text" id="searchInput" placeholder="名前、タグ、効果…（スペースでAND検索）"
+                            class="flex-1 border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all">
+                        <button id="hcSelBtn" onclick="toggleSelectedOnly()"
+                            class="filter-btn px-3 py-2 text-xs border rounded bg-white min-h-[44px] md:min-h-0 whitespace-nowrap flex-shrink-0">選択済み</button>
+                    </div>
                 </div>
 
                 <div>
@@ -406,6 +410,13 @@
         let allCards = [];
         const NORMAL_RARITIES = new Set(['C','U','R','RR','OSR']);
         let activeFilters = { text: '', category: [], kind: [], subKind: [], parallel: '', color: '', product: '', baton: [], tokkou: '' };
+        let showSelectedOnly = false;
+        function toggleSelectedOnly() {
+            showSelectedOnly = !showSelectedOnly;
+            const btn = document.getElementById('hcSelBtn');
+            if (btn) btn.classList.toggle('filter-active', showSelectedOnly);
+            applyFilters();
+        }
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
 
         const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png', '◇': 'image/Colors/type_null.png' };
@@ -551,7 +562,13 @@
             }
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            
+
+            if (showSelectedOnly) {
+                result = result.filter(c =>
+                    HC.cart[c.id] || HC.yell[c.id] || (HC.oshi && HC.oshi.id === c.id)
+                );
+            }
+
             renderCards(result);
         }
 
@@ -720,6 +737,9 @@
 
         document.getElementById('resetFilters').addEventListener('click', () => {
             activeFilters = { text: '', category: [], kind: [], subKind: [], parallel: '', color: '', product: '', baton: [], tokkou: '' };
+            showSelectedOnly = false;
+            const selBtn = document.getElementById('hcSelBtn');
+            if (selBtn) selBtn.classList.remove('filter-active');
             document.getElementById('searchInput').value = '';
             const productSelect = document.getElementById('filterProduct');
             productSelect.value = '';
@@ -828,6 +848,7 @@
             },
             updateBadges:function(){
                 var self=this;
+                if(showSelectedOnly) applyFilters();
                 document.querySelectorAll('.hcW').forEach(function(w){
                     var id=w.dataset.hcId,b=w.querySelector('.hcBdg');
                     if(!b||!id)return;
