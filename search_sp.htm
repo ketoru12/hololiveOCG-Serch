@@ -227,7 +227,8 @@
                 <div style="display:flex;align-items:center;gap:6px;width:100%">
                     <span style="color:#86efac;font-weight:bold;white-space:nowrap">推し：</span>
                     <span id="hcON" style="color:#fde68a;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0">未選択</span>
-                    <span style="color:#334155">｜</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;width:100%">
                     <span style="color:#fbbf24;font-weight:bold;white-space:nowrap">エール：</span>
                     <span id="hcYC" style="font-weight:900;font-size:13px;color:#fbbf24;white-space:nowrap">0</span>
                     <span style="color:#94a3b8;white-space:nowrap"> / 20枚</span>
@@ -264,11 +265,13 @@
                     <input type="text" id="searchInput" placeholder="名前、タグ、効果…（スペースでAND検索）"
                         class="w-full border rounded-lg px-3 py-3 md:py-2 text-base md:text-sm focus:ring-2 focus:ring-[#5e5a9b]/30 outline-none transition-all"
                         style="flex:1">
-                    <button id="searchBtn" onclick="hcMobileSearch()" 
+                    <button id="hcSelBtn" onclick="toggleSelectedOnly()"
+                        class="filter-btn shrink-0 px-3 py-3 text-xs border rounded bg-white whitespace-nowrap">選択済み</button>
+                    <button id="searchBtn" onclick="hcMobileSearch()"
                         class="md:hidden shrink-0 bg-[#5e5a9b] text-white font-bold rounded-lg px-4 py-3 text-sm active:scale-95 transition-transform">
                         検索
                     </button>
-                    <button onclick="document.getElementById('resetFilters').click();" 
+                    <button onclick="document.getElementById('resetFilters').click();"
                         class="md:hidden shrink-0 bg-slate-200 text-slate-600 font-bold rounded-lg px-3 py-3 text-sm active:scale-95 transition-transform">
                         ↺
                     </button>
@@ -423,6 +426,13 @@
         const NORMAL_RARITIES = new Set(['C','U','R','RR','OSR']);
         let activeFilters = { text: '', category: [], kind: [], subKind: [], parallel: '', color: '', product: '', baton: [], tokkou: '' };
         let logiceState = { category: 'OR', kind: 'OR', subKind: 'OR' };
+        let showSelectedOnly = false;
+        function toggleSelectedOnly() {
+            showSelectedOnly = !showSelectedOnly;
+            const btn = document.getElementById('hcSelBtn');
+            if (btn) btn.classList.toggle('filter-active', showSelectedOnly);
+            applyFilters();
+        }
 
         const typeImgMap = { '白': 'image/Colors/type_white.png', '緑': 'image/Colors/type_green.png', '赤': 'image/Colors/type_red.png', '青': 'image/Colors/type_blue.png', '紫': 'image/Colors/type_purple.png', '黄': 'image/Colors/type_yellow.png', '無': 'image/Colors/type_null.png', '◇': 'image/Colors/type_null.png' };
         const artsImgMap = { '白': 'image/Colors/arts_white.png', '緑': 'image/Colors/arts_green.png', '赤': 'image/Colors/arts_red.png', '青': 'image/Colors/arts_blue.png', '紫': 'image/Colors/arts_purple.png', '黄': 'image/Colors/arts_yellow.png', '無': 'image/Colors/arts_null.png', '◇': 'image/Colors/arts_null.png' };
@@ -606,7 +616,17 @@
             }
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            
+
+            if (showSelectedOnly) {
+                result = result.filter(function(c) {
+                    var cimg = hcImg(c.img || '');
+                    if (HC.oshi && HC.oshi.id === c.id && HC.oshi.img === cimg) return true;
+                    if (HC.yell[c.id] && HC.yell[c.id].img === cimg) return true;
+                    if (HC.cart[c.id] && HC.cart[c.id].img === cimg) return true;
+                    return false;
+                });
+            }
+
             renderCards(result);
         }
 
@@ -950,7 +970,17 @@
             }
             if (activeFilters.baton.length > 0) result = result.filter(c => activeFilters.baton.includes(String(c.baton_touch)));
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
-            
+
+            if (showSelectedOnly) {
+                result = result.filter(function(c) {
+                    var cimg = hcImg(c.img || '');
+                    if (HC.oshi && HC.oshi.id === c.id && HC.oshi.img === cimg) return true;
+                    if (HC.yell[c.id] && HC.yell[c.id].img === cimg) return true;
+                    if (HC.cart[c.id] && HC.cart[c.id].img === cimg) return true;
+                    return false;
+                });
+            }
+
             renderCards(result);
         }
 
@@ -1263,6 +1293,9 @@
 
         document.getElementById('resetFilters').addEventListener('click', () => {
             activeFilters = { text: '', category: [], kind: [], subKind: [], parallel: '', color: '', product: '', baton: [], tokkou: '' };
+            showSelectedOnly = false;
+            const selBtn = document.getElementById('hcSelBtn');
+            if (selBtn) selBtn.classList.remove('filter-active');
             document.getElementById('searchInput').value = '';
             const productSelect = document.getElementById('filterProduct');
             productSelect.value = '';
@@ -1330,7 +1363,6 @@
                     this.flash('推しに'+name+'をセット'+(prev?' ('+prev+'から入替え)':''),'#10b981');
                     return;
                 }
-                if(this.total()>=this.MAX_TOTAL){alert('デッキが満杯です（'+this.MAX_TOTAL+'枚）');return;}
                 if(!this.isUnlimited(id)&&this.cart[id]&&this.cart[id].qty>=this.MAX_PER){alert(name+'はすでに'+this.MAX_PER+'枚入っています');return;}
                 if(this.cart[id])this.cart[id].qty++;
                 else this.cart[id]={name:name,img:hcImg(img),qty:1};
@@ -1357,7 +1389,6 @@
                 }
                 if(!this.cart[id])return;
                 if(!this.isUnlimited(id)&&this.cart[id].qty>=this.MAX_PER){alert(this.cart[id].name+'は最大'+this.MAX_PER+'枚まで');return;}
-                if(this.total()>=this.MAX_TOTAL){alert('デッキは最大'+this.MAX_TOTAL+'枚まで');return;}
                 this.cart[id].qty++;this.updateBar();this.updateBadges();
             },
             removeOshi:function(){this.oshi=null;this.updateBar();this.updateBadges();},
@@ -1372,6 +1403,7 @@
             },
             updateBadges:function(){
                 var self=this;
+                if(showSelectedOnly) applyFilters();
                 document.querySelectorAll('.hcW').forEach(function(w){
                     var id=w.dataset.hcId,b=w.querySelector('.hcBdg');
                     if(!b||!id)return;
@@ -1533,7 +1565,7 @@
                 mi.onclick=function(e){e.stopPropagation();HC.dec(cardId);hcRefModal(cardId);};
                 var qty=document.createElement('span');qty.style.cssText='font-weight:bold;font-size:16px;min-width:24px;text-align:center;';
                 qty.textContent=HC.cart[cardId]?HC.cart[cardId].qty:0;
-                var atL=(!HC.isUnlimited(cardId)&&HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER)||HC.total()>=HC.MAX_TOTAL;
+                var atL=!HC.isUnlimited(cardId)&&HC.cart[cardId]&&HC.cart[cardId].qty>=HC.MAX_PER;
                 var pl=document.createElement('button');pl.textContent='＋';
                 pl.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:6px;width:30px;height:30px;font-size:16px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
                 pl.onclick=function(e){e.stopPropagation();HC.add(cardId,card.name,img);hcRefModal(cardId);};
@@ -1573,7 +1605,7 @@
                     mi2.onclick=function(){HC.dec(this.dataset.id);hcOpenDeck();};
                     var unl2=HC.isUnlimited(id);
                     var qs=document.createElement('span');qs.style.cssText='font-weight:bold;font-size:14px;min-width:20px;text-align:center;color:'+(!unl2&&c.qty>=HC.MAX_PER?'#f59e0b':'#1e293b');qs.textContent=c.qty;
-                    var atL=(!unl2&&c.qty>=HC.MAX_PER)||t>=HC.MAX_TOTAL;
+                    var atL=!unl2&&c.qty>=HC.MAX_PER;
                     var pl2=document.createElement('button');pl2.textContent='+';pl2.dataset.id=id;
                     pl2.style.cssText='background:'+(atL?'#e2e8f0':'#5e5a9b')+';color:'+(atL?'#94a3b8':'white')+';border:none;border-radius:4px;width:24px;height:24px;font-size:15px;font-weight:bold;cursor:'+(atL?'not-allowed':'pointer')+';';
                     pl2.onclick=function(){HC.inc(this.dataset.id);hcOpenDeck();};
@@ -1613,6 +1645,7 @@
         }
         function hcOpenExp(){
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
+            if(HC.total()>HC.MAX_TOTAL){hcAlert('メインデッキが '+HC.total()+' 枚です（上限 '+HC.MAX_TOTAL+' 枚）。\n枚数を調整してからDECKLOGに登録してください。');return;}
             var oshi=HC.oshi;
             var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
             var yell=Object.keys(HC.yell).map(function(id){return{id:id,count:HC.yell[id].qty};});
@@ -1703,6 +1736,10 @@
         function hcOpenCloudSave() {
             if (!Object.keys(HC.cart).length && !HC.oshi && !Object.keys(HC.yell).length) {
                 alert('カートが空です'); return;
+            }
+            if (HC.total() > HC.MAX_TOTAL) {
+                hcAlert('メインデッキが ' + HC.total() + ' 枚です（上限 ' + HC.MAX_TOTAL + ' 枚）。\n枚数を調整してから保存してください。');
+                return;
             }
             if (!_hcUser) {
                 if (confirm('保存にはGoogleログインが必要です。\nログインしますか？')) hcToggleAuth();
