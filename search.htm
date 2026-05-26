@@ -564,9 +564,13 @@
             if (activeFilters.product) result = result.filter(c => c.products && c.products.includes(activeFilters.product));
 
             if (showSelectedOnly) {
-                result = result.filter(c =>
-                    HC.cart[c.id] || HC.yell[c.id] || (HC.oshi && HC.oshi.id === c.id)
-                );
+                result = result.filter(function(c) {
+                    var cimg = hcImg(c.img || '');
+                    if (HC.oshi && HC.oshi.id === c.id && HC.oshi.img === cimg) return true;
+                    if (HC.yell[c.id] && HC.yell[c.id].img === cimg) return true;
+                    if (HC.cart[c.id] && HC.cart[c.id].img === cimg) return true;
+                    return false;
+                });
             }
 
             renderCards(result);
