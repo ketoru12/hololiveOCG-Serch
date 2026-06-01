@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ホロカ → DECKLOG",
-  "version": "2.3",
+  "version": "2.4",
   "description": "hololiveOCG-Serchで選んだカードをDECKLOGに自動登録",
   "permissions": ["scripting", "tabs", "storage"],
   "host_permissions": [

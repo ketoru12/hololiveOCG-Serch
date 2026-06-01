@@ -13,8 +13,19 @@
   }
   if (!deckData) return;
 
-  // MAIN world（decklog_main.js）に渡す
-  window.postMessage({ type: 'HC_EXEC', data: deckData }, '*');
+  // MAIN world（decklog_main.js）のリスナー準備を待ってから送信
+  // Firefox では MAIN world の初期化が遅れる場合があるためリトライする
+  await delay(1000);
+  let execAcked = false;
+  window.addEventListener('message', function ackHandler(e) {
+    if (!e.data || e.data.type !== 'HC_EXEC_ACK') return;
+    execAcked = true;
+    window.removeEventListener('message', ackHandler);
+  });
+  for (let attempt = 0; attempt < 5 && !execAcked; attempt++) {
+    window.postMessage({ type: 'HC_EXEC', data: deckData }, '*');
+    await delay(600);
+  }
 
   // HC_DONE を受け取ったらストレージから削除
   window.addEventListener('message', async function handler(e) {

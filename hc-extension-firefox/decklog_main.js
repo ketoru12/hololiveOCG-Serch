@@ -1,5 +1,9 @@
+let _hcExecStarted = false;
 window.addEventListener('message', function(e) {
   if (!e.data || e.data.type !== 'HC_EXEC') return;
+  if (_hcExecStarted) return;
+  _hcExecStarted = true;
+  window.postMessage({ type: 'HC_EXEC_ACK' }, '*');
   execDecklog(e.data.data);
 });
 
