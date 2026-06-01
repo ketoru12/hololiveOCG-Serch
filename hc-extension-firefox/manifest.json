@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ホロカ → DECKLOG",
-  "version": "2.2",
+  "version": "2.3",
   "description": "hololiveOCG-Serchで選んだカードをDECKLOGに自動登録",
   "permissions": ["scripting", "tabs", "storage"],
   "host_permissions": [
@@ -39,7 +39,14 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "hc-decklog@ketoru12",
-      "strict_min_version": "128.0"
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
     }
   }
 }
