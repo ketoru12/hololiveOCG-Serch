@@ -3946,6 +3946,48 @@
     ]
   },
   {
+    "id": "hBP01-034",
+    "page_id": "2153",
+    "name": "アキ・ローゼンタール",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "あらあら",
+        "damage": "30",
+        "text": "",
+        "icons": "緑",
+        "tokkou": ""
+      },
+      {
+        "name": "むぎゅむぎゅ雑談",
+        "damage": "50",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP01-034_P.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#ハーフエルフ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP01-035",
     "page_id": "69",
     "name": "アキ・ローゼンタール",
@@ -4353,6 +4395,40 @@
       "ブルーミングレディアンス"
     ],
     "img": "/image/holomen/hBP01-040_C.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP01-040",
+    "page_id": "2154",
+    "name": "兎田ぺこら",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おつぺこでした",
+        "damage": "60",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP01-040_P.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -5788,6 +5864,48 @@
     ]
   },
   {
+    "id": "hBP01-058",
+    "page_id": "2155",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "こんルイルイ",
+        "damage": "30",
+        "text": "",
+        "icons": "赤",
+        "tokkou": ""
+      },
+      {
+        "name": "おつルイルイ",
+        "damage": "50",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP01-058_P.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP01-059",
     "page_id": "96",
     "name": "鷹嶺ルイ",
@@ -6515,6 +6633,47 @@
     ]
   },
   {
+    "id": "hBP01-069",
+    "page_id": "2156",
+    "name": "尾丸ポルカ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "おはぽる",
+        "damage": "20",
+        "text": "",
+        "icons": "赤",
+        "tokkou": ""
+      },
+      {
+        "name": "おそぽる",
+        "damage": "40",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP01-069_P.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP01-070",
     "page_id": "108",
     "name": "尾丸ポルカ",
@@ -7229,6 +7388,47 @@
       "ブルーミングレディアンス"
     ],
     "img": "/image/holomen/hBP01-078_C.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP01-078",
+    "page_id": "2157",
+    "name": "星街すいせい",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ストリートスナップ",
+        "damage": "30",
+        "text": "",
+        "icons": "青",
+        "tokkou": ""
+      },
+      {
+        "name": "木漏れ日のひと時",
+        "damage": "50",
+        "text": "",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP01-078_P.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -10023,6 +10223,49 @@
     ]
   },
   {
+    "id": "hBP02-010",
+    "page_id": "2158",
+    "name": "白上フブキ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "キンモクセイの花フブキ",
+        "damage": "40",
+        "text": "",
+        "icons": "白",
+        "tokkou": ""
+      },
+      {
+        "name": "Thank You Friends♥",
+        "damage": "60",
+        "text": "",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP02-010_P.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#ゲーマーズ",
+      "#ケモミミ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP02-011",
     "page_id": "278",
     "name": "白上フブキ",
@@ -10122,6 +10365,42 @@
       "PRカード"
     ],
     "img": "/image/holomen/hBP02-011_P_02.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#ゲーマーズ",
+      "#ケモミミ",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP02-011",
+    "page_id": "2159",
+    "name": "白上フブキ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ダメですよっ！",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "白上から目をそらしちゃ",
+    "keywordEffect": "自分のデッキから、#白上'sキャラクターを持つカード1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP02-011_P.png",
     "tags": [
       "#JP",
       "#1期生",
@@ -10558,6 +10837,47 @@
       "クインテットスペクトラム"
     ],
     "img": "/image/holomen/hBP02-015_S.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP02-015",
+    "page_id": "2160",
+    "name": "白銀ノエル",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "おはまっする～！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "おつまっする～",
+        "damage": "60",
+        "text": "",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP02-015_P.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -11504,6 +11824,48 @@
     ]
   },
   {
+    "id": "hBP02-025",
+    "page_id": "2161",
+    "name": "大神ミオ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おはみぉーん",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "おつみぉーん",
+        "damage": "50",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP02-025_P.png",
+    "tags": [
+      "#JP",
+      "#ゲーマーズ",
+      "#ケモミミ",
+      "#料理"
+    ]
+  },
+  {
     "id": "hBP02-026",
     "page_id": "293",
     "name": "大神ミオ",
@@ -11969,6 +12331,48 @@
       "クインテットスペクトラム"
     ],
     "img": "/image/holomen/hBP02-030_S.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
+    "id": "hBP02-030",
+    "page_id": "2162",
+    "name": "宝鐘マリン",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "船長、何されちゃうのかな？",
+        "damage": "40",
+        "text": "",
+        "icons": "赤",
+        "tokkou": ""
+      },
+      {
+        "name": "もう、どスケベ♥",
+        "damage": "60",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP02-030_P.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -17482,6 +17886,40 @@
     ]
   },
   {
+    "id": "hBP03-010",
+    "page_id": "2163",
+    "name": "姫森ルーナ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "80",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "お菓子たべるのら？",
+        "damage": "20",
+        "text": "",
+        "icons": "白",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "お菓子の国のお姫様",
+    "keywordEffect": "自分のセンターホロメンが〈姫森ルーナ〉の時、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-010_P.png",
+    "tags": [
+      "#JP",
+      "#4期生",
+      "#ベイビー"
+    ]
+  },
+  {
     "id": "hBP03-011",
     "page_id": "575",
     "name": "姫森ルーナ",
@@ -17557,6 +17995,47 @@
       "エリートスパーク"
     ],
     "img": "/image/holomen/hBP03-011_S.png",
+    "tags": [
+      "#JP",
+      "#4期生",
+      "#ベイビー"
+    ]
+  },
+  {
+    "id": "hBP03-011",
+    "page_id": "2164",
+    "name": "姫森ルーナ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おつルーナ",
+        "damage": "40",
+        "text": "",
+        "icons": "白",
+        "tokkou": ""
+      },
+      {
+        "name": "ぐっどないと～",
+        "damage": "60",
+        "text": "",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-011_P.png",
     "tags": [
       "#JP",
       "#4期生",
@@ -18154,6 +18633,48 @@
       "エリートスパーク"
     ],
     "img": "/image/holomen/hBP03-018_S.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ケモミミ",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP03-018",
+    "page_id": "2165",
+    "name": "獅白ぼたん",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ぼたんがアイドルになったら…",
+        "damage": "40",
+        "text": "",
+        "icons": "緑",
+        "tokkou": ""
+      },
+      {
+        "name": "絶対、ドキドキさせるから",
+        "damage": "60",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-018_P.png",
     "tags": [
       "#JP",
       "#5期生",
@@ -18958,6 +19479,47 @@
       "エリートスパーク"
     ],
     "img": "/image/holomen/hBP03-027_S_2.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#ベイビー"
+    ]
+  },
+  {
+    "id": "hBP03-027",
+    "page_id": "2166",
+    "name": "さくらみこ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "エリートな水着",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "ぷにち",
+        "damage": "60",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-027_P.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -21151,6 +21713,48 @@
     ]
   },
   {
+    "id": "hBP03-053",
+    "page_id": "2167",
+    "name": "常闇トワ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おつやっぴー",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "きゅりん",
+        "damage": "60",
+        "text": "",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-053_P.png",
+    "tags": [
+      "#JP",
+      "#4期生",
+      "#歌",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP03-054",
     "page_id": "618",
     "name": "常闇トワ",
@@ -21692,6 +22296,47 @@
     ]
   },
   {
+    "id": "hBP03-058",
+    "page_id": "2168",
+    "name": "ロボ子さん",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おつろぼー",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "いちゃあま彼女",
+        "damage": "60",
+        "text": "",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-058_P.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP03-059",
     "page_id": "623",
     "name": "ロボ子さん",
@@ -22114,6 +22759,40 @@
       "エリートスパーク"
     ],
     "img": "/image/holomen/hBP03-063_S.png",
+    "tags": [
+      "#JP",
+      "#ゲーマーズ",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP03-063",
+    "page_id": "2169",
+    "name": "戌神ころね",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "おつころ～ん",
+        "damage": "30",
+        "text": "",
+        "icons": "黄",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-063_P.png",
     "tags": [
       "#JP",
       "#ゲーマーズ",
@@ -22659,6 +23338,48 @@
       "エリートスパーク"
     ],
     "img": "/image/holomen/hBP03-069_S.png",
+    "tags": [
+      "#JP",
+      "#4期生",
+      "#ケモミミ",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP03-069",
+    "page_id": "2170",
+    "name": "角巻わため",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "癒しのひととき",
+        "damage": "30",
+        "text": "",
+        "icons": "黄",
+        "tokkou": ""
+      },
+      {
+        "name": "応援してくれるよねぇ？",
+        "damage": "90",
+        "text": "",
+        "icons": "◇,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP03-069_P.png",
     "tags": [
       "#JP",
       "#4期生",
@@ -25752,6 +26473,47 @@
     ]
   },
   {
+    "id": "hBP04-010",
+    "page_id": "2171",
+    "name": "博衣こより",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "助手く～ん、なんかお疲れっぽい？",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "こよに添い寝される？",
+        "damage": "60",
+        "text": "",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-010_P.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP04-011",
     "page_id": "873",
     "name": "博衣こより",
@@ -28609,6 +29371,48 @@
     ]
   },
   {
+    "id": "hBP04-045",
+    "page_id": "2172",
+    "name": "雪花ラミィ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "おつらみ",
+        "damage": "30",
+        "text": "",
+        "icons": "青",
+        "tokkou": ""
+      },
+      {
+        "name": "ボスが攻略できな～い",
+        "damage": "50",
+        "text": "",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-045_P.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ハーフエルフ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP04-046",
     "page_id": "908",
     "name": "雪花ラミィ",
@@ -28671,6 +29475,41 @@
       "キュリアスユニバース"
     ],
     "img": "/image/holomen/hBP04-046_S.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ハーフエルフ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP04-046",
+    "page_id": "2173",
+    "name": "雪花ラミィ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "いっぱい頑張るよ！",
+        "damage": "30",
+        "text": "自分のファンが付いているホロメンがいる時、相手のホロメン1人に特殊ダメージ10を与える。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-046_P.png",
     "tags": [
       "#JP",
       "#5期生",
@@ -29586,6 +30425,40 @@
     ]
   },
   {
+    "id": "hBP04-055",
+    "page_id": "2174",
+    "name": "ラプラス・ダークネス",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "我ら、エデンの星を統べる者！　30+",
+        "damage": "",
+        "text": "相手のお休みしているホロメン1人につき、このアーツ+10。",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "そこに跪け！",
+    "keywordEffect": "サイコロを1回振れる：3以上の時、相手のバックホロメン1人をお休みさせる。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-055_P.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP04-056",
     "page_id": "918",
     "name": "ラプラス・ダークネス",
@@ -29661,6 +30534,47 @@
       "キュリアスユニバース"
     ],
     "img": "/image/holomen/hBP04-056_S_02.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP04-056",
+    "page_id": "2175",
+    "name": "ラプラス・ダークネス",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "いちごだいすき！",
+        "damage": "40",
+        "text": "",
+        "icons": "紫",
+        "tokkou": ""
+      },
+      {
+        "name": "ぷらすめいと諸君いつもありがとう",
+        "damage": "70",
+        "text": "",
+        "icons": "紫,紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-056_P.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -30898,6 +31812,47 @@
     ]
   },
   {
+    "id": "hBP04-069",
+    "page_id": "2176",
+    "name": "大空スバル",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "おはようスバル",
+        "damage": "30",
+        "text": "",
+        "icons": "黄",
+        "tokkou": ""
+      },
+      {
+        "name": "眠いんデスケド",
+        "damage": "50",
+        "text": "",
+        "icons": "黄,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-069_P.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#トリ"
+    ]
+  },
+  {
     "id": "hBP04-070",
     "page_id": "932",
     "name": "大空スバル",
@@ -30959,6 +31914,40 @@
       "キュリアスユニバース"
     ],
     "img": "/image/holomen/hBP04-070_S.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#トリ"
+    ]
+  },
+  {
+    "id": "hBP04-070",
+    "page_id": "2177",
+    "name": "大空スバル",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "いっぱい応援して、楽しんでね！",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "全力で頑張るから",
+    "keywordEffect": "自分のホロメン1人を選ぶ。このターンの間、選んだホロメンのエール1枚につき、選んだホロメンのアーツ+10。ただし、数える枚数は3枚まで。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-070_P.png",
     "tags": [
       "#JP",
       "#2期生",
@@ -31862,6 +32851,47 @@
     ]
   },
   {
+    "id": "hBP04-080",
+    "page_id": "2178",
+    "name": "夏色まつり",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "夏色応援団",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "戦え！ 血を血で洗え！",
+        "damage": "50",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-080_P.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP04-081",
     "page_id": "943",
     "name": "夏色まつり",
@@ -32247,6 +33277,48 @@
       "キュリアスユニバース"
     ],
     "img": "/image/holomen/hBP04-084_S.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#歌",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP04-084",
+    "page_id": "2179",
+    "name": "桃鈴ねね",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "はぁ～ん",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "またねね",
+        "damage": "50",
+        "text": "",
+        "icons": "黄,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP04-084_P.png",
     "tags": [
       "#JP",
       "#5期生",
@@ -36525,6 +37597,41 @@
     ]
   },
   {
+    "id": "hBP05-040",
+    "page_id": "2203",
+    "name": "miComet",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ビジネスパートナー",
+        "damage": "90",
+        "text": "このホロメンのエール1枚を自分のバックホロメンに付け替えられる。",
+        "icons": "◇,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ビジネスフレンド",
+    "keywordEffect": "自分のライフが3以下なら、自分のこのターンにBloomしたセンターホロメンの[〈さくらみこ〉か〈星街すいせい〉]を、自分の手札のホロメンを使ってもう1回Bloomできる。",
+    "extra": "このホロメンは〈さくらみこ〉〈星街すいせい〉としても扱う",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP05-040_P.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#ベイビー",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP05-041",
     "page_id": "1219",
     "name": "猫又おかゆ",
@@ -40476,6 +41583,41 @@
     ]
   },
   {
+    "id": "hBP06-010",
+    "page_id": "2187",
+    "name": "ラオーラ・パンテーラ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "110",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "みんな素晴らしい友達だよ！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "夢みたいな最高のチーム",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキから、[DebutホロメンかSpotホロメン]1枚を公開し、ステージに出す。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP06-010_P.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#ケモミミ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP06-011",
     "page_id": "1488",
     "name": "ラオーラ・パンテーラ",
@@ -41116,6 +42258,39 @@
     ]
   },
   {
+    "id": "hBP06-018",
+    "page_id": "2195",
+    "name": "響咲リオナ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "Brr! Brr!",
+        "damage": "30",
+        "text": "自分のデッキの上から1枚をアーカイブする。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "FLOW GLOWのリーダー",
+    "keywordEffect": "このターンの間、自分のステージの#FLOW GLOWを持つホロメン1人のアーツ+20。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP06-018_P.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hBP06-019",
     "page_id": "1496",
     "name": "響咲リオナ",
@@ -41574,6 +42749,39 @@
       "アヤカシヴァーミリオン"
     ],
     "img": "/image/holomen/hBP06-024_S.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX"
+    ]
+  },
+  {
+    "id": "hBP06-024",
+    "page_id": "2180",
+    "name": "風真いろは",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "まじかる☆ござるの元気の出る魔法",
+        "damage": "80",
+        "text": "",
+        "icons": "緑,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hBP06-024_P.png",
     "tags": [
       "#JP",
       "#秘密結社holoX"
@@ -46764,6 +47972,23 @@
     "tags": []
   },
   {
+    "id": "hBP06-095",
+    "page_id": "2199",
+    "name": "IDENTIFY -AREA 15-",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#ID1期生を持つホロメンでなければ使えない。\n\n自分のデッキから、#ID1期生を持つホロメン2枚を公開し、手札に加える。そしてデッキをシャッフルする。その後、自分のエールデッキの枚数が0枚なら、このターンの間、自分の#ID1期生を持つホロメンが相手のセンターホロメンをダウンさせた時、相手のライフ-1。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hBP06-095_P.png",
+    "tags": []
+  },
+  {
     "id": "hBP06-096",
     "page_id": "1573",
     "name": "2人あわせてラムダック！",
@@ -47576,6 +48801,41 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP07-008_C.png",
+    "tags": [
+      "#JP",
+      "#4期生",
+      "#ケモミミ",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP07-008",
+    "page_id": "2188",
+    "name": "角巻わため",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "スプリングシープ",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "もういっぺぇ",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分の〈角巻わため〉1人を選ぶ。このターンの間、選んだホロメンはアーツを使った後、同じアーツをもう1回使える。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-008_P.png",
     "tags": [
       "#JP",
       "#4期生",
@@ -48631,6 +49891,41 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP07-023_C.png",
+    "tags": [
+      "#JP",
+      "#ゲーマーズ",
+      "#ケモミミ",
+      "#料理"
+    ]
+  },
+  {
+    "id": "hBP07-023",
+    "page_id": "2189",
+    "name": "大神ミオ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "MIOON!",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "占いパワー注入！",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキの上から3枚を見る。その中から、カード1枚を手札に加える。そして残ったカードを好きな順でデッキの上に戻す。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-023_P.png",
     "tags": [
       "#JP",
       "#ゲーマーズ",
@@ -50702,6 +51997,39 @@
     ]
   },
   {
+    "id": "hBP07-050",
+    "page_id": "2190",
+    "name": "オーロ・クロニー",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "金色のルアー",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "この日が来た！",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のセンターホロメンの〈オーロ・クロニー〉を、自分の手札の1stホロメンを使ってBloomできる。この能力では最初のターンでもBloomできる。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-050_P.png",
+    "tags": [
+      "#EN",
+      "#Promise"
+    ]
+  },
+  {
     "id": "hBP07-051",
     "page_id": "1837",
     "name": "オーロ・クロニー",
@@ -51032,6 +52360,39 @@
     ]
   },
   {
+    "id": "hBP07-055",
+    "page_id": "2196",
+    "name": "オーロ・クロニー",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "Life Goes On",
+        "damage": "90",
+        "text": "",
+        "icons": "青,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "約束の未来へ",
+    "keywordEffect": "自分のステージの#Promiseを持つホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+50。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-055_P.png",
+    "tags": [
+      "#EN",
+      "#Promise"
+    ]
+  },
+  {
     "id": "hBP07-056",
     "page_id": "1842",
     "name": "オーロ・クロニー",
@@ -51292,6 +52653,39 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP07-059_C.png",
+    "tags": [
+      "#EN",
+      "#Advent"
+    ]
+  },
+  {
+    "id": "hBP07-059",
+    "page_id": "2191",
+    "name": "シオリ・ノヴェラ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "A Cozy, Spooky Night Together",
+        "damage": "10",
+        "text": "相手のホロメン1人に特殊ダメージ10を与える。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "It's Time to Play Dress-up!",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のアーカイブのサポートカード1枚を手札に戻す。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-059_P.png",
     "tags": [
       "#EN",
       "#Advent"
@@ -51570,6 +52964,40 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP07-063_C.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP07-063",
+    "page_id": "2192",
+    "name": "AZKi",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "君とぴったり密着空間",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ドキドキ夜キャンプ…",
+    "keywordEffect": "自分が後攻で最初のターンで、自分の推しホロメンが〈AZKi〉なら、相手のステージのエール1枚をエールデッキの下に戻す。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-063_P.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -52708,6 +54136,41 @@
     ]
   },
   {
+    "id": "hBP07-077",
+    "page_id": "2193",
+    "name": "桃鈴ねね",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ねね、酔っちゃった～",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "あぱぱ",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキから、#5期生を持つ2ndホロメン1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-077_P.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#歌",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP07-078",
     "page_id": "1864",
     "name": "桃鈴ねね",
@@ -53781,6 +55244,23 @@
     "tags": []
   },
   {
+    "id": "hBP07-094",
+    "page_id": "2200",
+    "name": "ギリわるロボ",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分の手札すべてをデッキに戻してシャッフルする。そして自分のデッキを4枚引く。自分のライフが3以下なら、かわりに、お互いの手札すべてをデッキに戻してシャッフルする。そしてそれぞれのデッキを4枚引く。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hBP07-094_P.png",
+    "tags": []
+  },
+  {
     "id": "hBP07-095",
     "page_id": "1881",
     "name": "クロスインパクト",
@@ -53863,6 +55343,23 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/support/hBP07-097_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP07-097",
+    "page_id": "2201",
+    "name": "時の支配者 -Promise-",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#Promiseを持つホロメンでなければ使えない。\n\n自分のデッキから、#Promiseを持つホロメン2枚を公開し、手札に加える。そしてデッキをシャッフルする。その後、自分のライフが相手より少ないなら、自分のステージのホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+20。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hBP07-097_P.png",
     "tags": []
   },
   {
@@ -54594,6 +56091,47 @@
     ]
   },
   {
+    "id": "hSD01-005",
+    "page_id": "2181",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ぬんぬんしよう",
+        "damage": "30",
+        "text": "",
+        "icons": "白",
+        "tokkou": ""
+      },
+      {
+        "name": "あなたの心は…くもりのち晴れ！",
+        "damage": "50",
+        "text": "",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD01-005_P.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
     "id": "hSD01-006",
     "page_id": "6",
     "name": "ときのそら",
@@ -54873,6 +56411,40 @@
       "スタートデッキ「ときのそら＆AZKi」"
     ],
     "img": "/image/holomen/hSD01-010_U.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hSD01-010",
+    "page_id": "2182",
+    "name": "AZKi",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "きみとあてのない旅",
+        "damage": "50",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD01-010_P.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -55707,6 +57279,47 @@
     ]
   },
   {
+    "id": "hSD02-005",
+    "page_id": "2183",
+    "name": "百鬼あやめ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "寝る余～",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "おつなきりー",
+        "damage": "60",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD02-005_P.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hSD02-006",
     "page_id": "230",
     "name": "百鬼あやめ",
@@ -56431,6 +58044,47 @@
     ]
   },
   {
+    "id": "hSD03-005",
+    "page_id": "2184",
+    "name": "猫又おかゆ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ぎゅ～ってしてよね♡",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "えへへないたずら",
+        "damage": "50",
+        "text": "",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD03-005_P.png",
+    "tags": [
+      "#JP",
+      "#ゲーマーズ",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hSD03-006",
     "page_id": "244",
     "name": "猫又おかゆ",
@@ -57029,6 +58683,47 @@
       "スタートデッキ 紫 癒月ちょこ"
     ],
     "img": "/image/holomen/hSD04-005_C.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#料理"
+    ]
+  },
+  {
+    "id": "hSD04-005",
+    "page_id": "2185",
+    "name": "癒月ちょこ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "おつかれいと……",
+        "damage": "20",
+        "text": "",
+        "icons": "紫",
+        "tokkou": ""
+      },
+      {
+        "name": "あ～む（ﾁｭｯ）",
+        "damage": "40",
+        "text": "",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD04-005_P.png",
     "tags": [
       "#JP",
       "#2期生",
@@ -58747,6 +60442,47 @@
       "スタートデッキ 黄 不知火フレア"
     ],
     "img": "/image/holomen/hSD07-005_C.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
+    "id": "hSD07-005",
+    "page_id": "2186",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "私からキミへ",
+        "damage": "30",
+        "text": "",
+        "icons": "黄",
+        "tokkou": ""
+      },
+      {
+        "name": "キミとティータイム",
+        "damage": "50",
+        "text": "",
+        "icons": "黄,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "hololive OFFICIAL CARD GAME ツインウエハース"
+    ],
+    "img": "/image/holomen/hSD07-005_P.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -61658,6 +63394,40 @@
     ]
   },
   {
+    "id": "hSD12-013",
+    "page_id": "2197",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ほんまにほんま～！！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ハッピー☆パピー -MOCOCO-",
+    "keywordEffect": "自分のステージのホロメン全員が#Adventを持つホロメンなら、自分のバックポジションのDebutホロメン1人をデッキの下に戻せる:自分のデッキを2枚引く。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hSD12-013_P.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hSD12-014",
     "page_id": "1763",
     "name": "フワワ・アビスガード",
@@ -61685,6 +63455,40 @@
       "スタートデッキ 推し Advent"
     ],
     "img": "/image/holomen/hSD12-014_C.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hSD12-014",
+    "page_id": "2198",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "ほんまにほんまだよ！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ハッピー☆パピー -FUWAWA-",
+    "keywordEffect": "自分のステージのホロメン全員が#Adventを持つホロメンなら、自分のバックポジションのDebutホロメン1人をデッキの下に戻せる:自分のエールデッキの上から1枚を自分のホロメンに送る。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hSD12-014_P.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -62114,6 +63918,39 @@
       "スタートデッキ 推し Justice"
     ],
     "img": "/image/holomen/hSD13-009_C.png",
+    "tags": [
+      "#EN",
+      "#Justice"
+    ]
+  },
+  {
+    "id": "hSD13-009",
+    "page_id": "2194",
+    "name": "ジジ・ムリン",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "YIPPEEE",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "イタズラ増殖！",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキから、#Justiceを持つ1stホロメン1枚を公開し、ステージに出す。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hSD13-009_P.png",
     "tags": [
       "#EN",
       "#Justice"
@@ -62750,6 +64587,23 @@
       "ライブスタートデッキ 森カリオペ"
     ],
     "img": "/image/support/hSD14-010_C.png",
+    "tags": []
+  },
+  {
+    "id": "hSD14-010",
+    "page_id": "2202",
+    "name": "holoAN",
+    "category": "サポート",
+    "color": null,
+    "kind": "スタッフ",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分のデッキを３枚引く。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hSD14-010_P.png",
     "tags": []
   },
   {
