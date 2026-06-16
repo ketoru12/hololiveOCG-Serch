@@ -261,29 +261,28 @@ def parse_arts(detail):
             results.append((art_text, icons_str, tokkou))
     return results
 
-_KEYWORD_TYPES = ['ブルームエフェクト', 'コラボエフェクト', 'エールエフェクト']
-
 def parse_keyword(detail):
-    """キーワード: (type, name, effect) を返す。"""
+    """キーワード: (type, name, effect) を返す。
+    HTML構造: <span><img alt="ブルームエフェクト" />キーワード名</span>効果テキスト
+    """
     keywords = []
     for kw_div in re.finditer(r'<div class="keyword">(.*?)</div>', detail, re.DOTALL):
         inner = kw_div.group(1)
         paragraphs = re.findall(r'<p>(.*?)</p>', inner, re.DOTALL)
-        # キーワード種別を段落テキストから取得
-        kw_type = 'キーワード'
-        for p in paragraphs:
-            text = strip_tags(p).strip()
-            for kt in _KEYWORD_TYPES:
-                if kt in text:
-                    kw_type = text
-                    break
         for p in paragraphs:
             span_m = re.search(r'<span>(.*?)</span>', p, re.DOTALL)
             if span_m:
-                kw_name = clean_text(strip_tags(span_m.group(1)))
+                span_inner = span_m.group(1)
+                # img alt属性からキーワード種別取得（例: alt="ブルームエフェクト"）
+                img_m = re.search(r'<img[^>]+alt="([^"]+)"', span_inner)
+                kw_type = img_m.group(1).strip() if img_m else 'キーワード'
+                # キーワード名: imgタグを除いたspan内テキスト
+                span_text = re.sub(r'<img[^>]+/?>', '', span_inner)
+                kw_name = clean_text(strip_tags(span_text))
+                # キーワード効果: span後のテキスト
                 kw_effect_raw = p[p.find('</span>') + len('</span>'):] if '</span>' in p else ''
                 kw_effect = clean_text(strip_tags(kw_effect_raw))
-                if kw_effect:
+                if kw_name and kw_effect:
                     keywords.append((kw_type, kw_name, kw_effect))
                 break
     return keywords
