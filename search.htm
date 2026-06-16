@@ -644,7 +644,7 @@
                 details += createRow('HP', card.value);
                 details += createRow('Bloom', card.kind);
                 details += `<div class="flex items-center mb-1 gap-3"><span class="label-pill">バトンタッチ</span><div class="value-box flex items-center gap-1">${renderBatonIcons(card.baton_touch)}</div></div>`;
-                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">キーワード</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
+                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">${card.keywordType || 'キーワード'}</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 details += createRow('LIFE', card.value, 'bg-green-600');
             } else if (card.category === "サポート") {

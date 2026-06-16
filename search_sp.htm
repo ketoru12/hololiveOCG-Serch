@@ -817,7 +817,7 @@
                 // HP非表示
                 // Bloom非表示
                 // バトンタッチ非表示
-                // キーワード非表示
+                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">${card.keywordType || 'キーワード'}</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 // LIFE非表示
             } else if (card.category === "サポート") {
@@ -1171,7 +1171,7 @@
                 // HP非表示
                 // Bloom非表示
                 // バトンタッチ非表示
-                // キーワード非表示
+                if (card.keywordName) details += `<div class="flex items-start mb-1 gap-3"><span class="label-pill keyword-pill">${card.keywordType || 'キーワード'}</span><div class="value-box"><div class="font-black">【${card.keywordName}】</div><div class="text-slate-600">${card.keywordEffect}</div></div></div>`;
             } else if (card.category === "推しホロメン") {
                 // LIFE非表示
             } else if (card.category === "サポート") {

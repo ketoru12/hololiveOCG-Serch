@@ -261,23 +261,30 @@ def parse_arts(detail):
             results.append((art_text, icons_str, tokkou))
     return results
 
+_KEYWORD_TYPES = ['ブルームエフェクト', 'コラボエフェクト', 'エールエフェクト']
+
 def parse_keyword(detail):
-    """キーワード: (name, effect) を返す。複数ある場合は最初の1つ"""
+    """キーワード: (type, name, effect) を返す。"""
     keywords = []
     for kw_div in re.finditer(r'<div class="keyword">(.*?)</div>', detail, re.DOTALL):
         inner = kw_div.group(1)
         paragraphs = re.findall(r'<p>(.*?)</p>', inner, re.DOTALL)
-        kw_texts = [clean_text(strip_tags(p)) for p in paragraphs if strip_tags(p).strip() != 'キーワード']
-        # 最初のpタグ: "<img>キーワード名" → spanの中身
+        # キーワード種別を段落テキストから取得
+        kw_type = 'キーワード'
+        for p in paragraphs:
+            text = strip_tags(p).strip()
+            for kt in _KEYWORD_TYPES:
+                if kt in text:
+                    kw_type = text
+                    break
         for p in paragraphs:
             span_m = re.search(r'<span>(.*?)</span>', p, re.DOTALL)
             if span_m:
                 kw_name = clean_text(strip_tags(span_m.group(1)))
                 kw_effect_raw = p[p.find('</span>') + len('</span>'):] if '</span>' in p else ''
                 kw_effect = clean_text(strip_tags(kw_effect_raw))
-                # 次の <p> があれば effect に追加
                 if kw_effect:
-                    keywords.append((kw_name, kw_effect))
+                    keywords.append((kw_type, kw_name, kw_effect))
                 break
     return keywords
 
@@ -392,10 +399,10 @@ def build_holomen_row(page_id, kind):
     def kw_fields(idx):
         if idx < len(keywords):
             return keywords[idx]
-        return ('', '')
+        return ('', '', '')
 
-    kw1_name, kw1_effect = kw_fields(0)
-    kw2_name, _ = kw_fields(1)
+    kw1_type, kw1_name, kw1_effect = kw_fields(0)
+    _,        kw2_name, _          = kw_fields(1)
 
     row = {
         'page_id'      : page_id,
@@ -417,6 +424,7 @@ def build_holomen_row(page_id, kind):
         'arts3_tokkou' : art_fields(2)[2],
         'keyword1'     : kw1_name,
         'keyword2'     : kw2_name,
+        'keywordType'  : kw1_type,
         'keywordEffect': kw1_effect,
         'baton'        : baton,
         'extra'        : extra,
@@ -601,7 +609,7 @@ HOLOMEN_FIELDS = [
     'arts1_text','arts1_icons','arts1_tokkou',
     'arts2_text','arts2_icons','arts2_tokkou',
     'arts3_text','arts3_icons','arts3_tokkou',
-    'keyword1','keyword2','keywordEffect','baton','extra','rarity','number',
+    'keyword1','keyword2','keywordType','keywordEffect','baton','extra','rarity','number',
     'product1','product2','product3','product4','product5',
     'tag1','tag2','tag3','tag4','tag5','tag6',
 ]
@@ -779,6 +787,7 @@ def build_master_json():
             'baton_touch' : r.get('baton', '').strip(),
             'arts'        : arts,
             'keywordName' : r.get('keyword1', '').strip(),
+            'keywordType' : r.get('keywordType', '').strip(),
             'keywordEffect': r.get('keywordEffect', '').strip(),
             'extra'       : extra,
             'rarity'      : r.get('rarity', '').strip(),
