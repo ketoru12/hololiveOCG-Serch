@@ -3632,6 +3632,41 @@
     ]
   },
   {
+    "id": "hBP01-028",
+    "page_id": "2444",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ハイRyS！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP01-028_HR.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP01-029",
     "page_id": "63",
     "name": "IRyS",
@@ -5952,6 +5987,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP01-056_C_02.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP01-056",
+    "page_id": "2446",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "皆さん、待っ鷹ね？",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP01-056_HR.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -11544,6 +11615,42 @@
     ]
   },
   {
+    "id": "hBP02-018",
+    "page_id": "2445",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ペルハティアン！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP02-018_HR.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP02-019",
     "page_id": "286",
     "name": "パヴォリア・レイネ",
@@ -15483,6 +15590,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP02-061_C_02.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
+    "id": "hBP02-061",
+    "page_id": "2448",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "WAH!",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP02-061_HR.png",
     "tags": [
       "#EN",
       "#Myth",
@@ -25161,6 +25304,48 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP03-080_C_02.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP03-080",
+    "page_id": "2449",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ドレミファソラシド～！",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "音楽家の卵！ 音乃瀬～奏で～～～す！",
+        "damage": "50",
+        "text": "",
+        "icons": "◇,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP03-080_HR.png",
     "tags": [
       "#DEV_IS",
       "#ReGLOSS",
@@ -54873,6 +55058,41 @@
     ]
   },
   {
+    "id": "hBP07-067",
+    "page_id": "2457",
+    "name": "AZKi",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "君と二人きりの夜",
+        "damage": "40",
+        "text": "自分の手札1枚をアーカイブできる:相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ROMANTiC NiGHT",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキの上から4枚を見る。その中から、〈AZKi〉1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-067_P.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP07-068",
     "page_id": "1854",
     "name": "AZKi",
@@ -57438,6 +57658,31 @@
     "tags": []
   },
   {
+    "id": "hBP08-001",
+    "page_id": "2331",
+    "name": "IRyS",
+    "category": "推しホロメン",
+    "color": "白",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]ネフィリムの祝福[ターンに1回]自分のステージのホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+20。選んだホロメンに紫エールが付いているなら、かわりに、そのホロメンのアーツ+50。"
+      },
+      {
+        "label": "SP推しスキル",
+        "text": "[ホロパワー:-2]HOPE and DESPAIR[ゲームに1回]自分の〈IRyS〉全員のエール1枚につき、自分のデッキを1枚引く。その後、自分の〈IRyS〉全員の紫エール1枚につき、自分のデッキの上から1枚をホロパワーにする。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-001_OUR.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-002",
     "page_id": "2205",
     "name": "セシリア・イマーグリーン",
@@ -57460,6 +57705,31 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/OSR/hBP08-002_OSR.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-002",
+    "page_id": "2332",
+    "name": "セシリア・イマーグリーン",
+    "category": "推しホロメン",
+    "color": "緑",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]SPIN TO WIN![ターンに1回]自分のエールデッキの上から2枚を自分のお休みしている〈セシリア・イマーグリーン〉に割り振って送る。その後、この能力でエールを送られたホロメン全員をアクティブにする。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nJusticeの古代自動人形自分の〈セシリア・イマーグリーン〉全員は、リセットステップでアクティブにならない。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-002_OUR.png",
     "tags": []
   },
   {
@@ -57488,6 +57758,56 @@
     "tags": []
   },
   {
+    "id": "hBP08-003",
+    "page_id": "2326",
+    "name": "FUWAMOCO",
+    "category": "推しホロメン",
+    "color": "赤",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "SEC",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]みんなの笑顔はモココが守る![ターンに1回]自分のステージに赤エールがあるなら、自分のアーカイブの#Adventを持つホロメン1枚を手札に戻す。青エールがあるなら、自分のアーカイブのエール1枚を自分の#Adventを持つホロメンに送る。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n準備は出来てるよね!自分の[〈フワワ・アビスガード〉と〈モココ・アビスガード〉]に付いている赤エールすべては、青エールとしても扱う。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-003_SEC.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-003",
+    "page_id": "2333",
+    "name": "FUWAMOCO",
+    "category": "推しホロメン",
+    "color": "赤",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]みんなの笑顔はモココが守る![ターンに1回]自分のステージに赤エールがあるなら、自分のアーカイブの#Adventを持つホロメン1枚を手札に戻す。青エールがあるなら、自分のアーカイブのエール1枚を自分の#Adventを持つホロメンに送る。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n準備は出来てるよね!自分の[〈フワワ・アビスガード〉と〈モココ・アビスガード〉]に付いている赤エールすべては、青エールとしても扱う。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-003_OUR.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-004",
     "page_id": "2207",
     "name": "水宮枢",
@@ -57510,6 +57830,56 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/OSR/hBP08-004_OSR.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-004",
+    "page_id": "2327",
+    "name": "水宮枢",
+    "category": "推しホロメン",
+    "color": "青",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "SEC",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-1]すうだけ見てたらいいのにね[ターンに1回]相手のセンターホロメンを選ぶ。次の相手のターンが終了するまで、選んだホロメンのバトンタッチに必要な無色+3。"
+      },
+      {
+        "label": "SP推しスキル",
+        "text": "[ホロパワー:-2]いけいけどんどん！[ゲームに1回]相手のバックホロメン1人に、相手のセンターホロメンが受けているダメージと同じ数値の特殊ダメージを与える。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-004_SEC.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-004",
+    "page_id": "2334",
+    "name": "水宮枢",
+    "category": "推しホロメン",
+    "color": "青",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-1]すうだけ見てたらいいのにね[ターンに1回]相手のセンターホロメンを選ぶ。次の相手のターンが終了するまで、選んだホロメンのバトンタッチに必要な無色+3。"
+      },
+      {
+        "label": "SP推しスキル",
+        "text": "[ホロパワー:-2]いけいけどんどん！[ゲームに1回]相手のバックホロメン1人に、相手のセンターホロメンが受けているダメージと同じ数値の特殊ダメージを与える。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-004_OUR.png",
     "tags": []
   },
   {
@@ -57538,6 +57908,81 @@
     "tags": []
   },
   {
+    "id": "hBP08-005",
+    "page_id": "2328",
+    "name": "鷹嶺ルイ",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "SEC",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]ホイサホイサ[ターンに1回]自分の手札2枚をアーカイブする。この能力で2枚アーカイブしたなら、相手のDebut以外の[センターホロメンとコラボホロメン]に特殊ダメージ50を与える。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nもう金曜だねルイ姉自分のターンが終了する時、自分のセンターホロメンが〈鷹嶺ルイ〉で、自分のコラボホロメンがいるなら、手札が4枚になるまで、自分のデッキを引く。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-005_SEC.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-005",
+    "page_id": "2335",
+    "name": "鷹嶺ルイ",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]ホイサホイサ[ターンに1回]自分の手札2枚をアーカイブする。この能力で2枚アーカイブしたなら、相手のDebut以外の[センターホロメンとコラボホロメン]に特殊ダメージ50を与える。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nもう金曜だねルイ姉自分のターンが終了する時、自分のセンターホロメンが〈鷹嶺ルイ〉で、自分のコラボホロメンがいるなら、手札が4枚になるまで、自分のデッキを引く。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-005_OUR.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-005",
+    "page_id": "2456",
+    "name": "鷹嶺ルイ",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "P",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]ホイサホイサ[ターンに1回]自分の手札2枚をアーカイブする。この能力で2枚アーカイブしたなら、相手のDebut以外の[センターホロメンとコラボホロメン]に特殊ダメージ50を与える。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nもう金曜だねルイ姉自分のターンが終了する時、自分のセンターホロメンが〈鷹嶺ルイ〉で、自分のコラボホロメンがいるなら、手札が4枚になるまで、自分のデッキを引く。"
+      }
+    ],
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/OSR/hBP08-005_P.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-006",
     "page_id": "2209",
     "name": "一伊那尓栖",
@@ -57563,6 +58008,56 @@
     "tags": []
   },
   {
+    "id": "hBP08-006",
+    "page_id": "2329",
+    "name": "一伊那尓栖",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "SEC",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-X]Ina'nisの色彩[ターンに1回]この能力でアーカイブしたホロパワー1枚につき、相手のステージのホロメン1人を選ぶ。このターンの間、選んだホロメンは、すべての色を持つホロメンとして扱う。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nWORLD DOMINATION相手のステージのホロメン全員が、相手の推しホロメンと異なる色を持つなら、自分の〈一伊那尓栖〉全員のアーツは、エールを必要とせずに使える。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-006_SEC.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-006",
+    "page_id": "2336",
+    "name": "一伊那尓栖",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-X]Ina'nisの色彩[ターンに1回]この能力でアーカイブしたホロパワー1枚につき、相手のステージのホロメン1人を選ぶ。このターンの間、選んだホロメンは、すべての色を持つホロメンとして扱う。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nWORLD DOMINATION相手のステージのホロメン全員が、相手の推しホロメンと異なる色を持つなら、自分の〈一伊那尓栖〉全員のアーツは、エールを必要とせずに使える。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-006_OUR.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-007",
     "page_id": "2210",
     "name": "音乃瀬奏",
@@ -57585,6 +58080,56 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/OSR/hBP08-007_OSR.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-007",
+    "page_id": "2330",
+    "name": "音乃瀬奏",
+    "category": "推しホロメン",
+    "color": "黄",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "SEC",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]奏でるメロディー[ターンに1回]自分のターンが終了する時、このターンに自分の〈音乃瀬奏〉がセンターポジションでアーツを使っていたなら使える:自分のセンターホロメンと自分の#ReGLOSSを持つバックホロメン1人を交代させる。"
+      },
+      {
+        "label": "SP推しスキル",
+        "text": "[ホロパワー:-1]ぱちぱちありがとう！[ゲームに1回]自分のエールデッキの上から3枚を自分のセンターホロメンの〈音乃瀬奏〉に送る。このターンが終了する時、自分のステージのエール3枚をアーカイブする。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-007_SEC.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-007",
+    "page_id": "2337",
+    "name": "音乃瀬奏",
+    "category": "推しホロメン",
+    "color": "黄",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OUR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]奏でるメロディー[ターンに1回]自分のターンが終了する時、このターンに自分の〈音乃瀬奏〉がセンターポジションでアーツを使っていたなら使える:自分のセンターホロメンと自分の#ReGLOSSを持つバックホロメン1人を交代させる。"
+      },
+      {
+        "label": "SP推しスキル",
+        "text": "[ホロパワー:-1]ぱちぱちありがとう！[ゲームに1回]自分のエールデッキの上から3枚を自分のセンターホロメンの〈音乃瀬奏〉に送る。このターンが終了する時、自分のステージのエール3枚をアーカイブする。"
+      }
+    ],
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/OSR/hBP08-007_OUR.png",
     "tags": []
   },
   {
@@ -57658,6 +58203,41 @@
     ]
   },
   {
+    "id": "hBP08-009",
+    "page_id": "2387",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "110",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "あたしはもっと深いところを見てるの",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "分かり合える日が来るかもね",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のホロパワーを見る。その中からサポートカード1枚を公開し、手札に加える。そしてホロパワーをシャッフルする。手札に加えたなら、自分のデッキの上から1枚をホロパワーにする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-009_S.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-010",
     "page_id": "2213",
     "name": "IRyS",
@@ -57686,6 +58266,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-010_C.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-010",
+    "page_id": "2388",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "I am Lightning Speed",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "Race with Me!!",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキから、[〈Bloom＆Gloom〉か〈GuyRyS〉]1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-010_S.png",
     "tags": [
       "#EN",
       "#Promise",
@@ -57728,6 +58343,41 @@
     ]
   },
   {
+    "id": "hBP08-011",
+    "page_id": "2389",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "Hot Ending",
+        "damage": "30",
+        "text": "このホロメンに紫エールが付いているなら、自分のデッキを1枚引く。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "The Hot Pink One",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "このホロメンに白エールが付いているなら、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-011_S.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-012",
     "page_id": "2215",
     "name": "IRyS",
@@ -57756,6 +58406,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-012_R.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-012",
+    "page_id": "2350",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "片や天使 片や悪魔",
+        "damage": "50",
+        "text": "このホロメンに紫エールが付いているなら、相手のセンターホロメンに特殊ダメージ20を与える。",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "希望が照らす轍",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージのエール1枚をエールデッキの下に戻せる:自分のエールデッキの上から1枚を自分の〈IRyS〉に送る。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-012_SR.png",
     "tags": [
       "#EN",
       "#Promise",
@@ -57798,6 +58483,41 @@
     ]
   },
   {
+    "id": "hBP08-013",
+    "page_id": "2390",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "萌え萌えキュンしちゃった？　70+",
+        "damage": "",
+        "text": "このホロメンに紫エールが付いているなら、このアーツ+50。",
+        "icons": "白,◇",
+        "tokkou": "紫+50"
+      }
+    ],
+    "keywordName": "勝利のティータイム",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンが相手のホロメンをダウンさせた時、自分のデッキの上から1枚をホロパワーにする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-013_S.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-014",
     "page_id": "2217",
     "name": "IRyS",
@@ -57833,6 +58553,76 @@
     ]
   },
   {
+    "id": "hBP08-014",
+    "page_id": "2338",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "プリズマティック・アンセム　130+",
+        "damage": "",
+        "text": "このターンの間、このホロメンの紫エール1枚につき、自分のステージのホロメン全員のアーツ+20。",
+        "icons": "白,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "絶望に残った光",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "相手のセンターホロメンに特殊ダメージ30を与える。さらに、このホロメンに紫エールが付いているなら、相手のコラボホロメンに特殊ダメージ30を与える。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-014_UR.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-014",
+    "page_id": "2351",
+    "name": "IRyS",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "プリズマティック・アンセム　130+",
+        "damage": "",
+        "text": "このターンの間、このホロメンの紫エール1枚につき、自分のステージのホロメン全員のアーツ+20。",
+        "icons": "白,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "絶望に残った光",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "相手のセンターホロメンに特殊ダメージ30を与える。さらに、このホロメンに紫エールが付いているなら、相手のコラボホロメンに特殊ダメージ30を与える。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-014_SR.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-015",
     "page_id": "2218",
     "name": "ときのそら",
@@ -57861,6 +58651,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-015_C.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-015",
+    "page_id": "2391",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ナインダーツ",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "私に勝てるかな？",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンが相手のホロメンから受けるアーツダメージ-10。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-015_S.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -57910,6 +58735,48 @@
     ]
   },
   {
+    "id": "hBP08-016",
+    "page_id": "2392",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "Stairway to the Stars",
+        "damage": "30",
+        "text": "自分のステージに〈ときのそら〉が3人以上いるなら、自分のデッキを1枚引く。",
+        "icons": "◇",
+        "tokkou": ""
+      },
+      {
+        "name": "あの時の空へ…",
+        "damage": "90",
+        "text": "",
+        "icons": "白,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-016_S.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-017",
     "page_id": "2220",
     "name": "ときのそら",
@@ -57945,6 +58812,41 @@
     ]
   },
   {
+    "id": "hBP08-017",
+    "page_id": "2352",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "みんな、ぬんぬん進んでいこーう　40+",
+        "damage": "",
+        "text": "自分のステージに#0期生を持つ2ndホロメンがいるなら、このアーツ+20。",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "「ヴァ！」",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキから、〈あん肝〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-017_SR.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-018",
     "page_id": "2221",
     "name": "ときのそら",
@@ -57973,6 +58875,76 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-018_RR.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-018",
+    "page_id": "2339",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "盛り上がってくれたらうれしいな！",
+        "damage": "150",
+        "text": "自分の推しホロメンが〈ときのそら〉なら、自分のステージの他の〈ときのそら〉1人を選ぶ。このターンの間、選んだホロメンのアーツは、相手の2ndのバックホロメンも対象にできる。",
+        "icons": "白,◇,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "アイドルになりたいわたし",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション・コラボポジション限定]自分のデッキを2枚引く。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-018_UR.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-018",
+    "page_id": "2353",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "盛り上がってくれたらうれしいな！",
+        "damage": "150",
+        "text": "自分の推しホロメンが〈ときのそら〉なら、自分のステージの他の〈ときのそら〉1人を選ぶ。このターンの間、選んだホロメンのアーツは、相手の2ndのバックホロメンも対象にできる。",
+        "icons": "白,◇,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "アイドルになりたいわたし",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション・コラボポジション限定]自分のデッキを2枚引く。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-018_SR.png",
     "tags": [
       "#JP",
       "#0期生",
@@ -58016,6 +58988,42 @@
     ]
   },
   {
+    "id": "hBP08-019",
+    "page_id": "2393",
+    "name": "ラオーラ・パンテーラ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "この幸せをシェアしよう",
+        "damage": "10",
+        "text": "このホロメンに〈Chattino〉が付いていないなら、自分のデッキから、〈Chattino〉1枚をこのホロメンに付ける。そしてデッキをシャッフルする。",
+        "icons": "白",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ボナペティート -楽しい食事-",
+    "keywordType": "ギフト",
+    "keywordEffect": "■このホロメンに〈Chattino〉が付いていないなら、このホロメンのアーツに必要な白-1。\n■このホロメンに〈Chattino〉が付いているなら、このホロメンのHP+30。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-019_S.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#ケモミミ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP08-020",
     "page_id": "2223",
     "name": "響咲リオナ",
@@ -58044,6 +59052,40 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-020_R.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
+    "id": "hBP08-020",
+    "page_id": "2354",
+    "name": "響咲リオナ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "2nd",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "挑戦のまなざし　110+",
+        "damage": "",
+        "text": "このターンに自分のデッキからカードを3枚以上アーカイブしていたなら、このアーツ+40。",
+        "icons": "白,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "セクシーダンスクィーン",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキの上から1～2枚をアーカイブできる:アーカイブしたカード1枚につき、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-020_SR.png",
     "tags": [
       "#DEV_IS",
       "#FLOW GLOW"
@@ -58120,6 +59162,41 @@
     ]
   },
   {
+    "id": "hBP08-022",
+    "page_id": "2394",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "エレガントに行くのです",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "エスケープメント",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンがバトンタッチしてバックポジションに移動した時、このホロメンをお休みさせる。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-022_S.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
     "id": "hBP08-023",
     "page_id": "2226",
     "name": "セシリア・イマーグリーン",
@@ -58148,6 +59225,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-023_C.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
+    "id": "hBP08-023",
+    "page_id": "2395",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "とってもとっても特別！",
+        "damage": "40",
+        "text": "",
+        "icons": "緑",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "一緒に居てくれる時間",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "このホロメンをお休みさせることができる。その後、自分のお休みしている#Justiceを持つホロメンが2人以上いるなら、自分のホロメン1人のHP50回復。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-023_S.png",
     "tags": [
       "#EN",
       "#Justice",
@@ -58190,6 +59302,41 @@
     ]
   },
   {
+    "id": "hBP08-024",
+    "page_id": "2396",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "風の赴くままに",
+        "damage": "60",
+        "text": "このホロメンをお休みさせる。",
+        "icons": "緑",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "グーテ・ライゼ -良き旅を-",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション・コラボポジション限定]相手のメインステップの間、自分のお休みしている〈セシリア・イマーグリーン〉全員のHPは相手の能力で減らず、変動しない。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-024_S.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
     "id": "hBP08-025",
     "page_id": "2228",
     "name": "セシリア・イマーグリーン",
@@ -58218,6 +59365,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-025_R.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
+    "id": "hBP08-025",
+    "page_id": "2355",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "休憩も大事でしょ？",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "喫茶の時間",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のお休みしている#Justiceを持つホロメンが2人以上いるなら、このターンの間、自分のステージのホロメン全員のアーツ+20。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-025_SR.png",
     "tags": [
       "#EN",
       "#Justice",
@@ -58260,6 +59442,41 @@
     ]
   },
   {
+    "id": "hBP08-026",
+    "page_id": "2397",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "奏楽のヴィンデ",
+        "damage": "90",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "機巧のシュトライヒ",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のお休みしている#Justiceを持つホロメンが2人以上いるなら、このターンの間、このホロメンのアーツ+50。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-026_S.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
     "id": "hBP08-027",
     "page_id": "2230",
     "name": "セシリア・イマーグリーン",
@@ -58288,6 +59505,76 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-027_RR.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
+    "id": "hBP08-027",
+    "page_id": "2340",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "翠嵐のシュトルム",
+        "damage": "200",
+        "text": "自分のお休みしている#Justiceを持つホロメン1人につき、自分のデッキを1枚引く。その後、このホロメンをお休みさせる。",
+        "icons": "緑,◇,◇,◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "絡繰のラプソディー",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のお休みしている#Justiceを持つホロメン1人につき、自分のアーカイブのエール1枚をこのホロメンに送る。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-027_UR.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#語学"
+    ]
+  },
+  {
+    "id": "hBP08-027",
+    "page_id": "2356",
+    "name": "セシリア・イマーグリーン",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "翠嵐のシュトルム",
+        "damage": "200",
+        "text": "自分のお休みしている#Justiceを持つホロメン1人につき、自分のデッキを1枚引く。その後、このホロメンをお休みさせる。",
+        "icons": "緑,◇,◇,◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "絡繰のラプソディー",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のお休みしている#Justiceを持つホロメン1人につき、自分のアーカイブのエール1枚をこのホロメンに送る。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-027_SR.png",
     "tags": [
       "#EN",
       "#Justice",
@@ -58332,6 +59619,43 @@
     ]
   },
   {
+    "id": "hBP08-028",
+    "page_id": "2357",
+    "name": "アキ・ローゼンタール",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "一口食べる？",
+        "damage": "50",
+        "text": "自分のツールが付いているホロメン1人のHP30回復。",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ホロナツ大盛りパフェ",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のツールが付いている〈アキ・ローゼンタール〉1人を選ぶ。このターンの間、選んだホロメンのアーツ+20。選んだホロメンがBuzzホロメンか2ndホロメンなら、かわりに、そのホロメンのアーツ+50。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-028_SR.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#ハーフエルフ",
+      "#お酒",
+      "#サマー"
+    ]
+  },
+  {
     "id": "hBP08-029",
     "page_id": "2232",
     "name": "風真いろは",
@@ -58366,6 +59690,40 @@
     ]
   },
   {
+    "id": "hBP08-029",
+    "page_id": "2398",
+    "name": "風真いろは",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "極秘任務遂行中でござる",
+        "damage": "20",
+        "text": "",
+        "icons": "緑",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "Secret Love -Iroha-",
+    "keywordType": "ギフト",
+    "keywordEffect": "[コラボポジション限定][ターンに1回]相手のターンで、自分の#秘密結社holoXを持つセンターホロメンがアーツダメージを受けた時、自分のデッキの上から1枚をホロパワーにする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-029_S.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX"
+    ]
+  },
+  {
     "id": "hBP08-030",
     "page_id": "2233",
     "name": "パヴォリア・レイネ",
@@ -58394,6 +59752,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-030_C.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP08-030",
+    "page_id": "2399",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "以後　お見知りおきを…",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "一歩ずつ",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分の手札の#ID2期生を持つホロメン1枚をアーカイブできる:自分のエールデッキの上から1枚を自分のバックホロメンに送る。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-030_S.png",
     "tags": [
       "#ID",
       "#ID2期生",
@@ -58438,6 +59832,42 @@
     ]
   },
   {
+    "id": "hBP08-031",
+    "page_id": "2358",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "250",
+    "cardType": "Buzzホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "GWS+",
+        "damage": "60",
+        "text": "自分のエールデッキの上から1枚をアーカイブする。その後、自分のステージのエール1色につき、自分のホロメン1人のHP10回復。",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "SPY-C1000",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション・コラボポジション限定][ターンに1回]自分のターンで、自分のエールがアーカイブに置かれた時、自分のデッキを1枚引く。",
+    "extra": "このホロメンがダウンした時、自分のライフ-2",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-031_SR.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP08-032",
     "page_id": "2235",
     "name": "パヴォリア・レイネ",
@@ -58474,6 +59904,42 @@
     ]
   },
   {
+    "id": "hBP08-032",
+    "page_id": "2400",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ストラクチュラル・カラー　80+",
+        "damage": "",
+        "text": "自分の〈パヴォリア・レイネ〉以外の#ID2期生を持つホロメンに紫エールか黄エールが付いているなら、このアーツ+70。",
+        "icons": "◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "新しい旅へ",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージの2ndホロメンの[〈クレイジー・オリー〉か〈アーニャ・メルフィッサ〉]1人を選ぶ。このターンの間、選んだホロメンのアーツ+70。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-032_S.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
     "id": "hBP08-033",
     "page_id": "2236",
     "name": "パヴォリア・レイネ",
@@ -58502,6 +59968,78 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-033_RR.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP08-033",
+    "page_id": "2341",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ノックアウト・ツイスト",
+        "damage": "140",
+        "text": "自分のアーカイブのエール1～2枚を自分の〈パヴォリア・レイネ〉1人に送る。",
+        "icons": "緑,◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "監視者の眼差し",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のエールデッキから、エール1枚を自分の#IDを持つホロメンに送る。そしてエールデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-033_UR.png",
+    "tags": [
+      "#ID",
+      "#ID2期生",
+      "#トリ",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP08-033",
+    "page_id": "2359",
+    "name": "パヴォリア・レイネ",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ノックアウト・ツイスト",
+        "damage": "140",
+        "text": "自分のアーカイブのエール1～2枚を自分の〈パヴォリア・レイネ〉1人に送る。",
+        "icons": "緑,◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "監視者の眼差し",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のエールデッキから、エール1枚を自分の#IDを持つホロメンに送る。そしてエールデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-033_SR.png",
     "tags": [
       "#ID",
       "#ID2期生",
@@ -58580,6 +60118,41 @@
     ]
   },
   {
+    "id": "hBP08-035",
+    "page_id": "2401",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "やったぁ大勝ちだ！！　10+",
+        "damage": "",
+        "text": "このホロメンに青エールが付いているなら、このアーツ+30。",
+        "icons": "赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-035_S.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-036",
     "page_id": "2239",
     "name": "モココ・アビスガード",
@@ -58608,6 +60181,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-036_C.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-036",
+    "page_id": "2402",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ふたりは“BAU” DOL☆★",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ドキドキDoggy -Mococo-",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキから、[〈ペロ〉か〈Ruffians〉か〈いたずらなRuffians〉]1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-036_S.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -58650,6 +60258,41 @@
     ]
   },
   {
+    "id": "hBP08-037",
+    "page_id": "2360",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "がんBAUるねー！",
+        "damage": "30",
+        "text": "このホロメンに青エールが2枚以上付いているなら、自分のエールデッキの上から1枚を自分の〈フワワ・アビスガード〉に送る。",
+        "icons": "赤,赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "トゥインクル・アイドル",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージに〈フワワ・アビスガード〉がいるなら、相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-037_SR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-038",
     "page_id": "2241",
     "name": "モココ・アビスガード",
@@ -58678,6 +60321,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-038_R.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-038",
+    "page_id": "2361",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "勝つのはモココだよ！",
+        "damage": "100",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": "緑+50"
+      }
+    ],
+    "keywordName": "魔法の武器だもん！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分の推しホロメンが青の〈FUWAMOCO〉なら、自分のアーカイブの#Adventを持つホロメン1枚を手札に戻す。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-038_SR.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -58720,6 +60398,76 @@
     ]
   },
   {
+    "id": "hBP08-039",
+    "page_id": "2342",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "もこもこバウンティハンター　90+",
+        "damage": "",
+        "text": "このホロメンの青エール1枚につき、このアーツ+20。その後、このホロメンの青エールを好きな枚数選び、自分の〈フワワ・アビスガード〉1人に付け替える。",
+        "icons": "赤,赤,赤",
+        "tokkou": "紫+50"
+      }
+    ],
+    "keywordName": "深淵からの信頼",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージに青エールが6枚以上あるなら、自分のお休みしている〈フワワ・アビスガード〉1人をアクティブにする。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-039_UR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-039",
+    "page_id": "2362",
+    "name": "モココ・アビスガード",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "もこもこバウンティハンター　90+",
+        "damage": "",
+        "text": "このホロメンの青エール1枚につき、このアーツ+20。その後、このホロメンの青エールを好きな枚数選び、自分の〈フワワ・アビスガード〉1人に付け替える。",
+        "icons": "赤,赤,赤",
+        "tokkou": "紫+50"
+      }
+    ],
+    "keywordName": "深淵からの信頼",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージに青エールが6枚以上あるなら、自分のお休みしている〈フワワ・アビスガード〉1人をアクティブにする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-039_SR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-040",
     "page_id": "2243",
     "name": "百鬼あやめ",
@@ -58748,6 +60496,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-040_R.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP08-040",
+    "page_id": "2363",
+    "name": "百鬼あやめ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "220",
+    "cardType": "Buzzホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "お花見デート　30+",
+        "damage": "",
+        "text": "自分のアーカイブの赤エール1枚につき、このアーツ+10。",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "桜の気配に誘われて",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "このホロメンに〈鬼神刀「阿修羅」〉が付いていて、相手のコラボホロメンがいないなら、相手は、自身のバックホロメン1人をコラボポジションに移動させる（移動はコラボとしては扱わない）。",
+    "extra": "このホロメンがダウンした時、自分のライフ-2",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-040_SR.png",
     "tags": [
       "#JP",
       "#2期生",
@@ -58790,6 +60573,41 @@
     ]
   },
   {
+    "id": "hBP08-041",
+    "page_id": "2403",
+    "name": "小鳥遊キアラ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "\"熱狂的な夜\"は実在する!!!",
+        "damage": "20",
+        "text": "自分のデッキの上から1枚をアーカイブする。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "不死鳥式エアロビ",
+    "keywordType": "ギフト",
+    "keywordEffect": "相手のターンで、このホロメンがダウンした時、このホロメンをアーカイブするかわりに手札に戻せる。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-041_S.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#トリ"
+    ]
+  },
+  {
     "id": "hBP08-042",
     "page_id": "2245",
     "name": "小鳥遊キアラ",
@@ -58818,6 +60636,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-042_U.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#トリ"
+    ]
+  },
+  {
+    "id": "hBP08-042",
+    "page_id": "2404",
+    "name": "小鳥遊キアラ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "キワワとチョンカーズ＆スムージー",
+        "damage": "40",
+        "text": "",
+        "icons": "赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "グーテンモルゲン -穏やかな朝-",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の手札1～3枚をアーカイブできる:自分のステージのホロメン1人を選ぶ。この能力でアーカイブしたカード1枚につき、このターンの間、選んだホロメンのアーツ+10。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-042_S.png",
     "tags": [
       "#EN",
       "#Myth",
@@ -58860,6 +60713,41 @@
     ]
   },
   {
+    "id": "hBP08-043",
+    "page_id": "2364",
+    "name": "小鳥遊キアラ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "240",
+    "cardType": "Buzzホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "生き抜く覚悟",
+        "damage": "50",
+        "text": "自分のステージのホロメン全員が#Mythを持つホロメンなら、自分のデッキの上から1枚をホロパワーにする。",
+        "icons": "赤,赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "火ノ鳥剣舞",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブにホロメンが10枚以上あるなら、このターンの間、このホロメンのアーツに必要な赤-2。",
+    "extra": "このホロメンがダウンした時、自分のライフ-2",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-043_SR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#トリ"
+    ]
+  },
+  {
     "id": "hBP08-044",
     "page_id": "2247",
     "name": "小鳥遊キアラ",
@@ -58888,6 +60776,76 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-044_RR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#トリ"
+    ]
+  },
+  {
+    "id": "hBP08-044",
+    "page_id": "2343",
+    "name": "小鳥遊キアラ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "不敵なるファイヤーフォーゲル",
+        "damage": "100",
+        "text": "自分のデッキの上から1～3枚をアーカイブする。",
+        "icons": "赤,赤",
+        "tokkou": "紫+50"
+      }
+    ],
+    "keywordName": "光、再び灯りて",
+    "keywordType": "ギフト",
+    "keywordEffect": "自分のメインステップで、自分のアーカイブにホロメンが10枚以上あるなら、自分のホロメンを、アーカイブのこのホロメンを使ってBloomできる（この能力は、アーカイブにある時のみ使える）。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-044_UR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#トリ"
+    ]
+  },
+  {
+    "id": "hBP08-044",
+    "page_id": "2365",
+    "name": "小鳥遊キアラ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "不敵なるファイヤーフォーゲル",
+        "damage": "100",
+        "text": "自分のデッキの上から1～3枚をアーカイブする。",
+        "icons": "赤,赤",
+        "tokkou": "紫+50"
+      }
+    ],
+    "keywordName": "光、再び灯りて",
+    "keywordType": "ギフト",
+    "keywordEffect": "自分のメインステップで、自分のアーカイブにホロメンが10枚以上あるなら、自分のホロメンを、アーカイブのこのホロメンを使ってBloomできる（この能力は、アーカイブにある時のみ使える）。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-044_SR.png",
     "tags": [
       "#EN",
       "#Myth",
@@ -58930,6 +60888,41 @@
     ]
   },
   {
+    "id": "hBP08-045",
+    "page_id": "2366",
+    "name": "ハコス・ベールズ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ボクはボクらしく生きたい。　50+",
+        "damage": "",
+        "text": "自分のステージのホロメン1人を選び、サイコロを1回振る。出た目の数1につき、このターンの間、選んだホロメンのアーツ+10。",
+        "icons": "赤",
+        "tokkou": "緑+50"
+      }
+    ],
+    "keywordName": "今年は豊作になりそうやねん！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "このターンの間、自分の推しホロメンの〈ハコス・ベールズ〉と自分のステージの〈ハコス・ベールズ〉の能力でサイコロを振る時、そのサイコロの目の数すべてを倍の数として扱う。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-045_SR.png",
+    "tags": [
+      "#EN",
+      "#Promise",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-046",
     "page_id": "2249",
     "name": "エリザベス・ローズ・ブラッドフレイム",
@@ -58958,6 +60951,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-046_R.png",
+    "tags": [
+      "#EN",
+      "#Justice",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-046",
+    "page_id": "2367",
+    "name": "エリザベス・ローズ・ブラッドフレイム",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "スイートトゥース",
+        "damage": "30",
+        "text": "",
+        "icons": "赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "マジェスティック・デヴォーション",
+    "keywordType": "ギフト",
+    "keywordEffect": "[コラボポジション限定]相手のターンで、このホロメン以外の自分の#Justiceを持つホロメンがダウンした時、自分のデッキから、2ndホロメン1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-046_SR.png",
     "tags": [
       "#EN",
       "#Justice",
@@ -59033,6 +61061,40 @@
     ]
   },
   {
+    "id": "hBP08-048",
+    "page_id": "2405",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "110",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "つよい。でかい。大きい。",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "けはいあり183cm",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージのエール1枚をアーカイブできる:自分のデッキから、〈けはい〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-048_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hBP08-049",
     "page_id": "2252",
     "name": "水宮枢",
@@ -59061,6 +61123,40 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-049_C.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
+    "id": "hBP08-049",
+    "page_id": "2406",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "君さえよかったらもっとはなそ",
+        "damage": "50",
+        "text": "",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "君との電話ひとりじめ",
+    "keywordType": "ギフト",
+    "keywordEffect": "[コラボポジション限定]自分の#FLOW GLOWを持つセンターホロメンがいるなら、相手のホロメンのアーツは、自分のコラボホロメンしか対象にできない。ただし、特殊ダメージは除く。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-049_S.png",
     "tags": [
       "#DEV_IS",
       "#FLOW GLOW"
@@ -59101,6 +61197,40 @@
     ]
   },
   {
+    "id": "hBP08-050",
+    "page_id": "2407",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "雪だるまつくろっ",
+        "damage": "20",
+        "text": "自分のアーカイブのエール1枚を自分のホロメンに送る。",
+        "icons": "青",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "君に任せちゃおうかな？",
+    "keywordType": "ギフト",
+    "keywordEffect": "相手のターンで、このホロメンがダウンした時、自分のエールデッキの上から1枚を自分のバックホロメンに送る。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-050_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hBP08-051",
     "page_id": "2254",
     "name": "水宮枢",
@@ -59129,6 +61259,40 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-051_R.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
+    "id": "hBP08-051",
+    "page_id": "2368",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "8時間35分",
+        "damage": "40",
+        "text": "自分のエールデッキの上から1枚を自分の〈水宮枢〉に送る。",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "愛のエゴサ",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション限定]自分の〈水宮枢〉がコラボした時、相手のセンターホロメンを選ぶ。次の相手のターンが終了するまで、選んだホロメンのバトンタッチに必要な無色+1。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-051_SR.png",
     "tags": [
       "#DEV_IS",
       "#FLOW GLOW"
@@ -59176,6 +61340,47 @@
     ]
   },
   {
+    "id": "hBP08-052",
+    "page_id": "2408",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "元気の出るグミ",
+        "damage": "70",
+        "text": "相手のセンターホロメンのバトンタッチに必要な無色が5つ以上なら、自分のエールデッキの上から1枚を自分の〈水宮枢〉に送る。",
+        "icons": "青",
+        "tokkou": "赤+50"
+      },
+      {
+        "name": "グミうまい",
+        "damage": "180",
+        "text": "",
+        "icons": "青,◇,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-052_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hBP08-053",
     "page_id": "2256",
     "name": "水宮枢",
@@ -59210,6 +61415,74 @@
     ]
   },
   {
+    "id": "hBP08-053",
+    "page_id": "2344",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "届け、この愛",
+        "damage": "50",
+        "text": "相手のセンターホロメンのバトンタッチに必要な無色が5つ以上なら、相手のDebut以外のホロメン1人に特殊ダメージ100を与える。",
+        "icons": "青,青,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "しゅぴしゅわ～～っ！！！！",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション限定]相手のセンターホロメンのバトンタッチに必要な無色が5つ以上なら、相手のセンターホロメンのアーツに必要な無色+2。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-053_UR.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
+    "id": "hBP08-053",
+    "page_id": "2369",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "届け、この愛",
+        "damage": "50",
+        "text": "相手のセンターホロメンのバトンタッチに必要な無色が5つ以上なら、相手のDebut以外のホロメン1人に特殊ダメージ100を与える。",
+        "icons": "青,青,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "しゅぴしゅわ～～っ！！！！",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション限定]相手のセンターホロメンのバトンタッチに必要な無色が5つ以上なら、相手のセンターホロメンのアーツに必要な無色+2。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-053_SR.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hBP08-054",
     "page_id": "2257",
     "name": "ムーナ・ホシノヴァ",
@@ -59238,6 +61511,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-054_R.png",
+    "tags": [
+      "#ID",
+      "#ID1期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-054",
+    "page_id": "2370",
+    "name": "ムーナ・ホシノヴァ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ひとりじゃない、今は共に",
+        "damage": "130",
+        "text": "このホロメンに付いているエール3枚をアーカイブできる:自分のデッキを3枚引く。",
+        "icons": "◇,◇,◇",
+        "tokkou": "赤+50"
+      }
+    ],
+    "keywordName": "この絆が私達！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の推しホロメンの色が緑か青か黄なら、自分のアーカイブの青エールを自分の#ID1期生を持つホロメン1～3人に1枚ずつ送る。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-054_SR.png",
     "tags": [
       "#ID",
       "#ID1期生",
@@ -59280,6 +61588,41 @@
     ]
   },
   {
+    "id": "hBP08-055",
+    "page_id": "2409",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "110",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "あなたのふわふわなフワワ",
+        "damage": "20",
+        "text": "このホロメンに赤エールが付いているなら、自分のデッキを1枚引く。",
+        "icons": "青",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "FUWAMOCOとなら大丈夫",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブのエール1枚を自分の#Adventを持つホロメンに送る。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-055_S.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-056",
     "page_id": "2259",
     "name": "フワワ・アビスガード",
@@ -59315,6 +61658,41 @@
     ]
   },
   {
+    "id": "hBP08-056",
+    "page_id": "2410",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "思いっきりやってくるよ！",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ドキドキDoggy -Fuwawa-",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキから、1stホロメンの〈モココ・アビスガード〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-056_S.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-057",
     "page_id": "2260",
     "name": "フワワ・アビスガード",
@@ -59343,6 +61721,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-057_R.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-057",
+    "page_id": "2371",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "寄り添うふたり　30+",
+        "damage": "",
+        "text": "このホロメンに赤エールが付いているなら、このアーツ+20。",
+        "icons": "青",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "木漏れ日のブランコ",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージのエールを好きな枚数選び、自分の〈モココ・アビスガード〉1人に付け替えられる。その後、自分のステージにエールが8枚以上あるなら、このターンの間、このホロメンのアーツ+40。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-057_SR.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -59392,6 +61805,48 @@
     ]
   },
   {
+    "id": "hBP08-058",
+    "page_id": "2372",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "勝てるわけないでしょ！",
+        "damage": "100",
+        "text": "自分のアーカイブの青エール1～2枚を選び、自分の#Adventを持つホロメンに割り振って送る。",
+        "icons": "青,◇",
+        "tokkou": "白+50"
+      },
+      {
+        "name": "今度はこっちの番だよ！",
+        "damage": "160",
+        "text": "自分の推しホロメンが青の〈FUWAMOCO〉なら、このホロメンのエール2枚をアーカイブできる:相手のDebut以外のホロメン1人に特殊ダメージ50を与える。",
+        "icons": "青,青,◇,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-058_SR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP08-059",
     "page_id": "2262",
     "name": "フワワ・アビスガード",
@@ -59420,6 +61875,76 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-059_RR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-059",
+    "page_id": "2345",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ふわふわバウンダリースパナー　80+",
+        "damage": "",
+        "text": "このターンに自分の〈モココ・アビスガード〉がアーツを使っていたなら、このアーツ+50。その後、このホロメンの赤エールを好きな枚数選び、自分の〈モココ・アビスガード〉1人に付け替える。",
+        "icons": "青,青,青",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "深淵からの愛情",
+    "keywordType": "ギフト",
+    "keywordEffect": "自分のステージに赤エールが6枚以上あるなら、このホロメンのアーツは、相手のDebut以外のバックホロメンも対象にできる。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-059_UR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-059",
+    "page_id": "2373",
+    "name": "フワワ・アビスガード",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ふわふわバウンダリースパナー　80+",
+        "damage": "",
+        "text": "このターンに自分の〈モココ・アビスガード〉がアーツを使っていたなら、このアーツ+50。その後、このホロメンの赤エールを好きな枚数選び、自分の〈モココ・アビスガード〉1人に付け替える。",
+        "icons": "青,青,青",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "深淵からの愛情",
+    "keywordType": "ギフト",
+    "keywordEffect": "自分のステージに赤エールが6枚以上あるなら、このホロメンのアーツは、相手のDebut以外のバックホロメンも対象にできる。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-059_SR.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -59490,6 +62015,41 @@
       "PRカード"
     ],
     "img": "/image/holomen/hBP08-060_P.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ケモミミ"
+    ]
+  },
+  {
+    "id": "hBP08-060",
+    "page_id": "2374",
+    "name": "FUWAMOCO",
+    "category": "ホロメン",
+    "color": "青赤",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "いっしょういっしょ♡",
+        "damage": "50",
+        "text": "自分の推しホロメンが青の〈FUWAMOCO〉なら、自分のデッキの上から1枚をホロパワーにする。",
+        "icons": "◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "“BAU” DOL♡",
+    "keywordType": "ギフト",
+    "keywordEffect": "[コラボポジション限定]自分の推しスキル「モコちゃん！」の[ホロパワー:-3]を[ホロパワー:-2]に変更する。",
+    "extra": "このホロメンは〈フワワ・アビスガード〉〈モココ・アビスガード〉としても扱う",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-060_SR.png",
     "tags": [
       "#EN",
       "#Advent",
@@ -59569,6 +62129,42 @@
     ]
   },
   {
+    "id": "hBP08-062",
+    "page_id": "2411",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ダウンさせる意志",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ダウンさせられる覚悟",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分の手札1枚をアーカイブできる:自分のデッキから、エクストラ「このホロメンはデッキに何枚でも入れられる」を持つDebutホロメン1枚をステージに出す。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-062_S.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP08-063",
     "page_id": "2266",
     "name": "鷹嶺ルイ",
@@ -59597,6 +62193,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-063_C.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP08-063",
+    "page_id": "2412",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "どう似合ってる？？？",
+        "damage": "40",
+        "text": "",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ホロックス・ディール",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキの上から3枚を見る。その中から、#秘密結社holoXを持つホロメン1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-063_S.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -59641,6 +62273,42 @@
     ]
   },
   {
+    "id": "hBP08-064",
+    "page_id": "2413",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "眠らない街の仕事屋",
+        "damage": "20",
+        "text": "自分のデッキから、〈ルイ友〉1枚を自分のホロメンに付ける。そしてデッキをシャッフルする。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "荒事上等",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分の手札1枚をアーカイブできる:相手のセンターホロメンかコラボホロメンに特殊ダメージ30を与える。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-064_S.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP08-065",
     "page_id": "2268",
     "name": "鷹嶺ルイ",
@@ -59669,6 +62337,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-065_R.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP08-065",
+    "page_id": "2375",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "差していくよ！　50+",
+        "damage": "",
+        "text": "自分の手札が2枚以下なら、このアーツ+30。",
+        "icons": "紫,紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "大穴きちゃーーー！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション限定]自分の手札1枚をアーカイブできる:サイコロを1回振る。1なら、自分のデッキを3枚引く。1以外なら、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-065_SR.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -59713,6 +62417,42 @@
     ]
   },
   {
+    "id": "hBP08-066",
+    "page_id": "2414",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "酔い、覚ましていこ？　60+",
+        "damage": "",
+        "text": "自分の手札1～2枚をアーカイブできる:アーカイブしたカード1枚につき、このアーツ+20。",
+        "icons": "◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "そんなに顔赤い？",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブのサポートカード1枚をデッキの上に戻せる。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-066_S.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP08-067",
     "page_id": "2270",
     "name": "鷹嶺ルイ",
@@ -59741,6 +62481,78 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-067_RR.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP08-067",
+    "page_id": "2346",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "逆転の一手　130+",
+        "damage": "",
+        "text": "自分の手札が2枚以下なら、このアーツ+50。自分の手札が0枚なら、かわりに、このアーツ+70。",
+        "icons": "紫,紫,紫",
+        "tokkou": "緑+50"
+      }
+    ],
+    "keywordName": "ヴァイオレットドミネーション",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション限定]自分の手札2枚をアーカイブできる:相手のステージのエール1枚を、相手のホロメンに付け替える。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-067_UR.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#トリ",
+      "#お酒"
+    ]
+  },
+  {
+    "id": "hBP08-067",
+    "page_id": "2376",
+    "name": "鷹嶺ルイ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "逆転の一手　130+",
+        "damage": "",
+        "text": "自分の手札が2枚以下なら、このアーツ+50。自分の手札が0枚なら、かわりに、このアーツ+70。",
+        "icons": "紫,紫,紫",
+        "tokkou": "緑+50"
+      }
+    ],
+    "keywordName": "ヴァイオレットドミネーション",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション限定]自分の手札2枚をアーカイブできる:相手のステージのエール1枚を、相手のホロメンに付け替える。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-067_SR.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -59821,6 +62633,42 @@
     ]
   },
   {
+    "id": "hBP08-069",
+    "page_id": "2415",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "うまくいったでしょ、もっといけるよ",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "夏の訪れ",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージに#絵を持つホロメンが3人以上いるなら、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-069_S.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
     "id": "hBP08-070",
     "page_id": "2273",
     "name": "一伊那尓栖",
@@ -59857,6 +62705,42 @@
     ]
   },
   {
+    "id": "hBP08-070",
+    "page_id": "2416",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "私の生涯の友人",
+        "damage": "30",
+        "text": "相手の推しホロメンと異なる色を持つ相手のステージのホロメン1人につき、自分の#Mythを持つホロメン1人のHP10回復。",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "イナ・イマジネーション",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキから、〈Takodachi〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-070_S.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
     "id": "hBP08-071",
     "page_id": "2274",
     "name": "一伊那尓栖",
@@ -59885,6 +62769,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-071_C.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
+    "id": "hBP08-071",
+    "page_id": "2417",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "Bonk!",
+        "damage": "50",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "TOMORROW!?",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "相手の推しホロメンと異なる色を持つ相手のホロメン1人に特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-071_S.png",
     "tags": [
       "#EN",
       "#Myth",
@@ -59930,6 +62850,43 @@
     ]
   },
   {
+    "id": "hBP08-072",
+    "page_id": "2377",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "マルチカラー・スケッチ　30+",
+        "damage": "",
+        "text": "相手の推しホロメンと異なる色を持つ相手のステージのホロメン1人につき、このアーツ+10。",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "Natsu Ina!!",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のアーカイブに#Mythを持つホロメンが8枚以上あるなら、自分のアーカイブの#Mythを持つホロメン1枚を手札に戻す。自分のブルームエフェクト「Natsu Ina!!」はターンに1回しか使えない。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-072_SR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海",
+      "#サマー"
+    ]
+  },
+  {
     "id": "hBP08-073",
     "page_id": "2276",
     "name": "一伊那尓栖",
@@ -59958,6 +62915,42 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-073_U.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
+    "id": "hBP08-073",
+    "page_id": "2418",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "おやつのクッキー抜きだよ！",
+        "damage": "90",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "お行儀よくしてね？",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "相手のステージのホロメン2人を選ぶ。このターンの間、選んだホロメンは、すべての色を持つホロメンとして扱う。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-073_S.png",
     "tags": [
       "#EN",
       "#Myth",
@@ -60002,6 +62995,78 @@
     ]
   },
   {
+    "id": "hBP08-074",
+    "page_id": "2347",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ネクロ・エリミネーション!!",
+        "damage": "110",
+        "text": "自分の手札1～3枚をアーカイブできる:この能力でアーカイブしたカード1枚につき、相手のホロメン1人を選ぶ。このターンの間、選んだホロメンは、すべての色を持つホロメンとして扱う。",
+        "icons": "◇,◇,◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "目覚めよ、赤き眼の黒龍",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション限定]相手の推しホロメンと異なる色を持つ相手のステージのホロメン1人につき、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-074_UR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
+    "id": "hBP08-074",
+    "page_id": "2378",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ネクロ・エリミネーション!!",
+        "damage": "110",
+        "text": "自分の手札1～3枚をアーカイブできる:この能力でアーカイブしたカード1枚につき、相手のホロメン1人を選ぶ。このターンの間、選んだホロメンは、すべての色を持つホロメンとして扱う。",
+        "icons": "◇,◇,◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "目覚めよ、赤き眼の黒龍",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "[センターポジション限定]相手の推しホロメンと異なる色を持つ相手のステージのホロメン1人につき、自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-074_SR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
     "id": "hBP08-075",
     "page_id": "2278",
     "name": "ロボ子さん",
@@ -60037,6 +63102,41 @@
     ]
   },
   {
+    "id": "hBP08-075",
+    "page_id": "2379",
+    "name": "ロボ子さん",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "一緒に外に行こうよ　110+",
+        "damage": "",
+        "text": "このホロメンに付いている〈ろぼさー〉1枚につき、このアーツ+20。",
+        "icons": "紫,紫",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "ロボ子さん↔ろぼさー",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキから、〈ろぼさー〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-075_SR.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP08-076",
     "page_id": "2279",
     "name": "癒月ちょこ",
@@ -60065,6 +63165,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-076_R.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#料理"
+    ]
+  },
+  {
+    "id": "hBP08-076",
+    "page_id": "2380",
+    "name": "癒月ちょこ",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "ごはんをいっぱい食べたあとには……",
+        "damage": "120",
+        "text": "自分のアーカイブに#食べ物を持つイベントが3枚以上あるなら、このホロメンのHP100回復。",
+        "icons": "紫,◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "おいしいごはんの夢",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキの上から3枚を見る。その中から、[#料理を持つホロメンと#食べ物を持つイベント]1枚ずつを公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-076_SR.png",
     "tags": [
       "#JP",
       "#2期生",
@@ -60142,6 +63277,41 @@
     ]
   },
   {
+    "id": "hBP08-078",
+    "page_id": "2419",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "れろれろれろれろ",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "楽しい月曜日だよー！！！！！！！！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージの#歌を持つ2ndホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+20。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-078_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-079",
     "page_id": "2282",
     "name": "音乃瀬奏",
@@ -60170,6 +63340,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-079_C.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-079",
+    "page_id": "2420",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "清廉なる歌声",
+        "damage": "10",
+        "text": "自分のアーカイブのエール1枚を自分の#ReGLOSSを持つセンターホロメンに送れる。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "黎明の歌姫",
+    "keywordType": "ギフト",
+    "keywordEffect": "自分のステージに#ReGLOSSを持つ2ndホロメンがいるなら、このホロメンのHP+50。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-079_S.png",
     "tags": [
       "#DEV_IS",
       "#ReGLOSS",
@@ -60212,6 +63417,41 @@
     ]
   },
   {
+    "id": "hBP08-080",
+    "page_id": "2421",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "奏ストラクション",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ファイティングエール",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージのエールの枚数が相手より多いなら、自分のデッキから、#ReGLOSSを持つDebutホロメン1枚をステージに出せる。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-080_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-081",
     "page_id": "2284",
     "name": "音乃瀬奏",
@@ -60240,6 +63480,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-081_R.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-081",
+    "page_id": "2381",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "今年も伸び盛り　40+",
+        "damage": "",
+        "text": "[センターポジション限定]自分のステージのエールの枚数が相手より1枚多いなら、このアーツ+20。エールが2枚以上多いなら、かわりに、このアーツ+40。",
+        "icons": "黄,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "音の饗宴",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のアーカイブのエール1枚を自分のセンターホロメンの〈音乃瀬奏〉に送る。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-081_SR.png",
     "tags": [
       "#DEV_IS",
       "#ReGLOSS",
@@ -60282,6 +63557,41 @@
     ]
   },
   {
+    "id": "hBP08-082",
+    "page_id": "2422",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "涙が止まらないよ～",
+        "damage": "100",
+        "text": "",
+        "icons": "黄,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "めでたい日なのに……",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージのエールの枚数が相手より多いなら、このターンの間、このホロメンのアーツ+40。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-082_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-083",
     "page_id": "2286",
     "name": "音乃瀬奏",
@@ -60310,6 +63620,76 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-083_RR.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-083",
+    "page_id": "2348",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "奏オンステージ　120+",
+        "damage": "",
+        "text": "自分のステージのエールの枚数が相手より多いなら、多い枚数1枚につき、このアーツ+20。",
+        "icons": "黄,黄,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "テンション超アップ！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージのエールの枚数が相手以下なら、自分のアーカイブのエール1～2枚をこのホロメンに送る。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-083_UR.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-083",
+    "page_id": "2382",
+    "name": "音乃瀬奏",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "奏オンステージ　120+",
+        "damage": "",
+        "text": "自分のステージのエールの枚数が相手より多いなら、多い枚数1枚につき、このアーツ+20。",
+        "icons": "黄,黄,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "テンション超アップ！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージのエールの枚数が相手以下なら、自分のアーカイブのエール1～2枚をこのホロメンに送る。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-083_SR.png",
     "tags": [
       "#DEV_IS",
       "#ReGLOSS",
@@ -60352,6 +63732,41 @@
     ]
   },
   {
+    "id": "hBP08-084",
+    "page_id": "2383",
+    "name": "夏色まつり",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "まちゅだってお姫さま♡　30+",
+        "damage": "",
+        "text": "自分のステージに#1期生を持つ2ndホロメンがいるなら、このアーツ+30。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "優雅なてぃーたいむ！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のライフが3以下なら、このターンの間、自分のステージの#1期生を持つホロメン全員のアーツ+20。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-084_SR.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP08-085",
     "page_id": "2288",
     "name": "不知火フレア",
@@ -60380,6 +63795,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-085_C.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
+    "id": "hBP08-085",
+    "page_id": "2423",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "テレ隠しが下手ですな～",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "手、繋いでいると温かいね",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分の手札1枚をアーカイブできる:自分のアーカイブの[Debutホロメンか1stホロメンかSpotホロメン]1枚を手札に戻す。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-085_S.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -60422,6 +63872,41 @@
     ]
   },
   {
+    "id": "hBP08-086",
+    "page_id": "2424",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "最高のともだち　20+",
+        "damage": "",
+        "text": "自分のセンターホロメンが2ndホロメンなら、このアーツ+30。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "俺のイナー！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のエールデッキの上から1枚を自分の[〈不知火フレア〉か#ENを持つホロメン]に送れる。",
+    "extra": "",
+    "rarity": "S",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-086_S.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
     "id": "hBP08-087",
     "page_id": "2290",
     "name": "不知火フレア",
@@ -60450,6 +63935,41 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/holomen/hBP08-087_R.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
+    "id": "hBP08-087",
+    "page_id": "2384",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "夢から醒めたら",
+        "damage": "90",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "ドリーミングエール",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブのエール1～2枚を自分のセンターホロメンの[〈不知火フレア〉か#ENを持つホロメン]に送れる。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-087_SR.png",
     "tags": [
       "#JP",
       "#3期生",
@@ -60492,6 +64012,76 @@
     ]
   },
   {
+    "id": "hBP08-088",
+    "page_id": "2349",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "リレーションファンタジー　140+",
+        "damage": "",
+        "text": "[コラボポジション限定]自分のセンターホロメンが#3期生を持つホロメンなら、このアーツ+30。",
+        "icons": "黄,黄,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "メロゥ・フラワリー",
+    "keywordType": "ギフト",
+    "keywordEffect": "[ターンに1回]自分のターンで、このホロメンがコラボポジションに移動した時、相手のセンターホロメンとコラボホロメンに特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "UR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-088_UR.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
+    "id": "hBP08-088",
+    "page_id": "2385",
+    "name": "不知火フレア",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "リレーションファンタジー　140+",
+        "damage": "",
+        "text": "[コラボポジション限定]自分のセンターホロメンが#3期生を持つホロメンなら、このアーツ+30。",
+        "icons": "黄,黄,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "メロゥ・フラワリー",
+    "keywordType": "ギフト",
+    "keywordEffect": "[ターンに1回]自分のターンで、このホロメンがコラボポジションに移動した時、相手のセンターホロメンとコラボホロメンに特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-088_SR.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#ハーフエルフ"
+    ]
+  },
+  {
     "id": "hBP08-089",
     "page_id": "2292",
     "name": "ジジ・ムリン",
@@ -60526,6 +64116,40 @@
     ]
   },
   {
+    "id": "hBP08-089",
+    "page_id": "2386",
+    "name": "ジジ・ムリン",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "アイアムアゲーマー",
+        "damage": "30",
+        "text": "自分のアーカイブのエール1枚を自分の#Justiceを持つホロメンに送る。",
+        "icons": "黄",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ラピッドファイア・ウィット",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "このホロメンに重なっているホロメン1枚をアーカイブできる:自分のデッキから、〈Popo〉1枚を自分のホロメンに付ける。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hBP08-089_SR.png",
+    "tags": [
+      "#EN",
+      "#Justice"
+    ]
+  },
+  {
     "id": "hBP08-090",
     "page_id": "2293",
     "name": "エレガントパソコン",
@@ -60543,6 +64167,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-090",
+    "page_id": "2425",
+    "name": "エレガントパソコン",
+    "category": "サポート",
+    "color": null,
+    "kind": "アイテム",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分のアーカイブの[マスコットとファン]合計1～3枚をデッキに戻してシャッフルする。その後、自分のデッキを2枚引く。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-090_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-091",
     "page_id": "2294",
     "name": "クリエイターパソコン",
@@ -60557,6 +64198,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-091_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-091",
+    "page_id": "2426",
+    "name": "クリエイターパソコン",
+    "category": "サポート",
+    "color": null,
+    "kind": "アイテム",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のデッキから、エクストラ「このホロメンはデッキに何枚でも入れられる」を持つDebutホロメン1枚をステージに出す。そしてデッキをシャッフルする。その後、自分のアーカイブのDebutホロメン1枚をステージに出す。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-091_S.png",
     "tags": []
   },
   {
@@ -60596,6 +64254,25 @@
     ]
   },
   {
+    "id": "hBP08-093",
+    "page_id": "2427",
+    "name": "ちょこのなすユッケ",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が〈癒月ちょこ〉で、自分のライフが3以下でなければ使えない。\n\nこのターンの間、自分のステージの[Debutホロメンと1stホロメン]全員のアーツ+20。その後、自分のステージの2ndホロメン全員のアーツ+60。\n\n自分の〈ちょこのなすユッケ〉はターンに1回しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-093_S.png",
+    "tags": [
+      "#食べ物"
+    ]
+  },
+  {
     "id": "hBP08-094",
     "page_id": "2297",
     "name": "パパは仕事を辞める",
@@ -60630,6 +64307,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-095",
+    "page_id": "2428",
+    "name": "破滅の呪文",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#ENを持つホロメンで、自分のライフが3以下でなければ使えない。\n\nお互いのセンターホロメンとコラボホロメンに特殊ダメージ50を与える。ただし、この能力でダウンしてもライフは減らない。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-095_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-096",
     "page_id": "2299",
     "name": "優しいモンスター",
@@ -60644,6 +64338,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-096_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-096",
+    "page_id": "2429",
+    "name": "優しいモンスター",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分の推しホロメンが〈一条莉々華〉でなければ使えない。\n\n自分のデッキから、[〈一条莉々華〉と〈限界飯〉]1枚ずつを公開し、手札に加える。そしてデッキをシャッフルする。その後、自分のアーカイブに〈限界飯〉が3枚以上あるなら、このターンの間、自分のステージの〈一条莉々華〉全員のアーツ+50。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-096_S.png",
     "tags": []
   },
   {
@@ -60666,6 +64377,25 @@
     ]
   },
   {
+    "id": "hBP08-097",
+    "page_id": "2430",
+    "name": "りっちしょこらのハンバーグ",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のステージのホロメン1人を選ぶ。選んだホロメンのHP20回復。その後、自分のアーカイブに#食べ物を持つイベントが2枚以上あるなら、自分のアーカイブのエール1枚をそのホロメンに送る。\n\n自分の〈りっちしょこらのハンバーグ〉はターンに1回しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-097_S.png",
+    "tags": [
+      "#食べ物"
+    ]
+  },
+  {
     "id": "hBP08-098",
     "page_id": "2301",
     "name": "hololive Mythology",
@@ -60680,6 +64410,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-098_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-098",
+    "page_id": "2431",
+    "name": "hololive Mythology",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#Mythを持つホロメンでなければ使えない。\n\n自分のデッキの上から4枚を公開する。その中から2枚を手札に加える。そして残ったカードをアーカイブする。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-098_S.png",
     "tags": []
   },
   {
@@ -60700,6 +64447,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-099",
+    "page_id": "2432",
+    "name": "HOLOTORI",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "",
+    "value": "0",
+    "effect": "以下の能力から1つを選んで使う。\n\n■自分の#トリを持つホロメンのエール1枚をアーカイブする。アーカイブしたなら、自分のデッキを2枚引いた後、手札1枚をデッキの下に戻す。\n■自分のアーカイブのエール1枚を自分の#トリを持つホロメンに送る。\n\n自分の〈HOLOTORI〉はターンに1回しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-099_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-100",
     "page_id": "2303",
     "name": "Myth",
@@ -60717,6 +64481,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-100",
+    "page_id": "2433",
+    "name": "Myth",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分の手札がこのカードを含まずに6枚以下でなければ使えない。\n\n自分のデッキの上から4枚を見る。その中から、#Mythを持つホロメンを好きな枚数公開し、公開したホロメンを手札に加える。そして残ったカードを好きな順でデッキの下に戻す。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-100_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-101",
     "page_id": "2304",
     "name": "We are ReGLOSS",
@@ -60731,6 +64512,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-101_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-101",
+    "page_id": "2434",
+    "name": "We are ReGLOSS",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#ReGLOSSを持つホロメンでなければ使えない。\n\n自分のデッキから、#ReGLOSSを持つホロメン2枚を公開し、手札に加える。そしてデッキをシャッフルする。その後、自分のステージのホロメンが相手より少ないなら、自分のデッキを1枚引いた後、手札1枚をアーカイブする。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-101_S.png",
     "tags": []
   },
   {
@@ -60753,6 +64551,25 @@
     ]
   },
   {
+    "id": "hBP08-102",
+    "page_id": "2435",
+    "name": "クールなパーカー",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "このツールが付いているホロメンのアーツ+10。\n\n◆Buzzホロメンに付いていたら能力追加\n[ターンに1回]このホロメンが相手のホロメンをダウンさせた時、自分のデッキを2枚引く。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-102_S.png",
+    "tags": [
+      "#Buzzグッズ"
+    ]
+  },
+  {
     "id": "hBP08-103",
     "page_id": "2306",
     "name": "ホロマント",
@@ -60767,6 +64584,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-103_U.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-103",
+    "page_id": "2436",
+    "name": "ホロマント",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "■このツールが付いているホロメンのHP+50。\n■このツールが付いているホロメンがダウンした時、自分のライフ-1。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-103_S.png",
     "tags": []
   },
   {
@@ -60787,6 +64621,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-104",
+    "page_id": "2437",
+    "name": "けはい",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "◆〈水宮枢〉に付いていたら能力追加\n■[センターポジション・コラボポジション限定]相手のセンターホロメンのバトンタッチに必要な無色+1。\n■このホロメンのBloomレベルが上がった時、自分のデッキを1枚引く。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-104_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-105",
     "page_id": "2308",
     "name": "Bloom＆Gloom",
@@ -60801,6 +64652,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-105_C.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-105",
+    "page_id": "2438",
+    "name": "Bloom＆Gloom",
+    "category": "サポート",
+    "color": null,
+    "kind": "マスコット",
+    "limited": "",
+    "value": "0",
+    "effect": "このマスコットが付いているホロメンのHP+20。\n\n◆〈IRyS〉に付いていたら能力追加\nこのホロメンに白エールと紫エールが付いているなら、このホロメンのアーツ+20。\n\nマスコットは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-105_S.png",
     "tags": []
   },
   {
@@ -60821,6 +64689,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-106",
+    "page_id": "2439",
+    "name": "GuyRyS",
+    "category": "サポート",
+    "color": null,
+    "kind": "ファン",
+    "limited": "",
+    "value": "0",
+    "effect": "相手のターンで、このファンが付いているホロメンがダウンした時、このファンが付いているホロメンのエール1枚を、自分の他のホロメンに付け替える。\n\nこのファンは、自分の〈IRyS〉だけに付けられ、1人につき何枚でも付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-106_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-107",
     "page_id": "2310",
     "name": "Otomo",
@@ -60835,6 +64720,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-107_C.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-107",
+    "page_id": "2440",
+    "name": "Otomo",
+    "category": "サポート",
+    "color": null,
+    "kind": "ファン",
+    "limited": "",
+    "value": "0",
+    "effect": "このファンが付いているホロメンのアーツ+10。\n\nこのファンをホロメンに手札かアーカイブから付けた時、このファンが付いているホロメンをアクティブにするかお休みさせる。\n\nこのファンは、自分の〈セシリア・イマーグリーン〉だけに付けられ、1人につき何枚でも付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-107_S.png",
     "tags": []
   },
   {
@@ -60855,6 +64757,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-108",
+    "page_id": "2441",
+    "name": "いたずらなRuffians",
+    "category": "サポート",
+    "color": null,
+    "kind": "ファン",
+    "limited": "",
+    "value": "0",
+    "effect": "このファンが付いているホロメンのHP+10。\n\n相手のターンで、このファンが付いているホロメンがダウンした時、このファンが付いているホロメンに赤エールが付いているなら、自分のデッキを1枚引く。\n\nこのファンは、自分の〈フワワ・アビスガード〉か〈モココ・アビスガード〉だけに付けられ、1人につき何枚でも付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-108_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-109",
     "page_id": "2312",
     "name": "ルイ友",
@@ -60872,6 +64791,23 @@
     "tags": []
   },
   {
+    "id": "hBP08-109",
+    "page_id": "2442",
+    "name": "ルイ友",
+    "category": "サポート",
+    "color": null,
+    "kind": "ファン",
+    "limited": "",
+    "value": "0",
+    "effect": "このファンが付いているホロメンのアーツ+10。\n\n相手のターンで、このファンが付いているホロメンがダウンした時、このファンが付いているホロメンの[赤エールか紫エール]1枚を自分の他のホロメンに付け替える。\n\nこのファンは、自分の〈鷹嶺ルイ〉だけに付けられ、1人につき何枚でも付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-109_S.png",
+    "tags": []
+  },
+  {
     "id": "hBP08-110",
     "page_id": "2313",
     "name": "Takodachi",
@@ -60886,6 +64822,23 @@
       "ブースターパック バウンサーバウンド"
     ],
     "img": "/image/support/hBP08-110_C.png",
+    "tags": []
+  },
+  {
+    "id": "hBP08-110",
+    "page_id": "2443",
+    "name": "Takodachi",
+    "category": "サポート",
+    "color": null,
+    "kind": "ファン",
+    "limited": "",
+    "value": "0",
+    "effect": "このファンが付いているホロメンのアーツ+10。\n\n[センターポジション限定]相手のセンターホロメンとコラボホロメンは、すべての色を持つホロメンとして扱う。\n\nこのファンは、自分の〈一伊那尓栖〉だけに付けられ、1人につき何枚でも付けられる。",
+    "rarity": "S",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/support/hBP08-110_S.png",
     "tags": []
   },
   {
@@ -67969,6 +71922,40 @@
     ]
   },
   {
+    "id": "hSD11-007",
+    "page_id": "2447",
+    "name": "水宮枢",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "しゅぴしゅわー",
+        "damage": "20",
+        "text": "相手のセンターホロメンを選ぶ。次の相手のターンが終了するまで、選んだホロメンのバトンタッチに必要な無色+1。",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "HR",
+    "unlimited": true,
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/holomen/hSD11-007_HR.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
     "id": "hSD11-008",
     "page_id": "1476",
     "name": "水宮枢",
@@ -71735,6 +75722,21 @@
     "tags": []
   },
   {
+    "id": "hY01-013",
+    "page_id": "2450",
+    "name": "白エール",
+    "category": "エール",
+    "color": "白",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY01-013_SY.png",
+    "tags": []
+  },
+  {
     "id": "hY02-001",
     "page_id": "169",
     "name": "緑エール",
@@ -71871,6 +75873,21 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/cheer/hY02-010_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY02-011",
+    "page_id": "2451",
+    "name": "緑エール",
+    "category": "エール",
+    "color": "緑",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY02-011_SY.png",
     "tags": []
   },
   {
@@ -72073,6 +76090,21 @@
     "tags": []
   },
   {
+    "id": "hY03-015",
+    "page_id": "2452",
+    "name": "赤エール",
+    "category": "エール",
+    "color": "赤",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY03-015_SY.png",
+    "tags": []
+  },
+  {
     "id": "hY04-001",
     "page_id": "171",
     "name": "青エール",
@@ -72227,6 +76259,21 @@
     "tags": []
   },
   {
+    "id": "hY04-012",
+    "page_id": "2453",
+    "name": "青エール",
+    "category": "エール",
+    "color": "青",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY04-012_SY.png",
+    "tags": []
+  },
+  {
     "id": "hY05-001",
     "page_id": "267",
     "name": "紫エール",
@@ -72351,6 +76398,21 @@
     "tags": []
   },
   {
+    "id": "hY05-010",
+    "page_id": "2454",
+    "name": "紫エール",
+    "category": "エール",
+    "color": "紫",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY05-010_SY.png",
+    "tags": []
+  },
+  {
     "id": "hY06-001",
     "page_id": "561",
     "name": "黄エール",
@@ -72472,6 +76534,21 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/cheer/hY06-009_SY.png",
+    "tags": []
+  },
+  {
+    "id": "hY06-010",
+    "page_id": "2455",
+    "name": "黄エール",
+    "category": "エール",
+    "color": "黄",
+    "kind": "",
+    "value": "",
+    "rarity": "SY",
+    "products": [
+      "ブースターパック バウンサーバウンド"
+    ],
+    "img": "/image/cheer/hY06-010_SY.png",
     "tags": []
   },
   {
