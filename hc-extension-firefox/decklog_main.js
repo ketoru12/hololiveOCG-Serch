@@ -72,11 +72,10 @@ async function execDecklog(deckData) {
     if (rarity && items.length > 1) {
       const r = rarity.toUpperCase();
       for (const item of items) {
-        // カードアイテムのテキストにレアリティが含まれるか確認
-        const txt = (item.textContent || '').toUpperCase();
         const img = item.querySelector('img');
-        const src = img ? img.src.toUpperCase() : '';
-        if (txt.includes(r) || src.includes('_' + r + '.')) { el = item; break; }
+        // data-src（lazy未読込時）とsrc（読込済み）の両方を確認
+        const src = (img ? (img.getAttribute('data-src') || img.getAttribute('src') || '') : '').toUpperCase();
+        if (src.includes('_' + r + '.')) { el = item; break; }
       }
     }
     if (!el) el = items[0];
