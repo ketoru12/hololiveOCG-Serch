@@ -1110,13 +1110,14 @@
                 HC.cart={};HC.yell={};HC.oshi=null;HC.updateBar();HC.updateBadges();hcOpenDeck();
             });
         }
+        function hcRarityFromImg(img){var m=(img||'').match(/_([^_./]+)\.png$/i);return m?m[1].toUpperCase():'';}
         function hcOpenExp(){
             if(!Object.keys(HC.cart).length&&!HC.oshi){alert('カートが空です');return;}
             if(HC.total()>HC.MAX_TOTAL){hcAlert('メインデッキが '+HC.total()+' 枚です（上限 '+HC.MAX_TOTAL+' 枚）。\n枚数を調整してからDECKLOGに登録してください。');return;}
             var oshi=HC.oshi;
-            var main=Object.keys(HC.cart).map(function(id){return{id:id,count:HC.cart[id].qty};});
-            var yell=Object.keys(HC.yell).map(function(id){return{id:id,count:HC.yell[id].qty};});
-            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main,yell:yell};
+            var main=Object.keys(HC.cart).map(function(id){var c=HC.cart[id];return{id:id,count:c.qty,rarity:hcRarityFromImg(c.img)};});
+            var yell=Object.keys(HC.yell).map(function(id){var c=HC.yell[id];return{id:id,count:c.qty,rarity:hcRarityFromImg(c.img)};});
+            var deckData={oshi:oshi?{id:oshi.id,count:1,rarity:hcRarityFromImg(oshi.img)}:null,main:main,yell:yell};
 
             // 拡張機能経由: hcviewer.jsにpostMessageで送信
             if(window._hcExtReady){
@@ -1342,9 +1343,9 @@
 
         function hcSendDeckToDecklog(deck){
             var oshi=deck.oshi;
-            var main=Object.keys(deck.cart||{}).map(function(id){return{id:id,count:deck.cart[id].qty};});
-            var yell=Object.keys(deck.yell||{}).map(function(id){return{id:id,count:deck.yell[id].qty};});
-            var deckData={oshi:oshi?{id:oshi.id,count:1}:null,main:main,yell:yell};
+            var main=Object.keys(deck.cart||{}).map(function(id){var c=deck.cart[id];return{id:id,count:c.qty,rarity:hcRarityFromImg(c.img)};});
+            var yell=Object.keys(deck.yell||{}).map(function(id){var c=deck.yell[id];return{id:id,count:c.qty,rarity:hcRarityFromImg(c.img)};});
+            var deckData={oshi:oshi?{id:oshi.id,count:1,rarity:hcRarityFromImg(oshi.img)}:null,main:main,yell:yell};
             if(window._hcExtReady){
                 window.postMessage({type:'HC_SEND_TO_DECKLOG',data:deckData},'*');
                 hcCloseLoad();

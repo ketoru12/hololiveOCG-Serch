@@ -53,7 +53,7 @@ async function execDecklog(deckData) {
     return false;
   };
 
-  const tryAdd = async (no, cnt) => {
+  const tryAdd = async (no, cnt, rarity) => {
     const t = Array.from(document.querySelectorAll('button,span')).find(b => {
       const tx = b.textContent.trim(); return tx === 'カード番号' || tx === 'No.';
     });
@@ -66,7 +66,20 @@ async function execDecklog(deckData) {
     Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set.call(inp, no);
     ['input', 'change', 'keyup'].forEach(ev => inp.dispatchEvent(new Event(ev, { bubbles: true })));
     await delay(1500);
-    const el = document.querySelector('.card-item'); if (!el) return false;
+    const items = document.querySelectorAll('.card-item');
+    if (!items.length) return false;
+    let el = null;
+    if (rarity && items.length > 1) {
+      const r = rarity.toUpperCase();
+      for (const item of items) {
+        // カードアイテムのテキストにレアリティが含まれるか確認
+        const txt = (item.textContent || '').toUpperCase();
+        const img = item.querySelector('img');
+        const src = img ? img.src.toUpperCase() : '';
+        if (txt.includes(r) || src.includes('_' + r + '.')) { el = item; break; }
+      }
+    }
+    if (!el) el = items[0];
     const inc = el.querySelector('.card-inc'); if (!inc) return false;
     for (let i = 0; i < cnt; i++) { inc.click(); await delay(350); }
     return true;
@@ -76,14 +89,14 @@ async function execDecklog(deckData) {
   const { oshi, main, yell } = deckData;
   if (oshi) {
     await selType('推しホロメン');
-    if (await tryAdd(oshi.id, 1)) ok++; else ng.push(oshi.id + '(推し)');
+    if (await tryAdd(oshi.id, 1, oshi.rarity || '')) ok++; else ng.push(oshi.id + '(推し)');
     await delay(400);
   }
   if (yell && yell.length) {
     await selType('エールデッキ');
     for (const c of yell) {
       if (!c.id) continue;
-      if (await tryAdd(c.id, c.count)) ok++; else ng.push(c.id);
+      if (await tryAdd(c.id, c.count, c.rarity || '')) ok++; else ng.push(c.id);
       await delay(300);
     }
   }
@@ -91,7 +104,7 @@ async function execDecklog(deckData) {
     await selType('メインデッキ');
     for (const c of main) {
       if (!c.id) continue;
-      if (await tryAdd(c.id, c.count)) ok++; else ng.push(c.id);
+      if (await tryAdd(c.id, c.count, c.rarity || '')) ok++; else ng.push(c.id);
       await delay(300);
     }
   }
