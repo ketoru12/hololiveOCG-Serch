@@ -8271,6 +8271,41 @@
     ]
   },
   {
+    "id": "hBP01-071",
+    "page_id": "3004",
+    "name": "尾丸ポルカ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "240",
+    "cardType": "Buzzホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ポルカサーカス　50+",
+        "damage": "",
+        "text": "自分のホロメン全員に付いているファン1枚につき、このアーツ+20。",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ポルカイリュージョン",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のアーカイブの〈座員〉1枚を手札に戻せる。",
+    "extra": "このホロメンがダウンした時、自分のライフ-2",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB"
+    ],
+    "img": "/image/holomen/hBP01-071_SR.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP01-072",
     "page_id": "111",
     "name": "ハコス・ベールズ",
@@ -12783,6 +12818,44 @@
       "セレクションカップ"
     ],
     "img": "/image/holomen/hBP02-011_P_03.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#ゲーマーズ",
+      "#ケモミミ",
+      "#絵"
+    ]
+  },
+  {
+    "id": "hBP02-011",
+    "page_id": "2998",
+    "name": "白上フブキ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ダメですよっ！",
+        "damage": "40",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "白上から目をそらしちゃ",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキから、#白上'sキャラクターを持つカード1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP02-011_SR_03.png",
     "tags": [
       "#JP",
       "#1期生",
@@ -22351,6 +22424,42 @@
     ]
   },
   {
+    "id": "hBP03-016",
+    "page_id": "2994",
+    "name": "獅白ぼたん",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ららーいおん♪",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "P",
+    "unlimited": true,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP03-016_P_02.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ケモミミ",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP03-017",
     "page_id": "581",
     "name": "獅白ぼたん",
@@ -22724,6 +22833,42 @@
       "PRカード"
     ],
     "img": "/image/holomen/hBP03-020_P.png",
+    "tags": [
+      "#JP",
+      "#5期生",
+      "#ケモミミ",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP03-020",
+    "page_id": "2995",
+    "name": "獅白ぼたん",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "1st",
+    "value": "110",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ショッピングカートで来た",
+        "damage": "50",
+        "text": "",
+        "icons": "緑,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "SSSSR",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のエールデッキの上から1枚を、自分のバックホロメンの〈獅白ぼたん〉に送る。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP03-020_P_02.png",
     "tags": [
       "#JP",
       "#5期生",
@@ -32096,6 +32241,42 @@
     ]
   },
   {
+    "id": "hBP04-012",
+    "page_id": "3005",
+    "name": "博衣こより",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "助手くんとこよはずっと一緒だよ！",
+        "damage": "30",
+        "text": "このホロメンに〈こよりの助手くん〉が付いているなら、自分のデッキを1枚引く。",
+        "icons": "白",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "はい！ はい！ はい！ はい！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキから、#こよラボを持つサポートカード1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP04-012_SR_03.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#ケモミミ"
+    ]
+  },
+  {
     "id": "hBP04-013",
     "page_id": "875",
     "name": "博衣こより",
@@ -33989,6 +34170,42 @@
       "キュリアスユニバース"
     ],
     "img": "/image/holomen/hBP04-035_S.png",
+    "tags": [
+      "#DEV_IS",
+      "#ReGLOSS",
+      "#料理",
+      "#語学"
+    ]
+  },
+  {
+    "id": "hBP04-035",
+    "page_id": "3006",
+    "name": "一条莉々華",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "社長パンチ",
+        "damage": "50",
+        "text": "相手のコラボホロメンに特殊ダメージ20を与える。",
+        "icons": "赤,赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "限界飯料理人",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のアーカイブの〈限界飯〉1枚を手札に戻せる。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB"
+    ],
+    "img": "/image/holomen/hBP04-035_SR.png",
     "tags": [
       "#DEV_IS",
       "#ReGLOSS",
@@ -36118,6 +36335,41 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP04-054_HR.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP04-054",
+    "page_id": "2996",
+    "name": "ラプラス・ダークネス",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "100",
+    "cardType": "ホロメン",
+    "baton_touch": "",
+    "arts": [
+      {
+        "name": "貴様ら、刮目せよ！！",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "P",
+    "unlimited": true,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP04-054_P_02.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -47487,6 +47739,24 @@
     "tags": []
   },
   {
+    "id": "hBP05-074",
+    "page_id": "3014",
+    "name": "フレンドリーパソコン",
+    "category": "サポート",
+    "color": null,
+    "kind": "アイテム",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のデッキから、エクストラ「このホロメンはデッキに何枚でも入れられる」を持つDebutホロメン1～2枚をステージに出す。そしてデッキをシャッフルする。Debutホロメンを2枚出したなら、さらに、自分の手札1枚をデッキの下に戻す。",
+    "rarity": "P",
+    "products": [
+      "PRカード",
+      "セレクションカップ"
+    ],
+    "img": "/image/support/hBP05-074_P_03.png",
+    "tags": []
+  },
+  {
     "id": "hBP05-075",
     "page_id": "1265",
     "name": "牛丼",
@@ -49456,6 +49726,40 @@
     "unlimited": false,
     "products": [
       "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/holomen/hBP06-019_SR.png",
+    "tags": [
+      "#DEV_IS",
+      "#FLOW GLOW"
+    ]
+  },
+  {
+    "id": "hBP06-019",
+    "page_id": "2999",
+    "name": "響咲リオナ",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "意外と熱血タイプ？",
+        "damage": "40",
+        "text": "自分のデッキの上から1枚をアーカイブする。",
+        "icons": "白",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ストイック負けず嫌い王",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の推しホロメンが〈響咲リオナ〉なら、自分のデッキの上から1枚をアーカイブできる:自分のデッキを1枚引く。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA"
     ],
     "img": "/image/holomen/hBP06-019_SR.png",
     "tags": [
@@ -52845,6 +53149,41 @@
     "unlimited": false,
     "products": [
       "アヤカシヴァーミリオン"
+    ],
+    "img": "/image/holomen/hBP06-059_SR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP06-059",
+    "page_id": "3007",
+    "name": "森カリオペ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "まどろみの中で",
+        "damage": "80",
+        "text": "",
+        "icons": "◇,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "お泊りパーリナイ!",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージに#ENを持つホロメンが3人以上いるなら、自分のエールデッキから、[青エールか紫エール]1枚を公開し、自分のホロメンに送る。そしてエールデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB"
     ],
     "img": "/image/holomen/hBP06-059_SR.png",
     "tags": [
@@ -61508,6 +61847,41 @@
     ]
   },
   {
+    "id": "hBP07-072",
+    "page_id": "3008",
+    "name": "ラプラス・ダークネス",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "吾輩との秘密だぞ",
+        "damage": "60",
+        "text": "",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "Secret Love -La+-",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージの#秘密結社holoXを持つホロメン1人を選び、サイコロを3回振る。このターンの間、この能力で奇数が出た回数1回につき、選んだホロメンのアーツ+10。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB"
+    ],
+    "img": "/image/holomen/hBP07-072_SR.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP07-073",
     "page_id": "1859",
     "name": "ラプラス・ダークネス",
@@ -61572,6 +61946,42 @@
       "ディーヴァフィーバー"
     ],
     "img": "/image/holomen/hBP07-073_SR.png",
+    "tags": [
+      "#JP",
+      "#秘密結社holoX",
+      "#シューター",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP07-073",
+    "page_id": "2997",
+    "name": "ラプラス・ダークネス",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "吾輩の歌聴いてくれる奴いるううう！？！？",
+        "damage": "30",
+        "text": "自分のデッキから、〈ラプラス・ダークネス〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+        "icons": "◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ライブだー！！！！！！！！！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "このターンの間、このホロメンのアーツに必要な無色-2。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP07-073_P.png",
     "tags": [
       "#JP",
       "#秘密結社holoX",
@@ -69292,6 +69702,43 @@
     ]
   },
   {
+    "id": "hBP08-071",
+    "page_id": "3009",
+    "name": "一伊那尓栖",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "Bonk!",
+        "damage": "50",
+        "text": "",
+        "icons": "◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "TOMORROW!?",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "相手の推しホロメンと異なる色を持つ相手のホロメン1人に特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションB",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP08-071_SR.png",
+    "tags": [
+      "#EN",
+      "#Myth",
+      "#絵",
+      "#海"
+    ]
+  },
+  {
     "id": "hBP08-072",
     "page_id": "2275",
     "name": "一伊那尓栖",
@@ -71543,6 +71990,110 @@
     "tags": []
   },
   {
+    "id": "hBP09-001",
+    "page_id": "3010",
+    "name": "大空スバル",
+    "category": "推しホロメン",
+    "color": "白",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "P",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]大空警察出動！[ターンに1回]相手のステージのホロメン1人を選ぶ。自分のデッキから、選んだホロメンと同じBloomレベルの〈大空スバル〉1枚をステージに出す。そしてデッキをシャッフルする。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n秩序を守る署長自分の〈大空スバル〉全員のアーツに必要な白-1。"
+      }
+    ],
+    "products": [
+      "PRカード",
+      "セレクションカップ"
+    ],
+    "img": "/image/OSR/hBP09-001_P_02.png",
+    "tags": []
+  },
+  {
+    "id": "hBP09-001",
+    "page_id": "3011",
+    "name": "大空スバル",
+    "category": "推しホロメン",
+    "color": "白",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "P",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]大空警察出動！[ターンに1回]相手のステージのホロメン1人を選ぶ。自分のデッキから、選んだホロメンと同じBloomレベルの〈大空スバル〉1枚をステージに出す。そしてデッキをシャッフルする。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n秩序を守る署長自分の〈大空スバル〉全員のアーツに必要な白-1。"
+      }
+    ],
+    "products": [
+      "PRカード",
+      "セレクションカップ"
+    ],
+    "img": "/image/OSR/hBP09-001_P_03.png",
+    "tags": []
+  },
+  {
+    "id": "hBP09-001",
+    "page_id": "3012",
+    "name": "大空スバル",
+    "category": "推しホロメン",
+    "color": "白",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "P",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]大空警察出動！[ターンに1回]相手のステージのホロメン1人を選ぶ。自分のデッキから、選んだホロメンと同じBloomレベルの〈大空スバル〉1枚をステージに出す。そしてデッキをシャッフルする。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n秩序を守る署長自分の〈大空スバル〉全員のアーツに必要な白-1。"
+      }
+    ],
+    "products": [
+      "PRカード",
+      "セレクションカップ"
+    ],
+    "img": "/image/OSR/hBP09-001_P_04.png",
+    "tags": []
+  },
+  {
+    "id": "hBP09-001",
+    "page_id": "3013",
+    "name": "大空スバル",
+    "category": "推しホロメン",
+    "color": "白",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "P",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]大空警察出動！[ターンに1回]相手のステージのホロメン1人を選ぶ。自分のデッキから、選んだホロメンと同じBloomレベルの〈大空スバル〉1枚をステージに出す。そしてデッキをシャッフルする。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n秩序を守る署長自分の〈大空スバル〉全員のアーツに必要な白-1。"
+      }
+    ],
+    "products": [
+      "PRカード",
+      "セレクションカップ"
+    ],
+    "img": "/image/OSR/hBP09-001_P_05.png",
+    "tags": []
+  },
+  {
     "id": "hBP09-002",
     "page_id": "2719",
     "name": "轟はじめ",
@@ -72397,6 +72948,42 @@
     "unlimited": false,
     "products": [
       "ボリュームヴォルテックス",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP09-012_SR.png",
+    "tags": [
+      "#JP",
+      "#2期生",
+      "#トリ"
+    ]
+  },
+  {
+    "id": "hBP09-012",
+    "page_id": "3000",
+    "name": "大空スバル",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "もつのおかわりください　80+",
+        "damage": "",
+        "text": "前の相手のターンに自分のホロメンがダウンしていたなら、このアーツ+50。",
+        "icons": "白,白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "BIG3懇親会 side S",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の推しホロメンが〈大空スバル〉で、相手のホロパワーが2枚以上あるなら、自分のデッキの上から1枚をホロパワーにする。自分のブルームエフェクト「BIG3懇親会 side S」はターンに1回しか使えない。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA",
       "セレクションカップ"
     ],
     "img": "/image/holomen/hBP09-012_SR.png",
@@ -77313,6 +77900,43 @@
     ]
   },
   {
+    "id": "hBP09-075",
+    "page_id": "3001",
+    "name": "ネリッサ・レイヴンクロフト",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "安らぎの歌",
+        "damage": "40",
+        "text": "自分の推しホロメンが〈ネリッサ・レイヴンクロフト〉なら、自分のデッキを1枚引き、自分の手札1枚をホロパワーにする。",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "魔人のオフモード",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション限定]自分の推しスキルを使った時、このターンの間、自分のコラボの〈ネリッサ・レイヴンクロフト〉のアーツに必要な紫-1。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP09-075_SR.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#歌",
+      "#トリ"
+    ]
+  },
+  {
     "id": "hBP09-076",
     "page_id": "2793",
     "name": "ネリッサ・レイヴンクロフト",
@@ -78190,6 +78814,42 @@
       "セレクションカップ"
     ],
     "img": "/image/holomen/hBP09-085_S.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#シューター"
+    ]
+  },
+  {
+    "id": "hBP09-085",
+    "page_id": "3002",
+    "name": "夏色まつり",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "140",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "かわいく描けたから見てよ～",
+        "damage": "50",
+        "text": "",
+        "icons": "黄,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "授業中にこっそり……",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の推しホロメンが〈夏色まつり〉なら、自分のアーカイブのLIMITEDのサポート1枚をデッキの下に戻せる:自分のステージの〈夏色まつり〉1人を選ぶ。このターンの間、選んだホロメンのアーツ+30。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA",
+      "セレクションカップ"
+    ],
+    "img": "/image/holomen/hBP09-085_SR.png",
     "tags": [
       "#JP",
       "#1期生",
@@ -89516,6 +90176,41 @@
       "スタートデッキ 推し Advent"
     ],
     "img": "/image/holomen/hSD12-009_C.png",
+    "tags": [
+      "#EN",
+      "#Advent",
+      "#ベイビー"
+    ]
+  },
+  {
+    "id": "hSD12-009",
+    "page_id": "3003",
+    "name": "古石ビジュー",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "とっても感謝してるの",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "賑やかな家族",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキの上から3枚を見る。その中から、#Adventを持つホロメン1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "SR",
+    "unlimited": false,
+    "products": [
+      "エクストリーマーカップ25-26 Final オフィシャルホロカコレクションA"
+    ],
+    "img": "/image/holomen/hSD12-009_SR.png",
     "tags": [
       "#EN",
       "#Advent",
