@@ -47757,6 +47757,23 @@
     "tags": []
   },
   {
+    "id": "hBP05-074",
+    "page_id": "3017",
+    "name": "フレンドリーパソコン",
+    "category": "サポート",
+    "color": null,
+    "kind": "アイテム",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のデッキから、エクストラ「このホロメンはデッキに何枚でも入れられる」を持つDebutホロメン1～2枚をステージに出す。そしてデッキをシャッフルする。Debutホロメンを2枚出したなら、さらに、自分の手札1枚をデッキの下に戻す。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hBP05-074_P_04.png",
+    "tags": []
+  },
+  {
     "id": "hBP05-075",
     "page_id": "1265",
     "name": "牛丼",
@@ -65304,6 +65321,76 @@
     ]
   },
   {
+    "id": "hBP08-017",
+    "page_id": "3051",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "みんな、ぬんぬん進んでいこーう　40+",
+        "damage": "",
+        "text": "自分のステージに#0期生を持つ2ndホロメンがいるなら、このアーツ+20。",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "「ヴァ！」",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキから、〈あん肝〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP08-017_P.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
+    "id": "hBP08-017",
+    "page_id": "3052",
+    "name": "ときのそら",
+    "category": "ホロメン",
+    "color": "白",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "みんな、ぬんぬん進んでいこーう　40+",
+        "damage": "",
+        "text": "自分のステージに#0期生を持つ2ndホロメンがいるなら、このアーツ+20。",
+        "icons": "白,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "「ヴァ！」",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のデッキから、〈あん肝〉1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP08-017_P_02.png",
+    "tags": [
+      "#JP",
+      "#0期生",
+      "#歌"
+    ]
+  },
+  {
     "id": "hBP08-018",
     "page_id": "2221",
     "name": "ときのそら",
@@ -74432,6 +74519,41 @@
     ]
   },
   {
+    "id": "hBP09-031",
+    "page_id": "3015",
+    "name": "白銀ノエル",
+    "category": "ホロメン",
+    "color": "緑",
+    "kind": "2nd",
+    "value": "220",
+    "cardType": "ホロメン",
+    "baton_touch": "3",
+    "arts": [
+      {
+        "name": "牛丼は～飲み物！　10+",
+        "damage": "",
+        "text": "自分の推しホロメンが〈白銀ノエル〉で、このホロメンの残りHPが200以上なら、このアーツ+200。",
+        "icons": "緑,緑,緑,◇",
+        "tokkou": "青+50"
+      }
+    ],
+    "keywordName": "究極の牛丼道",
+    "keywordType": "ギフト",
+    "keywordEffect": "[ターンに1回]このホロメンが〈牛丼〉の能力で回復するHP+100。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP09-031_P.png",
+    "tags": [
+      "#JP",
+      "#3期生",
+      "#お酒"
+    ]
+  },
+  {
     "id": "hBP09-032",
     "page_id": "2749",
     "name": "大神ミオ",
@@ -78929,6 +79051,41 @@
     ]
   },
   {
+    "id": "hBP09-086",
+    "page_id": "3016",
+    "name": "夏色まつり",
+    "category": "ホロメン",
+    "color": "黄",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "太鼓でわっしょーい！",
+        "damage": "40",
+        "text": "",
+        "icons": "黄",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "おまつり騒ぎ",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分の推しホロメンが〈夏色まつり〉なら、自分のデッキの上から5枚を見る。その中から、LIMITEDのサポート1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "P",
+    "unlimited": false,
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/holomen/hBP09-086_P.png",
+    "tags": [
+      "#JP",
+      "#1期生",
+      "#シューター"
+    ]
+  },
+  {
     "id": "hBP09-087",
     "page_id": "2804",
     "name": "夏色まつり",
@@ -81355,6 +81512,23 @@
     "tags": []
   },
   {
+    "id": "hEB01-025",
+    "page_id": "3018",
+    "name": "サマーパソコン",
+    "category": "サポート",
+    "color": null,
+    "kind": "アイテム",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のライフが2以上なら、自分のデッキから、#サマーを持つDebutホロメン1枚をステージに出す。そしてデッキをシャッフルする。自分のライフが1なら、自分のデッキから、#サマーを持つホロメン1枚を公開し、手札に加える。そしてデッキをシャッフルする。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-025_P.png",
+    "tags": []
+  },
+  {
     "id": "hEB01-026",
     "page_id": "2501",
     "name": "クマリン",
@@ -81370,6 +81544,23 @@
       "hGS 2026 大阪 セレクションロード"
     ],
     "img": "/image/support/hEB01-026_U.png",
+    "tags": []
+  },
+  {
+    "id": "hEB01-026",
+    "page_id": "3019",
+    "name": "クマリン",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分の推しホロメンが〈宝鐘マリン〉でなければ使えない。\n\n自分のデッキを2枚引く。その後、自分の手札の〈宝鐘マリン〉1枚を公開し、デッキの下に戻せる。戻したなら、自分のデッキを2枚引く。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-026_P.png",
     "tags": []
   },
   {
@@ -81391,6 +81582,23 @@
     "tags": []
   },
   {
+    "id": "hEB01-027",
+    "page_id": "3020",
+    "name": "サマーライブ",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このターンの間、自分のステージの#サマーを持つホロメン全員のアーツ+30。その後、自分のアーカイブのエール1枚を自分のホロメンに送る。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-027_P.png",
+    "tags": []
+  },
+  {
     "id": "hEB01-028",
     "page_id": "2503",
     "name": "スイカ割り",
@@ -81406,6 +81614,23 @@
       "hGS 2026 大阪 セレクションロード"
     ],
     "img": "/image/support/hEB01-028_C.png",
+    "tags": []
+  },
+  {
+    "id": "hEB01-028",
+    "page_id": "3021",
+    "name": "スイカ割り",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分のステージの2ndホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+30し、そのホロメンがアーツダメージでホロメンをダウンさせた時、自分のデッキを2枚引く。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-028_P.png",
     "tags": []
   },
   {
@@ -81427,6 +81652,23 @@
     "tags": []
   },
   {
+    "id": "hEB01-029",
+    "page_id": "3022",
+    "name": "スプラッシュシュート",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "",
+    "value": "0",
+    "effect": "このカードは、自分のセンターホロメンとコラボホロメンが#サマーを持つホロメンでなければ使えない。\n\n相手のセンターホロメンかコラボホロメンに特殊ダメージ30を与える。\n\n自分の〈スプラッシュシュート〉はターンに1回しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-029_P.png",
+    "tags": []
+  },
+  {
     "id": "hEB01-030",
     "page_id": "2505",
     "name": "ホロライブ・サマー",
@@ -81442,6 +81684,23 @@
       "hGS 2026 大阪 セレクションロード"
     ],
     "img": "/image/support/hEB01-030_U.png",
+    "tags": []
+  },
+  {
+    "id": "hEB01-030",
+    "page_id": "3023",
+    "name": "ホロライブ・サマー",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分のデッキを2枚引く。その後、自分のステージに#サマーを持つホロメンが3人以上いるなら、自分のデッキの上から2枚を見る。その中から1枚を手札に加える。そして残ったカードをアーカイブする。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-030_P.png",
     "tags": []
   },
   {
@@ -81463,6 +81722,23 @@
     "tags": []
   },
   {
+    "id": "hEB01-031",
+    "page_id": "3024",
+    "name": "水遊び",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "",
+    "value": "0",
+    "effect": "自分のアーカイブのエール1枚を自分の#サマーを持つホロメンに送る。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-031_P.png",
+    "tags": []
+  },
+  {
     "id": "hEB01-032",
     "page_id": "2507",
     "name": "STAR STAR☆T",
@@ -81478,6 +81754,23 @@
       "hGS 2026 大阪 セレクションロード"
     ],
     "img": "/image/support/hEB01-032_U.png",
+    "tags": []
+  },
+  {
+    "id": "hEB01-032",
+    "page_id": "3025",
+    "name": "STAR STAR☆T",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分の推しホロメンが〈ときのそら〉なら、自分が先攻で最初のターンでも使える。\n\n自分のデッキを3枚引き、手札1枚をデッキの下に戻す。\n\nLIMITED：ターンに1枚しか使えない。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-032_P.png",
     "tags": []
   },
   {
@@ -81499,6 +81792,23 @@
     "tags": []
   },
   {
+    "id": "hEB01-033",
+    "page_id": "3026",
+    "name": "ビーチボール",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "このツールが付いている#サマーを持つホロメンのアーツ+10。\n\nこのツールが付いているホロメンがアーツを使った時、このツールを自分の#サマーを持つ[センターホロメンかコラボホロメン]に付け替えられる。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-033_P.png",
+    "tags": []
+  },
+  {
     "id": "hEB01-034",
     "page_id": "2509",
     "name": "なんでも爆解！",
@@ -81514,6 +81824,25 @@
       "hGS 2026 大阪 セレクションロード"
     ],
     "img": "/image/support/hEB01-034_U.png",
+    "tags": [
+      "#こよラボ"
+    ]
+  },
+  {
+    "id": "hEB01-034",
+    "page_id": "3027",
+    "name": "なんでも爆解！",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "このツールが付いているホロメンのアーツ+10。\n\n◆2nd〈博衣こより〉に付いていたら能力追加\n[センターポジション・コラボポジション限定]自分のパフォーマンスステップが終了する時、このホロメンに付いている〈なんでも爆解！〉1枚をアーカイブできる：相手のセンターホロメンに特殊ダメージ30を与える。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "P",
+    "products": [
+      "PRカード"
+    ],
+    "img": "/image/support/hEB01-034_P.png",
     "tags": [
       "#こよラボ"
     ]
@@ -91786,6 +92115,24 @@
     "tags": []
   },
   {
+    "id": "hSD14-010",
+    "page_id": "3042",
+    "name": "holoAN",
+    "category": "サポート",
+    "color": null,
+    "kind": "スタッフ",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "自分のデッキを３枚引く。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "C",
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/support/hSD14-010_C_03.png",
+    "tags": []
+  },
+  {
     "id": "hSD14-011",
     "page_id": "2075",
     "name": "ありよりのアリゲーター",
@@ -93631,6 +93978,665 @@
     "tags": [
       "#食べ物"
     ]
+  },
+  {
+    "id": "hSD20-001",
+    "page_id": "3028",
+    "name": "百灯キョーコ",
+    "category": "推しホロメン",
+    "color": "赤",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OSR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-3]ヒーローポリス疾走！[ターンに1回]相手のDebut以外の[センターホロメンとコラボホロメン]に、自分のステージのエール1枚につき、特殊ダメージ10を与える。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\n広がる情熱自分のホロメンがコラボした時、自分のセンターが〈百灯キョーコ〉なら、自分のエールデッキの上から1枚を自分のコラボホロメンに送る。"
+      }
+    ],
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/OSR/hSD20-001_OSR.png",
+    "tags": []
+  },
+  {
+    "id": "hSD20-002",
+    "page_id": "3029",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "笑顔にさせちゃっていいですか！？？　20+",
+        "damage": "",
+        "text": "[センターポジション限定]自分のステージにエールが2枚以上あるなら、このアーツ+20。",
+        "icons": "赤",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "C",
+    "unlimited": true,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-002_C.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-003",
+    "page_id": "3030",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "ドンチャン大騒ぎの始まり",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "即集合！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキから、[#アソビ★まわり隊！を持つDebutホロメンと1st〈百灯キョーコ〉]1枚ずつを公開し、手札に加える。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "U",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-003_U.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-004",
+    "page_id": "3031",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "180",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "出勤準備完了！",
+        "damage": "60",
+        "text": "",
+        "icons": "赤,◇",
+        "tokkou": ""
+      },
+      {
+        "name": "拡声器いらずのビッグボイス",
+        "damage": "140",
+        "text": "",
+        "icons": "赤,◇,◇,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "",
+    "keywordType": "",
+    "keywordEffect": "",
+    "extra": "",
+    "rarity": "C",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-004_C.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-005",
+    "page_id": "3032",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "150",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "考えるより先に動く",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "差し伸べる手",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージの#アソビ★まわり隊！を持つホロメン1人を選ぶ。このターンの間、選んだホロメンのアーツ+20。",
+    "extra": "",
+    "rarity": "U",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-005_U.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-006",
+    "page_id": "3033",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "渦巻くハイテンション　50+",
+        "damage": "",
+        "text": "自分のステージにエールが6枚以上あるなら、このアーツ+20。",
+        "icons": "赤,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "誰にだって手を伸ばす！",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のステージのエール1枚をアーカイブできる:自分のアーカイブの#アソビ★まわり隊！を持つホロメン1枚を手札に戻す。",
+    "extra": "",
+    "rarity": "R",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-006_R.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-007",
+    "page_id": "3034",
+    "name": "百灯キョーコ",
+    "category": "ホロメン",
+    "color": "赤",
+    "kind": "2nd",
+    "value": "190",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "「最強」担当　150+",
+        "damage": "",
+        "text": "自分のステージにエールが6枚以上あるなら、このアーツ+50。",
+        "icons": "赤,赤,◇",
+        "tokkou": "緑+50"
+      }
+    ],
+    "keywordName": "情熱系ヒーローポリス",
+    "keywordType": "ギフト",
+    "keywordEffect": "[センターポジション限定]自分のコラボホロメンのアーツ+20。",
+    "extra": "",
+    "rarity": "RR",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/holomen/hSD20-007_RR.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-008",
+    "page_id": "3035",
+    "name": "宙科そぴあ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "全部この目で確かめにいくよ！",
+        "damage": "10",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "夢は弾けるビッグバン！",
+    "keywordType": "ギフト",
+    "keywordEffect": "相手のターンで、このホロメンがダウンした時、自分のデッキを1枚引く。",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "C",
+    "unlimited": true,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD20-008_C.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-009",
+    "page_id": "3036",
+    "name": "宙科そぴあ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "抑えきれない知的好奇心",
+        "damage": "30",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "面白さの探求",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のステージに#アソビ★まわり隊！を持つホロメンが3人以上いるなら、このホロメンのエール1枚をアーカイブできる：自分のデッキを2枚引く。",
+    "extra": "",
+    "rarity": "U",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD20-009_U.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-010",
+    "page_id": "3037",
+    "name": "宙科そぴあ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "1st",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "面白いもの見つけたよ！",
+        "damage": "50",
+        "text": "このホロメンのエール1枚を自分の他の#アソビ★まわり隊！を持つホロメンに付け替えられる。",
+        "icons": "青,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "仲間を探すぞ～！",
+    "keywordType": "ブルームエフェクト",
+    "keywordEffect": "自分のデッキの上から3枚を見る。その中から、#アソビ★まわり隊！を持つホロメン1枚を公開し、手札に加える。そして残ったカードを好きな順でデッキの下に戻す。",
+    "extra": "",
+    "rarity": "R",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD20-010_R.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-011",
+    "page_id": "3038",
+    "name": "宙科そぴあ",
+    "category": "ホロメン",
+    "color": "青",
+    "kind": "2nd",
+    "value": "200",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "「ひらめき」担当　80+",
+        "damage": "",
+        "text": "このホロメンのエール1～3枚をアーカイブできる:アーカイブしたエール1枚につき、このアーツ+20。",
+        "icons": "青,◇",
+        "tokkou": "白+50"
+      }
+    ],
+    "keywordName": "（自称）天才宇宙飛行士",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブのエール2枚を自分の#アソビ★まわり隊！を持つホロメン1人に送れる。",
+    "extra": "",
+    "rarity": "RR",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD20-011_RR.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD20-012",
+    "page_id": "3039",
+    "name": "アソビ★まわり隊！",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分の手札がこのカードを含まずに6枚以下でなければ使えない。\n\n自分のデッキの上から4枚を見る。その中から、#アソビ★まわり隊！を持つホロメンを好きな枚数公開し、公開したホロメンを手札に加える。そして残ったカードを好きな順でデッキの下に戻す。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "U",
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/support/hSD20-012_U.png",
+    "tags": []
+  },
+  {
+    "id": "hSD20-013",
+    "page_id": "3040",
+    "name": "ぐるぐるTIME！",
+    "category": "サポート",
+    "color": null,
+    "kind": "イベント",
+    "limited": "LIMITED",
+    "value": "0",
+    "effect": "このカードは、自分のステージのホロメン全員が#アソビ★まわり隊！を持つホロメンでなければ使えない。\n\n相手のバックホロメン1人を選ぶ。選んだホロメンと相手のセンターホロメンを交代させる。その後、相手と勝敗が決まるまでじゃんけんする。自分が勝ったなら、自分のデッキを3枚引く。\n\nLIMITED:ターンに1枚しか使えない。",
+    "rarity": "U",
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ",
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/support/hSD20-013_U.png",
+    "tags": []
+  },
+  {
+    "id": "hSD20-014",
+    "page_id": "3041",
+    "name": "百灯キョーコの拡声器",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "このツールが付いている〈百灯キョーコ〉のアーツ+20。\n\n◆1st以上の〈百灯キョーコ〉に付いていたら能力追加\nこのホロメンが相手のホロメンをダウンさせた時、自分のアーカイブのエール1枚を自分の#アソビ★まわり隊！を持つバックホロメンに送れる。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "U",
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 百灯キョーコ"
+    ],
+    "img": "/image/support/hSD20-014_U.png",
+    "tags": []
+  },
+  {
+    "id": "hSD21-001",
+    "page_id": "3043",
+    "name": "熱千めら",
+    "category": "推しホロメン",
+    "color": "紫",
+    "kind": "推し",
+    "value": "5",
+    "rarity": "OSR",
+    "skills": [
+      {
+        "label": "推しスキル",
+        "text": "[ホロパワー:-2]ご利益じゃ！[ターンに1回]自分のステージのホロメン1人を選ぶ。自分のアーカイブのギフトを持つホロメン1枚につき、このターンの間、選んだホロメンのアーツ+10。さらに、選んだホロメンが〈熱千めら〉なら、そのホロメンのアーツに必要な無色-1。"
+      },
+      {
+        "label": "ステージスキル",
+        "text": "推しステージスキル\nサラマンダーの恩返し自分のホロメンがコラボした時、自分のセンターが〈熱千めら〉なら、自分のデッキを1枚引き、手札1枚をアーカイブする。"
+      }
+    ],
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/OSR/hSD21-001_OSR.png",
+    "tags": []
+  },
+  {
+    "id": "hSD21-002",
+    "page_id": "3044",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "120",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "火の用心じゃ～！",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "防火対策 基礎！",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンが受けるアーツダメージ-10。",
+    "extra": "このホロメンはデッキに何枚でも入れられる",
+    "rarity": "C",
+    "unlimited": true,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-002_C.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-003",
+    "page_id": "3045",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "Debut",
+    "value": "130",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "響く拍子木",
+        "damage": "20",
+        "text": "",
+        "icons": "◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "炎を鎮める不思議な力",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分が後攻で最初のターンなら、自分のデッキから、ギフトを持つ〈熱千めら〉2枚を公開する。その中から1枚を手札に加え、残ったカードをアーカイブする。そしてデッキをシャッフルする。",
+    "extra": "",
+    "rarity": "U",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-003_U.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-004",
+    "page_id": "3046",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "元気な頑張り屋",
+        "damage": "30",
+        "text": "自分のデッキを1枚引き、手札1枚をアーカイブする。",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "防火対策 応用！",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンが受けるアーツダメージ-20。",
+    "extra": "",
+    "rarity": "C",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-004_C.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-005",
+    "page_id": "3047",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "170",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "最高の非日常へ",
+        "damage": "40",
+        "text": "",
+        "icons": "紫",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ハジけるアソビの渦",
+    "keywordType": "コラボエフェクト",
+    "keywordEffect": "自分のアーカイブにギフトを持つホロメンが3枚以上あるなら、相手のセンターホロメンかコラボホロメンに特殊ダメージ20を与える。",
+    "extra": "",
+    "rarity": "U",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-005_U.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-006",
+    "page_id": "3048",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "1st",
+    "value": "160",
+    "cardType": "ホロメン",
+    "baton_touch": "1",
+    "arts": [
+      {
+        "name": "火消しの本領発揮じゃ！",
+        "damage": "60",
+        "text": "",
+        "icons": "紫,◇",
+        "tokkou": ""
+      }
+    ],
+    "keywordName": "ご利益パワー",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンがダウンした時、このホロメンのエール1～2枚を選び、自分の他のホロメンに割り振って付け替えられる。",
+    "extra": "",
+    "rarity": "R",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-006_R.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-007",
+    "page_id": "3049",
+    "name": "熱千めら",
+    "category": "ホロメン",
+    "color": "紫",
+    "kind": "2nd",
+    "value": "210",
+    "cardType": "ホロメン",
+    "baton_touch": "2",
+    "arts": [
+      {
+        "name": "「ご利益」担当　100+",
+        "damage": "",
+        "text": "自分のアーカイブにギフトを持つホロメンが3枚以上あるなら、このアーツ+50。",
+        "icons": "紫,◇",
+        "tokkou": "黄+50"
+      }
+    ],
+    "keywordName": "火消しのサラマンダー",
+    "keywordType": "ギフト",
+    "keywordEffect": "このホロメンがダウンした時、自分のデッキを2枚引く。",
+    "extra": "",
+    "rarity": "RR",
+    "unlimited": false,
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/holomen/hSD21-007_RR.png",
+    "tags": [
+      "#アソビ★まわり隊！"
+    ]
+  },
+  {
+    "id": "hSD21-008",
+    "page_id": "3050",
+    "name": "熱千めらの拍子木",
+    "category": "サポート",
+    "color": null,
+    "kind": "ツール",
+    "limited": "",
+    "value": "0",
+    "effect": "このツールが付いている〈熱千めら〉のアーツ+20。\n\n◆1st以上の〈熱千めら〉に付いていたら能力追加\nこのホロメンが相手のホロメンをダウンさせた時、自分のデッキを1枚引き、手札1枚をアーカイブする。\n\nツールは、自分のホロメン1人につき1枚だけ付けられる。",
+    "rarity": "U",
+    "products": [
+      "スタートデッキ アソビ★まわり隊！推し 熱千めら"
+    ],
+    "img": "/image/support/hSD21-008_U.png",
+    "tags": []
   },
   {
     "id": "hY01-001",
